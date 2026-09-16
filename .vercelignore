@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vercel/
+.git/
+qa/
+ui-evidence/
+package-lock.json
+*.log
+*.bak
