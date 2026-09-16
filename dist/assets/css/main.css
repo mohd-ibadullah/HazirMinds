@@ -1,0 +1,1210 @@
+/* ============================================================
+   HAZIRMINDS — Royal Editorial design system
+   Tokens, base, components, motion, a11y. No external deps.
+   ============================================================ */
+
+:root{
+  /* palette */
+  --cream:#FAF7F2;
+  --paper:#F4EEE6;
+  --card:#FFFDF9;
+  --ink:#191613;
+  --deep:#0F0D0B;
+  --muted:#5C554E;                    /* ≥6.3:1 on cream/paper/card (§2 floor) */
+  --hairline:#E6DDD0;
+  --rust:#C64110;
+  --rust-hover:#A0340D;
+  --rust-text:#A0340D;                /* rust as TEXT on light — 6.1:1 on paper, 6.9:1 on card */
+  --brass:#B98A2E;                    /* hairlines + decoration */
+  --brass-text:#7A5A12;               /* brass as TEXT on light bands — 5.5:1+ */
+  --brass-band:#D9A93F;               /* brass as TEXT on dark bands — 8.6:1+ */
+  --blue:#59B7D9;
+  --ok:#3E7C4F;                      /* icons/decorative */
+  --ok-text:#2E6B44;                 /* ok as TEXT on light — 4.9:1+ */
+  --ok-band:#8FD0A0;                 /* ok as TEXT on dark */
+  --dark:#14110E;
+  --dark-2:#1B1712;
+
+  /* type */
+  --font-display:"Plus Jakarta Sans","Jakarta Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-body:"Inter","Inter Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --font-mono:"JetBrains Mono","Mono Fallback",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* rhythm */
+  --container:1200px;
+  --sec:112px;
+  --sec-mob:72px;
+  --r-pill:999px;
+  --r-card:20px;
+  --r-panel:28px;
+
+  --shadow-1:0 1px 2px rgba(25,22,19,.04),0 8px 24px rgba(25,22,19,.06);
+  --shadow-2:0 2px 4px rgba(25,22,19,.05),0 16px 40px rgba(25,22,19,.10);
+  --glow:0 0 0 1px rgba(185,138,46,.35),0 10px 30px rgba(185,138,46,.12);
+}
+/* ---------- band-scoped tokens (§2): dark bands invert together ---------- */
+/* opt-out: a light panel inside a dark band restores light tokens */
+[data-band="light"]{--muted:#5C554E;--rust-text:#A0340D;--brass:#B98A2E;--brass-text:#7A5A12;--ok:#3E7C4F;--ok-text:#2E6B44;--hairline:#E6DDD0;--ink:#191613;--card:#FFFDF9}
+[data-band="dark"]{
+  /* --rust / --rust-hover are SOLID SURFACES (button fills, switch tracks, table heads,
+     badge discs) that always carry white or cream text. Remapping them to --brass-band
+     made .btn--primary a brass pill with white type: 2.17:1, a hard axe failure on every
+     final-CTA band. Only the TEXT tokens get the brass treatment on dark. */
+  --rust-text:var(--brass-band);
+  --muted:rgba(250,247,242,.78);
+  --ok:var(--ok-band);
+  --ok-text:var(--ok-band);
+  --brass:var(--brass-band);
+  --brass-text:var(--brass-band);
+  --hairline:rgba(250,247,242,.16);
+  --ink:var(--cream);
+  --card:rgba(250,247,242,.04);
+}
+/* safety net for always-dark containers */
+.footer,.roi-bar,.final-cta,.proof-band,.gov-band,.masjid-hero,.masjid-secure,.section--dark,.on-dark,.hallucination-panel{
+  /* same rule as [data-band="dark"]: surfaces keep --rust, only text tokens turn brass. */
+  --rust-text:var(--brass-band);
+  --muted:rgba(250,247,242,.78);--brass:var(--brass-band);--brass-text:var(--brass-band);--ok:var(--ok-band);--ok-text:var(--ok-band);--hairline:rgba(250,247,242,.16);
+  /* --ink is TEXT — leaving it at the light-band #191613 made any component that colours
+     itself with var(--ink) render dark-on-dark inside these sections. */
+  --ink:var(--cream);
+}
+
+/* ---------- reset & base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.65;
+  color:var(--ink);
+  background:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:clip;
+}
+img,svg,video{max-width:100%;height:auto;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+input,select,textarea{font:inherit;color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);letter-spacing:-.02em;line-height:1.08;text-wrap:balance}
+p{margin:0 0 1em}
+ul{margin:0;padding:0;list-style:none}
+figure{margin:0}
+hr{border:0;border-top:1px solid var(--hairline);margin:0}
+:focus-visible{outline:2px solid var(--rust);outline-offset:3px;border-radius:4px}
+::selection{background:rgba(198,65,16,.16)}
+
+.container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:24px}
+.section{padding-block:var(--sec)}
+.section--tight{padding-block:calc(var(--sec)*.66)}
+.section--paper{background:var(--paper)}
+.section--card{background:var(--card)}
+.section--dark{background:var(--dark);color:var(--cream)}
+.section--dark .muted,.section--dark p{color:rgba(250,247,242,.72)}
+.section--dark .hairline{border-color:rgba(250,247,242,.14)}
+
+/* ---------- type ---------- */
+.display-xl,h1{font-size:clamp(44px,6.4vw,76px);font-weight:800;letter-spacing:-.035em;line-height:1.02}
+h2{font-size:clamp(32px,4.2vw,52px);font-weight:700;letter-spacing:-.03em;line-height:1.06}
+h3{font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.015em}
+.muted{color:var(--muted)}
+.lede{font-size:clamp(17px,1.4vw,20px);color:var(--muted);max-width:62ch}
+.serif-accent{font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:clamp(19px,1.7vw,24px);color:var(--ink);letter-spacing:0}
+.section--dark .serif-accent{color:var(--cream)}
+.eyebrow{
+  font-family:var(--font-mono);font-size:11px;font-weight:500;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--brass-text);display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:18px;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--brass);display:inline-block}
+.eyebrow--rust{color:var(--rust-text)}.eyebrow--rust::before{background:var(--rust)}
+.section--dark .eyebrow{color:var(--brass)}
+.center{text-align:center}.center .eyebrow::before{display:none}
+
+/* ---------- pills / chips ---------- */
+.pill{
+  display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:var(--r-pill);
+  border:1px solid var(--hairline);background:var(--card);font-size:13.5px;font-weight:500;line-height:1.2;
+  white-space:nowrap;
+}
+.pill--brass{border-color:rgba(185,138,46,.45);background:rgba(185,138,46,.08);color:var(--brass-text)}
+.pill--ok{border-color:rgba(62,124,79,.35);background:rgba(62,124,79,.08);color:var(--ok-text)}
+.pill--rust{border-color:rgba(198,65,16,.35);background:rgba(198,65,16,.08);color:var(--rust-hover)}
+.pill--dark{border-color:rgba(250,247,242,.2);background:rgba(250,247,242,.06);color:var(--cream)}
+/* Pill borders on dark bands sit at 16% alpha, which is visible as a shape but gives almost
+   no definition — a row of six chips reads as a smear. Raising the border only (text colour
+   and background untouched) sharpens the row without moving the palette. */
+.masjid-hero .pill,.gov-band .pill,.proof-band .pill,.on-dark .pill,.section--dark .pill{border-color:rgba(250,247,242,.3)}
+/* Every icon inside a pill was unsized. An <svg> with no width/height renders at its
+   intrinsic 300x150 box, so the 19 shield icons on /masjids (governance chips, the
+   no-hallucination panel) blew up to full-tile size and shredded the layout. Pills are
+   text-sized chips — the icon must be text-sized too. */
+.pill svg{width:13px;height:13px;flex:none}
+.pill svg+*{margin-left:1px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- buttons ---------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:15px 28px;border-radius:var(--r-pill);font-family:var(--font-display);
+  font-weight:700;font-size:16px;line-height:1.1;text-decoration:none;border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.2,.7,.3,1),box-shadow .25s,background .2s,border-color .2s,color .2s;
+  overflow:hidden;white-space:nowrap;will-change:transform;
+}
+.btn svg{width:16px;height:16px;flex:none}
+.btn--primary{background:var(--rust);color:#fff;box-shadow:0 1px 2px rgba(25,22,19,.2),0 10px 26px rgba(198,65,16,.28)}
+.btn--primary:hover{background:var(--rust-hover)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:rgba(25,22,19,.22)}
+.btn--ghost:hover{border-color:var(--ink);background:rgba(25,22,19,.04)}
+.btn--cream{background:var(--cream);color:var(--ink)}
+.btn--cream:hover{background:#fff}
+.btn--outline-light{background:transparent;color:var(--cream);border-color:rgba(250,247,242,.35)}
+.btn--outline-light:hover{border-color:var(--cream);background:rgba(250,247,242,.07)}
+.btn--brass{background:var(--brass);color:#161006}
+.btn--brass:hover{background:#A67A25}
+.btn--sm{padding:10px 18px;font-size:14px}
+.btn--lg{padding:18px 34px;font-size:17px}
+.btn .shine{
+  position:absolute;top:0;left:-80%;width:50%;height:100%;pointer-events:none;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.32),transparent);
+  transform:skewX(-18deg);transition:left .6s ease;
+}
+.btn:hover .shine{left:130%}
+.btn[aria-disabled="true"]{opacity:.55;pointer-events:none}
+
+.link-arrow{display:inline-flex;align-items:center;gap:7px;font-weight:600;color:var(--rust-text);text-decoration:none;min-height:24px;padding:3px 0}
+.link-arrow:hover{color:var(--rust-hover)}
+.link-arrow svg{width:15px;height:15px;transition:transform .2s}
+.link-arrow:hover svg{transform:translateX(3px)}
+
+/* ---------- cards & panels ---------- */
+.card{
+  background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:28px;box-shadow:var(--shadow-1);position:relative;
+}
+.card--panel{border-radius:var(--r-panel);padding:36px}
+.card--hairline-top{border-top:2px solid var(--brass)}
+.card--hover{transition:transform .3s cubic-bezier(.2,.7,.3,1),box-shadow .3s,border-color .3s}
+.card--hover:hover{transform:translateY(-4px);box-shadow:var(--shadow-2),var(--glow)}
+/* Card hierarchy: a card's h3 is a section-level label, not body copy. It was inheriting
+   the global h3 size, so the icon-tile cards on /masjids read flat against their own text. */
+.card h3{margin-bottom:10px;font-size:21px;line-height:1.25;letter-spacing:-.012em}
+.card--panel h3{font-size:23px}
+.card--panel>.eyebrow,.card>.eyebrow+.chip-row{margin-top:0}
+.grid{display:grid;gap:22px}
+.grid>*,.grid-2>*,.grid-3>*,.grid-4>*{min-width:0}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+
+.icon-tile{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex:none;
+  background:rgba(198,65,16,.09);color:var(--rust-text);border:1px solid rgba(198,65,16,.16);
+}
+.icon-tile svg{width:22px;height:22px}
+.icon-tile--brass{background:rgba(185,138,46,.1);color:var(--brass-text);border-color:rgba(185,138,46,.22)}
+.icon-tile--ok{background:rgba(62,124,79,.1);color:var(--ok);border-color:rgba(62,124,79,.2)}
+
+.num{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;color:var(--muted)}
+
+/* ---------- section header ---------- */
+.sec-head{max-width:760px;margin-bottom:44px}
+.sec-head.center{margin-inline:auto}
+.sec-head .lede{margin-top:14px}
+
+/* ---------- top bar (S0) ---------- */
+.roi-bar{
+  background:var(--deep);color:var(--cream);font-size:13.5px;text-align:center;
+  padding:9px 16px;position:relative;z-index:60;
+}
+.roi-bar strong{color:var(--brass);font-weight:600}
+.roi-bar a{color:var(--cream);text-underline-offset:3px;display:inline-block;padding:4px 2px}
+
+/* ---------- nav (S1) ---------- */
+.nav-wrap{position:sticky;top:0;z-index:65}
+.nav{
+  background:var(--cream);
+  border-bottom:1px solid var(--hairline);
+}
+/* Opaque when scrolled. At 94% alpha the section underneath showed through as a legible
+   ghost — page copy rendered half-visible behind the nav bar, which reads as a contrast bug
+   on every page. The shadow alone is enough to lift the bar off the content. */
+.nav.scrolled{background:var(--cream);box-shadow:0 6px 24px rgba(25,22,19,.06)}
+.nav-inner{display:flex;align-items:center;gap:26px;height:72px}
+.brand{display:flex;align-items:center;text-decoration:none;font-family:var(--font-display);font-weight:800;font-size:21px;letter-spacing:-.02em}
+.brand .mark{margin-right:11px}
+.brand .mark{width:32px;height:32px;border-radius:10px;background:var(--deep);color:var(--brass);display:grid;place-items:center;font-size:16px;font-weight:800}
+.brand em{font-style:normal;color:var(--rust-text)}
+.nav-links{display:flex;align-items:center;gap:4px;margin-left:auto}
+.nav-item{position:relative}
+/* current page marker — until now the nav never told you (or a screen reader) where you
+   were. aria-current is set by lib.js nav(); .is-current covers the mega-menu triggers,
+   which are buttons and so cannot carry a page-level aria-current of their own. */
+.nav-link[aria-current="page"],.nav-item.is-current>.nav-link{color:var(--rust-text)}
+.nav-link[aria-current="page"]::after,.nav-item.is-current>.nav-link::after{content:"";position:absolute;left:13px;right:13px;bottom:3px;height:2px;border-radius:2px;background:var(--rust-text)}
+.mega a[aria-current="page"] b,.mega a[aria-current="page"] span{color:var(--rust-text)}
+.nav-mobile a[aria-current="page"]{color:var(--rust-text);font-weight:600}
+.nav-link{
+  display:inline-flex;align-items:center;gap:5px;padding:9px 13px;border-radius:10px;
+  font-size:15px;font-weight:500;text-decoration:none;color:var(--ink);background:none;border:0;cursor:pointer;
+}
+.nav-link:hover{background:rgba(25,22,19,.05)}
+.nav-link .chev{width:12px;height:12px;transition:transform .2s}
+.nav-item.open .chev{transform:rotate(180deg)}
+.mega{
+  position:absolute;top:calc(100% + 10px);left:50%;transform:translate(-50%,6px);
+  width:min(720px,92vw);background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);
+  box-shadow:var(--shadow-2);padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  opacity:0;visibility:hidden;transition:opacity .22s,transform .22s,visibility .22s;
+}
+.nav-item.open .mega{opacity:1;visibility:visible;transform:translate(-50%,0)}
+/* invisible bridge across the 10px gap between the nav button and the panel — without it
+   mouseleave fires mid-travel and the menu closes while the user is moving into it */
+.mega::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
+.mega--3{width:min(880px,94vw);grid-template-columns:repeat(3,1fr)}
+/* Every link is a direct grid item (the old two-column wrappers were removed), so the whole
+   list balances across the panel instead of hanging in ragged groups. When the count is odd
+   the trailing item spans the row rather than sitting alone beside an empty slot. */
+.mega a:last-child:nth-child(odd){grid-column:1/-1}
+/* name above description, all left-aligned to the same edge. As a flex ROW the name and
+   description sat side by side, so a long name wrapped to three lines while its neighbour
+   wrapped to one — every description started at a different x and the list read as noise. */
+.mega a{
+  display:flex;flex-direction:column;gap:3px;padding:15px 18px;border-radius:13px;
+  text-decoration:none;align-items:flex-start;
+  border:1px solid transparent;
+  transition:background .16s,border-color .16s,transform .16s;
+}
+/* --paper on --card was so close it read as a smudge; a brass-tinted chip with its
+   own border makes the hovered item unmistakably the active one. */
+.mega a:hover{background:rgba(185,138,46,.1);border-color:rgba(185,138,46,.3);transform:translateX(2px)}
+.mega a:hover b{color:var(--rust-text)}
+.mega a:hover span{color:var(--ink);opacity:.82}
+.mega a b{display:block;font-weight:700;font-size:15px;font-family:var(--font-display);transition:color .16s;line-height:1.25}
+.mega a span{display:block;font-size:13px;color:var(--muted);line-height:1.45;margin-top:0}
+.mega .mega-foot{grid-column:1/-1;border-top:1px solid var(--hairline);margin-top:8px;padding-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;color:var(--muted)}
+.nav-cta{display:flex;gap:10px;margin-left:6px}
+.nav-burger{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;place-items:center;border:1px solid var(--hairline);background:var(--card)}
+.nav-burger svg{width:20px;height:20px}
+.nav-mobile{display:none}
+
+/* ---------- scroll progress ---------- */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--rust);z-index:70;pointer-events:none}
+
+/* Inline prose links: vertical padding grows the hit area to ≥24px without
+   disturbing line layout (padding on inline boxes leaves line-height alone).
+   NOTE: must exclude nav list items — `li a` outranks `.mega a` (four :not()
+   classes beat one), so a blanket `li a` zeroed the mega menu's padding. */
+p a:not(.btn):not(.link-arrow):not(.trade-chip):not(.pill),
+li:not(.nav-item) a:not(.btn):not(.link-arrow):not(.trade-chip):not(.pill),
+.form-note a,
+.lede a,
+.muted a{display:inline-block;padding:5px 0}
+
+/* ---------- hero ---------- */
+.hero{padding:84px 0 96px;position:relative;overflow:clip}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust-text);margin-bottom:22px}
+.hero-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--rust);box-shadow:0 0 0 4px rgba(198,65,16,.15)}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.hero h1 .line>span{display:block;will-change:transform}
+.hero h1 .accent{color:var(--rust-text)}
+.hero-sub{font-size:clamp(17px,1.5vw,19.5px);color:var(--muted);max-width:56ch;margin:26px 0 30px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-chips{margin-top:30px;display:flex;flex-wrap:wrap;gap:9px}
+.hero-chips .pill{font-size:12.5px;padding:6px 13px;color:var(--muted)}
+
+/* transcript demo */
+.demo-shell{position:relative}
+.demo-window{
+  background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);
+  box-shadow:var(--shadow-2);overflow:hidden;
+}
+.demo-titlebar{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--hairline);background:var(--paper)}
+.demo-titlebar .dots{display:flex;gap:6px}
+.demo-titlebar .dots i{width:10px;height:10px;border-radius:50%;background:var(--hairline)}
+.demo-titlebar .dots i:first-child{background:#E8A79B}
+.demo-titlebar .live{margin-left:auto;display:inline-flex;align-items:center;gap:7px;font-family:var(--font-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ok-text)}
+.demo-titlebar .live i{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.demo-tabs{display:flex;gap:6px;padding:12px 14px 0;flex-wrap:wrap}
+.demo-tab{
+  padding:9px 16px;border-radius:var(--r-pill);border:1px solid var(--hairline);background:var(--card);
+  font-size:13.5px;font-weight:600;color:var(--muted);transition:all .2s;
+}
+.demo-tab[aria-selected="true"]{background:var(--deep);color:var(--cream);border-color:var(--deep)}
+.demo-tab:hover:not([aria-selected="true"]){border-color:var(--muted);color:var(--ink)}
+.demo-body{padding:18px 18px 20px;min-height:316px;display:flex;flex-direction:column;gap:10px;justify-content:flex-end}
+.bubble{
+  max-width:86%;padding:11px 15px;border-radius:16px;font-size:14px;line-height:1.5;
+  opacity:0;transform:translateY(8px);
+}
+.bubble.show{animation:bubbleIn .38s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes bubbleIn{to{opacity:1;transform:none}}
+.bubble--ai{background:var(--paper);border:1px solid var(--hairline);border-bottom-left-radius:6px;align-self:flex-start}
+.bubble--caller{background:var(--deep);color:var(--cream);border-bottom-right-radius:6px;align-self:flex-end}
+.bubble--ai .who,.bubble--caller .who{display:block;font-family:var(--font-mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:inherit;opacity:.78;margin-bottom:4px}
+.bubble--booking{align-self:flex-start;background:rgba(62,124,79,.09);border:1px solid rgba(62,124,79,.25);color:var(--ok);font-weight:600;font-size:13px;display:flex;align-items:center;gap:8px}
+.bubble--booking svg{width:15px;height:15px}
+.demo-foot{border-top:1px solid var(--hairline);padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--paper)}
+.demo-foot .micro{font-size:12.5px;color:var(--muted)}
+.demo-foot .micro a{color:var(--rust-text);font-weight:600;text-decoration:none;display:inline-block;padding:5px 0}
+.demo-chips{display:flex;flex-wrap:wrap;gap:7px;padding:0 18px 16px}
+.demo-chips .pill{font-size:11.5px;padding:5px 11px}
+.demo-chips .pill svg{width:12px;height:12px;color:var(--ok)}
+
+/* ---------- counters (S3) ---------- */
+.stats-band{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.stat{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);padding:30px 26px;text-align:left}
+.stat .value{font-family:var(--font-display);font-weight:800;font-size:clamp(34px,3.4vw,46px);letter-spacing:-.03em;color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.stat .value .unit{font-size:.55em;color:var(--rust-text)}
+.stat .label{margin-top:10px;font-size:14px;color:var(--muted);line-height:1.5}
+.stat .src{margin-top:8px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-text)}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);overflow:hidden;box-shadow:var(--shadow-1)}
+.calc-controls{padding:36px;border-right:1px solid var(--hairline);display:flex;flex-direction:column;gap:24px}
+.calc-field label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin-bottom:10px}
+.calc-field label output{font-family:var(--font-mono);color:var(--rust-text);font-size:13px}
+.calc-field input[type=range]{width:100%;accent-color:var(--rust-text);height:28px}
+.calc-result{padding:36px;background:var(--deep);color:var(--cream);display:flex;flex-direction:column;justify-content:center;--muted:rgba(250,247,242,.78);--brass:var(--brass-band);--brass-text:var(--brass-band);--ok:var(--ok-band)}
+.calc-result .eyebrow{margin-bottom:10px}
+.calc-result .big{font-family:var(--font-display);font-weight:800;font-size:clamp(38px,4vw,58px);letter-spacing:-.03em;color:var(--brass);line-height:1.05;font-variant-numeric:tabular-nums}
+.calc-result p{color:rgba(250,247,242,.7);font-size:14.5px;margin-top:14px}
+.calc-result .note{font-size:12px;color:rgba(250,247,242,.78);margin-top:8px}
+
+/* ---------- marquee (S4) ---------- */
+.marquee-band{padding:26px 0 30px;border-block:1px solid var(--hairline);background:var(--card);overflow:clip}
+.marquee-label{text-align:center;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--brass-text);margin-bottom:16px}
+.marquee{position:relative;overflow:clip;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee+.marquee{margin-top:16px}
+.marquee-track{display:flex;gap:12px;width:max-content;will-change:transform;animation:mq 24s linear infinite}
+.marquee+.marquee .marquee-track{animation-duration:32s;animation-direction:reverse}
+@keyframes mq{to{transform:translateX(calc(-50% - 6px))}}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-track .pill{font-size:13.5px;padding:9px 18px;color:var(--ink)}
+.marquee-track .pill svg{width:14px;height:14px;color:var(--brass)}
+
+/* ---------- split cards (S5) ---------- */
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.split-card{border-radius:var(--r-card);padding:30px;border:1px solid var(--hairline)}
+.split-card.bad{background:var(--card)}
+.split-card.good{background:var(--dark);color:var(--cream);border-color:var(--dark)}
+.split-card li{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--hairline);font-size:15.5px;align-items:flex-start}
+.split-card li:last-child{border-bottom:0}
+.split-card.good li{border-color:rgba(250,247,242,.12)}
+.split-card .x,.split-card .c{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;margin-top:2px}
+.split-card .x{background:rgba(198,65,16,.1);color:var(--rust-text)}
+.split-card .c{background:rgba(62,124,79,.14);color:#7FBF8E}
+.split-card .x svg,.split-card .c svg{width:12px;height:12px}
+.split-card b{font-weight:600}
+.split-card li span{color:var(--muted)}
+.split-card.good li span{color:rgba(250,247,242,.65)}
+
+/* comparison table */
+.compare-wrap{margin-top:26px;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);overflow:hidden;box-shadow:var(--shadow-1)}
+table.compare{width:100%;border-collapse:collapse;font-size:15px}
+table.compare th,table.compare td{padding:17px 22px;text-align:left;border-bottom:1px solid var(--hairline);vertical-align:top}
+table.compare thead th{font-family:var(--font-display);font-weight:700;font-size:15px;background:var(--paper)}
+table.compare thead th:last-child{background:var(--rust);color:#fff}
+table.compare tbody tr:last-child td{border-bottom:0}
+table.compare td:first-child{font-weight:600;color:var(--muted);font-size:13.5px;width:22%}
+/* two-column variant (the /masjids capability-label table): the label column is a short
+   pill, so the 22% first-column width above would squash the capability text instead. */
+table.compare--2col td:first-child{width:auto;font-size:14.5px;color:var(--ink);font-weight:500}
+table.compare--2col td:last-child{width:1%;white-space:nowrap}
+table.compare--2col td,table.compare--2col th{font-size:15px}
+/* 3-col variant: neutralise the rust "last column" highlight (that treatment is for the HazirMinds column only) */
+table.compare--3col td:first-child{width:20%;font-size:14.5px;color:var(--ink);font-weight:600;white-space:nowrap}
+table.compare--3col td:last-child{width:1%;white-space:nowrap}
+table.compare--3col thead th:last-child{background:var(--paper);color:var(--ink)}
+table.compare--3col td,table.compare--3col th{font-size:15px}
+table.compare td.col-hazir{background:rgba(198,65,16,.05);font-weight:600}
+table.compare td .tick{color:var(--ok);font-weight:700}
+table.compare td .cross{color:var(--rust-text);font-weight:700}
+table.compare tfoot td{background:var(--paper)}
+
+/* ---------- three doors (S6) ---------- */
+.door{display:flex;flex-direction:column;gap:16px}
+.door .icon-tile{width:52px;height:52px}
+.door ul{display:flex;flex-direction:column;gap:9px}
+.door li{display:flex;gap:10px;font-size:14.5px;color:var(--muted);align-items:flex-start}
+.door li svg{width:15px;height:15px;color:var(--ok);flex:none;margin-top:3px}
+.door .door-foot{margin-top:auto;padding-top:18px;border-top:1px solid var(--hairline);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.door .price{font-family:var(--font-display);font-weight:800;font-size:18px}
+.door .price small{display:block;font-family:var(--font-body);font-weight:400;font-size:12px;color:var(--muted);letter-spacing:0}
+
+/* ---------- proof band (S7) ---------- */
+.proof-band{position:relative;overflow:clip;background:var(--dark-2);border-top:1px solid rgba(185,138,46,.28)}
+.proof-bg{position:absolute;inset:-6%;z-index:0}
+.proof-bg img{width:100%;height:100%;object-fit:cover;opacity:.5;will-change:transform}
+.proof-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,13,11,.96) 25%,rgba(20,17,14,.8) 60%,rgba(20,17,14,.62)),linear-gradient(0deg,rgba(15,13,11,.7),transparent 40%)}
+.proof-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:stretch}
+.proof-card{background:linear-gradient(170deg,rgba(30,26,22,.94),rgba(20,17,14,.9));border:1px solid rgba(250,247,242,.18);border-top:2px solid var(--brass);border-radius:var(--r-panel);padding:40px;color:var(--cream);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.proof-card--top{border-top:2px solid var(--brass)}
+.proof-card h3{color:var(--cream);font-size:clamp(22px,2.2vw,28px)}
+.proof-card p{color:rgba(250,247,242,.72);font-size:15px}
+.seal{
+  width:58px;height:58px;border-radius:50%;border:1.5px solid var(--brass);display:grid;place-items:center;
+  color:var(--brass-text);font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:18px;transform:rotate(-8deg);
+}
+.guarantee-list li{display:flex;gap:11px;padding:9px 0;font-size:14.5px;color:rgba(250,247,242,.85);align-items:flex-start}
+.guarantee-list svg{width:16px;height:16px;color:var(--brass);flex:none;margin-top:3px}
+.callcard-num{display:flex;align-items:center;gap:14px;margin:20px 0;padding:16px 18px;border-radius:16px;background:rgba(185,138,46,.1);border:1px solid rgba(185,138,46,.4);text-decoration:none;color:var(--cream);transition:border-color .3s,background .3s}
+.callcard-num:hover{border-color:var(--brass);background:rgba(185,138,46,.16)}
+.callcard-num .ic{width:44px;height:44px;border-radius:50%;background:var(--brass);color:#161006;display:grid;place-items:center;flex:none;animation:ring 2.4s infinite}
+.callcard-num .ic svg{width:20px;height:20px}
+@keyframes ring{0%,100%{box-shadow:0 0 0 0 rgba(185,138,46,.45)}55%{box-shadow:0 0 0 12px rgba(185,138,46,0)}}
+.callcard-num b{font-family:var(--font-display);font-size:19px;letter-spacing:.02em;display:block}
+.callcard-num span{font-size:12.5px;color:rgba(250,247,242,.6)}
+
+/* ---------- trade picker (S8) ---------- */
+.trade-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.trade-chip{padding:11px 20px;border-radius:var(--r-pill);border:1px solid var(--hairline);background:var(--card);font-weight:600;font-size:14.5px;transition:all .2s;display:inline-flex;gap:8px;align-items:center}
+/* Masjid lane — deep-green accent with brass (brief §9) */
+.masjid-hero{position:relative;background:linear-gradient(160deg,var(--deep) 0%,#1E5C46 140%);border-top:2px solid var(--brass)}
+.masjid-hero .lede{color:rgba(250,247,242,.78)}
+.masjid-hero .eyebrow{color:var(--brass)}
+.masjid-hero .crumbs,.masjid-hero .crumbs a{color:rgba(250,247,242,.55)}
+.masjid-lifecycle{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+.lc-step{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px 22px;position:relative;transition:border-color .3s,transform .3s}
+.lc-step:hover{border-color:var(--brass);transform:translateY(-4px)}
+.lc-step .lc-n{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;color:var(--brass-text)}
+.lc-step h4,.lc-step h3{font-size:17.5px;margin:9px 0 7px;letter-spacing:-.01em}
+.lc-step p{font-size:14.5px;line-height:1.6;color:rgba(25,22,19,.72);margin:0}
+.lc-arrow{display:none}
+.masjid-channels .mc-src{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;margin-bottom:0}
+.masjid-channels .mc-src .eyebrow::before{display:none}
+.masjid-channels .mc-src::after{content:"";display:block;width:1px;height:26px;background:var(--brass);opacity:.4}
+.masjid-channels .mc-core{display:block;background:var(--deep);color:var(--cream);border:1px solid var(--brass);border-radius:var(--r-pill);padding:12px 26px;font-weight:700;font-family:var(--font-display)}
+.masjid-channels .mc-fan{display:grid;grid-template-columns:repeat(4,auto);gap:10px;justify-content:center;justify-items:center;margin-top:16px}
+
+/* ---------- masjid security posture — the premium governance moment ----------
+   The governance section was a plain light band with two flat cards; the strongest
+   differentiator on the page (isolation, permissions, audit, recovery) had no visual
+   weight at all. This is a dark brass-edged panel that leads with the shield and lays the
+   four enforced controls out as pillars. Each pillar restates a control that already
+   appears in the page copy — no new claims. */
+.masjid-secure{position:relative;border-radius:var(--r-panel);overflow:clip;
+  background:linear-gradient(158deg,rgba(30,92,70,.30),rgba(250,247,242,.03) 58%);
+  border:1px solid rgba(185,138,46,.34);border-top:2px solid var(--brass);padding:40px}
+.masjid-secure::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(760px 340px at 10% -34%,rgba(185,138,46,.20),transparent 70%)}
+.masjid-secure .ms-head{position:relative;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;margin-bottom:30px}
+.masjid-secure .ms-badge{width:66px;height:66px;border-radius:20px;display:grid;place-items:center;
+  background:rgba(185,138,46,.14);border:1px solid rgba(185,138,46,.45);color:var(--brass-band);
+  box-shadow:0 0 0 1px rgba(185,138,46,.12),0 14px 34px rgba(0,0,0,.32)}
+.masjid-secure .ms-badge svg{width:31px;height:31px}
+.masjid-secure .ms-head h3{color:var(--cream);font-family:var(--font-display);font-size:clamp(21px,2.3vw,28px);letter-spacing:-.015em;line-height:1.2;margin:0 0 8px}
+.masjid-secure .ms-head p{color:rgba(250,247,242,.82);font-size:16px;line-height:1.68;margin:0;max-width:64ch}
+.ms-pillars{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ms-pillar{background:rgba(250,247,242,.05);border:1px solid rgba(250,247,242,.14);border-radius:var(--r-card);
+  padding:24px 20px;transition:border-color .3s,transform .3s,background .3s}
+.ms-pillar:hover{border-color:rgba(185,138,46,.5);background:rgba(250,247,242,.08);transform:translateY(-4px)}
+.ms-pillar .ms-ico{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+  background:rgba(185,138,46,.14);border:1px solid rgba(185,138,46,.4);color:var(--brass-band);margin-bottom:15px}
+.ms-pillar .ms-ico svg{width:20px;height:20px}
+.ms-pillar b{display:block;color:var(--cream);font-family:var(--font-display);font-size:16.5px;letter-spacing:-.012em;line-height:1.3;margin-bottom:8px}
+.ms-pillar span{display:block;color:rgba(250,247,242,.8);font-size:15px;line-height:1.65}
+.ms-pillar{padding:24px 22px}
+.ms-pillar b{font-size:17px}
+@media (max-width:1024px){.ms-pillars{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){
+  .ms-pillars{grid-template-columns:1fr}
+  .masjid-secure{padding:26px 20px}
+  .masjid-secure .ms-head{grid-template-columns:1fr;gap:16px}
+}
+@media (prefers-reduced-motion:reduce){.ms-pillar{transition:none}.ms-pillar:hover{transform:none}}
+@media (max-width:1024px){.masjid-lifecycle{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.masjid-lifecycle{grid-template-columns:1fr}.masjid-channels .mc-fan{grid-template-columns:repeat(2,auto)}}
+.checks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
+.checks li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:rgba(25,22,19,.8)}
+.checks svg{width:17px;height:17px;color:var(--ok);flex:none;margin-top:3px}
+/* the same list sits inside dark bands on /masjids and /enterprise — the light-band ink
+   above would render near-invisible there */
+.on-dark .checks li,.gov-band .checks li,.card.on-dark .checks li{color:rgba(250,247,242,.84)}
+.trade-chip--link{text-decoration:none;color:inherit}
+a.trade-chip--link:hover{border-color:var(--brass);color:var(--brass-text)}
+.trade-chip svg{width:16px;height:16px;color:var(--muted)}
+.trade-chip:hover{border-color:var(--muted)}
+.trade-chip[aria-pressed="true"]{background:var(--deep);color:var(--cream);border-color:var(--deep)}
+.trade-chip[aria-pressed="true"] svg{color:var(--brass-text)}
+.trade-preview{display:grid;grid-template-columns:1.15fr .85fr;gap:0;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);overflow:hidden;box-shadow:var(--shadow-1);min-height:340px}
+.trade-preview .txt{padding:38px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.trade-preview .txt h3{font-size:clamp(22px,2.4vw,30px)}
+.trade-preview .txt .lede{font-size:15.5px}
+.trade-preview .img{position:relative;min-height:280px}
+.trade-preview .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.trade-swap{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- price strip (S9) ---------- */
+.price-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.price-card{display:flex;flex-direction:column;gap:6px;position:relative}
+.price-card .tier{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.price-card .amount{font-family:var(--font-display);font-weight:800;font-size:clamp(30px,3vw,40px);letter-spacing:-.03em}
+.price-card .amount sup{font-size:.5em;color:var(--rust-text);font-weight:700}
+.price-card .desc{font-size:13.5px;color:var(--muted);min-height:42px}
+.price-card .btn{margin-top:14px;align-self:flex-start}
+.price-card--featured{border-color:rgba(185,138,46,.5);box-shadow:var(--glow)}
+/* hover feedback for the two card surfaces that shipped with none
+   (.lc-step / .svc-card / .door already lift; these two did not) */
+.price-card{transition:border-color .3s,transform .3s,box-shadow .3s}
+.price-card:hover{border-color:var(--brass);transform:translateY(-4px);box-shadow:var(--shadow-2)}
+.price-card--featured::before{content:"Most popular";position:absolute;top:-11px;left:24px;background:var(--brass);color:#161006;font-size:11px;font-weight:700;font-family:var(--font-display);padding:4px 12px;border-radius:var(--r-pill);letter-spacing:.02em}
+.price-card--featured .amount{color:var(--rust-text)}
+
+/* ---------- FAQ (S10) ---------- */
+.faq{max-width:820px;margin-inline:auto}
+.faq-item{border:1px solid var(--hairline);border-radius:var(--r-card);background:var(--card);margin-bottom:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.faq-item[open],.faq-item.open{border-color:rgba(185,138,46,.4);box-shadow:var(--shadow-1)}
+.faq-item:hover{border-color:rgba(185,138,46,.4)}
+.faq-q:hover{background:rgba(185,138,46,.06)}
+.faq-q{transition:background .18s}
+.faq-q:hover .ind{background:var(--rust-text);color:#fff;border-color:var(--rust-text)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;text-align:left;
+  padding:23px 26px;font-family:var(--font-display);font-weight:700;font-size:17.5px;letter-spacing:-.012em;
+  line-height:1.35;
+}
+.faq-q .ind{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center;transition:transform .3s,background .2s}
+.faq-q .ind svg{width:13px;height:13px}
+.faq-item.open .faq-q .ind{transform:rotate(45deg);background:var(--rust);color:#fff;border-color:var(--rust-text)}
+.faq-a{padding:0 24px;overflow:hidden;height:0;transition:height .35s cubic-bezier(.2,.7,.3,1)}
+.faq-a p{color:var(--muted);font-size:15.5px;line-height:1.7;margin:0 0 22px;max-width:66ch}
+/* FAQ presentation: give the open item a brass spine so the open question is obvious.
+   inset box-shadow, not border-left — a 3px border would change the box and shift the
+   content 2px on open (CLS). */
+.faq-item.open,.faq-item[open]{box-shadow:inset 3px 0 0 var(--brass),var(--shadow-1)}
+.faq-item[open],.faq-item.open{border-color:rgba(185,138,46,.4)}
+.faq-a a{color:var(--rust-text);font-weight:600;text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
+
+/* ---------- final CTA (S11) ---------- */
+.final-cta{position:relative;overflow:clip;border-radius:var(--r-panel);background:var(--dark);color:var(--cream);border-top:2px solid var(--brass)}
+.final-cta .bg{position:absolute;inset:0;z-index:0}
+.final-cta .bg img{width:100%;height:100%;object-fit:cover;opacity:.34}
+.final-cta .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(80deg,rgba(15,13,11,.95) 30%,rgba(20,17,14,.72))}
+.final-cta .inner{position:relative;z-index:1;padding:64px 56px;display:flex;flex-direction:column;gap:20px;align-items:flex-start;max-width:720px}
+.final-cta h2{color:var(--cream)}
+.final-cta .serif-accent{color:var(--brass)}
+.final-cta .contact{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:rgba(250,247,242,.75)}
+.final-cta .contact a{color:var(--cream);text-decoration:none;font-weight:600;border-bottom:1px solid rgba(250,247,242,.3)}
+.final-cta .contact a:hover{border-color:var(--brass);color:var(--brass)}
+
+/* ---------- footer (S12) ---------- */
+.footer{background:var(--deep);color:rgba(250,247,242,.8);padding:70px 0 34px;font-size:15px;border-top:1px solid rgba(185,138,46,.28)}
+.footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:44px;padding-bottom:44px;border-bottom:1px solid rgba(250,247,242,.12)}
+.footer .brand{color:var(--cream)}
+.footer .brand .mark{background:rgba(250,247,242,.08)}
+.footer p{font-size:14.5px;line-height:1.65;color:rgba(250,247,242,.68);max-width:34ch;margin-top:14px}
+.footer h4,.footer .fcol-h{font-family:var(--font-mono);font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.footer ul{display:flex;flex-direction:column;gap:0}
+.footer ul a{color:rgba(250,247,242,.8);text-decoration:none;display:inline-block;padding:6px 0;line-height:1.5}
+.footer ul a:hover{color:var(--cream)}
+.footer .bottom{display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:26px;font-size:13.5px;line-height:1.6;color:rgba(250,247,242,.75);flex-wrap:wrap}
+.footer .socials{display:flex;gap:10px}
+.footer .socials a{width:36px;height:36px;border-radius:10px;border:1px solid rgba(250,247,242,.14);display:grid;place-items:center;color:rgba(250,247,242,.7)}
+.footer .socials a:hover{color:var(--brass);border-color:var(--brass)}
+.footer .socials svg{width:15px;height:15px}
+.motion-toggle{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,247,242,.55);border:1px solid rgba(250,247,242,.18);border-radius:999px;padding:6px 14px;cursor:pointer;transition:color .2s,border-color .2s}
+.motion-toggle:hover{color:var(--brass);border-color:var(--brass)}
+.motion-toggle[aria-pressed="true"]{color:var(--brass);border-color:rgba(185,138,46,.5)}
+html.no-motion [data-reveal]>*{opacity:1!important;transform:none!important}
+html.no-motion .hero h1 .line>span{transform:none!important}
+
+/* ---------- services page ---------- */
+.svc-layout{display:grid;grid-template-columns:236px 1fr;gap:40px;align-items:start}
+/* The rail was six bare links floating in a 250px column — it read as loose text next to a
+   dense card grid. Framing it as a bordered index panel of the same visual weight as the
+   cards balances the two columns. */
+.svc-rail{position:sticky;top:112px;display:flex;flex-direction:column;gap:2px;
+  background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:12px 10px;box-shadow:var(--shadow-1)}
+.svc-rail a{padding:10px 14px;border-radius:0 10px 10px 0;text-decoration:none;font-size:14px;font-weight:500;color:var(--muted);border-left:2px solid transparent;line-height:1.45}
+.svc-rail a:hover{color:var(--ink);background:var(--paper)}
+.svc-rail a.active{color:var(--rust-text);border-left-color:var(--rust-text);background:rgba(198,65,16,.05)}
+.svc-group{margin-bottom:42px;scroll-margin-top:110px}
+.svc-group-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px}
+.svc-group-head .gn{font-family:var(--font-mono);font-size:12.5px;color:var(--brass-text);letter-spacing:.14em}
+.svc-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.svc-card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-2),var(--glow)}
+.svc-card .sn{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;color:var(--brass-text)}
+.svc-card h3{font-size:18px;margin:9px 0 8px;letter-spacing:-.01em}
+.svc-card p{font-size:14.5px;color:var(--muted);margin:0 0 13px}
+.svc-card .link-arrow{font-size:14.5px}
+
+/* hazir loop tabs */
+.loop-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 0}
+.loop-tab{padding:12px 22px;border-radius:var(--r-pill);border:1px solid var(--hairline);background:var(--card);font-weight:600;font-size:14.5px;color:var(--muted)}
+.loop-tab[aria-selected="true"]{background:var(--deep);color:var(--cream);border-color:var(--deep)}
+/* The panel used to be fused to the tab row: margin-top:-1px and border-radius:0 on the
+   top-left corner, so it read as stuck under the tabs. A real gap plus full rounding makes
+   it a card in its own right, consistent with every other panel on the site. */
+.loop-panel{display:none;padding:30px;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);margin-top:16px;box-shadow:var(--shadow-1)}
+.loop-panel.active{display:grid;grid-template-columns:64px 1fr;gap:22px;animation:fadeIn .25s ease}
+.loop-panel .step-n{width:64px;height:64px;border-radius:18px;background:var(--deep);color:var(--brass);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:24px}
+.loop-panel p{color:var(--muted);font-size:15.5px;line-height:1.7;margin-bottom:0}
+
+/* The explainer figure sat in a bare 20px-margin div between the last service group and the
+   Loop: an orphan image with a floating caption. Treating it as a framed band that shares
+   the cards' edge and weight, then tightening the gap into the Loop, makes it read as the
+   hinge between the catalog and how-it-works instead of an interruption. */
+.svc-media{margin:40px 0 0}
+/* one panel, not an image with a caption floating under it: the figcaption lives inside the
+   figure (a figcaption outside a figure is invalid HTML5) and reads as the panel's footer. */
+.svc-media .media-panel{display:flex;flex-direction:column;border-top:2px solid var(--brass);box-shadow:var(--shadow-2)}
+.svc-media .media-panel img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.svc-media figcaption{display:flex;align-items:center;gap:12px;padding:15px 22px;border-top:1px solid var(--hairline);
+  background:var(--paper);border-radius:0 0 var(--r-panel) var(--r-panel);color:var(--muted);font-size:14px;font-weight:500;line-height:1.5}
+.svc-media figcaption::before{content:"";width:22px;height:1px;background:var(--brass);flex:none}
+.svc-media + #loop{margin-top:42px}
+@media (max-width:820px){.svc-media figcaption{padding:13px 16px;align-items:flex-start}}
+
+/* ---------- industry / use-case pages ---------- */
+.hero-sub-plain{padding:64px 0 56px}
+.crumbs{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:18px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.crumbs a{color:inherit;text-decoration:none;display:inline-block;padding:5px 2px}
+.crumbs a:hover{color:var(--rust-text)}
+.outcome-card{display:flex;gap:15px;align-items:flex-start}
+.outcome-card .icon-tile{margin-bottom:2px}
+.outcome-card p{margin:0;font-size:14.5px;color:var(--muted)}
+.media-panel{border-radius:var(--r-panel);overflow:hidden;border:1px solid var(--hairline);box-shadow:var(--shadow-1);position:relative}
+.media-panel img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+/* ---------- photographic figures & bands (see visual-plan/PHOTO-PLACEMENT-PROMPTS.md) ----------
+   .media-panel already forces 4:3; these modifiers let a 3:2 or 16:10 photo keep its native
+   ratio instead of being cropped to fit. The aspect-ratio box is what reserves the space
+   before the file arrives, so every placement is zero-CLS by construction. */
+.media-panel--3-2 img{aspect-ratio:3/2}
+.media-panel--16-10 img{aspect-ratio:16/10}
+.media-panel--1-1 img{aspect-ratio:1/1}
+/* Full-width photographic band. The scrim lives in a modifier because it is only needed
+   when DOM text is placed OVER the photo; on its own a band is just a figure and darkening
+   it would be decoration. Use .band-media--scrim whenever text overlays. */
+.band-media{position:relative;overflow:hidden;border-radius:var(--r-panel);border:1px solid var(--hairline)}
+.band-media img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:3/2}
+.band-media--scrim::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(20,17,14,.86) 0%,rgba(20,17,14,.55) 45%,rgba(20,17,14,.18) 100%)}
+.band-media--scrim.band-media--paper::after{background:linear-gradient(180deg,rgba(255,253,249,.55),rgba(255,253,249,.92))}
+@media (max-width:900px){
+  .band-media img{aspect-ratio:16/10}
+  .band-media--scrim::after{background:linear-gradient(180deg,rgba(20,17,14,.90) 0%,rgba(20,17,14,.45) 60%,rgba(20,17,14,.20) 100%)}
+  .band-media--scrim.band-media--paper::after{background:linear-gradient(180deg,rgba(255,253,249,.60),rgba(255,253,249,.94))}
+}
+.stat-note{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);line-height:1.6}
+.int-line{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.int-line .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+
+/* ---------- pricing ---------- */
+.toggle-wrap{display:flex;align-items:center;justify-content:center;gap:14px;margin:26px 0 40px;font-weight:600;font-size:15px;flex-wrap:wrap}
+.switch{width:54px;height:30px;border-radius:var(--r-pill);background:var(--hairline);position:relative;transition:background .2s;border:1px solid var(--hairline)}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(25,22,19,.25);transition:transform .25s cubic-bezier(.2,.7,.3,1)}
+.switch[aria-checked="true"]{background:var(--rust);border-color:var(--rust-text)}
+.switch[aria-checked="true"]::after{transform:translateX(24px)}
+.save-pill{font-size:12px}
+.price-table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);box-shadow:var(--shadow-1)}
+.price-table-wrap table{width:100%;border-collapse:collapse;min-width:760px}
+.price-table-wrap th,.price-table-wrap td{padding:15px 20px;text-align:center;border-bottom:1px solid var(--hairline);font-size:14.5px}
+.price-table-wrap th:first-child,.price-table-wrap td:first-child{text-align:left;font-weight:600}
+.price-table-wrap thead th{font-family:var(--font-display);font-size:15px;background:var(--paper)}
+.price-table-wrap thead .amount{font-size:22px;font-weight:800;display:block;letter-spacing:-.02em}
+.price-table-wrap thead .per{font-size:11.5px;color:var(--muted);font-weight:500}
+.price-table-wrap td .tick{color:var(--ok);font-weight:700}
+.price-table-wrap td .cross{color:var(--muted)}
+.price-table-wrap tfoot td{background:var(--paper)}
+.price-table-wrap tbody tr:hover td{background:rgba(185,138,46,.04)}
+.alc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.alc-card{display:flex;flex-direction:column;gap:8px}
+.alc-card .amount{font-family:var(--font-display);font-weight:800;font-size:21px;letter-spacing:-.02em}
+.alc-card .amount small{font-size:12.5px;color:var(--muted);font-weight:500;letter-spacing:0}
+.alc-card p{font-size:13.5px;color:var(--muted);margin:0}
+
+/* ---------- hero split (industry pages) ---------- */
+.hero-split{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;min-width:0}
+.hero-split>div{min-width:0}
+.hero-split .pill{white-space:normal}
+.hero-split .hero-ctas{max-width:100%}
+.hero-split .btn{max-width:100%;min-width:0}
+.hero-split .btn--lg{white-space:normal;overflow-wrap:anywhere;text-align:center}
+/* mobile: lg buttons must never overflow their container */
+@media (max-width:640px){
+  .btn{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+  .btn--lg{padding:14px 20px;font-size:15.5px;line-height:1.25}
+  .btn--sm{padding:9px 13px;font-size:13px}
+}
+
+/* ---------- enterprise ---------- */
+.cos-panel{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);padding:34px;box-shadow:var(--shadow-1)}
+/* The orchestration diagram owns its palette — it always sits on a dark panel, so it must
+   never inherit ambient band tokens (a dark section left --ink light-on-dark invisible). */
+.cos-svg .node{fill:#FFFDF9;stroke:#E6DDD0}
+.cos-svg .node-hub{fill:#0F0D0B;stroke:#B98A2E}
+.cos-svg text{font-family:var(--font-display);font-weight:700;fill:#191613}
+.cos-svg .t-hub{fill:#FAF7F2}
+.cos-svg .t-hub-sub{fill:#D9A93F;font-family:var(--font-mono);letter-spacing:.12em}
+.cos-svg .t-cap{fill:#D9A93F;font-family:var(--font-mono);letter-spacing:.14em}
+.cos-svg .edge{stroke:#B98A2E;stroke-width:1.5;fill:none;stroke-dasharray:5 5;animation:dashmove 1.6s linear infinite}
+@keyframes dashmove{to{stroke-dashoffset:-20}}
+.gov-chips li{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(250,247,242,.12);font-size:14.5px;align-items:flex-start}
+.gov-chips li:last-child{border:0}
+.gov-chips svg{width:17px;height:17px;color:var(--brass);flex:none;margin-top:2px}
+
+/* ---------- case studies ---------- */
+.cs-media{border-radius:var(--r-card);overflow:hidden;border:1px solid var(--hairline);aspect-ratio:1/1;background:var(--paper)}
+.cs-media img{width:100%;height:100%;object-fit:cover}
+.cs-caption{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:10px;text-align:center}
+.cs-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.cs-metrics .m{background:var(--paper);border-radius:14px;padding:14px;text-align:center}
+.cs-metrics .m b{display:block;font-family:var(--font-display);font-weight:800;font-size:22px;color:var(--rust-text)}
+.cs-metrics .m span{font-size:11px;color:var(--muted)}
+
+/* ---------- forms ---------- */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:7px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:13.5px;font-weight:600}
+.form-field input,.form-field select,.form-field textarea{
+  padding:13px 16px;border-radius:14px;border:1px solid var(--hairline);background:#fff;font-size:15px;
+  transition:border-color .2s,box-shadow .2s;width:100%;
+}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--rust-text);box-shadow:0 0 0 3px rgba(198,65,16,.12)}
+.form-field .err{font-size:12.5px;color:var(--rust-text);display:none}
+.form-field.invalid input,.form-field.invalid select,.form-field.invalid textarea{border-color:var(--rust-text)}
+.form-field.invalid .err{display:block}
+.form-field.valid input{border-color:rgba(62,124,79,.5)}
+.form-note{font-size:12.5px;color:var(--muted)}
+.form-success{
+  display:none;align-items:flex-start;gap:14px;background:rgba(62,124,79,.08);border:1px solid rgba(62,124,79,.3);
+  border-radius:var(--r-card);padding:22px;
+}
+.form-success.show{display:flex;animation:fadeIn .3s ease}
+.form-success svg{width:22px;height:22px;color:var(--ok);flex:none;margin-top:2px}
+.form-success b{font-family:var(--font-display)}
+/* Failure counterpart to .form-success. Shown only when the lead endpoint refuses the
+   submission, so a visitor is never told the request landed when it did not. */
+.form-error{
+  display:none;align-items:flex-start;gap:14px;background:rgba(198,65,16,.07);border:1px solid rgba(160,52,13,.34);
+  border-radius:var(--r-card);padding:22px;
+}
+.form-error.show{display:flex;animation:fadeIn .3s ease}
+.form-error svg{width:22px;height:22px;color:var(--rust-text);flex:none;margin-top:2px}
+.form-error b{font-family:var(--font-display)}
+
+/* ---------- modal ---------- */
+.modal-root{position:fixed;inset:0;z-index:90;display:none;place-items:center;padding:20px}
+.modal-root.open{display:grid}
+.modal-root .veil{position:absolute;inset:0;background:rgba(15,13,11,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:fadeIn .25s ease}
+.modal{
+  position:relative;width:min(520px,100%);background:var(--card);border-radius:var(--r-panel);
+  border-top:2px solid var(--brass);padding:38px;box-shadow:var(--shadow-2);animation:modalIn .3s cubic-bezier(.2,.7,.3,1);
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.modal .close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center}
+.modal .close:hover{background:var(--paper)}
+.modal .close svg{width:15px;height:15px}
+
+/* ---------- sticky mobile CTA ---------- */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:55;display:none;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(250,247,242,.95);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid var(--hairline);transform:translateY(110%);transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.sticky-cta.show{transform:none}
+.sticky-cta .btn{flex:1}
+
+/* ---------- ken burns ---------- */
+@keyframes kenburns{0%{transform:scale(1) translate(0,0)}50%{transform:scale(1.08) translate(1.2%,-1.2%)}100%{transform:scale(1) translate(0,0)}}
+.kenburns img{animation:kenburns 20s ease-in-out infinite}
+.kenburns-slow img{animation:kenburns 28s ease-in-out infinite}
+
+/* ---------- cursor glow ---------- */
+.cursor-glow{
+  position:fixed;top:0;left:0;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:1;
+  background:radial-gradient(circle,rgba(198,65,16,.05) 0%,rgba(185,138,46,.04) 35%,transparent 70%);
+  transform:translate(-50%,-50%);opacity:0;transition:opacity .4s;will-change:transform;
+}
+body.has-cursor-glow .cursor-glow{opacity:1}
+
+/* ---------- FAIL-SAFE MOTION CONTRACT ----------
+   Content is VISIBLE by default. Hiding exists ONLY under html.motion-ready,
+   which main.js adds AFTER the motion engine is verified. If motion init throws,
+   the class is removed and every section is visible again. Print / reduced-motion
+   / no-JS never hide anything. .reveal-force is the self-heal escape hatch. */
+/* Hiding happens in exactly two shapes:
+   - a [data-reveal] element hides itself, unless it is a "children" group
+   - a [data-reveal="children"] group hides only its direct children (staggered)
+   A group must never hide itself: GSAP animates the children, so a self-hidden
+   group would stay invisible forever. */
+html.motion-ready [data-reveal]:not([data-reveal="children"]){transform:translateY(24px)}
+html.motion-ready [data-reveal="children"]>*{transform:translateY(24px)}
+/* Text travels, it never fades. A half-faded text node sits below the contrast minimum, so
+   axe flags it on every frame of the fade and a slow reader really does see washed-out copy.
+   Sections now travel into place at full opacity; only media fades.
+   (Padding/opacity of the travelled element is untouched — nothing here can hide text.) */
+html.motion-ready [data-reveal] img,
+html.motion-ready [data-reveal] svg,
+html.motion-ready [data-reveal] picture,
+html.motion-ready [data-reveal] video,
+html.motion-ready [data-reveal] figure{opacity:0}
+html.no-motion [data-reveal],html.no-motion [data-reveal="children"]>*{opacity:1!important;transform:none!important}
+html.no-motion [data-reveal] img,html.no-motion [data-reveal] svg,html.no-motion [data-reveal] picture,
+html.no-motion [data-reveal] video,html.no-motion [data-reveal] figure{opacity:1!important;transform:none!important}
+.reveal-force{opacity:1!important;transform:none!important}
+html.no-motion .hero h1 .line>span{transform:none!important}
+@media print{
+  [data-reveal],[data-reveal]>*{opacity:1!important;transform:none!important}
+  [data-reveal] img,[data-reveal] svg,[data-reveal] picture,[data-reveal] video,[data-reveal] figure{opacity:1!important}
+  .marquee-track{flex-wrap:wrap;width:auto}
+  .sticky-cta,.cursor-glow,.scroll-progress{display:none!important}
+}
+
+/* ---------- misc ---------- */
+.hairline{border-color:var(--hairline)}
+.badge-abs{position:absolute;top:-13px;right:22px;background:var(--brass);color:#161006;font-size:11px;font-weight:700;padding:4px 12px;border-radius:var(--r-pill);font-family:var(--font-display)}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--hairline);font-size:14.5px}
+.kv:last-child{border:0}
+.kv b{font-family:var(--font-display)}
+/* numbered "how we work" list — the marker is a brass-outlined disc, so the ordinal stays
+   visible without an <ol> marker colliding with the section's hairlines */
+.steps-plain{counter-reset:sp;list-style:none;padding:0;margin:18px 0 0;display:grid;gap:15px}
+.steps-plain li{counter-increment:sp;position:relative;padding-left:46px;color:var(--muted);font-size:15.5px;line-height:1.65}
+.steps-plain li::before{content:counter(sp,decimal-leading-zero);position:absolute;left:0;top:0;font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;color:var(--rust-text);border:1px solid var(--hairline);border-radius:999px;padding:5px 9px;background:var(--card);line-height:1}
+.steps-plain li b{color:var(--ink);font-family:var(--font-display)}
+.tag-ok{color:var(--ok-text);font-weight:600}
+.tag-rust{color:var(--rust-text);font-weight:600}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--rust);color:#fff;padding:10px 18px;z-index:100;border-radius:0 0 10px 0}
+.skip-link:focus{left:0}
+[data-lenis-prevent]{overflow:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- dark band overrides ---------- */
+.on-dark .muted{color:rgba(250,247,242,.65)}
+.on-dark .card{background:rgba(250,247,242,.04);border-color:rgba(250,247,242,.12);color:var(--cream)}
+.on-dark .card--hover:hover{box-shadow:0 0 0 1px rgba(185,138,46,.3),0 12px 34px rgba(0,0,0,.4)}
+.on-dark .pill{background:rgba(250,247,242,.06);border-color:rgba(250,247,242,.16);color:var(--cream)}
+
+/* ---------- governance layer (S7 / enterprise / chief-of-staff) ---------- */
+.gov-band{position:relative;background:var(--dark);color:var(--cream);border-top:2px solid var(--brass);overflow:clip}
+.gov-band::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(900px 420px at 50% -80px,rgba(185,138,46,.14),transparent 70%),radial-gradient(700px 380px at 85% 40%,rgba(185,138,46,.06),transparent 70%)}
+.gov-band .muted{color:rgba(250,247,242,.7)}
+.gov-band .eyebrow{color:var(--brass)}
+/* Governance band — modest and information-first. The ghost numeral counter, the gradient
+   surface and the hover lift/shadow were decoration competing with the copy: no data, but
+   they clipped at the card edge and made each card a different weight. One brass accent line
+   per card now carries the hierarchy, the surface is flat, and the body text is sized and
+   contrasted for reading on a dark background rather than for looking sparse. */
+.invariant-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:stretch}
+.invariant{background:rgba(250,247,242,.035);border:1px solid rgba(250,247,242,.13);border-top:2px solid var(--brass);border-radius:var(--r-card);padding:24px 22px;position:relative;display:flex;flex-direction:column;transition:border-color .3s}
+.invariant::after{content:none}
+.invariant:hover{border-color:rgba(185,138,46,.42)}
+.invariant .inv-n{display:inline-block;align-self:flex-start;padding:4px 9px;border-radius:6px;border:1px solid rgba(185,138,46,.42);background:rgba(185,138,46,.08);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;color:var(--brass)}
+/* Fixed 2-line heading box: "Deployment ≠ Adoption" wraps while its siblings don't, which
+   pushed that card's body copy one line below the others. Reserving the space keeps all four
+   paragraphs starting on the same baseline across the row. */
+.invariant h3{color:var(--cream);font-family:var(--font-display);font-size:19.5px;letter-spacing:-.01em;line-height:1.3;min-height:2.6em;margin:14px 0 10px}
+.invariant h3 em{font-family:var(--font-serif);font-style:italic;font-weight:400}
+.invariant p{font-size:14.5px;line-height:1.68;color:rgba(250,247,242,.82);margin:0}
+.layers-diagram{display:flex;flex-direction:column;gap:0;position:relative}
+.layer-row{display:grid;grid-template-columns:52px 190px 1fr;gap:18px;align-items:center;padding:16px 14px;position:relative;border-radius:12px;transition:background .3s}
+.layer-row:hover{background:rgba(250,247,242,.04)}
+.layer-row .ln{width:42px;height:42px;border-radius:50%;border:1px solid rgba(185,138,46,.55);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--brass);background:rgba(185,138,46,.06);flex:none;position:relative;z-index:1}
+.layer-row::before{content:"";position:absolute;left:35px;top:-50%;height:200%;width:1px;background:linear-gradient(180deg,rgba(185,138,46,.45),rgba(185,138,46,.12));background-size:1px 200%;transform:scaleY(var(--draw,0));transform-origin:top;transition:transform .8s cubic-bezier(.2,.7,.3,1)}
+.layer-row:first-child::before{display:none}
+.layer-row h4{color:var(--cream);font-size:17px;line-height:1.3;margin:0;font-family:var(--font-display);letter-spacing:-.01em}
+.layer-row p{font-size:14.5px;line-height:1.6;color:rgba(250,247,242,.78);margin:0}
+.layer-row:hover .ln{background:var(--brass);color:#161006}
+.horizons{display:flex;gap:12px;align-items:stretch;position:relative}
+.horizon{flex:1;position:relative;padding:20px 18px 18px;background:rgba(250,247,242,.035);border:1px solid rgba(250,247,242,.12);border-radius:14px;display:flex;flex-direction:column;transition:border-color .3s}
+.horizon:hover{border-color:rgba(185,138,46,.42)}
+.horizon .hn{width:26px;height:26px;border-radius:50%;background:rgba(185,138,46,.1);border:1px solid rgba(185,138,46,.5);color:var(--brass);display:grid;place-items:center;font-family:var(--font-mono);font-size:11px;margin-bottom:11px}
+.horizon.done .hn{background:var(--brass);color:#161006}
+.horizon b{display:block;color:var(--cream);font-size:14.5px;line-height:1.3;font-family:var(--font-display);margin-bottom:6px}
+.horizon span{font-size:13px;color:rgba(250,247,242,.72);line-height:1.5;display:block}
+.horizon .stamp{position:absolute;top:10px;right:12px;font-family:var(--font-mono);font-size:9px;letter-spacing:.1em;color:var(--ok-band);border:1px solid rgba(62,124,79,.5);border-radius:4px;padding:2px 6px;opacity:0;transform:translateY(-3px);transition:opacity .3s,transform .3s}
+.horizon.done .stamp{opacity:1;transform:none}
+.receipt{font-family:var(--font-mono);font-size:12px;line-height:1.7;background:#0F0D0B;border:1px solid rgba(250,247,242,.14);border-left:3px solid var(--brass);border-radius:12px;padding:18px 20px;color:rgba(250,247,242,.82);--muted:rgba(250,247,242,.82);--brass:var(--brass-band);--brass-text:var(--brass-band);--ok-text:var(--ok-band)}
+.receipt .r-ok{color:var(--ok-text)}.receipt .r-open{color:var(--brass-text)}
+/* Linear-grade activity rows (2026). Opaque dark surface: the receipt sits inside a
+   LIGHT card on /chief-of-staff and a DARK band on home — translucent styling made
+   light text land on light cream there (invisible). Opaque = correct in both bands. */
+.receipt[data-receipt]{font-family:var(--font-sans,Inter,system-ui,sans-serif);background:#14110E;border:1px solid rgba(250,247,242,.14);border-radius:14px;padding:8px 18px 10px;color:#FAF7F2;--muted:rgba(250,247,242,.72);--brass:#D9A93F;--brass-text:#D9A93F;--ok-text:#8FD0A0}
+.rc-head{display:flex;align-items:center;gap:9px;padding:10px 2px 12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.rc-head .rc-time{margin-left:auto;color:rgba(250,247,242,.55);letter-spacing:.08em}
+.rc-pulse{width:7px;height:7px;border-radius:50%;background:var(--ok-band);box-shadow:0 0 0 0 rgba(143,208,160,.5);animation:rcPulse 2.2s infinite}
+@keyframes rcPulse{0%{box-shadow:0 0 0 0 rgba(143,208,160,.45)}70%{box-shadow:0 0 0 8px rgba(143,208,160,0)}100%{box-shadow:0 0 0 0 rgba(143,208,160,0)}}
+.rc-row{display:grid;grid-template-columns:18px 1fr auto;gap:12px;align-items:center;padding:11px 2px;border-top:1px solid rgba(250,247,242,.08)}
+.rc-row b{display:block;font-size:13.5px;font-weight:600;letter-spacing:-.01em;color:var(--cream)}
+.rc-row div span{display:block;font-size:12.5px;color:rgba(250,247,242,.62);margin-top:1px}
+.rc-row code{font-family:var(--font-mono);font-size:11.5px;color:rgba(250,247,242,.7);background:rgba(250,247,242,.08);border:1px solid rgba(250,247,242,.14);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.rc-dot{width:8px;height:8px;border-radius:50%;justify-self:center}
+.rc-dot.ok{background:var(--ok-band);box-shadow:0 0 8px rgba(143,208,160,.6)}
+.rc-dot.wait{background:transparent;border:1.5px solid var(--brass);width:7px;height:7px}
+.rc-row.open b{color:var(--brass)}
+@media (max-width:560px){.rc-row code{display:none}}
+.hallucination-panel{background:var(--governance-dark,#14110E);border:1px solid rgba(250,247,242,.12);border-top:2px solid var(--brass);border-radius:var(--r-panel);padding:30px;color:rgba(250,247,242,.82);--card:rgba(250,247,242,.06);--ink:var(--cream);--muted:rgba(250,247,242,.78);--brass:var(--brass-band);--brass-text:var(--brass-band);--ok:var(--ok-band);--ok-text:var(--ok-band);--hairline:rgba(250,247,242,.16)}
+.hallucination-panel h3,.hallucination-panel h4{color:var(--cream)}
+.hallucination-panel li{display:flex;gap:11px;padding:8px 0;font-size:14px;color:rgba(250,247,242,.72);align-items:flex-start}
+.hallucination-panel li svg{width:15px;height:15px;color:var(--brass);flex:none;margin-top:3px}
+.chip-row{display:flex;flex-wrap:wrap;gap:9px}
+/* Ten governance chips dropped into one flex row inside a half-width card crushed into
+   ragged single-word columns. A dense grid keeps every chip the same width and legible. */
+.chip-row--dense{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.chip-row--dense .pill{justify-content:flex-start;width:100%;min-width:0}
+.chip-row--dense .pill svg{flex:none}
+@media (max-width:520px){.chip-row--dense{grid-template-columns:1fr}}
+/* nine no-hallucination controls — three even columns read as a checklist, not confetti */
+.chip-row--three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:768px){.chip-row--three{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.chip-row--three{grid-template-columns:1fr}}
+.on-dark .chip-row .pill{background:rgba(250,247,242,.05);border-color:rgba(250,247,242,.16);color:rgba(250,247,242,.85)}
+.cos-diagram-lg .node-hub{animation:hubPulse 3s ease-in-out infinite}
+@keyframes hubPulse{0%,100%{stroke:rgba(185,138,46,.1);stroke-width:0}50%{stroke:rgba(185,138,46,.6);stroke-width:3}}
+.cos-diagram-lg .edge{stroke-dasharray:6 6}
+.compare-table td:first-child{font-weight:600;color:var(--muted);font-size:13.5px;width:20%}
+.compare-table .col-hazir{background:rgba(198,65,16,.05);font-weight:600}
+.compare-table tbody tr{transition:background .2s}
+.compare-table tbody tr:hover td{background:rgba(185,138,46,.05)}
+.verdict-box{background:var(--card);border:1px solid var(--hairline);border-left:4px solid var(--brass);border-radius:var(--r-card);padding:28px;box-shadow:var(--shadow-1)}
+.verdict-box h2,.verdict-box h3{font-size:18px;margin-bottom:8px}
+.honesty-note{background:rgba(62,124,79,.06);border:1px solid rgba(62,124,79,.25);border-radius:var(--r-card);padding:26px 28px}
+.honesty-note h3,.honesty-note h4{font-family:var(--font-display);font-size:18px;letter-spacing:-.01em;color:var(--ok-text);margin-bottom:10px}
+.honesty-note p{font-size:15.5px;line-height:1.7;color:var(--muted);margin:0}
+.src-note{font-family:var(--font-mono);font-size:11px;letter-spacing:.07em;color:var(--muted);line-height:1.6}
+.report-card .rc-q{border:1px solid var(--hairline);border-radius:var(--r-card);background:var(--card);padding:20px 24px;margin-bottom:12px}
+.report-card .rc-q b{display:block;font-family:var(--font-display);font-size:15.5px;margin-bottom:10px}
+.report-card .rc-opts{display:flex;gap:8px;flex-wrap:wrap}
+.report-card .rc-opt{padding:8px 16px;border-radius:var(--r-pill);border:1px solid var(--hairline);background:var(--paper);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s}
+.report-card .rc-opt:hover{border-color:var(--muted)}
+.report-card .rc-opt[aria-pressed="true"]{background:var(--deep);color:var(--cream);border-color:var(--deep)}
+.rc-score{font-family:var(--font-display);font-weight:800;font-size:clamp(48px,6vw,72px);color:var(--rust-text);line-height:1}
+.approval-demo .ad-state{border:1px dashed rgba(185,138,46,.5);border-radius:var(--r-card);padding:22px;margin-top:14px;font-size:14px}
+.approval-demo .ad-state.blocked{border-color:rgba(198,65,16,.5);background:rgba(198,65,16,.05)}
+.approval-demo .ad-state.allowed{border-color:rgba(62,124,79,.5);background:rgba(62,124,79,.05)}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .nav-links{gap:0}
+  .nav-link{padding:9px 8px;font-size:14px}
+  .nav-cta{gap:8px}
+  .nav-cta .btn--sm{padding:10px 14px;font-size:13.5px}
+  .invariant-grid{grid-template-columns:repeat(2,1fr)}
+  .layer-row{grid-template-columns:44px 160px 1fr;gap:14px}
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .hero-split{grid-template-columns:1fr;gap:36px}
+  .proof-inner{grid-template-columns:1fr}
+  .svc-layout{grid-template-columns:1fr}
+  .svc-rail{position:static;flex-direction:row;flex-wrap:wrap;gap:8px;margin-bottom:30px;padding:10px}
+  .svc-rail a{border:1px solid var(--hairline);border-radius:var(--r-pill);padding:9px 16px;font-size:13.5px}
+  .svc-rail a.active{border-color:var(--rust-text);background:rgba(198,65,16,.05)}
+  .grid-4{grid-template-columns:repeat(2,1fr)}
+  .stats-band{grid-template-columns:repeat(2,1fr)}
+  .price-strip{grid-template-columns:repeat(2,1fr)}
+  .footer .top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:900px){
+  .nav-cta .btn--ghost{display:inline-flex}
+  .invariant-grid{grid-template-columns:1fr}
+  .layer-row{grid-template-columns:44px 1fr;grid-template-rows:auto auto}
+  .layer-row p{grid-column:2}
+  .horizons{flex-direction:column}
+  .horizon{border:1px solid rgba(250,247,242,.12);padding:18px 16px}
+  .horizon:first-child{border:1px solid rgba(250,247,242,.12)}
+  :root{--sec:var(--sec-mob)}
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:grid}
+  .nav-mobile{
+    display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);
+    border-bottom:1px solid var(--hairline);padding:18px 24px 24px;box-shadow:var(--shadow-2);
+    max-height:calc(100dvh - 72px);overflow:auto;
+  }
+  .nav-mobile.open{display:block;animation:fadeIn .2s ease}
+  .nav-mobile a{display:block;padding:13px 4px;text-decoration:none;font-weight:600;font-size:16px;border-bottom:1px solid var(--hairline)}
+  .nav-mobile a:last-of-type{border:0}
+  .nav-mobile .btn{width:100%;margin-top:14px}
+  .split-grid,.grid-3,.grid-2,.alc-grid{grid-template-columns:1fr}
+  .calc{grid-template-columns:1fr}
+  .calc-controls{border-right:0;border-bottom:1px solid var(--hairline)}
+  .trade-preview{grid-template-columns:1fr}
+  .trade-preview .img{min-height:220px;order:-1}
+  .compare-wrap{overflow-x:auto}
+  table.compare{min-width:640px}
+  .svc-cards{grid-template-columns:1fr}
+  .loop-panel.active{grid-template-columns:1fr}
+  .final-cta .inner{padding:44px 28px}
+  .form-grid{grid-template-columns:1fr}
+  .sticky-cta{display:flex}
+  .cs-metrics{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .container{padding-inline:18px}
+  .stats-band,.price-strip,.grid-4{grid-template-columns:1fr}
+  .card--panel{padding:26px}
+  .footer .top{grid-template-columns:1fr}
+  .hero{padding:56px 0 72px}
+  .hero-ctas .btn{width:100%}
+  .trade-chip{padding:9px 15px;font-size:13px}
+  .hero-split .hero-ctas .btn{flex:1 1 100%}
+  .modal{padding:28px 22px}
+  .proof-card{padding:26px}
+}
+
+/* ---------- view transitions (progressive) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  ::view-transition-old(root){animation:vtFade .18s ease both}
+  ::view-transition-new(root){animation:vtIn .22s ease both}
+}
+@keyframes vtFade{to{opacity:0}}
+@keyframes vtIn{from{opacity:0}to{opacity:1}}
+
+/* ---------- reduced motion: everything off, content visible ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
+  [data-reveal],[data-reveal="children"]>*{opacity:1!important;transform:none!important}
+  .bubble{opacity:1;transform:none}
+  .marquee-track{animation:none!important;flex-wrap:wrap;width:auto}
+  .cursor-glow{display:none}
+  .cos-svg .edge{animation:none}
+  .kenburns img,.kenburns-slow img{animation:none}
+  .sticky-cta{transition:none}
+}
+/* footer Motion toggle = explicit consent: force-motion re-enables CSS motion
+   even when the OS reports prefers-reduced-motion (mirrors the JS override) */
+html.force-motion .marquee-track{animation:mq 24s linear infinite !important;flex-wrap:nowrap !important;width:max-content !important}
+html.force-motion .marquee+.marquee .marquee-track{animation-duration:32s !important;animation-direction:reverse !important}
+/* user force-motion (toggle ON) respects the same off-switch via html.no-motion above */
+
+.micro b{color:var(--ok-text)}
+
+/* ---------- metric-adjusted fallbacks (§0.6/§7: no font-swap reflow) ---------- */
+@font-face{font-family:"Inter Fallback";src:local("Arial"),local("Helvetica");size-adjust:107%;ascent-override:90%;descent-override:22%;line-gap-override:0%}
+@font-face{font-family:"Jakarta Fallback";src:local("Arial"),local("Helvetica");size-adjust:104%;ascent-override:96%;descent-override:24%;line-gap-override:0%}
+@font-face{font-family:"Mono Fallback";src:local("Consolas"),local("Menlo"),local("Courier New");size-adjust:88%;ascent-override:82%;descent-override:20%;line-gap-override:0%}
+/* ---------- reserved space: growing content must not shift layout (CLS 0) ---------- */
+.demo-shell{min-height:724px}
+.src-note,.stat-note,.form-note{min-height:1.6em}
+@media (max-width:1024px){.demo-shell{min-height:660px}}
+@media (max-width:640px){.demo-shell{min-height:580px}}
+
+/* ---------- §3 motion: continuous ambience + pinned moments ---------- */
+@keyframes mc-pulse{0%{box-shadow:0 0 0 0 rgba(185,138,46,.45)}70%{box-shadow:0 0 0 14px rgba(185,138,46,0)}100%{box-shadow:0 0 0 0 rgba(185,138,46,0)}}
+.masjid-channels .mc-core{animation:mc-pulse 2.8s cubic-bezier(.22,1,.36,1) infinite}
+@keyframes chip-glow{0%,100%{border-color:var(--hairline);color:var(--muted)}50%{border-color:var(--brass);color:var(--brass-text)}}
+.masjid-channels .mc-fan .pill{animation:chip-glow 3.4s ease-in-out infinite}
+.masjid-channels .mc-fan .pill:nth-child(2){animation-delay:.35s}
+.masjid-channels .mc-fan .pill:nth-child(3){animation-delay:.7s}
+.masjid-channels .mc-fan .pill:nth-child(4){animation-delay:1.05s}
+.masjid-channels .mc-fan .pill:nth-child(5){animation-delay:1.4s}
+.masjid-channels .mc-fan .pill:nth-child(6){animation-delay:1.75s}
+.masjid-channels .mc-fan .pill:nth-child(7){animation-delay:2.1s}
+.masjid-channels .mc-fan .pill:nth-child(8){animation-delay:2.45s}
+/* pinned story wrappers: reserve space so pinning never causes CLS/overflow */
+[data-pin-story]{position:relative}
+[data-pin-story] .pin-stage{will-change:transform}
+/* sticky two-column (enterprise invariants, masjid modules, pricing explainer) */
+.sticky-rail{position:sticky;top:88px;align-self:start}
+@media (max-width:1024px){.sticky-rail{position:static}}
+/* (k) route fade 120ms for browsers without View Transitions */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:vt-out .12s cubic-bezier(.22,1,.36,1) both}
+::view-transition-new(root){animation:vt-in .12s cubic-bezier(.22,1,.36,1) both}
+@keyframes vt-out{to{opacity:0}}
+@keyframes vt-in{from{opacity:0}}
+/* (r) chip pop 1.04 */
+.pill{transition:transform .18s cubic-bezier(.22,1,.36,1),border-color .2s,color .2s}
+.chip-row .pill:hover,.hero-chips .pill:hover,.trade-chip:hover{transform:scale(1.04)}
+@media (prefers-reduced-motion: reduce){
+  .masjid-channels .mc-core,.masjid-channels .mc-fan .pill{animation-duration:.001s!important;animation-iteration-count:1!important}
+  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
+}
+
+/* ============================================================
+   ROYAL CHROME — overlays & utility states (§1 inventory)
+   back-to-top · consent banner · assistant bubble · toasts · skeletons
+   ============================================================ */
+/* (m) back-to-top — spring in after two screens */
+.to-top{position:fixed;right:22px;bottom:86px;width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:var(--r-pill);background:var(--card);border:1px solid var(--hairline);color:var(--ink);cursor:pointer;
+  box-shadow:var(--shadow-1);opacity:0;visibility:hidden;transform:translateY(14px) scale(.94);
+  transition:opacity .24s cubic-bezier(.22,1,.36,1),transform .24s cubic-bezier(.22,1,.36,1),border-color .2s,background .2s;z-index:58}
+.to-top svg{width:18px;height:18px;transform:rotate(-90deg)}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{border-color:var(--rust-text);background:var(--rust);color:var(--cream)}
+@media (max-width:768px){.to-top{bottom:82px;right:14px}.sticky-cta~.to-top{bottom:82px}}
+
+/* consent banner — bottom sheet, privacy-first default */
+.consent{position:fixed;left:18px;right:18px;bottom:18px;z-index:70;max-width:720px;margin:0 auto;
+  background:var(--card);border:1px solid var(--hairline);border-top:2px solid var(--brass);border-radius:var(--r-panel);
+  padding:20px 22px;box-shadow:var(--shadow-2);display:grid;gap:14px}
+.consent[hidden]{display:none}
+.consent p{margin:0;font-size:14px;color:var(--muted);max-width:62ch}
+.consent p b{color:var(--ink)}
+.consent-actions{display:flex;gap:10px;flex-wrap:wrap}
+@media (max-width:640px){.consent{left:10px;right:10px;bottom:10px;padding:16px 16px}.consent .btn{width:100%;min-height:44px}}
+/* while the consent sheet owns the bottom edge, park the floating chrome */
+body.consent-open .asst-btn,body.consent-open .to-top{opacity:0;pointer-events:none}
+.asst-btn,.to-top{transition:opacity .2s ease,visibility .2s ease,transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s}
+
+/* assistant bubble — governed website assistant */
+.asst-btn{position:fixed;right:22px;bottom:22px;width:54px;height:54px;border-radius:var(--r-pill);cursor:pointer;
+  background:var(--governance-dark,#14110E);border:1px solid var(--brass);color:var(--brass-band,#D9A93F);
+  display:inline-flex;align-items:center;justify-content:center;box-shadow:var(--shadow-2);z-index:66;
+  transition:transform .2s cubic-bezier(.22,1,.36,1),box-shadow .2s}
+.asst-btn:hover{transform:translateY(-2px)}
+.asst-btn svg{width:22px;height:22px}
+.asst-btn .dot{position:absolute;top:9px;right:9px;width:9px;height:9px;border-radius:50%;background:var(--brass-band,#D9A93F);animation:asst-pulse 2.4s ease-in-out infinite}
+@keyframes asst-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.82)}}
+/* Mobile resting position sits flush with the bottom edge. It used to park at 92px, which
+   put the 50px bubble (y 702–752 at 390x844) straight on top of the hero's primary CTA
+   (y ~678–730) — a black circle cutting the corner off the most important button on the
+   page. At 22px it clears the fold CTA entirely, and the sticky-CTA rules lift it as soon
+   as that bar slides up. Panel offset always stays 10px above the bubble top. */
+@media (max-width:768px){.asst-btn{right:14px;bottom:22px;width:50px;height:50px}}
+/* keep the bubble out of the mobile fold entirely — see initFloatReveal() */
+@media (max-width:768px){html:not(.float-ready) .asst-btn{opacity:0;visibility:hidden;pointer-events:none}}
+@media (max-width:768px){html.sticky-cta-on .asst-btn{bottom:104px}}
+@media (max-width:768px){html.sticky-cta-on .asst-panel{bottom:164px}}
+@media (max-width:768px){html.sticky-cta-on .to-top{bottom:164px}}
+@media (max-width:768px){.asst-panel{right:10px;left:10px;width:auto;bottom:82px}}
+.asst-panel{position:fixed;right:22px;bottom:88px;width:min(380px,calc(100vw - 28px));max-height:min(560px,calc(100vh - 130px));overflow-y:auto;
+  background:var(--card);border:1px solid var(--hairline);border-top:2px solid var(--brass);border-radius:var(--r-panel);
+  box-shadow:var(--shadow-2);padding:20px;z-index:67;display:none}
+.asst-panel.open{display:block;animation:asst-in .22s cubic-bezier(.22,1,.36,1) both}
+@keyframes asst-in{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.asst-panel .asst-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.asst-panel .asst-head b{font-family:var(--font-display);font-size:15.5px}
+.asst-panel .asst-x{background:none;border:0;color:var(--muted);cursor:pointer;padding:6px;line-height:0;border-radius:8px}
+.asst-panel .asst-x:hover{color:var(--ink)}
+.asst-note{font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:10px 0 14px}
+.asst-q{display:block;width:100%;text-align:left;background:var(--paper);border:1px solid var(--hairline);border-radius:12px;
+  padding:11px 13px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer;margin-bottom:8px;min-height:44px;
+  transition:border-color .18s,transform .18s cubic-bezier(.22,1,.36,1)}
+.asst-q:hover{border-color:var(--rust-text);transform:translateY(-1px)}
+.asst-a{border-left:3px solid var(--brass);background:var(--paper);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--ink);margin:4px 0 12px}
+.asst-a .src{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--muted);margin-top:8px}
+.asst-a .src a{color:var(--rust-text)}
+.asst-bar{display:flex;align-items:center;gap:9px;margin:12px 0 0;font-size:13.5px;color:var(--muted)}
+.asst-bar input{flex:1;min-height:44px;border:1px solid var(--hairline);border-radius:12px;padding:0 12px;font:inherit;font-size:14px;background:var(--card);color:var(--ink)}
+.asst-bar input:focus-visible{outline:2px solid var(--rust);outline-offset:2px}
+
+/* skeletons (shimmer) — used while the assistant assembles a sourced answer */
+.skel{position:relative;overflow:hidden;background:var(--paper);border-radius:10px;height:13px;margin:9px 0}
+.skel::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+  background:linear-gradient(90deg,transparent,rgba(255,253,249,.85),transparent);animation:shimmer 1.25s infinite}
+@keyframes shimmer{100%{transform:translateX(100%)}}
+
+/* toasts — bottom-right, auto-dismiss */
+.toast-host{position:fixed;right:22px;bottom:150px;z-index:72;display:grid;gap:10px;justify-items:end;pointer-events:none}
+.toast{pointer-events:auto;background:var(--governance-dark,#14110E);color:var(--cream);border:1px solid rgba(250,247,242,.16);border-left:3px solid var(--brass-band,#D9A93F);
+  border-radius:12px;padding:13px 16px;font-size:13.5px;max-width:340px;box-shadow:var(--shadow-2);animation:toast-in .22s cubic-bezier(.22,1,.36,1) both}
+.toast.out{animation:toast-out .2s ease-in both}
+@keyframes toast-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes toast-out{to{opacity:0;transform:translateY(8px)}}
+@media (max-width:640px){.toast-host{right:12px;left:12px;bottom:160px;justify-items:stretch}.toast{max-width:none}}
+
+@media (prefers-reduced-motion: reduce){
+  .asst-btn .dot{animation:none}
+  .skel::after{animation:none;transform:none;background:rgba(255,253,249,.5)}
+  .to-top,.toast,.asst-panel.open{transition:none;animation:none}
+}

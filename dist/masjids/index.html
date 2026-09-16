@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en">
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Masjid AI OS — AI Operating System for Masjids &amp; Islamic Centers | HazirMinds</title>
+<meta name="description" content="HazirMinds Masjid AI OS: events, communications, registrations, facilities, volunteers, donations, knowledge and governed AI — one controlled operational layer for masjids and Islamic community organizations.">
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-latin-400-normal.woff2" crossorigin>
+<!-- 500 was missing: .svc-rail a / .nav-link / .btn--ghost set font-weight:500, so those
+     elements rendered in the fallback, then re-wrapped when Inter 500 finally swapped in —
+     a measured 48px layout shift on /services at 768px. Preload the weight that is actually
+     painted above the fold. -->
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-latin-500-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/jetbrains-mono-latin-500-normal.woff2" crossorigin>
+<link rel="canonical" href="https://hazirminds.ai/masjids">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HazirMinds">
+<meta property="og:title" content="Masjid AI OS — AI Operating System for Masjids &amp; Islamic Centers | HazirMinds">
+<meta property="og:description" content="HazirMinds Masjid AI OS: events, communications, registrations, facilities, volunteers, donations, knowledge and governed AI — one controlled operational layer for masjids and Islamic community organizations.">
+<meta property="og:url" content="https://hazirminds.ai/masjids">
+<meta property="og:image" content="https://hazirminds.ai/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Masjid AI OS — AI Operating System for Masjids &amp; Islamic Centers | HazirMinds">
+<meta name="twitter:description" content="HazirMinds Masjid AI OS: events, communications, registrations, facilities, volunteers, donations, knowledge and governed AI — one controlled operational layer for masjids and Islamic community organizations.">
+<meta name="twitter:image" content="https://hazirminds.ai/img/og-card.jpg">
+<meta property="og:image:alt" content="Masjid AI OS — AI Operating System for Masjids &amp; Islamic Centers | HazirMinds — HazirMinds">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
+<link rel="sitemap" href="/sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai","logo":"https://hazirminds.ai/img/og-card.jpg","email":"hello@hazirminds.ai","sameAs":["https://www.linkedin.com/company/hazirminds","https://x.com/hazirminds","https://www.youtube.com/@hazirminds"],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"hello@hazirminds.ai","availableLanguage":["en"]}],"slogan":"Always present. Never missed."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hazirminds.ai/"},{"@type":"ListItem","position":2,"name":"For Masjids","item":"https://hazirminds.ai/masjids"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do you support Hijri dates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each organization sets its calendar rules — primary calendar (Gregorian or Hijri), adjustment preferences, and dual-date rendering — applied consistently across website, app, newsletters, screens and confirmations."}},{"@type":"Question","name":"Does WhatsApp messaging cost extra?","acceptedAnswer":{"@type":"Answer","text":"WhatsApp runs through the WhatsApp Business API; Meta charges per-conversation fees that remain external usage costs. We show them transparently in the included-vs-external table — never buried."}},{"@type":"Question","name":"Can lobby screens and the app show the same events?","acceptedAnswer":{"@type":"Answer","text":"Yes — screens, site, app, newsletter and WhatsApp all render from the same approved record. When a record changes, every channel updates through the cascade."}},{"@type":"Question","name":"Do we need a branded mobile app?","acceptedAnswer":{"@type":"Answer","text":"No. The core system is web-first and works on any phone. A branded app is available as a scoped addition; app-store accounts remain external."}},{"@type":"Question","name":"How is zakat handled?","acceptedAnswer":{"@type":"Answer","text":"Zakat-designated campaigns can be routed and reported separately from general funds at the campaign level, with settlement through your payment processor. We make no financial or religious-advice claims."}},{"@type":"Question","name":"Who owns the data?","acceptedAnswer":{"@type":"Answer","text":"The masjid does. Export at any time, deletion on request, and strict per-organization isolation: one mosque can never access another's data, users or knowledge."}},{"@type":"Question","name":"What does multi-masjid isolation mean in practice?","acceptedAnswer":{"@type":"Answer","text":"Each organization is a separate tenant with its own data, users, permissions, knowledge base, automations, communications and audit history — isolated at the substrate level, not by policy alone."}}]}</script>
+<link rel="stylesheet" href="/assets/css/main.css?v=5f94546611.5e517e88b9">
+<style>
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2)format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2)format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;src:url(/vendor/fonts/fraunces-latin-400-italic.woff2)format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:600;font-display:swap;src:url(/vendor/fonts/fraunces-latin-600-italic.woff2)format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(/vendor/fonts/inter-latin-400-normal.woff2)format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(/vendor/fonts/inter-latin-500-normal.woff2)format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(/vendor/fonts/jetbrains-mono-latin-400-normal.woff2)format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500;font-display:swap;src:url(/vendor/fonts/jetbrains-mono-latin-500-normal.woff2)format("woff2")}
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- S0 · GUARANTEE BAR -->
+<aside class="roi-bar" aria-label="No unpublished meters"><strong>No unpublished meters</strong> — the full usage rate card is in your hands before go-live. <a href="/pricing">See pricing</a></aside>
+<!-- S1 · NAV -->
+<header class="nav-wrap">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <a class="brand" href="/"><span class="mark">H</span>Hazir<em>Minds</em></a>
+      <ul class="nav-links"><li class="nav-item is-current"><button class="nav-link" aria-expanded="false">Products <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mega mega--2"><a href="/chief-of-staff"><b>Chief-of-Staff Platform</b><span>FLAGSHIP — One front door to your AI team</span></a><a href="/masjids" aria-current="page"><b>Masjid AI OS</b><span>FLAGSHIP — Operating system for masjids</span></a><a href="/services#ai-receptionist"><b>AI Receptionist 24/7</b><span>Every call answered, booked and logged</span></a><a href="/services#missed-call-text-back"><b>Missed-Call Text-Back</b><span>Rescue missed leads in seconds</span></a><a href="/services#speed-to-lead"><b>Speed-to-Lead</b><span>Reply to every lead in 60 seconds</span></a><a href="/services#workflow-automation"><b>Workflow Automation</b><span>The busywork between yes and done</span></a><a href="/services"><b>All services A–F</b><span>The full contract-aligned catalog</span></a></div></li><li class="nav-item"><button class="nav-link" aria-expanded="false">Industries <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mega mega--2"><a href="/industries/hvac"><b>HVAC</b><span>Emergency dispatch, 24/7</span></a><a href="/industries/dental"><b>Dental</b><span>Front desk that never sleeps</span></a><a href="/industries/legal"><b>Legal</b><span>After-hours intake &amp; screening</span></a><a href="/industries/restaurant"><b>Restaurants</b><span>Reservations without the juggle</span></a><a href="/industries/realestate"><b>Real Estate</b><span>Speed-to-lead for every inquiry</span></a><a href="/industries/auto"><b>Auto Services</b><span>Bookings &amp; status calls on autopilot</span></a><a href="/industries/ecommerce"><b>E-commerce</b><span>WISMO &amp; cart rescue, instantly</span></a><a href="/industries/proservices"><b>Professional Services</b><span>A front office that never sleeps</span></a></div></li><li class="nav-item"><button class="nav-link" aria-expanded="false">Compare <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mega mega--2"><a href="/compare/go-high-level"><b>vs GoHighLevel</b><span>DIY platform vs done-for-you firm</span></a><a href="/compare/synthflow"><b>vs Synthflow</b><span>Metered minutes vs flat tiers</span></a><a href="/compare/smith-ai"><b>vs Smith.ai</b><span>Per-call buckets vs governed AI</span></a><a href="/compare/ai-sdr"><b>vs AI SDR agencies</b><span>Artisan &amp; 11x contracts vs ours</span></a><a href="/compare/human-receptionist"><b>vs Human receptionist</b><span>Payroll vs governed AI team</span></a><a href="/compare/masjid-platforms"><b>vs Masjid platforms</b><span>ConnectMazjid, MOHID, Masjidal vs Masjid AI OS</span></a><a href="/compare"><b>Compare hub</b><span>All comparisons, verified 2026 data</span></a></div></li><li class="nav-item"><a class="nav-link" href="/enterprise">Enterprise</a></li><li class="nav-item"><a class="nav-link" href="/pricing">Pricing</a></li></ul>
+      <div class="nav-cta">
+        <a class="btn btn--primary btn--sm" href="/demo" data-cta="nav_book_demo"><span class="shine"></span>Book a Demo</a>
+      </div>
+      <button class="nav-burger" aria-expanded="false" aria-label="Open menu"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button>
+    </div>
+    <div class="nav-mobile">
+      <a href="/services">Products</a><a href="/industries/hvac">Industries</a><a href="/compare">Compare</a><a href="/enterprise">Enterprise</a><a href="/pricing">Pricing</a>
+      <a class="btn btn--primary" href="/demo" data-cta="mobile_book_demo"><span class="shine"></span>Book a Free Demo</a>
+    </div>
+  </nav>
+</header>
+<main id="main">
+
+  <section class="section masjid-hero on-dark" style="padding-top:96px">
+    <div class="container" style="max-width:900px">
+      <div data-reveal="children">
+        <p class="crumbs" style="color:rgba(250,247,242,.55)"><a href="/" style="color:inherit">Home</a> <span>/</span> <span aria-current="page">For Masjids</span></p>
+        <span class="eyebrow">HazirMinds Masjid AI OS</span>
+        <h1 style="font-size:clamp(32px,4.6vw,58px);color:var(--cream)">The operating system for masjid work — one record, every channel, governed AI.</h1>
+        <p class="lede" style="color:rgba(250,247,242,.75)">HazirMinds provides a governed AI operating system for masjids and Islamic community organizations that connects events, communications, registrations, facilities, volunteers, donations, knowledge, AI assistance, and reporting through one controlled operational layer.</p>
+        <div class="hero-ctas" style="margin-top:28px">
+          <a class="btn btn--brass btn--lg" href="/demo" data-cta="masjid_hero"><span class="shine"></span>Book a Masjid Demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          <a class="btn btn--outline-light btn--lg" href="/compare/masjid-platforms" data-cta="masjid_compare">Compare masjid platforms</a>
+        </div>
+        <div class="chip-row" style="margin-top:26px" data-reveal="children">
+          <span class="pill">events &amp; communications</span><span class="pill">registrations &amp; check-in</span><span class="pill">facilities &amp; volunteers</span><span class="pill">donations &amp; CRM</span><span class="pill">governed AI assistants</span><span class="pill">multi-masjid isolation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="container">
+      <div class="band-media" data-reveal>
+        <img src="/img/mj/mj-hall-1600.webp"
+             srcset="/img/mj/mj-hall-600.webp 600w, /img/mj/mj-hall-900.webp 900w, /img/mj/mj-hall-1600.webp 1600w, /img/mj/mj-hall-2400.webp 2400w"
+             sizes="(max-width: 900px) 100vw, 1200px" width="2400" height="1600"
+             loading="eager" fetchpriority="high" decoding="async"
+             alt="Architectural detail of a masjid hall in daylight — quiet, ordered, and in use.">
+      </div>
+      <p class="stat-note center" style="margin-top:12px">A masjid runs on records. Today most of them live on paper, in WhatsApp, and in someone's memory.</p>
+    </div>
+  </section>
+
+  <section class="section" id="lifecycle" data-pin-story="lifecycle">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">The core workflow</span>
+        <h2>From one request to every channel — with humans deciding</h2>
+        <p class="lede center" style="margin-inline:auto">AI prepares and recommends; authorized people approve every consequential step. Anything uncertain is flagged, never guessed.</p>
+      </div>
+      <div class="pin-stage">
+  <div class="masjid-lifecycle" data-lifecycle>
+    
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">01</span>
+      <h3 style="font-size:16.5px">Intake</h3>
+      <p>One form: event, dates, rooms, audience, channels</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">02</span>
+      <h3 style="font-size:16.5px">AI validation</h3>
+      <p>Completeness, conflicts, duplicates — uncertain? flagged, never guessed</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">03</span>
+      <h3 style="font-size:16.5px">Committee routing</h3>
+      <p>Communications, Education, Youth, Women’s, Facilities…</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">04</span>
+      <h3 style="font-size:16.5px">Approval chain</h3>
+      <p>Team → owner → comms review → final approval</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">05</span>
+      <h3 style="font-size:16.5px">One record</h3>
+      <p>The approved event record — the single source of truth</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">06</span>
+      <h3 style="font-size:16.5px">Many channels</h3>
+      <p>Site, app, newsletter, WhatsApp, social, screens, registration</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">07</span>
+      <h3 style="font-size:16.5px">Follow-up</h3>
+      <p>Reminders, attendance, thank-yous, archives</p>
+    </div><span class="lc-arrow" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+    <div class="lc-step" data-lc-step>
+      <span class="lc-n">08</span>
+      <h3 style="font-size:16.5px">Audit</h3>
+      <p>Who · when · what changed · who approved · what published</p>
+    </div>
+  </div>
+  <p class="stat-note center" style="margin-top:18px">ONE REQUEST → ONE SOURCE OF TRUTH → APPROVAL → AI WORK → MANY CHANNELS → FOLLOW-UP → REPORTING → AUDIT</p></div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="channels">
+    <div class="container" style="max-width:900px">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">One record → many channels</span>
+        <h2>Publish once. Update everywhere. Or nowhere twice.</h2>
+        <p class="lede center" style="margin-inline:auto">Your volunteer enters the event <b>once</b>. Every channel reads from that one record — so the same details can never reach the flyer, the website, the newsletter, the app and the hall screens as five different versions.</p>
+      </div>
+      
+  <div class="masjid-channels">
+    <div class="mc-src"><span class="eyebrow">One approved record</span><div class="mc-core">Event / Request Record</div></div>
+    <div class="mc-fan" role="list">
+      <span class="pill" role="listitem">Website</span><span class="pill" role="listitem">Mobile app</span><span class="pill" role="listitem">Email & newsletter</span><span class="pill" role="listitem">WhatsApp</span><span class="pill" role="listitem">Social media</span><span class="pill" role="listitem">Lobby screens</span><span class="pill" role="listitem">Registration</span><span class="pill" role="listitem">Reminders & attendance</span>
+    </div>
+  </div>
+  <p class="stat-note center" style="margin-top:12px">Volunteers never re-enter data. A change or cancellation cascades to every channel — registrants and teams notified, originals archived.</p>
+    </div>
+  </section>
+
+  <section class="section" id="assistants">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">AI assistants — governed, source-linked</span>
+        <h2>Phone + web assistants, one approved knowledge base</h2>
+      </div>
+      <div class="grid grid-2" style="align-items:stretch">
+        <div class="card card--hover" data-reveal>
+          <span class="icon-tile"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+          <h3>AI phone assistant</h3>
+          <p class="muted" style="font-size:15px">Answers <em>only</em> from the approved knowledge base: prayer times, Jumu’ah, programs, youth, registration, hall booking, location, events.</p>
+          <ul class="checks">
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Answers 24/7 on the masjid’s dedicated number</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Says “I’ll check with the office” when unsure — and routes the message</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Every answer carries its source receipt</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Religious questions route to a named scholar or imam — and the routing is logged</span></li>
+          </ul>
+        </div>
+        <div class="card card--hover" data-reveal>
+          <span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          <h3>Website assistant</h3>
+          <p class="muted" style="font-size:15px">Same governed source: current answers, event finder, registration links, program explanations, routing to the right committee.</p>
+          <ul class="checks">
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Never invents; discloses uncertainty honestly</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Validates against current records before answering</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Escalates outside scope to the right human</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="stat-note center" style="margin-top:20px">The assistants answer questions about your masjid’s operations, programs, facilities and events. They do not issue religious rulings and do not replace imams or scholars — religious questions are routed to a named person, and every routing is recorded.</p>
+      <div class="hallucination-panel" data-reveal style="margin-top:26px;background:var(--deep);border-color:rgba(250,247,242,.12)">
+        <span class="eyebrow">No-hallucination design</span>
+        <h3 style="color:var(--cream);font-size:22px;letter-spacing:-.015em;line-height:1.25;margin:10px 0 18px">Governed, source-linked AI with escalation — our honest claim</h3>
+        <div class="chip-row chip-row--dense chip-row--three">
+          <span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>approved sources only</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>source-linked answers</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>confidence checks</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>uncertainty disclosure</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>refusal outside scope</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>human escalation</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>regression testing</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>audit receipts</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>controlled tool access</span>
+        </div>
+        <p class="stat-note" style="margin-top:16px;color:rgba(250,247,242,.6)">We say “governed, source-linked AI with escalation” — never “never hallucinates.” Trust starts with honest wording.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="modules">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Modules</span>
+        <h2>Registration · Facilities · Volunteers · Donations · CRM</h2>
+      </div>
+      <div class="grid grid-3" data-reveal="children">
+        <div class="card card--hover"><span class="icon-tile"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><h3>Registration</h3><p class="muted" style="font-size:15px">Forms, capacity, waitlists, guardian info, confirmations, reminders, QR check-in, attendance analytics.</p></div>
+        <div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="7" x2="10" y2="7"/><line x1="14" y1="7" x2="15" y2="7"/><line x1="9" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="15" y2="12"/><path d="M9 22v-4h6v4"/></svg></span><h3>Facilities</h3><p class="muted" style="font-size:15px">Booking request → availability → review → approval → confirmation → calendar + communications. Deposits &amp; e-signatures: <b>Planned</b>.</p></div>
+        <div class="card card--hover"><span class="icon-tile"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>Volunteers</h3><p class="muted" style="font-size:15px">Registration, assignments, shifts, reminders, hours, participation history, certificates.</p></div>
+        <div class="card card--hover"><span class="icon-tile icon-tile--ok"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span><h3>Donations</h3><p class="muted" style="font-size:15px">Campaigns, event-to-donation flows, recurring giving, receipts, reporting — processing stays with Stripe or your processor, fees shown transparently.</p></div>
+        <div class="card card--hover"><span class="icon-tile"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><h3>CRM</h3><p class="muted" style="font-size:15px">Members, families, volunteers, donors, interests, engagement history — strict permission boundaries on sensitive fields.</p></div>
+        <div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span><h3>Analytics &amp; admin</h3><p class="muted" style="font-size:15px">Events, communications, registration, facility utilization, volunteer hours, workflow exceptions — with role-based dashboards.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="integrations">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Connects to what you already run</span>
+        <h2>Your systems stay. They just stop disagreeing with each other.</h2>
+        <p class="lede center" style="margin-inline:auto">No rip-and-replace. Each integration below carries the same honest label as the rest of this page — including the ones that are not built yet.</p>
+      </div>
+      <div class="compare-wrap" data-reveal>
+        <table class="compare compare--3col">
+          <thead><tr><th scope="col">System</th><th scope="col">What it does here</th><th scope="col">Status</th></tr></thead>
+          <tbody>
+            <tr><td>WordPress</td><td>Publishes event content, then verifies the live page: right image, right date, working registration button, expired announcements removed.</td><td><span class="pill pill--ok">Available</span></td></tr>
+            <tr><td>Constant Contact</td><td>Assembles the weekly newsletter from approved announcements — masjid items first, community items after, Gregorian and Hijri dates both updated.</td><td><span class="pill pill--ok">Available</span></td></tr>
+            <tr><td>Cognito Forms</td><td>Registration with capacity, waitlist, guardian fields, closing date, confirmations and reminders.</td><td><span class="pill pill--ok">Available</span></td></tr>
+            <tr><td>Google Workspace</td><td>Docs, Sheets, Drive and Calendar — the shared record and the committee calendar.</td><td><span class="pill pill--ok">Available</span></td></tr>
+            <tr><td>Stripe / your processor</td><td>Donations and facility bookings at your processor's published rates, shown transparently. Funds stay yours.</td><td><span class="pill pill--ok">Available</span></td></tr>
+            <tr><td>CRM platforms</td><td>HubSpot, Salesforce, Pipedrive-class systems — members, families, donors and enquiry history stay in sync.</td><td><span class="pill pill--ok">Available</span></td></tr>
+            <tr><td>Madina Apps · hall screens · app slideshow</td><td>Approved screen graphics uploaded, dated, ordered, and expired on schedule.</td><td><span class="pill pill--brass">Available</span></td></tr>
+            <tr><td>Canva</td><td>An approved template library your team fills from the event record — one visual identity, no re-designing from scratch.</td><td><span class="pill">Configured at onboarding</span></td></tr>
+            <tr><td>WhatsApp Business API</td><td>Team submission and notification, so information stops being copied out of a group chat by hand. Per-conversation fees are set by Meta.</td><td><span class="pill">Configured at onboarding</span></td></tr>
+            <tr><td>Branded mobile app</td><td>Your own app receiving selected high-priority announcements.</td><td><span class="pill">Custom / scoped</span></td></tr>
+            <tr><td>Facility deposits, payments &amp; e-signatures</td><td>Not built yet. Named here so nobody has to guess.</td><td><span class="pill">Planned</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="stat-note" style="margin-top:14px">Integrations are designed to be replaceable — if your masjid changes a system, the platform is reconfigured rather than rebuilt.</p>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="status">
+    <div class="container" style="max-width:960px">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Event lifecycle</span>
+        <h2>Everyone can see where an event stands</h2>
+        <p class="lede center" style="margin-inline:auto">Thirteen defined states. Nobody has to ask “where is this one?” in a group chat.</p>
+      </div>
+      <div class="chip-row chip-row--dense" style="justify-content:center" data-reveal="children">
+        <span class="pill">Draft</span><span class="pill">Submitted</span><span class="pill">Validation</span><span class="pill">Team approval</span><span class="pill">Communications review</span><span class="pill">Content created</span><span class="pill">Flyer ready</span><span class="pill">Approved</span><span class="pill">Published</span><span class="pill">Registration open</span><span class="pill">Event upcoming</span><span class="pill">Event completed</span><span class="pill">Archived</span>
+      </div>
+      <p class="stat-note center" style="margin-top:20px">Requests route to the owning committee — communications, education, facility, imam, women’s, youth or volunteer — and each owner’s approval is recorded before anything is prepared for publishing.</p>
+    </div>
+  </section>
+
+  <section class="section" id="roles">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Who may do what</span>
+        <h2>Everyone sees the record. Not everyone can change it.</h2>
+        <p class="lede center" style="margin-inline:auto">Role-based permissions decide what each person can approve, edit or only view. Sensitive fields — donor and family information — sit behind their own boundary.</p>
+      </div>
+      <div class="compare-wrap" data-reveal>
+        <table class="compare compare--2col">
+          <thead><tr><th scope="col">Role</th><th scope="col">Authority</th></tr></thead>
+          <tbody>
+            <tr><td>System administrator</td><td>Full configuration: users, committees, templates, integrations, notification rules, audit review.</td></tr>
+            <tr><td>Communications admin</td><td>Owns the publishing workflow — newsletter, website, screens, app channels.</td></tr>
+            <tr><td>Committee lead</td><td>Creates and approves that committee’s events and announcements.</td></tr>
+            <tr><td>Event coordinator</td><td>Manages the events assigned to them, within the approved scope.</td></tr>
+            <tr><td>Facility manager</td><td>Reviews availability and approves or declines hall and facility requests.</td></tr>
+            <tr><td>Volunteer</td><td>Performs assigned communication tasks. Cannot publish or approve.</td></tr>
+            <tr><td>Reviewer / approver</td><td>Reviews content before it goes out, and signs it off.</td></tr>
+            <tr><td>Read-only</td><td>Can see everything they are permitted to see, and change nothing.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card card--panel" data-reveal style="margin-top:26px">
+        <span class="eyebrow">What the audit trail actually records</span>
+        <p class="muted" style="margin-top:12px;font-size:15px">Not a summary line. Every consequential action stores <b>who</b> acted, <b>when</b>, <b>what action</b>, the <b>previous value</b>, the <b>new value</b>, and the <b>approval history</b> behind it. So when a date changes, you can see who changed it, from what, to what, and who signed it off.</p>
+        <p class="stat-note" style="margin-top:14px">Example chain: a coordinator submits an event → the youth lead approves → communications edits the flyer copy → the communications admin approves → the website publishes → the newsletter sends. Every step carries a name and a timestamp.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gov-band on-dark" id="governance-masjid">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Governance · security · multi-masjid</span>
+        <h2 style="color:var(--cream)">AI capability does not automatically mean AI authority</h2>
+        <p class="lede center" style="margin-inline:auto;color:rgba(250,247,242,.72)">Nine admin roles, approval gates on every consequential step, and an isolated environment per organization — enforced by the platform, not promised in a policy document.</p>
+      </div>
+
+      <div class="masjid-secure" data-reveal>
+        <div class="ms-head">
+          <span class="ms-badge"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <div>
+            <h3>Security posture, published as controls</h3>
+            <p>Here is what is actually enforced and auditable on every masjid deployment. We list controls we can demonstrate — we never claim &ldquo;end-to-end encryption&rdquo; or &ldquo;zero risk,&rdquo; because those are slogans, not controls.</p>
+          </div>
+        </div>
+        <div class="ms-pillars">
+          <div class="ms-pillar">
+            <span class="ms-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <b>Tenant isolation</b>
+            <span>An isolated environment per organization. One mosque can never reach another&rsquo;s records, registrations or assistants.</span>
+          </div>
+          <div class="ms-pillar">
+            <span class="ms-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <b>Least privilege + MFA</b>
+            <span>Role-scoped access across nine admin roles — System Admin to Read Only — with MFA and encryption in transit and at rest.</span>
+          </div>
+          <div class="ms-pillar">
+            <span class="ms-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></span>
+            <b>Audit trail &amp; recovery</b>
+            <span>Who changed what, when, and who approved it. Backups, recovery, incident response and access reviews on a schedule.</span>
+          </div>
+          <div class="ms-pillar">
+            <span class="ms-ico"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+            <b>Controlled AI tools</b>
+            <span>Assistant actions are permission-scoped. Nothing leaves the approved tool list without a human in the loop.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="align-items:stretch;margin-top:26px">
+        <div class="card card--panel" data-reveal>
+          <span class="eyebrow">Built-in governance</span>
+          <div class="chip-row chip-row--dense" style="margin-top:16px">
+            <span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>permission scopes</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>role-based access</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>approval gates</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>audit trail</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>source-linked info</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>confidence levels</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>human escalation</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>org policies</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>action logging</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>data boundaries</span>
+          </div>
+          <p class="muted" style="margin-top:18px;font-size:15px">Nine admin roles — from System Admin to Read Only — and a full admin dashboard: users, committees, templates, knowledge, AI policies, workflows, audit logs, settings.</p>
+        </div>
+        <div class="card card--panel" data-reveal>
+          <span class="eyebrow">Security &amp; isolation</span>
+          <ul class="checks" style="margin-top:16px">
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Isolated environment per organization — one mosque can never access another’s data</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Least-privilege access, MFA, encryption in transit and at rest</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Audit logs, backups + recovery, incident response, access reviews</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Restricted AI tool permissions; controlled external actions only</span></li>
+          </ul>
+          <p class="stat-note" style="margin-top:14px">We publish measurable controls — we never claim “end-to-end encryption” or “zero risk.”</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="labels">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Capability labels</span>
+        <h2>Every capability labeled — never overclaimed</h2>
+      </div>
+      <div class="compare-wrap" data-reveal>
+        <table class="compare compare--2col">
+          <thead><tr><th scope="col">Capability</th><th scope="col">Label</th></tr></thead>
+          <tbody>
+            <tr><td>Core events, communications, registrations, facilities, volunteers, CRM, AI assistants, governance</td><td><span class="pill pill--ok">Contract-supported</span></td></tr>
+            <tr><td>Prayer-time publishing, screens, app channels, reporting packs</td><td><span class="pill pill--brass">Available</span></td></tr>
+            <tr><td>Branding, terminology, Hijri rules, flyer templates, approval chains</td><td><span class="pill">Configured at onboarding</span></td></tr>
+            <tr><td>Branded mobile app, custom integrations, custom agent builds</td><td><span class="pill">Custom / scoped per engagement</span></td></tr>
+            <tr><td>Deposits &amp; payments for facility bookings, e-signatures, conflict auto-detection</td><td><span class="pill">Planned</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cost">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Commercial structure</span>
+        <h2>One integrated service, one payment — external costs published</h2>
+      </div>
+      <div class="grid grid-2" style="align-items:stretch">
+        <div class="card card--panel" data-reveal>
+          <span class="eyebrow">Included HazirMinds capabilities</span>
+          <ul class="checks" style="margin-top:14px">
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>The full operating layer: lifecycle, approvals, channels, registration, facilities, volunteers, CRM, analytics</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Governed AI assistants on your approved knowledge base</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Templates, communication standards, onboarding, training, support</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Required infrastructure and integrations covered by the engagement</span></li>
+          </ul>
+        </div>
+        <div class="card card--panel" data-reveal>
+          <span class="eyebrow">Third-party accounts &amp; usage that remain external</span>
+          <ul class="checks" style="margin-top:14px">
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Payment processing — Stripe or the masjid's own processor, at their published rates, shown transparently</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>WhatsApp Business API — per-conversation fees set by Meta</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>SMS & voice usage — per the published HazirMinds rate card</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>App-store developer accounts — Apple/Google annual fees, if a branded app is chosen</span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><span>Kiosk hardware — one-time purchase, only if chosen</span></li>
+          </ul>
+          <p class="stat-note" style="margin-top:12px">We never claim third-party software is free or owned by HazirMinds.</p>
+        </div>
+      </div>
+      <div class="honesty-note" data-reveal style="margin-top:30px">
+        <h3 style="font-size:17px">The fragmented stack it replaces</h3>
+        <p>Typical patchwork: separate app subscription ($380/mo) + donation-platform fees (3–8% of donations) + kiosk hardware ($1–2k) + volunteer spreadsheets + unanswered phones — <em>example using published list prices, Sept 2026</em>. Consolidated: one governed service with a clear included-vs-external split.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="collateral">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Sales collateral</span>
+        <h2>Committee-ready materials — released with your demo</h2>
+        <p class="lede center" style="margin-inline:auto">Board papers, budget approvals and volunteer briefings need documents, not marketing pages. Book a demo and we send the full set to your committee.</p>
+      </div>
+      <div class="grid grid-3" data-reveal="children">
+        <div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Masjid AI OS deck</h3><p class="muted" style="font-size:15px">The full platform walkthrough for board and committee review</p><div style="margin-top:14px"><a class="btn btn--ghost btn--sm" href="/demo" data-cta="masjid_collateral"><span class="shine"></span>Request with demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></div><div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Leave-behind one-pager</h3><p class="muted" style="font-size:15px">A single page your board can read between salah and meetings</p><div style="margin-top:14px"><a class="btn btn--ghost btn--sm" href="/demo" data-cta="masjid_collateral"><span class="shine"></span>Request with demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></div><div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Implementation playbook</h3><p class="muted" style="font-size:15px">Onboarding steps, roles, timelines and acceptance criteria</p><div style="margin-top:14px"><a class="btn btn--ghost btn--sm" href="/demo" data-cta="masjid_collateral"><span class="shine"></span>Request with demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></div><div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>ROI framework</h3><p class="muted" style="font-size:15px">How to model your masjid’s leak, savings and volunteer hours saved</p><div style="margin-top:14px"><a class="btn btn--ghost btn--sm" href="/demo" data-cta="masjid_collateral"><span class="shine"></span>Request with demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></div><div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Lifecycle walkthrough (video)</h3><p class="muted" style="font-size:15px">One request in — every channel out, with approvals and receipts</p><div style="margin-top:14px"><a class="btn btn--ghost btn--sm" href="/demo" data-cta="masjid_collateral"><span class="shine"></span>Request with demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></div><div class="card card--hover"><span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg></span><h3>Governance & privacy brief</h3><p class="muted" style="font-size:15px">Tenant isolation, permissions, audit trail and data ownership</p><div style="margin-top:14px"><a class="btn btn--ghost btn--sm" href="/demo" data-cta="masjid_collateral"><span class="shine"></span>Request with demo <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div></div>
+      </div>
+      <p class="stat-note center" style="margin-top:14px">Released through the demo form — so we can tailor the walkthrough to your committee’s priorities.</p>
+    </div>
+  </section>
+
+  <section class="section" id="board-pack">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Governance you can hand to the board</span>
+        <h2>A governance pack for the committee, every period</h2>
+        <p class="lede center" style="margin-inline:auto">Not a dashboard screenshot. A plain document the board can read, question and keep — covering what the AI was asked, what it answered, what it escalated, and who approved what.</p>
+      </div>
+      <div class="grid grid-2" style="align-items:stretch">
+        <div class="card card--hover" data-reveal>
+          <span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></span>
+          <h3>What it contains</h3>
+          <ul class="checks">
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Volume handled: calls answered, questions resolved, escalations raised</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Every answer sourced — what the agent relied on to say it</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Escalations and who they went to, with timestamps</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Approvals: who signed off what, and when</span></li>
+            <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Corrections: what was wrong, and what changed as a result</span></li>
+          </ul>
+        </div>
+        <div class="card card--hover" data-reveal>
+          <span class="icon-tile"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+          <h3>Why it matters</h3>
+          <p class="muted" style="font-size:15px">A volunteer-run masjid handles donations, minors’ registrations and religious questions. When a trustee asks “how do we know this is being handled properly?”, the answer should be a document — not a reassurance.</p>
+          <p class="muted" style="font-size:15px;margin-top:12px">The pack is exportable, so it can go to the board, to an auditor, or to your insurer without anyone rebuilding it by hand.</p>
+        </div>
+      </div>
+      <p class="stat-note" style="margin-top:20px">Forward-looking note: Colorado’s conversational-AI law (HB 26-1263) takes effect <b>1 January 2027</b> and places disclosure, crisis-referral and reporting duties on operators of publicly accessible conversational AI. We build the disclosure, escalation and record-keeping to that standard now, so a masjid in any state is not caught out by the next state to legislate.</p>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="phases">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">How it lands</span>
+        <h2>Six phases — in the order that de-risks the masjid</h2>
+        <p class="lede center" style="margin-inline:auto">Nobody is asked to change everything at once. Each phase stands on its own, and the next one only starts when the last is actually working.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card card--hover" data-reveal><h3 style="font-size:17px">Phase 1 — Foundation</h3><p class="muted" style="font-size:15px">The central event record, request intake, committees, approval workflow, user roles, communication standards, approved knowledge base.</p></div><div class="card card--hover" data-reveal><h3 style="font-size:17px">Phase 2 — Communications</h3><p class="muted" style="font-size:15px">Content generation, approved templates, flyer preparation, website publishing, weekly newsletter assembly, stable event URLs, notification engine.</p></div><div class="card card--hover" data-reveal><h3 style="font-size:17px">Phase 3 — Registration & operations</h3><p class="muted" style="font-size:15px">Registration forms with capacity and waitlists, reminders, attendance, hall and facility requests, calendar integration.</p></div><div class="card card--hover" data-reveal><h3 style="font-size:17px">Phase 4 — Publishing automation</h3><p class="muted" style="font-size:15px">App and hall-screen channels, automated expiry of old announcements, cross-channel publishing from the single record.</p></div><div class="card card--hover" data-reveal><h3 style="font-size:17px">Phase 5 — Community assistants</h3><p class="muted" style="font-size:15px">Website assistant and AI phone assistant sharing one approved knowledge base — event discovery, registration help, facility questions, general Q&A.</p></div><div class="card card--hover" data-reveal><h3 style="font-size:17px">Phase 6 — Intelligence</h3><p class="muted" style="font-size:15px">Analytics dashboards, volunteer hours and participation, automated reporting, workflow optimisation, AI recommendations.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq-masjid">
+    <div class="container" style="max-width:860px">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Straight answers</span>
+        <h2>Masjid AI OS questions</h2>
+      </div>
+      <div class="faq" data-reveal="children">
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">Do you support Hijri dates?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>Yes. Each organization sets its calendar rules — primary calendar (Gregorian or Hijri), adjustment preferences, and dual-date rendering — applied consistently across website, app, newsletters, screens and confirmations.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">Does WhatsApp messaging cost extra?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>WhatsApp runs through the WhatsApp Business API; Meta charges per-conversation fees that remain external usage costs. We show them transparently in the included-vs-external table — never buried.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">Can lobby screens and the app show the same events?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>Yes — screens, site, app, newsletter and WhatsApp all render from the same approved record. When a record changes, every channel updates through the cascade.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">Do we need a branded mobile app?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>No. The core system is web-first and works on any phone. A branded app is available as a scoped addition; app-store accounts remain external.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">How is zakat handled?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>Zakat-designated campaigns can be routed and reported separately from general funds at the campaign level, with settlement through your payment processor. We make no financial or religious-advice claims.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">Who owns the data?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>The masjid does. Export at any time, deletion on request, and strict per-organization isolation: one mosque can never access another's data, users or knowledge.</p></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">What does multi-masjid isolation mean in practice?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+      <div class="faq-a"><p>Each organization is a separate tenant with its own data, users, permissions, knowledge base, automations, communications and audit history — isolated at the substrate level, not by policy alone.</p></div>
+    </div></div>
+    </div>
+  </section>
+
+  <section class="section section--paper">
+    <div class="container">
+      <div class="final-cta" data-reveal>
+        <div class="inner" style="max-width:660px">
+          <span class="serif-accent">Always present. Never missed.</span>
+          <h2>Book a Masjid Demo</h2>
+          <p style="color:rgba(250,247,242,.75)">See the lifecycle live: one request in, every channel out, approvals and receipts throughout. Scoped, priced and acceptance-tested with your committee.</p>
+          <div class="hero-ctas" style="justify-content:center"><a class="btn btn--brass btn--lg" href="/demo" data-cta="masjid_final"><span class="shine"></span>Book a Masjid Demo</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- S14 · FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="top">
+      <div>
+        <a class="brand" href="/"><span class="mark">H</span>Hazir<em>Minds</em></a>
+        <p>Always present. Never missed. HazirMinds deploys and runs governed AI teams for businesses in the United States — bounded authority, evidence receipts, audit trails, on the HazirMinds Operating Substrate.</p>
+        <div class="chips" style="margin-top:16px"><span class="pill pill--dark">Serving the United States</span></div>
+      </div>
+      <div><div class="fcol-h">Products</div><ul><li><a href="/services">All services A–F</a></li><li><a href="/services#ai-receptionist">AI Receptionist 24/7</a></li><li><a href="/chief-of-staff">Chief-of-Staff Platform</a></li><li><a href="/masjids">Masjid AI OS (For Masjids)</a></li><li><a href="/enterprise">Enterprise Governance</a></li></ul></div>
+      <div><div class="fcol-h">Company</div><ul><li><a href="/about">About HazirMinds</a></li><li><a href="/case-studies">Case Studies</a></li><li><a href="/resources">Resources</a></li><li><a href="/pricing">Pricing & rate card</a></li></ul></div>
+      <div><div class="fcol-h">Legal & Contact</div><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/ai/">AI Summary</a></li><li><a href="mailto:hello@hazirminds.ai">hello@hazirminds.ai</a></li></ul></div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 HazirMinds, Inc. All rights reserved.</span>
+      <button class="motion-toggle" data-motion-toggle type="button" aria-pressed="false" title="Toggle animations">Motion: On</button>
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/hazirminds" aria-label="LinkedIn" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4V8h4v1.5A5.5 5.5 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com/hazirminds" aria-label="X" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://www.youtube.com/@hazirminds" aria-label="YouTube" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.92 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a class="btn btn--primary" href="/demo" data-cta="sticky_mobile"><span class="shine"></span>Book a Free Demo</a><a class="btn btn--ghost" href="mailto:hello@hazirminds.ai" data-cta="sticky_call"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Email us</a></div>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+
+<div class="consent" id="consent" role="region" aria-label="Privacy choices" hidden>
+  <p><b>Privacy-first by default.</b> No ad trackers, no third-party cookies, nothing sold. We store two local preferences on your device: your motion setting and this choice. <a href="/privacy" style="color:var(--rust-text)">Privacy</a> · <a href="/terms" style="color:var(--rust-text)">Terms</a></p>
+  <div class="consent-actions">
+    <button class="btn btn--primary btn--sm" type="button" data-consent="essential">Essential only</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-consent="all">Allow anonymous analytics</button>
+  </div>
+</div>
+
+<button class="asst-btn" id="asst-btn" type="button" aria-expanded="false" aria-controls="asst-panel" aria-label="Open the governed website assistant"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="dot" aria-hidden="true"></span></button>
+<div class="asst-panel" id="asst-panel" role="dialog" aria-label="Governed website assistant">
+  <div class="asst-head">
+    <div><b>HazirMinds assistant</b><div style="font-size:12.5px;color:var(--muted)">Governed · source-linked</div></div>
+    <button class="asst-x" type="button" data-asst-close aria-label="Close assistant"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <p class="asst-note">Approved site knowledge only — unknown questions are escalated, never guessed</p>
+  <div id="asst-log" aria-live="polite">
+    <button class="asst-q" type="button" data-asst-q="0">What does HazirMinds actually do?</button><button class="asst-q" type="button" data-asst-q="1">What does it cost?</button><button class="asst-q" type="button" data-asst-q="2">Can the AI make things up?</button><button class="asst-q" type="button" data-asst-q="3">How is this different from GoHighLevel or Smith.ai?</button><button class="asst-q" type="button" data-asst-q="4">Do you build for masjids and Islamic centers?</button>
+  </div>
+  <form class="asst-bar" id="asst-form">
+    <label for="asst-input" style="position:absolute;left:-9999px">Ask a question</label>
+    <input id="asst-input" name="q" autocomplete="off" placeholder="Ask about pricing, governance…">
+    <button class="btn btn--primary btn--sm" type="submit">Ask</button>
+  </form>
+</div>
+<script type="application/json" id="asst-kb">[{"q":"What does HazirMinds actually do?","a":"We run a managed AI team for your business — 24/7 AI receptionist, missed-call text-back, speed-to-lead, booking, pipeline and workflow automation, support deflection and reporting. Deployed and operated for you, with approval gates and a full audit trail.","href":"/services","label":"Services catalog"},{"q":"What does it cost?","a":"Flat tiers: Chronos $497/mo · Hazir Pro $997/mo · Aeon $1,997/mo · Archon custom enterprise. No unpublished meters — the full usage rate card is published before go-live, and every deployment is measured against the acceptance criteria you sign.","href":"/pricing","label":"Pricing & rate card"},{"q":"Can the AI make things up?","a":"Answers are grounded in your approved knowledge base only, with confidence gating: when something is unknown, outdated or out of scope, the assistant says so and escalates to a human. Every factual claim carries a source receipt, and call flows run nightly regression tests.","href":"/enterprise","label":"Governance layer"},{"q":"How is this different from GoHighLevel or Smith.ai?","a":"They sell you a DIY platform or per-call buckets. We sell a governed, done-for-you outcome: flat transparent tiers, published usage rates, managed deployment, and a governance layer — bounded authority, hallucination control, receipts and proof horizons — that the DIY and per-call models do not offer.","href":"/compare","label":"Comparison hub"},{"q":"Do you build for masjids and Islamic centers?","a":"Yes — the HazirMinds AI Operating System for Masjids connects events, communications, registrations, facilities, volunteers, donations, knowledge and reporting through one controlled operational layer, with committee routing, approval chains and audit receipts.","href":"/masjids","label":"Masjid AI OS"}]</script>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="toast-host" id="toast-host" role="status" aria-live="polite"></div>
+
+<div class="modal-root" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+  <div class="veil" data-modal-close></div>
+  <div class="modal">
+    <button class="close" data-modal-close aria-label="Close"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <span class="eyebrow eyebrow--rust">Before you go</span>
+    <h3 id="exit-title" style="font-size:26px;margin-bottom:10px">Get your free Governance Report Card</h3>
+    <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps — normally $1,500, free.</p>
+    <form data-validate id="audit-form" data-endpoint="/api/lead.php" style="margin-top:18px">
+      <div data-fields class="form-grid">
+        <div class="form-field"><label for="ex-name">Name</label><input id="ex-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
+        <div class="form-field"><label for="ex-email">Work email</label><input id="ex-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
+        <div class="form-field full"><label for="ex-company">Company</label><input id="ex-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
+        <div class="form-field full"><button class="btn btn--primary" type="submit" style="width:100%"><span class="shine"></span>Send me the audit</button></div>
+      </div>
+      <div class="form-success">
+        <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We'll email your Governance Report Card to the address you entered. Questions first? Email <a href="mailto:hello@hazirminds.ai" style="color:var(--rust-text)">hello@hazirminds.ai</a>.</p></div>
+      </div>
+      <div class="form-error" role="alert">
+        <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <div><b>That didn't send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="hello@hazirminds.ai" href="mailto:hello@hazirminds.ai" style="color:var(--rust-text)">hello@hazirminds.ai</a> and we'll send the report card from there.</p></div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/vendor/gsap.min.js" defer></script>
+<script src="/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/vendor/lenis.min.js" defer></script>
+<script src="/assets/js/main.js?v=5f94546611.5e517e88b9" defer></script>
+</body>
+</html>

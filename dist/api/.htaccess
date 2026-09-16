@@ -1,0 +1,15 @@
+# Never serve these over the web — they hold the destination address and every captured lead.
+<IfModule mod_authz_core.c>
+    <FilesMatch "^(config\.php|leads\.log|config\.sample\.php)$">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(config\.php|leads\.log|config\.sample\.php)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
+
+# lead.php itself is reached only as a POST target; no directory listing.
+Options -Indexes

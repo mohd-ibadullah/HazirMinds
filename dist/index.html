@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HazirMinds — Governed AI Receptionists &amp; Sales Agents | Always Present. Never Missed.</title>
+<meta name="description" content="HazirMinds deploys and runs governed AI teams — receptionists, sales agents and automations on a governed substrate — done-for-you, for US businesses that lose money to voicemail.">
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-latin-400-normal.woff2" crossorigin>
+<!-- 500 was missing: .svc-rail a / .nav-link / .btn--ghost set font-weight:500, so those
+     elements rendered in the fallback, then re-wrapped when Inter 500 finally swapped in —
+     a measured 48px layout shift on /services at 768px. Preload the weight that is actually
+     painted above the fold. -->
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/inter-latin-500-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/jetbrains-mono-latin-400-normal.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/vendor/fonts/jetbrains-mono-latin-500-normal.woff2" crossorigin>
+<link rel="canonical" href="https://hazirminds.ai/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HazirMinds">
+<meta property="og:title" content="HazirMinds — Governed AI Receptionists &amp; Sales Agents | Always Present. Never Missed.">
+<meta property="og:description" content="HazirMinds deploys and runs governed AI teams — receptionists, sales agents and automations on a governed substrate — done-for-you, for US businesses that lose money to voicemail.">
+<meta property="og:url" content="https://hazirminds.ai/">
+<meta property="og:image" content="https://hazirminds.ai/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HazirMinds — Governed AI Receptionists &amp; Sales Agents | Always Present. Never Missed.">
+<meta name="twitter:description" content="HazirMinds deploys and runs governed AI teams — receptionists, sales agents and automations on a governed substrate — done-for-you, for US businesses that lose money to voicemail.">
+<meta name="twitter:image" content="https://hazirminds.ai/img/og-card.jpg">
+<meta property="og:image:alt" content="HazirMinds — Governed AI Receptionists &amp; Sales Agents | Always Present. Never Missed. — HazirMinds">
+<meta name="theme-color" content="#FAF7F2">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
+<link rel="sitemap" href="/sitemap.xml">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai","logo":"https://hazirminds.ai/img/og-card.jpg","email":"hello@hazirminds.ai","sameAs":["https://www.linkedin.com/company/hazirminds","https://x.com/hazirminds","https://www.youtube.com/@hazirminds"],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"hello@hazirminds.ai","availableLanguage":["en"]}],"slogan":"Always present. Never missed."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"HazirMinds","url":"https://hazirminds.ai"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"HazirMinds Chronos","serviceType":"AI automation platform","provider":{"@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai"},"areaServed":["US","GB","CA"],"offers":{"@type":"Offer","price":"497","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hazirminds.ai/pricing"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"HazirMinds Hazir Pro","serviceType":"AI automation platform","provider":{"@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai"},"areaServed":["US","GB","CA"],"offers":{"@type":"Offer","price":"997","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hazirminds.ai/pricing"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"HazirMinds Aeon","serviceType":"AI automation platform","provider":{"@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai"},"areaServed":["US","GB","CA"],"offers":{"@type":"Offer","price":"1997","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hazirminds.ai/pricing"}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"HazirMinds Archon","serviceType":"AI automation platform","provider":{"@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai"},"areaServed":["US","GB","CA"],"offers":{"@type":"Offer","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://hazirminds.ai/pricing","priceSpecification":{"@type":"PriceSpecification","priceCurrency":"USD","valueAddedTaxIncluded":false}}}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will it sound robotic?","acceptedAnswer":{"@type":"Answer","text":"Callers hear a calm, professional voice with natural pacing — most never realise it's AI until we tell them. You approve the voice, greeting and scripts before we go live, and you can listen to real recordings from your dashboard any time."}},{"@type":"Question","name":"What happens when it can't answer something?","acceptedAnswer":{"@type":"Answer","text":"It says so honestly. Our hallucination controls allow grounded answers only from your approved knowledge; low-confidence moments are disclosed and escalated to a human. You set the forbidden-topic list and the escalation rules — every factual claim the agent makes carries a source receipt."}},{"@type":"Question","name":"Is it compliant? Consent and TCPA?","acceptedAnswer":{"@type":"Answer","text":"Every consent-critical interaction carries a TCPA proof trail — consent capture, disclosure and revocation handling are configured before any campaign goes live. Governance isn't a policy PDF: permission scopes, approval gates and audit trails are built into the substrate itself."}},{"@type":"Question","name":"We already use HubSpot — can you work with that?","acceptedAnswer":{"@type":"Answer","text":"That's exactly how we deploy. HazirMinds connects to the tools you already run — HubSpot, Salesforce, Pipedrive, Clio, ServiceTitan, Shopify and dozens more — so nothing about your stack has to change."}},{"@type":"Question","name":"What exactly is \"governed AI\"?","acceptedAnswer":{"@type":"Answer","text":"Bounded authority: each agent has least-privilege permissions per role; sensitive actions pause for human approval; every action, decision and handoff is logged as an evidence receipt; and every public claim we publish carries a proof-horizon label (Built → Deployed → Operated → Verified outcome → Accepted). You can audit all of it, any time."}}]}</script>
+<link rel="stylesheet" href="/assets/css/main.css?v=5f94546611.5e517e88b9">
+<style>
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2)format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2)format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;src:url(/vendor/fonts/fraunces-latin-400-italic.woff2)format("woff2")}
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:600;font-display:swap;src:url(/vendor/fonts/fraunces-latin-600-italic.woff2)format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:400;font-display:swap;src:url(/vendor/fonts/inter-latin-400-normal.woff2)format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:500;font-display:swap;src:url(/vendor/fonts/inter-latin-500-normal.woff2)format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url(/vendor/fonts/jetbrains-mono-latin-400-normal.woff2)format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:500;font-display:swap;src:url(/vendor/fonts/jetbrains-mono-latin-500-normal.woff2)format("woff2")}
+</style>
+<script>document.documentElement.className+=' js';</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<!-- S0 · GUARANTEE BAR -->
+<aside class="roi-bar" aria-label="No unpublished meters"><strong>No unpublished meters</strong> — the full usage rate card is in your hands before go-live. <a href="/pricing">See pricing</a></aside>
+<!-- S1 · NAV -->
+<header class="nav-wrap">
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <nav class="nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <a class="brand" href="/"><span class="mark">H</span>Hazir<em>Minds</em></a>
+      <ul class="nav-links"><li class="nav-item"><button class="nav-link" aria-expanded="false">Products <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mega mega--2"><a href="/chief-of-staff"><b>Chief-of-Staff Platform</b><span>FLAGSHIP — One front door to your AI team</span></a><a href="/masjids"><b>Masjid AI OS</b><span>FLAGSHIP — Operating system for masjids</span></a><a href="/services#ai-receptionist"><b>AI Receptionist 24/7</b><span>Every call answered, booked and logged</span></a><a href="/services#missed-call-text-back"><b>Missed-Call Text-Back</b><span>Rescue missed leads in seconds</span></a><a href="/services#speed-to-lead"><b>Speed-to-Lead</b><span>Reply to every lead in 60 seconds</span></a><a href="/services#workflow-automation"><b>Workflow Automation</b><span>The busywork between yes and done</span></a><a href="/services"><b>All services A–F</b><span>The full contract-aligned catalog</span></a></div></li><li class="nav-item"><button class="nav-link" aria-expanded="false">Industries <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mega mega--2"><a href="/industries/hvac"><b>HVAC</b><span>Emergency dispatch, 24/7</span></a><a href="/industries/dental"><b>Dental</b><span>Front desk that never sleeps</span></a><a href="/industries/legal"><b>Legal</b><span>After-hours intake &amp; screening</span></a><a href="/industries/restaurant"><b>Restaurants</b><span>Reservations without the juggle</span></a><a href="/industries/realestate"><b>Real Estate</b><span>Speed-to-lead for every inquiry</span></a><a href="/industries/auto"><b>Auto Services</b><span>Bookings &amp; status calls on autopilot</span></a><a href="/industries/ecommerce"><b>E-commerce</b><span>WISMO &amp; cart rescue, instantly</span></a><a href="/industries/proservices"><b>Professional Services</b><span>A front office that never sleeps</span></a></div></li><li class="nav-item"><button class="nav-link" aria-expanded="false">Compare <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></button><div class="mega mega--2"><a href="/compare/go-high-level"><b>vs GoHighLevel</b><span>DIY platform vs done-for-you firm</span></a><a href="/compare/synthflow"><b>vs Synthflow</b><span>Metered minutes vs flat tiers</span></a><a href="/compare/smith-ai"><b>vs Smith.ai</b><span>Per-call buckets vs governed AI</span></a><a href="/compare/ai-sdr"><b>vs AI SDR agencies</b><span>Artisan &amp; 11x contracts vs ours</span></a><a href="/compare/human-receptionist"><b>vs Human receptionist</b><span>Payroll vs governed AI team</span></a><a href="/compare/masjid-platforms"><b>vs Masjid platforms</b><span>ConnectMazjid, MOHID, Masjidal vs Masjid AI OS</span></a><a href="/compare"><b>Compare hub</b><span>All comparisons, verified 2026 data</span></a></div></li><li class="nav-item"><a class="nav-link" href="/enterprise">Enterprise</a></li><li class="nav-item"><a class="nav-link" href="/pricing">Pricing</a></li></ul>
+      <div class="nav-cta">
+        <a class="btn btn--primary btn--sm" href="/demo" data-cta="nav_book_demo"><span class="shine"></span>Book a Demo</a>
+      </div>
+      <button class="nav-burger" aria-expanded="false" aria-label="Open menu"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button>
+    </div>
+    <div class="nav-mobile">
+      <a href="/services">Products</a><a href="/industries/hvac">Industries</a><a href="/compare">Compare</a><a href="/enterprise">Enterprise</a><a href="/pricing">Pricing</a>
+      <a class="btn btn--primary" href="/demo" data-cta="mobile_book_demo"><span class="shine"></span>Book a Free Demo</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- S2 · HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="hero-kicker"><span class="dot"></span>ALWAYS PRESENT. NEVER MISSED.</span>
+      <h1>
+        <span class="line"><span>Answer every call.</span></span>
+        <span class="line"><span>Book the job.</span></span>
+        <span class="line"><span class="accent">Never miss the moment.</span></span>
+      </h1>
+      <p class="hero-sub">HazirMinds deploys and runs governed AI teams — receptionists, sales agents and automations on a governed substrate — done-for-you, for US businesses that lose money to voicemail.</p>
+      <div class="hero-chips" style="margin-top:0">
+        <span class="pill">24/7</span><span class="pill">&lt;1s pickup</span><span class="pill">isolated per client</span><span class="pill">audit trail</span>
+      </div>
+    </div>
+    <div class="demo-shell" id="demo">
+      <div class="demo-window" data-transcript='[{&quot;name&quot;:&quot;Home Services&quot;,&quot;lines&quot;:[{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;Summit Heating &amp; Air — HazirMinds AI, this is Zoya. How can I help you today?&quot;},{&quot;who&quot;:&quot;caller&quot;,&quot;text&quot;:&quot;Hi — my AC just quit and it&#39;s 96 degrees. Can someone come today?&quot;},{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;I&#39;m sorry to hear that — let&#39;s get you cooled down. I have a technician available between 2 and 4 PM. Does that work?&quot;},{&quot;who&quot;:&quot;caller&quot;,&quot;text&quot;:&quot;Perfect, yes please.&quot;},{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;Done! You&#39;re booked for today between 2–4 PM. I&#39;ve texted you the confirmation and the tech will call 30 minutes out.&quot;}],&quot;book&quot;:[&quot;Appointment booked&quot;,&quot;CRM updated&quot;,&quot;SMS sent&quot;]},{&quot;name&quot;:&quot;Dental&quot;,&quot;lines&quot;:[{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;Brightwater Dental — HazirMinds AI, Zoya speaking. How may I help you?&quot;},{&quot;who&quot;:&quot;caller&quot;,&quot;text&quot;:&quot;I chipped a tooth — do you have anything this week? I&#39;m not a patient yet.&quot;},{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;We can see you Thursday at 9:20 AM for an emergency exam. I&#39;ll take a few details and reserve it — is Thursday good?&quot;},{&quot;who&quot;:&quot;caller&quot;,&quot;text&quot;:&quot;Thursday works.&quot;},{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;You&#39;re all set. New-patient forms are on their way by text — see you Thursday!&quot;}],&quot;book&quot;:[&quot;Appointment booked&quot;,&quot;CRM updated&quot;,&quot;SMS sent&quot;]},{&quot;name&quot;:&quot;Law Firm&quot;,&quot;lines&quot;:[{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;Hartley &amp; Rowe — HazirMinds AI, this is Zoya. How can I point you in the right direction?&quot;},{&quot;who&quot;:&quot;caller&quot;,&quot;text&quot;:&quot;I was in a car accident Tuesday. Do you take cases like that?&quot;},{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;We do. I can schedule a free consultation with an attorney — are you seeking medical treatment currently?&quot;},{&quot;who&quot;:&quot;caller&quot;,&quot;text&quot;:&quot;Yes, since Wednesday.&quot;},{&quot;who&quot;:&quot;ai&quot;,&quot;text&quot;:&quot;Thank you. I&#39;ve reserved a consultation for tomorrow at 10 AM and sent the details to your phone.&quot;}],&quot;book&quot;:[&quot;Consult booked&quot;,&quot;CRM updated&quot;,&quot;SMS sent&quot;]}]'>
+        <div class="demo-titlebar">
+          <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <b style="font-size:13.5px">Live call — HazirMinds AI receptionist</b>
+          <span class="live"><i></i>LIVE</span>
+        </div>
+        <div class="demo-tabs" role="tablist" aria-label="Choose an industry">
+          <button class="demo-tab" role="tab" id="demo-tab-0" aria-controls="demo-panel" aria-selected="true" tabindex="0">Home Services</button><button class="demo-tab" role="tab" id="demo-tab-1" aria-controls="demo-panel" aria-selected="false" tabindex="-1">Dental</button><button class="demo-tab" role="tab" id="demo-tab-2" aria-controls="demo-panel" aria-selected="false" tabindex="-1">Law Firm</button>
+        </div>
+        <div class="demo-body" role="tabpanel" id="demo-panel" aria-labelledby="demo-tab-0" aria-live="polite"></div>
+        <div class="demo-chips"></div>
+        <div class="demo-foot">
+          <span class="micro">Want to hear it on <b>your</b> business? <a href="/demo" data-cta="demo_micro">Book a demo</a></span>
+          <span class="micro" style="white-space:nowrap">Avg. pickup <b style="color:var(--ok-text)">&lt;1s</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3 · SILENCE TAX (pinned) -->
+<section class="section section--paper" id="silence-tax">
+  <div class="container">
+    <div data-pin>
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow eyebrow--rust">The Silence Tax</span>
+        <h2>Every unanswered call is money leaving the building.</h2>
+        <p class="lede center" style="margin-inline:auto">Research keeps finding the same thing: customers call, nobody picks up, and the revenue quietly walks to a competitor.</p>
+      </div>
+      <div class="stats-band" data-reveal="children">
+        
+        <div class="stat">
+          <div class="value"><span data-count="62" data-suf="%">62%</span></div>
+          <div class="label">of SMB calls go unanswered</div>
+          <div class="src">411 LOCALS (2016) — VENDOR STUDY, 85 BUSINESSES OVER 30 DAYS</div>
+        </div>
+        <div class="stat">
+          <div class="value">$<span data-count="1200">1,200</span></div>
+          <div class="label">lost per missed call — vendor estimates by trade; no primary study</div>
+          <div class="src">INDUSTRY VENDOR ESTIMATES (NO PRIMARY STUDY PUBLISHED)</div>
+        </div>
+        <div class="stat">
+          <div class="value">~$120k/yr</div>
+          <div class="label">modelled annual leak — missed calls plus slow follow-up</div>
+          <div class="src">HAZIRMINDS MODEL (25 MISSED CALLS/MO × $400 AVG JOB = $120,000)</div>
+        </div>
+        <div class="stat">
+          <div class="value">~5 min</div>
+          <div class="label">the response window that decides the sale</div>
+          <div class="src">INSIDESALES.COM / MIT LEAD RESPONSE MANAGEMENT STUDY (OLDROYD, 2007)</div>
+        </div>
+      </div>
+      <div style="margin-top:22px" data-reveal="children">
+        <div class="calc" data-calc>
+          <div class="calc-controls">
+            <span class="eyebrow">What is silence costing you?</span>
+            <div class="calc-field">
+              <label for="calc-calls">Missed calls per month <output for="calc-calls" data-out-calls>25</output></label>
+              <input id="calc-calls" type="range" min="0" max="200" step="1" value="25" data-calc-calls>
+            </div>
+            <div class="calc-field">
+              <label for="calc-value">Average job value <output for="calc-value" data-out-value>$400</output></label>
+              <input id="calc-value" type="range" min="50" max="5000" step="50" value="400" data-calc-value>
+            </div>
+            <p class="form-note">Conservative estimate: each missed call is a job you never quoted. Drag the sliders.</p>
+          </div>
+          <div class="calc-result">
+            <span class="eyebrow">Monthly revenue leak</span>
+            <div class="big" data-calc-out>$10,000</div>
+            <p>That's <b data-calc-year>$120,000</b> a year walking out the door.</p>
+            <span class="note">Illustrative estimate — your demo includes a business-specific ROI model.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S3b · AFTER-HOURS PHOTOGRAPH -->
+<section class="section" style="padding-bottom:0">
+  <div class="container">
+    <div class="band-media" data-reveal>
+      <img src="/img/hm/hm-afterhours-1600.webp"
+           srcset="/img/hm/hm-afterhours-800.webp 800w, /img/hm/hm-afterhours-1200.webp 1200w, /img/hm/hm-afterhours-1600.webp 1600w, /img/hm/hm-afterhours-2400.webp 2400w"
+           sizes="(max-width: 900px) 100vw, 1200px" width="2400" height="1600"
+           loading="lazy" decoding="async"
+           alt="An empty front desk at last light — the moment an unanswered call becomes a lost job.">
+    </div>
+    <p class="stat-note center" style="margin-top:12px">6:42 PM. The business is closed. The customer is not.</p>
+  </div>
+</section>
+
+<!-- S4 · THE HAZIR LOOP (PINNED STORY) -->
+<section class="section" id="loop" data-pin-story="loop" style="padding-top:64px">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow">The Hazir Loop</span>
+      <h2>Catch → Train → Launch → Compound</h2>
+      <p class="lede center" style="margin-inline:auto">The four-step loop every HazirMinds deployment runs — and keeps running. Your AI team gets measurably better every month it works.</p>
+    </div>
+    <div class="grid grid-4 pin-stage" data-reveal="children">
+      <div class="card" style="text-align:center"><span class="num">1</span><h3 style="font-size:19px;margin-top:8px">Catch</h3></div><div class="card" style="text-align:center"><span class="num">2</span><h3 style="font-size:19px;margin-top:8px">Train</h3></div><div class="card" style="text-align:center"><span class="num">3</span><h3 style="font-size:19px;margin-top:8px">Launch</h3></div><div class="card" style="text-align:center"><span class="num">4</span><h3 style="font-size:19px;margin-top:8px">Compound</h3></div>
+    </div>
+    <p class="center" style="margin-top:22px"><a class="link-arrow" href="/services#loop" data-cta="home_loop">See the full loop on the services page <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></p>
+  </div>
+</section>
+
+<!-- S5 · MARQUEE -->
+<section class="marquee-band" aria-label="Tools HazirMinds works with">
+  <div class="marquee-label">Plugs into your stack</div>
+  <div class="marquee"><div class="marquee-track"><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>HubSpot</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Salesforce</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Pipedrive</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Zoho</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Google Calendar</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Outlook</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Calendly</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Twilio</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Zapier</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>Make</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>n8n</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><path d="M10 6.5h7a1 1 0 0 1 1 1V14"/><path d="M14 17.5H7a1 1 0 0 1-1-1V10"/></svg>ServiceTitan</span></div></div>
+  <div class="marquee"><div class="marquee-track"><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Jobber</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Housecall Pro</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Clio</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Filevine</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Lawmatics</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>OpenTable</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>SevenRooms</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Shopify</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>WooCommerce</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Slack</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Stripe</span><span class="pill"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Square</span></div></div>
+</section>
+
+<!-- S6 · PROBLEM → SOLUTION -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow">Why this keeps happening</span>
+      <h2>You built a great business. The phone didn't get the memo.</h2>
+    </div>
+    <div class="split-grid" data-reveal="children">
+      <div class="split-card bad">
+        <h3 style="margin-bottom:14px">Without HazirMinds</h3>
+        <ul>
+          <li><span class="x"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span><b>Voicemail at 6:01 PM.</b> <span>After-hours callers become tomorrow's regret.</span></span></li>
+          <li><span class="x"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span><b>Hold music and phone tag.</b> <span>Hot leads cool off in minutes.</span></span></li>
+          <li><span class="x"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span><b>Notes that never get written.</b> <span>What was said lives only in memory.</span></span></li>
+          <li><span class="x"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span><b>Seasonal spikes break the desk.</b> <span>Hiring for peaks punishes your payroll.</span></span></li>
+        </ul>
+      </div>
+      <div class="split-card good">
+        <h3 style="margin-bottom:14px;color:var(--cream)">With HazirMinds</h3>
+        <ul>
+          <li><span class="c"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Every call answered in &lt;1s.</b> <span>Midnight, holiday, peak hour — same hello.</span></span></li>
+          <li><span class="c"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Booked, not just answered.</b> <span>Live calendar access, confirmed on the call.</span></span></li>
+          <li><span class="c"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Every word logged.</b> <span>Transcripts and outcomes in your CRM automatically.</span></span></li>
+          <li><span class="c"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><span><b>Infinite capacity.</b> <span>One call or two hundred — same cost, same quality.</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="compare-wrap" data-reveal="children">
+      <table class="compare">
+        <thead><tr><th scope="col"><span style="position:absolute;left:-9999px">Scenario</span></th><th scope="col">Missed calls</th><th scope="col">Human receptionist</th><th scope="col">HazirMinds AI team</th></tr></thead>
+        <tbody>
+          <tr><td>Cost</td><td>$80–$1,200 per miss</td><td>~$4.0–4.4k/mo loaded</td><td class="col-hazir">from $497/mo flat</td></tr>
+          <tr><td>Hours</td><td>Nobody home</td><td>40 hrs/week, plus PTO</td><td class="col-hazir">24/7/365</td></tr>
+          <tr><td>Consistency</td><td>—</td><td>Varies by day &amp; workload</td><td class="col-hazir">Identical on every call</td></tr>
+          <tr><td>Logging</td><td>Nothing captured</td><td>Hand-written notes</td><td class="col-hazir">Full transcript + CRM sync</td></tr>
+          <tr><td>Scalability</td><td>Lost revenue</td><td>Hire &amp; train per seat</td><td class="col-hazir">Instant, unlimited</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- S7 · THREE DOORS -->
+<section class="section section--paper" id="doors">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow">The Three Doors</span>
+      <h2>Three ways teams put HazirMinds to work</h2>
+      <p class="lede center" style="margin-inline:auto">Start with the door that hurts most. Most clients walk through all three within a year.</p>
+    </div>
+    <div class="grid grid-3" data-reveal="children">
+      <div class="card card--hover door">
+        <span class="icon-tile"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></span>
+        <h3>Answer &amp; Book</h3>
+        <p class="muted" style="font-size:14.5px">Your AI front desk: reception, voice, chat and booking — always on.</p>
+        <ul>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>24/7 AI receptionist books straight into your calendar</span></li>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Chat, WhatsApp and SMS answered in seconds</span></li>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Missed-call text-back rescues every slip</span></li>
+        </ul>
+        <div class="door-foot"><span class="price">from $497<small>/month</small></span><a class="btn btn--sm" href="/demo" data-cta="door_answer"><span class="shine"></span>Book <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+      </div>
+      <div class="card card--hover door">
+        <span class="icon-tile icon-tile--brass"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <h3>Sell &amp; Grow</h3>
+        <p class="muted" style="font-size:14.5px">A revenue engine: outbound, reactivation, follow-up and reputation.</p>
+        <ul>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Speed-to-lead under 60 seconds</span></li>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>AI SDR books meetings while you sleep</span></li>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Review engine keeps your stars climbing</span></li>
+        </ul>
+        <div class="door-foot"><span class="price">from $997<small>/month</small></span><a class="btn btn--sm" href="/demo" data-cta="door_sell"><span class="shine"></span>Book <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+      </div>
+      <div class="card card--hover door">
+        <span class="icon-tile icon-tile--ok"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="7" x2="10" y2="7"/><line x1="14" y1="7" x2="15" y2="7"/><line x1="9" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="15" y2="12"/><path d="M9 22v-4h6v4"/></svg></span>
+        <h3>Run &amp; Scale</h3>
+        <p class="muted" style="font-size:14.5px">Operations on autopilot: CRM, workflows, AI employees, enterprise.</p>
+        <ul>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>CRM that updates itself, pipelines that move</span></li>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Custom AI employees for any role</span></li>
+          <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span><a href="/masjids" style="color:inherit;text-decoration:underline;text-decoration-color:var(--brass)">Masjid AI OS</a> for masjids &amp; Islamic centers</span></li>
+        </ul>
+        <div class="door-foot"><span class="price">Custom<small>scoped to your ops</small></span><a class="btn btn--ghost btn--sm" href="/chief-of-staff" data-cta="door_run">Explore <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S8 · GOVERNANCE LAYER -->
+<section class="section gov-band on-dark" id="governance">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow">The Governance Layer</span>
+      <h2>Nobody else offers this. We publish it.</h2>
+      <p class="lede center" style="margin-inline:auto">Four invariants every deployment inherits — built into the HazirMinds Operating Substrate, not bolted on as policy. Responsibility layers, hallucination control, source receipts and proof horizons are documented in full on the enterprise page.</p>
+    </div>
+    
+<div class="invariant-grid" data-reveal="children">
+  
+  <div class="invariant">
+    <span class="inv-n">INVARIANT 01</span>
+    <h3>“Capability ≠ Authority”</h3>
+    <p>“Ability is not authority.” An AI that can do a thing is not an AI that may do a thing — every agent carries least-privilege permissions per role: what it may touch, spend, say or send.</p>
+  </div>
+  <div class="invariant">
+    <span class="inv-n">INVARIANT 02</span>
+    <h3>“Execution ≠ Liability”</h3>
+    <p>“Execution is not liability.” Your business stays accountable. Our AI carries work inside delegated scope — and the boundary of that scope is written, enforced and auditable.</p>
+  </div>
+  <div class="invariant">
+    <span class="inv-n">INVARIANT 03</span>
+    <h3>“Deployment ≠ Adoption”</h3>
+    <p>“Deployment is not adoption.” Going live proves nothing by itself. We prove outcomes against go-live acceptance criteria you sign — and report against them openly.</p>
+  </div>
+  <div class="invariant">
+    <span class="inv-n">INVARIANT 04</span>
+    <h3>“Continuity ≠ Persona”</h3>
+    <p>“Continuity is not persona.” Your memory, rules and evidence survive any model or vendor change. The substrate persists; components underneath can be swapped without losing your business.</p>
+  </div>
+</div>
+
+    <div class="hero-ctas" style="justify-content:center;margin-top:52px" data-reveal="children">
+      <a class="btn btn--brass btn--lg" href="/enterprise" data-cta="gov_cos_arch"><span class="shine"></span>See the Chief-of-Staff architecture <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a class="btn btn--outline-light btn--lg" href="/chief-of-staff" data-cta="gov_front_door">One front door to your AI team <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- S9 · PROOF BAND -->
+<section class="section proof-band on-dark">
+  <div class="proof-bg kenburns" aria-hidden="true">
+    <img src="/img/sunrise-yard.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+  </div>
+  <div class="container proof-inner">
+    <div class="proof-card proof-card--top" data-reveal>
+      <div class="seal" aria-hidden="true">PROOF</div>
+      <span class="eyebrow">How we prove it</span>
+      <h3>We prove outcomes against acceptance criteria you sign.</h3>
+      <p>Going live proves nothing by itself. At kickoff we agree — in writing — the criteria that define success for your business, and every deployment is measured and reported against them, from real transcripts.</p>
+      <ul class="guarantee-list">
+        <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Live in 7–14 days, tuned weekly by our team</span></li>
+        <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Every call transcribed, every booking tracked</span></li>
+        <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Month-to-month after day 60 — no lock-in</span></li>
+      </ul>
+      <div style="margin-top:20px"><a class="btn btn--brass" href="/demo" data-cta="proof"><span class="shine"></span>See what we measure <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></div>
+    </div>
+    <div class="proof-card" data-reveal>
+      <span class="eyebrow">Talk to us</span>
+      <h3>Email us — a person answers.</h3>
+      <p>Tell us what you want the AI to handle first and we'll show you what a governed deployment looks like in your business.</p>
+      <a class="callcard-num" href="mailto:hello@hazirminds.ai" data-cta="email_us">
+        <span class="ic"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span><b>hello@hazirminds.ai</b><span>We reply by email</span></span>
+      </a>
+      <a class="link-arrow" href="#demo" data-cta="replay_demo">Or watch the transcript demo again <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- S10 · TRADE PICKER -->
+<section class="section" id="your-trade">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow eyebrow--rust">Built for your trade</span>
+      <h2>Pick your industry. See your AI team.</h2>
+    </div>
+    <div data-trade-picker data-reveal="children">
+      <div class="trade-chips" role="group" aria-label="Choose your industry">
+        <button class="trade-chip" data-trade="hvac" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>HVAC</button><button class="trade-chip" data-trade="dental" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Dental</button><button class="trade-chip" data-trade="legal" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Legal</button><button class="trade-chip" data-trade="restaurant" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Restaurants</button><button class="trade-chip" data-trade="realestate" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Real Estate</button><button class="trade-chip" data-trade="auto" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Auto Services</button><button class="trade-chip" data-trade="ecommerce" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>E-commerce</button><button class="trade-chip" data-trade="proservices" aria-pressed="false"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Professional Services</button>
+        <a class="trade-chip trade-chip--link" href="/masjids" data-cta="trade_masjid"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="7" x2="10" y2="7"/><line x1="14" y1="7" x2="15" y2="7"/><line x1="9" y1="12" x2="10" y2="12"/><line x1="14" y1="12" x2="15" y2="12"/><path d="M9 22v-4h6v4"/></svg>Masjids &amp; Islamic Centers</a>
+      </div>
+      <div class="trade-preview">
+        <div class="txt" data-trade-line></div>
+        <div class="img"><img data-trade-img src="/img/trade-hvac.webp" alt="HVAC" width="640" height="480" loading="lazy" decoding="async"></div>
+      </div>
+      <div style="margin-top:24px;display:flex;justify-content:center">
+        <a class="btn btn--primary" data-trade-cta href="/industries/hvac" data-cta="trade_page"><span class="shine"></span>See the HVAC playbook <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+    <script type="application/json" id="trade-data">[{"key":"hvac","name":"HVAC","img":"/img/trade-hvac.webp","alt":"HVAC — HazirMinds AI team at work","line":"<h3>Your best tech is answering the phone instead of fixing the furnace.</h3><p class=\"lede\">Emergency calls don't wait for business hours. Neither does your HazirMinds AI team.</p>","href":"/industries/hvac"},{"key":"dental","name":"Dental","img":"/img/trade-dental.webp","alt":"Dental — HazirMinds AI team at work","line":"<h3>A missed call is a missed patient — and they're already dialing the next practice.</h3><p class=\"lede\">Your front desk can't answer while chairside. HazirMinds's can — every hour.</p>","href":"/industries/dental"},{"key":"legal","name":"Legal","img":"/img/trade-legal.webp","alt":"Legal — HazirMinds AI team at work","line":"<h3>Clients with emergencies call after hours. The firm that answers first usually wins the case.</h3><p class=\"lede\">HazirMinds screens every call, captures the matter details, and books consults — 24/7, conflicts-aware.</p>","href":"/industries/legal"},{"key":"restaurant","name":"Restaurants","img":"/img/trade-restaurant.webp","alt":"Restaurants — HazirMinds AI team at work","line":"<h3>Friday at 7 PM, the phone rings off the hook. Your host is mid-seating and can't pick up.</h3><p class=\"lede\">HazirMinds answers every call — reservations, hours, allergies, large parties — without touching your floor team.</p>","href":"/industries/restaurant"},{"key":"realestate","name":"Real Estate","img":"/img/trade-realestate.webp","alt":"Real Estate — HazirMinds AI team at work","line":"<h3>Listings generate calls at all hours. Every lead you answer late is a lead your rival signed.</h3><p class=\"lede\">HazirMinds qualifies every inquiry in seconds, books viewings, and keeps your pipeline moving while you're showing homes.</p>","href":"/industries/realestate"},{"key":"auto","name":"Auto Services","img":"/img/trade-auto.webp","alt":"Auto Services — HazirMinds AI team at work","line":"<h3>Service advisors buried in calls while the bays are full and the queue is long.</h3><p class=\"lede\">HazirMinds books appointments, answers status calls, and follows up on quotes — so advisors stay with customers at the counter.</p>","href":"/industries/auto"},{"key":"ecommerce","name":"E-commerce","img":"/img/trade-ecommerce.webp","alt":"E-commerce — HazirMinds AI team at work","line":"<h3>Where's my order? at 11 PM — and every hour of silence is a chargeback risk.</h3><p class=\"lede\">HazirMinds's support agents resolve order status, returns and pre-sale questions instantly across chat, email and social.</p>","href":"/industries/ecommerce"},{"key":"proservices","name":"Professional Services","img":"/img/trade-proservices.webp","alt":"Professional Services — HazirMinds AI team at work","line":"<h3>Your expertise is billable. Chasing leads, bookings and invoices is not.</h3><p class=\"lede\">HazirMinds runs the front office — intake, scheduling, follow-up, invoicing — for consultants, agencies and advisors.</p>","href":"/industries/proservices"}]</script>
+  </div>
+</section>
+
+<!-- S11 · PRICE STRIP -->
+<section class="section section--paper" id="plans">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow">Simple pricing</span>
+      <h2>Four plans. Published rate card. No unpublished meters.</h2>
+      <p class="lede center" style="margin-inline:auto">Every plan publishes its usage rate card before go-live, and every deployment is measured against the acceptance criteria you sign. Annual billing gets two months free.</p>
+    </div>
+    <div class="price-strip" data-reveal="children">
+      
+      <div class="card price-card">
+        <span class="tier">Chronos</span>
+        <span class="amount">$<span data-price-m data-monthly="497" data-annual="414">497</span><sup>/mo</sup></span>
+        <span class="desc">For solo operators who are done losing calls.</span>
+        <a class="btn btn--ghost btn--sm" href="/pricing#chronos" data-cta="price_chronos"><span class="shine"></span>See plan</a>
+      </div>
+      <div class="card price-card price-card--featured">
+        <span class="tier">Hazir Pro</span>
+        <span class="amount">$<span data-price-m data-monthly="997" data-annual="831">997</span><sup>/mo</sup></span>
+        <span class="desc">The complete governed front office for growing teams.</span>
+        <a class="btn btn--primary btn--sm" href="/pricing#hazir-pro" data-cta="price_hazir-pro"><span class="shine"></span>See plan</a>
+      </div>
+      <div class="card price-card">
+        <span class="tier">Aeon</span>
+        <span class="amount">$<span data-price-m data-monthly="1997" data-annual="1664">1,997</span><sup>/mo</sup></span>
+        <span class="desc">A full governed AI department for established businesses.</span>
+        <a class="btn btn--ghost btn--sm" href="/pricing#aeon" data-cta="price_aeon"><span class="shine"></span>See plan</a>
+      </div>
+      <div class="card price-card">
+        <span class="tier">Archon</span>
+        <span class="amount">Custom</span>
+        <span class="desc">Enterprise governance + Chief-of-Staff programs, scoped per engagement.</span>
+        <a class="btn btn--ghost btn--sm" href="/pricing#archon" data-cta="price_archon"><span class="shine"></span>Talk to us</a>
+      </div>
+    </div>
+    <p class="center" style="margin-top:22px"><a class="link-arrow" href="/pricing" data-cta="pricing_link">Full feature comparison, à-la-carte &amp; calculator <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></p>
+  </div>
+</section>
+
+<!-- S12 · OBJECTIONS FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="sec-head center" data-reveal="children">
+      <span class="eyebrow">Fair questions</span>
+      <h2>The objections, answered plainly</h2>
+    </div>
+    <div class="faq" data-reveal="children">
+      
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Will it sound robotic?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><p>Callers hear a calm, professional voice with natural pacing — most never realise it's AI until we tell them. You approve the voice, greeting and scripts before we go live, and you can listen to real recordings from your dashboard any time.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What happens when it can't answer something?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><p>It says so honestly. Our hallucination controls allow grounded answers only from your approved knowledge; low-confidence moments are disclosed and escalated to a human. You set the forbidden-topic list and the escalation rules — every factual claim the agent makes carries a source receipt.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is it compliant? Consent and TCPA?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><p>Every consent-critical interaction carries a TCPA proof trail — consent capture, disclosure and revocation handling are configured before any campaign goes live. Governance isn't a policy PDF: permission scopes, approval gates and audit trails are built into the substrate itself.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">We already use HubSpot — can you work with that?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><p>That's exactly how we deploy. HazirMinds connects to the tools you already run — HubSpot, Salesforce, Pipedrive, Clio, ServiceTitan, Shopify and dozens more — so nothing about your stack has to change.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What exactly is "governed AI"?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+        <div class="faq-a"><p>Bounded authority: each agent has least-privilege permissions per role; sensitive actions pause for human approval; every action, decision and handoff is logged as an evidence receipt; and every public claim we publish carries a proof-horizon label (Built → Deployed → Operated → Verified outcome → Accepted). You can audit all of it, any time.</p></div>
+      </div>
+      <p class="center" style="margin-top:18px"><a class="link-arrow" href="/pricing#faq" data-cta="faq_more">All pricing questions answered <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a></p>
+    </div>
+  </div>
+</section>
+
+<!-- S13 · FINAL CTA -->
+<section class="section section--paper" style="padding-top:0">
+  <div class="container">
+    <div class="final-cta" data-reveal>
+      <div class="bg kenburns-slow" aria-hidden="true">
+        <img src="/img/sunrise-yard.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
+      </div>
+      <div class="inner">
+        <span class="serif-accent">Always present. Never missed.</span>
+        <h2>Hear your own AI receptionist answer a live call</h2>
+        <p style="color:rgba(250,247,242,.75)">Fifteen minutes. We'll build a version that answers as <em>your business</em> — and let you call it before you spend a dollar.</p>
+        <div class="hero-ctas">
+          <a class="btn btn--primary btn--lg" href="/demo" data-cta="final_cta"><span class="shine"></span>Book My Demo</a>
+          <a class="btn btn--outline-light btn--lg" href="mailto:hello@hazirminds.ai" data-cta="final_call"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> hello@hazirminds.ai</a>
+        </div>
+        <div class="contact">
+          <a href="mailto:hello@hazirminds.ai">hello@hazirminds.ai</a>
+          <span>Acceptance criteria you sign before we go live.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- S14 · FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="top">
+      <div>
+        <a class="brand" href="/"><span class="mark">H</span>Hazir<em>Minds</em></a>
+        <p>Always present. Never missed. HazirMinds deploys and runs governed AI teams for businesses in the United States — bounded authority, evidence receipts, audit trails, on the HazirMinds Operating Substrate.</p>
+        <div class="chips" style="margin-top:16px"><span class="pill pill--dark">Serving the United States</span></div>
+      </div>
+      <div><div class="fcol-h">Products</div><ul><li><a href="/services">All services A–F</a></li><li><a href="/services#ai-receptionist">AI Receptionist 24/7</a></li><li><a href="/chief-of-staff">Chief-of-Staff Platform</a></li><li><a href="/masjids">Masjid AI OS (For Masjids)</a></li><li><a href="/enterprise">Enterprise Governance</a></li></ul></div>
+      <div><div class="fcol-h">Company</div><ul><li><a href="/about">About HazirMinds</a></li><li><a href="/case-studies">Case Studies</a></li><li><a href="/resources">Resources</a></li><li><a href="/pricing">Pricing & rate card</a></li></ul></div>
+      <div><div class="fcol-h">Legal & Contact</div><ul><li><a href="/privacy">Privacy Policy</a></li><li><a href="/terms">Terms of Service</a></li><li><a href="/ai/">AI Summary</a></li><li><a href="mailto:hello@hazirminds.ai">hello@hazirminds.ai</a></li></ul></div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 HazirMinds, Inc. All rights reserved.</span>
+      <button class="motion-toggle" data-motion-toggle type="button" aria-pressed="false" title="Toggle animations">Motion: On</button>
+      <div class="socials">
+        <a href="https://www.linkedin.com/company/hazirminds" aria-label="LinkedIn" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4V8h4v1.5A5.5 5.5 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com/hazirminds" aria-label="X" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+        <a href="https://www.youtube.com/@hazirminds" aria-label="YouTube" rel="noopener"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.92 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta"><a class="btn btn--primary" href="/demo" data-cta="sticky_mobile"><span class="shine"></span>Book a Free Demo</a><a class="btn btn--ghost" href="mailto:hello@hazirminds.ai" data-cta="sticky_call"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Email us</a></div>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+
+<div class="consent" id="consent" role="region" aria-label="Privacy choices" hidden>
+  <p><b>Privacy-first by default.</b> No ad trackers, no third-party cookies, nothing sold. We store two local preferences on your device: your motion setting and this choice. <a href="/privacy" style="color:var(--rust-text)">Privacy</a> · <a href="/terms" style="color:var(--rust-text)">Terms</a></p>
+  <div class="consent-actions">
+    <button class="btn btn--primary btn--sm" type="button" data-consent="essential">Essential only</button>
+    <button class="btn btn--ghost btn--sm" type="button" data-consent="all">Allow anonymous analytics</button>
+  </div>
+</div>
+
+<button class="asst-btn" id="asst-btn" type="button" aria-expanded="false" aria-controls="asst-panel" aria-label="Open the governed website assistant"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg><span class="dot" aria-hidden="true"></span></button>
+<div class="asst-panel" id="asst-panel" role="dialog" aria-label="Governed website assistant">
+  <div class="asst-head">
+    <div><b>HazirMinds assistant</b><div style="font-size:12.5px;color:var(--muted)">Governed · source-linked</div></div>
+    <button class="asst-x" type="button" data-asst-close aria-label="Close assistant"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <p class="asst-note">Approved site knowledge only — unknown questions are escalated, never guessed</p>
+  <div id="asst-log" aria-live="polite">
+    <button class="asst-q" type="button" data-asst-q="0">What does HazirMinds actually do?</button><button class="asst-q" type="button" data-asst-q="1">What does it cost?</button><button class="asst-q" type="button" data-asst-q="2">Can the AI make things up?</button><button class="asst-q" type="button" data-asst-q="3">How is this different from GoHighLevel or Smith.ai?</button><button class="asst-q" type="button" data-asst-q="4">Do you build for masjids and Islamic centers?</button>
+  </div>
+  <form class="asst-bar" id="asst-form">
+    <label for="asst-input" style="position:absolute;left:-9999px">Ask a question</label>
+    <input id="asst-input" name="q" autocomplete="off" placeholder="Ask about pricing, governance…">
+    <button class="btn btn--primary btn--sm" type="submit">Ask</button>
+  </form>
+</div>
+<script type="application/json" id="asst-kb">[{"q":"What does HazirMinds actually do?","a":"We run a managed AI team for your business — 24/7 AI receptionist, missed-call text-back, speed-to-lead, booking, pipeline and workflow automation, support deflection and reporting. Deployed and operated for you, with approval gates and a full audit trail.","href":"/services","label":"Services catalog"},{"q":"What does it cost?","a":"Flat tiers: Chronos $497/mo · Hazir Pro $997/mo · Aeon $1,997/mo · Archon custom enterprise. No unpublished meters — the full usage rate card is published before go-live, and every deployment is measured against the acceptance criteria you sign.","href":"/pricing","label":"Pricing & rate card"},{"q":"Can the AI make things up?","a":"Answers are grounded in your approved knowledge base only, with confidence gating: when something is unknown, outdated or out of scope, the assistant says so and escalates to a human. Every factual claim carries a source receipt, and call flows run nightly regression tests.","href":"/enterprise","label":"Governance layer"},{"q":"How is this different from GoHighLevel or Smith.ai?","a":"They sell you a DIY platform or per-call buckets. We sell a governed, done-for-you outcome: flat transparent tiers, published usage rates, managed deployment, and a governance layer — bounded authority, hallucination control, receipts and proof horizons — that the DIY and per-call models do not offer.","href":"/compare","label":"Comparison hub"},{"q":"Do you build for masjids and Islamic centers?","a":"Yes — the HazirMinds AI Operating System for Masjids connects events, communications, registrations, facilities, volunteers, donations, knowledge and reporting through one controlled operational layer, with committee routing, approval chains and audit receipts.","href":"/masjids","label":"Masjid AI OS"}]</script>
+<div class="cursor-glow" aria-hidden="true"></div>
+<div class="toast-host" id="toast-host" role="status" aria-live="polite"></div>
+
+<div class="modal-root" id="exit-modal" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+  <div class="veil" data-modal-close></div>
+  <div class="modal">
+    <button class="close" data-modal-close aria-label="Close"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <span class="eyebrow eyebrow--rust">Before you go</span>
+    <h3 id="exit-title" style="font-size:26px;margin-bottom:10px">Get your free Governance Report Card</h3>
+    <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps — normally $1,500, free.</p>
+    <form data-validate id="audit-form" data-endpoint="/api/lead.php" style="margin-top:18px">
+      <div data-fields class="form-grid">
+        <div class="form-field"><label for="ex-name">Name</label><input id="ex-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
+        <div class="form-field"><label for="ex-email">Work email</label><input id="ex-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
+        <div class="form-field full"><label for="ex-company">Company</label><input id="ex-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
+        <div class="form-field full"><button class="btn btn--primary" type="submit" style="width:100%"><span class="shine"></span>Send me the audit</button></div>
+      </div>
+      <div class="form-success">
+        <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We'll email your Governance Report Card to the address you entered. Questions first? Email <a href="mailto:hello@hazirminds.ai" style="color:var(--rust-text)">hello@hazirminds.ai</a>.</p></div>
+      </div>
+      <div class="form-error" role="alert">
+        <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        <div><b>That didn't send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="hello@hazirminds.ai" href="mailto:hello@hazirminds.ai" style="color:var(--rust-text)">hello@hazirminds.ai</a> and we'll send the report card from there.</p></div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/vendor/gsap.min.js" defer></script>
+<script src="/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/vendor/lenis.min.js" defer></script>
+<script src="/assets/js/main.js?v=5f94546611.5e517e88b9" defer></script>
+</body>
+</html>
