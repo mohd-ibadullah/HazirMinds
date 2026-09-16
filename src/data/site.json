@@ -1,0 +1,498 @@
+{
+  "verified": "Sept 2026",
+  "tiers": {
+    "chronos": {
+      "name": "Chronos",
+      "monthly": 497,
+      "annual": 414
+    },
+    "hazir-pro": {
+      "name": "Hazir Pro",
+      "monthly": 997,
+      "annual": 831
+    },
+    "aeon": {
+      "name": "Aeon",
+      "monthly": 1997,
+      "annual": 1664
+    },
+    "archon": {
+      "name": "Archon",
+      "monthly": null,
+      "annual": null
+    }
+  },
+  "addons": [
+    {
+      "id": "audit",
+      "name": "Governance Readiness Audit",
+      "price": "$1,500",
+      "note": "credited in full against any 6-month plan",
+      "slug": "readiness-audit-coe"
+    },
+    {
+      "id": "custom-agent",
+      "name": "Custom Agent Build",
+      "price": "from $2,500",
+      "note": "scoped, built, trained and managed by HazirMinds",
+      "slug": "custom-ai-employee"
+    },
+    {
+      "id": "cos",
+      "name": "Chief-of-Staff Engagement",
+      "price": "from $7,500",
+      "note": "scoped, priced and acceptance-tested per engagement",
+      "slug": "chief-of-staff-agent-team"
+    },
+    {
+      "id": "crm",
+      "name": "CRM Migration",
+      "price": "from $997",
+      "note": "contacts, pipelines, history — validated",
+      "slug": "crm-setup-migration"
+    },
+    {
+      "id": "reactivation",
+      "name": "Database Reactivation",
+      "price": "$500 + 10%",
+      "note": "setup plus share of recovered revenue",
+      "slug": "database-reactivation"
+    },
+    {
+      "id": "minutes",
+      "name": "Extra Minutes",
+      "price": "$0.35/min",
+      "note": "or per published rate card — billed only for what you use",
+      "slug": "ai-receptionist"
+    }
+  ],
+  "stats": [
+    {
+      "value": "62%",
+      "label": "of SMB calls go unanswered",
+      "source": "411 Locals (2016) — vendor study, 85 businesses over 30 days",
+      "count": "62",
+      "suf": "%"
+    },    { "value": "$80–$1,200", "label": "lost per missed call — vendor estimates by trade; no primary study", "source": "industry vendor estimates (no primary study published)", "count": "1200", "prefix": "$" },
+    {
+      "value": "~$120k/yr",
+      "label": "modelled annual leak — missed calls plus slow follow-up",
+      "source": "HazirMinds model (25 missed calls/mo × $400 avg job = $120,000)",
+      "count": null
+    },
+    {
+      "value": "~5 min",
+      "label": "the response window that decides the sale",
+      "source": "InsideSales.com / MIT Lead Response Management study (Oldroyd, 2007)",
+      "count": null
+    }
+  ],
+  "trustStats": [
+    {
+      "value": "<1.0s",
+      "label": "pickup on every line",
+      "source": "HazirMinds Operating Substrate"
+    },
+    {
+      "value": "24/7/365",
+      "label": "nights, weekends, holidays — covered",
+      "source": "Every plan"
+    }
+  ],
+  "calc": {
+    "calls": 25,
+    "value": 400,
+    "conv": 30,
+    "plan": 997
+  },
+  "sampleReceipt": {
+    "approvalRule": "$2,500"
+  },
+  "competitors": [
+    {
+      "name": "HazirMinds",
+      "slug": null,
+      "model": "Done-for-you governed AI firm",
+      "entry": "$497/mo flat tier",
+      "at100": "flat tier + published usage card",
+      "meters": "none unpublished — rate card before go-live",
+      "gov": "Receipts, proof horizons, confidence gating, audit trail",
+      "cos": "yes (scoped)",
+      "evidence": "yes (public standard)",
+      "source": "hazirminds.ai published tiers",
+      "note": ""
+    },
+    {
+      "name": "GoHighLevel",
+      "slug": "go-high-level",
+      "model": "DIY platform you operate",
+      "entry": "$97/mo + $50–97/mo AI Employee per enabled location + $1,000 vendor setup",
+      "at100": "plan + metered SMS/voice + add-ons",
+      "meters": "SMS ~$0.008/segment, voice ~$0.012–0.020/min all-in, numbers, A2P, HIPAA +$297/mo",
+      "gov": "not evidenced",
+      "cos": "no",
+      "evidence": "no",
+      "source": "vendor pricing pages, read 2026-09-16",
+      "note": "voice all-in: outbound $0.0166/min, inbound $0.01165/min"
+    },
+    {
+      "name": "Synthflow",
+      "slug": "synthflow",
+      "model": "DIY no-code voice builder",
+      "entry": "Enterprise-only from $30,000/yr — no published self-serve price",
+      "at100": "n/a — enterprise contracts only",
+      "meters": "no public rate card; rates scoped in the sales process",
+      "gov": "not evidenced",
+      "cos": "no",
+      "evidence": "no",
+      "source": "vendor pricing page, read 2026-09-16",
+      "note": "self-serve PAYG tiers retired; vendor docs state pricing is sales-led"
+    },
+    {
+      "name": "Smith.ai",
+      "slug": "smith-ai",
+      "model": "Per-call service (AI or human)",
+      "entry": "AI-first: free (25 calls) · $150/mo (75) · $500/mo (300). Human-first $300/mo (30 calls)",
+      "at100": "~$200–225 AI-first / ~$915 human-first + per-call add-ons",
+      "meters": "overages $2.00–11.50/call, booking $1.50/call add-on",
+      "gov": "not evidenced",
+      "cos": "no",
+      "evidence": "no",
+      "source": "vendor pricing pages, read 2026-09-16",
+      "note": "$95/mo AI tier no longer published"
+    },
+    {
+      "name": "Artisan / 11x",
+      "slug": "ai-sdr",
+      "model": "Outbound SDR contracts",
+      "entry": "no published pricing — both are sales-led",
+      "at100": "n/a (outbound)",
+      "meters": "annual commitments reported by third parties; not vendor-published",
+      "gov": "not evidenced",
+      "cos": "partial (swarm outbound only)",
+      "evidence": "no",
+      "source": "no vendor pricing published (both pricing pages route to sales)",
+      "note": "Artisan lists team/scale/enterprise with no figures; 11x /pricing returns 404"
+    },
+    {
+      "name": "Human receptionist",
+      "slug": "human-receptionist",
+      "model": "Payroll",
+      "entry": "$35–45k/yr + benefits",
+      "at100": "~$4.0–4.4k/mo loaded",
+      "meters": "overtime, turnover, training",
+      "gov": "human error, no audit layer",
+      "cos": "no",
+      "evidence": "no",
+      "source": "BLS median $37,230 + 1.25–1.4× payroll load (national; higher in major metros)",
+      "note": ""
+    }
+  ],
+  "masjid": {
+    "positioning": "HazirMinds provides a governed AI operating system for masjids and Islamic community organizations that connects events, communications, registrations, facilities, volunteers, donations, knowledge, AI assistance, and reporting through one controlled operational layer.",
+    "accent": "#1E5C46",
+    "competitors": [
+      {
+        "name": "ConnectMazjid",
+        "entry": "free core; community bundle $29.99–34.99/mo",
+        "model": "masjid app + communications",
+        "ai": "AI Masjid Advisor (setup assistant) — not a governed agent layer",
+        "source": "vendor pricing page, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "MOHID",
+        "entry": "$99–199/mo + $999 kiosk + $25/mo/device",
+        "model": "management suite + kiosks",
+        "ai": "not evidenced",
+        "source": "vendor pricing page, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "Masjidal / Athan+",
+        "entry": "$0 / $20 / $40 per month (now also $90 Ultimate)",
+        "model": "app + prayer times",
+        "ai": "not evidenced",
+        "source": "vendor pricing page, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "The Masjid App",
+        "entry": "$99/mo starting (vendor's own claim; no pricing page published)",
+        "model": "branded mobile app",
+        "ai": "not evidenced",
+        "source": "vendor about page — no dedicated pricing page exists",
+        "flag": ""
+      },
+      {
+        "name": "Ummah",
+        "entry": "free (3% platform) · $29/mo (1.5%) · $199/mo (0%)",
+        "model": "donations-first app",
+        "ai": "not evidenced",
+        "source": "vendor pricing page, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "Buildify",
+        "entry": "~$250/mo custom app (Faith plan; Business $850/mo)",
+        "model": "custom-branded app builds",
+        "ai": "AI insights dashboard bundled in its Business plan",
+        "source": "vendor pricing page, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "Donorbox (adapted)",
+        "entry": "2.95–3.95% + processing; Pro $150/mo at 1.75–2%; kiosk $80/mo",
+        "model": "donation forms & kiosks",
+        "ai": "Jay·AI — donor insights, email drafting, campaign targeting (Pro plan)",
+        "source": "vendor pricing & AI pages, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "LaunchGood",
+        "entry": "0% platform + tips (campaigns only)",
+        "model": "crowdfunding campaigns",
+        "ai": "not evidenced",
+        "source": "vendor support documentation, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "DeenFund / Givebear",
+        "entry": "Givebear free (5.9%) · $29/mo (2.9%) · $39/mo (1.9%); DeenFund free, capped at 4%",
+        "model": "Islamic giving platforms (subscription, not per-campaign)",
+        "ai": "not evidenced",
+        "source": "vendor pricing pages, read 2026-09-16",
+        "flag": ""
+      },
+      {
+        "name": "Church tools adapted (Planning Center, Tithely)",
+        "entry": "per-module subscriptions + processing fees",
+        "model": "church management software repurposed",
+        "ai": "Planning Center 'Ask AI' + an MCP connector for ChatGPT/Claude; Tithely AI analytics",
+        "source": "vendor pricing & AI pages, read 2026-09-16",
+        "flag": "adapted, not masjid-specific"
+      }
+    ],
+    "external": [
+      "Payment processing — Stripe or the masjid's own processor, at their published rates, shown transparently",
+      "WhatsApp Business API — per-conversation fees set by Meta",
+      "SMS & voice usage — per the published HazirMinds rate card",
+      "App-store developer accounts — Apple/Google annual fees, if a branded app is chosen",
+      "Kiosk hardware — one-time purchase, only if chosen"
+    ],
+    "gaps": [
+      "Governed AI with approval gates on the masjid's own approved knowledge base",
+      "AI phone + web assistants answering from one source of truth — not scripted menus",
+      "One-record → many-channels lifecycle with committee routing and audit receipts",
+      "Isolated multi-masjid tenancy with a real permission architecture",
+      "One integrated commercial service — not a stack of subscriptions and hardware"
+    ],
+    "stack": {
+      "tools": "$380/mo",
+      "fees": "3–8% of donations",
+      "hardware": "$1–2k",
+      "stamp": "example using published list prices, Sept 2026"
+    },
+    "faqs": [
+      {
+        "q": "Do you support Hijri dates?",
+        "a": "Yes. Each organization sets its calendar rules — primary calendar (Gregorian or Hijri), adjustment preferences, and dual-date rendering — applied consistently across website, app, newsletters, screens and confirmations."
+      },
+      {
+        "q": "Does WhatsApp messaging cost extra?",
+        "a": "WhatsApp runs through the WhatsApp Business API; Meta charges per-conversation fees that remain external usage costs. We show them transparently in the included-vs-external table — never buried."
+      },
+      {
+        "q": "Can lobby screens and the app show the same events?",
+        "a": "Yes — screens, site, app, newsletter and WhatsApp all render from the same approved record. When a record changes, every channel updates through the cascade."
+      },
+      {
+        "q": "Do we need a branded mobile app?",
+        "a": "No. The core system is web-first and works on any phone. A branded app is available as a scoped addition; app-store accounts remain external."
+      },
+      {
+        "q": "How is zakat handled?",
+        "a": "Zakat-designated campaigns can be routed and reported separately from general funds at the campaign level, with settlement through your payment processor. We make no financial or religious-advice claims."
+      },
+      {
+        "q": "Who owns the data?",
+        "a": "The masjid does. Export at any time, deletion on request, and strict per-organization isolation: one mosque can never access another's data, users or knowledge."
+      },
+      {
+        "q": "What does multi-masjid isolation mean in practice?",
+        "a": "Each organization is a separate tenant with its own data, users, permissions, knowledge base, automations, communications and audit history — isolated at the substrate level, not by policy alone."
+      }
+    ]
+  },
+  "competitorPages": {
+    "go-high-level": {
+      "name": "GoHighLevel",
+      "title": "HazirMinds vs GoHighLevel (2026) — Done-For-You vs DIY Platform",
+      "verdict": "GoHighLevel is a strong DIY platform if you have the time and staff to build, run and debug it yourself. HazirMinds is for owners who want the system built, governed and operated for them — with a rate card published before go-live instead of metered surprises.",
+      "rows": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "faqs": [
+        {
+          "q": "Is GoHighLevel cheaper?",
+          "a": "The sticker is $97/mo, but the realistic build is plan + $50–97/mo AI Employee per enabled location + metered SMS/voice + a $1,000 vendor setup (agency build fees are extra) — plus your own hours operating it. Our flat $497 tier is done-for-you: built, governed, maintained."
+        },
+        {
+          "q": "What does GoHighLevel do that you don't?",
+          "a": "It's a full marketing platform (funnels, courses, pipelines) that you operate yourself. If you want to own and tinker with the machinery, that's a feature. If you want outcomes with receipts, we're the better fit."
+        },
+        {
+          "q": "Can I keep GHL and add HazirMinds?",
+          "a": "Yes. We frequently deploy our AI teams into businesses that run GHL as their CRM — our agents write into it like any other system."
+        },
+        {
+          "q": "Who builds my automations with GHL?",
+          "a": "You do — or an agency you pay. With HazirMinds, deployment, training, tuning and governance are included in the tier."
+        },
+        {
+          "q": "What about the metered costs?",
+          "a": "GHL meters SMS (~$0.008/segment), voice (~$0.012–0.020/min all-in), numbers, A2P registration, and HIPAA (+$297/mo). We publish our full usage rate card before go-live — nothing unpublished, ever."
+        }
+      ],
+      "notFor": "If you enjoy building systems yourself, want unlimited sub-accounts for an agency, or consider tinkering in funnel builders a feature rather than a cost — buy GoHighLevel. It's genuinely good at that. We're the opposite shape: a governed, done-for-you firm."
+    },
+    "synthflow": {
+      "name": "Synthflow",
+      "title": "HazirMinds vs Synthflow (2026) — Flat Governed Tiers vs Metered Minutes",
+      "verdict": "Synthflow is a capable DIY no-code voice builder if you want minute-level control and don't mind running the system yourself. HazirMinds sells outcomes at flat tiers with the rate card published up front — not minutes, concurrency seats or stacked LLM meters.",
+      "rows": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "faqs": [
+        {
+          "q": "How do the costs actually compare?",
+          "a": "Synthflow no longer publishes a self-serve rate: it now sells Enterprise contracts from $30,000/year, scoped in a sales process, and its own documentation says not to treat published docs as a quote. That means an unknown bill until you have signed. Our tiers are flat: $497/$997/$1,997 with the usage rate card published before go-live."
+        },
+        {
+          "q": "Is Synthflow a bad product?",
+          "a": "No — it's a good builder. But it hands you the bricks. Someone on your team designs the flows, monitors the calls, tunes the scripts and eats the metered bill variability. That's a job, and we're the people you hire instead of doing that job."
+        },
+        {
+          "q": "What about governance?",
+          "a": "Synthflow doesn't offer hallucination controls, source receipts, proof horizons or an audit layer — those are HazirMinds substrate features, not add-ons."
+        },
+        {
+          "q": "Can you match their per-minute pricing?",
+          "a": "We don't price by minutes; we price by outcome. Metered minutes reward long calls. Flat tiers + a published rate card reward solved problems."
+        },
+        {
+          "q": "Who should pick Synthflow?",
+          "a": "Teams with in-house ops staff who want granular minute-level control and are comfortable operating a voice stack themselves."
+        }
+      ],
+      "notFor": "If you want to assemble and operate voice flows yourself — dialing in prompts, concurrency seats and per-minute economics — Synthflow is built for exactly that. HazirMinds is for businesses that want the phones solved, governed and receipted, not another tool to run."
+    },
+    "smith-ai": {
+      "name": "Smith.ai",
+      "title": "HazirMinds vs Smith.ai (2026) — Governed Flat Tiers vs Per-Call Buckets",
+      "verdict": "Smith.ai is a solid per-call service — especially its human tier. But call buckets, per-call overages ($2.00–11.50) and à-la-carte add-ons make costs scale with volume, not with outcomes. HazirMinds is a flat-tier governed AI team with evidence receipts.",
+      "rows": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "faqs": [
+        {
+          "q": "Smith.ai has human receptionists — don't you?",
+          "a": "Our AI teams are machine, with human escalation inside the governance layer (you set the rules). If you specifically need a human on every single call, their human tier is the honest choice — see our \"who should NOT buy\" note below."
+        },
+        {
+          "q": "How do overages compare?",
+          "a": "Smith.ai: AI-first from free (25 calls) to $150/mo (75 calls), human-first from $300/mo (30 calls), overages $2.00–11.50/call, booking add-on $1.50/call — ~100 calls lands around $200–225 on the AI lane, or ~$915 on the human lane. Our tiers are flat and unmetered by call count, with a published usage rate card for overage minutes."
+        },
+        {
+          "q": "What's the ceiling with Smith.ai?",
+          "a": "Bucketed pricing means every growth increment costs more per call. Flat tiers mean your 400th call costs the same as your 40th, within plan minutes."
+        },
+        {
+          "q": "Do they offer governance?",
+          "a": "Not as a product. No permission scopes, receipts, proof horizons or audit trail — that's the layer we compete on."
+        },
+        {
+          "q": "Which is better for a law firm?",
+          "a": "Smith.ai is well known in legal intake. If you want a human voice on every call, they're a reasonable pick. If you want 24/7 governed intake with transcripts, receipts and flat cost, that's us."
+        }
+      ],
+      "notFor": "If you specifically want a human being on every call — and will pay per-call for it — Smith.ai's human tier is a legitimate choice and we'll say so. HazirMinds is a governed AI team: superhuman coverage, human-approved boundaries."
+    },
+    "ai-sdr": {
+      "name": "Artisan / 11x",
+      "title": "HazirMinds vs AI SDR Agencies — Artisan & 11x (2026)",
+      "verdict": "Artisan and 11x sell outbound SDR contracts at $1.5–10k/mo on annual or 24-month terms. That's a different job from ours: they push volume outbound; we build governed inbound-and-ops AI teams with flat tiers, published rate cards and acceptance-tested outcomes.",
+      "rows": [
+        0,
+        1,
+        3
+      ],
+      "faqs": [
+        {
+          "q": "When would I choose Artisan or 11x?",
+          "a": "If your single bottleneck is outbound sales development volume — thousands of researched prospect touches per month — and you accept annual commitments, they're credible specialists in that lane."
+        },
+        {
+          "q": "Why are their contracts annual?",
+          "a": "Outbound SDR results compound slowly and their unit economics depend on long terms — neither Artisan nor 11x publishes pricing; both route to sales, and annual commitments are the norm. Our plans are month-to-month after the first 60 days."
+        },
+        {
+          "q": "Do you do outbound too?",
+          "a": "Yes — AI SDR and outbound campaigns are in the Aeon tier. The difference is commercial shape: flat tier + rate card, no 24-month lock-in, and the same governance layer underneath."
+        },
+        {
+          "q": "\"Swarm\" multi-agent — do you do that?",
+          "a": "Their swarm is outbound-specific. Our Chief-of-Staff model orchestrates across voice, sales, ops, analytics and compliance with approval gates — scoped and acceptance-tested per engagement."
+        },
+        {
+          "q": "What about their AI correctness?",
+          "a": "Neither publishes a public evidence standard for their claims. Our proof horizons (Built → Deployed → Operated → Verified outcome → Accepted) are on this site for anyone to audit."
+        }
+      ],
+      "notFor": "If you need pure outbound volume on a long contract and have staff to QA the pipeline, Artisan or 11x may serve you well. If you want a governed AI team across the whole front office — month-to-month, flat-priced, receipted — that's HazirMinds."
+    },
+    "human-receptionist": {
+      "name": "Human receptionist",
+      "title": "HazirMinds vs a Human Receptionist (2026) — Full-Time Payroll vs Governed AI Team",
+      "verdict": "A great receptionist is irreplaceable for judgment and warmth. But one human covers one line, 40 hours a week, for $35–45k/yr plus benefits — while most calls outside those hours still go unanswered. A governed HazirMinds team answers every line, 24/7, at a flat tier, with receipts.",
+      "rows": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "faqs": [
+        {
+          "q": "Is this \"replace humans with AI\"?",
+          "a": "No — it's coverage math. Your humans keep judgment, relationships and authority; our governed AI absorbs the ring-ring-ring so your people stop drowning. Principal → Operative → AI Operator: your team stays in charge by design."
+        },
+        {
+          "q": "What does a receptionist really cost?",
+          "a": "$35–45k/yr salary plus benefits and taxes — roughly $4.0–4.4k/mo loaded nationally — for 40 hours/week, one line at a time, plus overtime, turnover and training. Our tiers start at $497/mo flat, 24/7/365."
+        },
+        {
+          "q": "Can a human do what your AI does?",
+          "a": "Not simultaneously: one caller at a time, and never at 2 AM. Conversely our AI doesn't do what a great human does: read a room, negotiate, comfort. The governed answer is both — AI coverage with human escalation."
+        },
+        {
+          "q": "What about errors?",
+          "a": "Human errors have no audit layer; ours do. Every claim the AI makes carries a source receipt, low-confidence moments escalate to your humans, and everything is logged and reviewable."
+        },
+        {
+          "q": "Will callers hate it?",
+          "a": "Callers hate voicemail and hold music. In our transcript demos the AI answers in under a second, books the slot and texts confirmation — the outcome most callers actually wanted."
+        }
+      ],
+      "notFor": "If your call volume is genuinely low, your brand runs on one beloved voice, and 40 hours/week covers it — hire the human; they're worth it. HazirMinds wins when coverage, after-hours volume and cost predictability are the problem."
+    }
+  }
+}
