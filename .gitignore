@@ -1,0 +1,62 @@
+# ---------------------------------------------------------------------------
+#  Dependencies
+# ---------------------------------------------------------------------------
+node_modules/
+package-lock.json
+
+# ---------------------------------------------------------------------------
+#  Host / tooling state
+# ---------------------------------------------------------------------------
+.vercel/
+.freebuff/
+.env
+.env.*
+!.env.example
+
+# ---------------------------------------------------------------------------
+#  Per-deployment secrets and captured leads — never in the repository.
+#  Copy api/config.sample.php to api/config.php on the server (or locally) and
+#  fill it in; lead.php answers 503 not_configured until you do, so the form
+#  fails closed instead of dropping enquiries.
+# ---------------------------------------------------------------------------
+api/config.php
+api/leads.log
+
+# ---------------------------------------------------------------------------
+#  Internal working documents.
+#  These carry commercial and partner information that is not for publication —
+#  the audit report in particular quotes contract terms verbatim. The public
+#  documentation for this project is README.md.
+# ---------------------------------------------------------------------------
+audit/
+ui-evidence/
+visual-plan/
+BUGS.md
+CHANGELOG.md
+DECISIONS.md
+FINAL-REPORT.md
+PLAN.md
+UI-AUDIT.md
+
+# ---------------------------------------------------------------------------
+#  QA output. The harness scripts under qa/ are kept; the screenshots, DOM
+#  dumps and run logs they produce are regenerated on every run.
+# ---------------------------------------------------------------------------
+qa/*.png
+qa/*.txt
+qa/*.json
+qa/shots/
+
+# ---------------------------------------------------------------------------
+#  Raw source photography. Already extracted and converted to the optimised
+#  WebP set under img/ — keep the archive local so the repository stays small.
+# ---------------------------------------------------------------------------
+hazirminds-website-photos.zip
+
+# ---------------------------------------------------------------------------
+#  Local build output of the static preview server
+# ---------------------------------------------------------------------------
+npm-debug.log*
+*.log
+.DS_Store
+Thumbs.db

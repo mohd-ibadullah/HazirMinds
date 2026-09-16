@@ -1,0 +1,34 @@
+{
+  "name": "hazirminds-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "HazirMinds — hazirminds.ai static production website. Zero-dependency build, verified claim set, full accessibility and layout-shift regression harness.",
+  "homepage": "https://hazirminds.ai",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mohd-ibadullah/HazirMinds.git"
+  },
+  "scripts": {
+    "build": "node build.js",
+    "serve": "node server.js",
+    "qa": "node qa/dod.js",
+    "qa:e2e": "node qa/e2e.js",
+    "qa:contrast": "node qa/contrast.js",
+    "qa:axe": "node qa/axe-final.mjs",
+    "qa:cls": "node qa/cls-final.js",
+    "qa:structure": "node qa/finalpass-struct.js",
+    "qa:content": "node qa/finalpass-content.js"
+  },
+  "devDependencies": {
+    "gsap": "^3.13.0",
+    "lenis": "^1.3.4",
+    "@fontsource/plus-jakarta-sans": "^5.2.5",
+    "@fontsource/fraunces": "^5.2.5",
+    "@fontsource/inter": "^5.2.5",
+    "@fontsource/jetbrains-mono": "^5.2.5",
+    "puppeteer-core": "^24.10.0",
+    "@puppeteer/browsers": "^2.10.5",
+    "axe-core": "^4.10.0"
+  }
+}
