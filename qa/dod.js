@@ -32,7 +32,7 @@ check('force-show backstops (no-motion / print / reveal-force)',
 check('no reveal group hides itself (children-groups delegate)', !/html\.motion-ready \[data-reveal\]\{/.test(css), '');
 check('print fallback forces visibility', /@media print/.test(css) && /\.reveal[^{]*\{[^}]*opacity:1!important/.test(css), '');
 check('reduced-motion off-switch present', /prefers-reduced-motion/.test(css), '');
-check('motion toggle present', all.some(a => a.h.includes('data-motion-toggle')), '');
+check('motion toggle removed — motion is on by default', !all.some(a => a.h.includes('data-motion-toggle')), '');
 
 /* 3 site.json single source */
 check('site.json exists', fs.existsSync(path.join(__dirname, '..', 'src', 'data', 'site.json')), '');

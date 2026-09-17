@@ -59,7 +59,7 @@ const F = (sev, what, detail) => findings.push({ sev, what, detail });
 
   /* ---------- 3. HOVER STATE: real mouse hover, does the element visibly respond? ---------- */
   const HOVER_SEL = ['.btn--primary', '.btn--ghost', '.btn--brass', '.link-arrow', '.faq-q', '.trade-chip',
-    '.mega a', '.nav-link', '.footer ul a', '.crumbs a', '.to-top', '.asst-btn', '.motion-toggle',
+    '.mega a', '.nav-link', '.footer ul a', '.crumbs a', '.to-top', '.asst-btn',
     '.pricing-card', '.price-card', '.card', '.pill', '.svc-rail a', '.socials a', '.door'];
   const PROBE = ['backgroundColor', 'color', 'borderTopColor', 'borderBottomColor', 'boxShadow', 'transform', 'opacity', 'outlineColor', 'textDecorationLine'];
   const noHover = [];

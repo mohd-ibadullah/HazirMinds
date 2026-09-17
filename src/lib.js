@@ -207,7 +207,6 @@ function footer() {
     </div>
     <div class="bottom">
       <span>© 2026 HazirMinds, Inc. All rights reserved.</span>
-      <button class="motion-toggle" data-motion-toggle type="button" aria-pressed="false" title="Toggle animations">Motion: On</button>
       <div class="socials">
         <a href="https://www.linkedin.com/company/hazirminds" aria-label="LinkedIn" rel="noopener">${I('linkedin')}</a>
         <a href="https://x.com/hazirminds" aria-label="X" rel="noopener">${I('x_social')}</a>
@@ -231,7 +230,7 @@ function backToTop() {
 function consentBanner() {
   return `
 <div class="consent" id="consent" role="region" aria-label="Privacy choices" hidden>
-  <p><b>Privacy-first by default.</b> No ad trackers, no third-party cookies, nothing sold. We store two local preferences on your device: your motion setting and this choice. <a href="/privacy" style="color:var(--rust-text)">Privacy</a> · <a href="/terms" style="color:var(--rust-text)">Terms</a></p>
+  <p><b>Privacy-first by default.</b> No ad trackers, no third-party cookies, nothing sold. We store one local preference on your device: this choice. <a href="/privacy" style="color:var(--rust-text)">Privacy</a> · <a href="/terms" style="color:var(--rust-text)">Terms</a></p>
   <div class="consent-actions">
     <button class="btn btn--primary btn--sm" type="button" data-consent="essential">Essential only</button>
     <button class="btn btn--ghost btn--sm" type="button" data-consent="all">Allow anonymous analytics</button>

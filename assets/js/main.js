@@ -11,13 +11,9 @@
   /* reduced-motion is a LIVE media query (a one-time read misses OS toggles) */
   var MQ_REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)');
   var REDUCE = MQ_REDUCE.matches;
-  // user override (footer Motion toggle) beats the OS setting
-  var MOTION_OVERRIDE = null;
-  try { MOTION_OVERRIDE = localStorage.getItem('hazirminds_motion'); } catch (e) { }
-  if (MOTION_OVERRIDE === 'on') REDUCE = false;
-  else if (MOTION_OVERRIDE === 'off') REDUCE = true;
+  /* Motion is on by default. The only thing that turns it off is the reader's own operating
+     system asking for reduced motion — there is no site-level switch. */
   if (REDUCE) docEl.classList.add('no-motion');
-  else if (MOTION_OVERRIDE === 'on') docEl.classList.add('force-motion');
 
   /* fail-safe: if the OS setting flips mid-session, content must never stay hidden */
   var onReduceChange = function (e) {
@@ -856,24 +852,6 @@
     }, { passive: true });
   }
 
-  /* ---------------- footer motion toggle (overrides OS reduced-motion) ---------------- */
-  function initMotionToggle() {
-    var btn = document.querySelector('[data-motion-toggle]');
-    if (!btn) return;
-    var sysReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var cur = MOTION_OVERRIDE || (sysReduce ? 'off' : 'on');
-    function paint() {
-      btn.textContent = 'Motion: ' + (cur === 'on' ? 'On' : 'Off');
-      btn.setAttribute('aria-pressed', cur === 'on' ? 'true' : 'false');
-    }
-    paint();
-    btn.addEventListener('click', function () {
-      cur = cur === 'on' ? 'off' : 'on';
-      try { localStorage.setItem('hazirminds_motion', cur); } catch (e) { }
-      location.reload();
-    });
-  }
-
   /* ---------------- governance: layers draw-in + horizons stamp ---------------- */
   function initGovernance() {
     var rows = document.querySelectorAll('[data-layers] .layer-row');
@@ -1094,7 +1072,6 @@
     initGovernance();
     initReportCard();
     initApprovalDemo();
-    initMotionToggle();
     if (REDUCE) { initStatic(); startSelfHeal(); return; }
     /* FAIL-SAFE MOTION CONTRACT: hiding is gated on html.motion-ready, which is
        added only after the engines are verified. Any throw → class removed →

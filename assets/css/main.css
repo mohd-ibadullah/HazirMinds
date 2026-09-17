@@ -613,9 +613,6 @@ a.trade-chip--link:hover{border-color:var(--brass);color:var(--brass-text)}
 .footer .socials a{width:36px;height:36px;border-radius:10px;border:1px solid rgba(250,247,242,.14);display:grid;place-items:center;color:rgba(250,247,242,.7)}
 .footer .socials a:hover{color:var(--brass);border-color:var(--brass)}
 .footer .socials svg{width:15px;height:15px}
-.motion-toggle{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,247,242,.55);border:1px solid rgba(250,247,242,.18);border-radius:999px;padding:6px 14px;cursor:pointer;transition:color .2s,border-color .2s}
-.motion-toggle:hover{color:var(--brass);border-color:var(--brass)}
-.motion-toggle[aria-pressed="true"]{color:var(--brass);border-color:rgba(185,138,46,.5)}
 html.no-motion [data-reveal]>*{opacity:1!important;transform:none!important}
 html.no-motion .hero h1 .line>span{transform:none!important}
 
@@ -1069,11 +1066,6 @@ html.no-motion .hero h1 .line>span{transform:none!important}
   .kenburns img,.kenburns-slow img{animation:none}
   .sticky-cta{transition:none}
 }
-/* footer Motion toggle = explicit consent: force-motion re-enables CSS motion
-   even when the OS reports prefers-reduced-motion (mirrors the JS override) */
-html.force-motion .marquee-track{animation:mq 24s linear infinite !important;flex-wrap:nowrap !important;width:max-content !important}
-html.force-motion .marquee+.marquee .marquee-track{animation-duration:32s !important;animation-direction:reverse !important}
-/* user force-motion (toggle ON) respects the same off-switch via html.no-motion above */
 
 .micro b{color:var(--ok-text)}
 
