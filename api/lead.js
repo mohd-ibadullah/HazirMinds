@@ -9,6 +9,15 @@
  * an error with a prefilled mailto link, so a lead is never silently dropped.
  *
  * Zero npm dependencies — uses the runtime's global fetch and Resend's HTTP API.
+ *
+ * Responses:
+ *   200  {"ok":true}                        accepted by the mail API
+ *   400  {"ok":false,"error":"invalid_input"}
+ *   405  {"ok":false,"error":"method_not_allowed"}
+ *   429  {"ok":false,"error":"too_many_requests","retry_after":N}
+ *   502  {"ok":false,"error":"send_failed"}
+ *   503  {"ok":false,"error":"not_configured"}
+ *
  * Configure in Vercel → Project → Settings → Environment Variables:
  *   RESEND_API_KEY   required for delivery (any HTTP mail API works, see below)
  *   LEAD_TO_EMAIL    where leads land              (default hello@hazirminds.ai)
@@ -16,6 +25,41 @@
  */
 
 const MAX = 2000;
+
+/* ---- best-effort throttle -----------------------------------------------------------------
+   Vercel runs this in short-lived instances, so this map lives per instance and a cold start
+   forgets it. It is not a firewall; it stops one client hammering the form in a burst, which is
+   the realistic case for a marketing site. Two limits, both per IP:
+     · MIN_GAP_MS floor between two consecutive submissions
+     · MAX_HITS submissions inside WINDOW_MS
+   Heavier protection belongs in front of the function (Vercel Firewall, Cloudflare). */
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_HITS = 5;
+const MIN_GAP_MS = 15000;
+const HITS = new Map();
+
+function ipOf(req) {
+  const fwd = req.headers['x-forwarded-for'];
+  const first = (Array.isArray(fwd) ? fwd[0] : String(fwd || '')).split(',')[0].trim();
+  return first || (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+
+/* returns 0 when allowed, otherwise the number of seconds to wait */
+function throttle(ip) {
+  const now = Date.now();
+  if (HITS.size > 5000) HITS.clear(); /* never let the map grow without bound */
+  const seen = (HITS.get(ip) || []).filter(function (t) { return now - t < WINDOW_MS; });
+  HITS.set(ip, seen);
+  if (seen.length >= MAX_HITS) {
+    return Math.max(1, Math.ceil((WINDOW_MS - (now - seen[0])) / 1000));
+  }
+  const last = seen[seen.length - 1];
+  if (last && now - last < MIN_GAP_MS) {
+    return Math.max(1, Math.ceil((MIN_GAP_MS - (now - last)) / 1000));
+  }
+  seen.push(now);
+  return 0;
+}
 
 function clean(v) {
   return String(v == null ? '' : v).replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, MAX).trim();
@@ -50,6 +94,14 @@ module.exports = async function handler(req, res) {
   const missing = ['name', 'email'].filter(function (k) { return !lead[k]; });
   if (missing.length || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(lead.email)) {
     return res.status(400).json({ ok: false, error: 'invalid_input', missing: missing });
+  }
+
+  /* Throttle after validation: a malformed POST is cheap to answer and must not spend a real
+     visitor's budget. */
+  const retryAfter = throttle(ipOf(req));
+  if (retryAfter) {
+    res.setHeader('Retry-After', String(retryAfter));
+    return res.status(429).json({ ok: false, error: 'too_many_requests', retry_after: retryAfter });
   }
 
   const key = process.env.RESEND_API_KEY;
