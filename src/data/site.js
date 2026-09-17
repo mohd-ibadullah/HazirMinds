@@ -113,7 +113,7 @@ module.exports = {
   personas: [
     {
       name: 'The Overbooked Owner', trade: 'Home Services · 11 technicians',
-      img: '/img/client-1.webp',
+      mark: 'HS',
       quote: 'We were missing 60-plus calls a week in peak season. Now every one is answered, priced and booked before I even see my phone.',
       metrics: [ ['+38%', 'booked jobs'], ['0', 'missed calls'], ['11 hrs', 'phone time saved weekly'] ],
       horizon: 'MODELED OUTCOME — representative persona, not a client',
@@ -121,7 +121,7 @@ module.exports = {
     },
     {
       name: 'The Full-Clinic Partner', trade: 'Dental · 3-chair practice',
-      img: '/img/client-2.webp',
+      mark: 'DP',
       quote: 'Our front desk finally breathes. New patients get booked at 9 PM on a Sunday, and no-shows dropped by half in the first month.',
       metrics: [ ['+27%', 'new patients'], ['−52%', 'no-shows'], ['24/7', 'coverage'] ],
       horizon: 'MODELED OUTCOME — representative persona, not a client',
@@ -129,7 +129,7 @@ module.exports = {
     },
     {
       name: 'The Always-in-Court Attorney', trade: 'Legal · 6-attorney firm',
-      img: '/img/client-3.webp',
+      mark: 'LF',
       quote: 'Intake used to die at 6 PM. Now signed retainers arrive Monday morning from calls that came in over the weekend.',
       metrics: [ ['+31%', 'signed retainers'], ['<1s', 'pickup time'], ['100%', 'calls logged'] ],
       horizon: 'MODELED OUTCOME — representative persona, not a client',

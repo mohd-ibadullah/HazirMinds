@@ -585,6 +585,14 @@ These are enforced, not aspirational.
 6. **Every capability carries a status.** Available, configured at onboarding, planned or custom —
    never left ambiguous.
 7. **No partner or backend disclosure.** The site presents one company and one platform.
+8. **No text, logos or numbers baked into a raster.** Anything readable in an image is invisible to a
+   screen reader, unsearchable, and unmaintainable — and the explainer bitmaps that shipped here also
+   carried a fabricated client's van livery, a fake person with a fake work email, and a stale date.
+   Explainer figures are now **markup** (`.flow-figure`) drawn from the same data as the copy beside
+   them, photographic panels carry no branding, and the two persona cards show a monogram instead of
+   a stock portrait implying a customer. `img/dashboard-mock.webp` and `img/office-dusk.webp` were
+   orphaned files still being uploaded — check for unreferenced images before every deploy, because
+   nothing in the build warns you.
 
 ---
 

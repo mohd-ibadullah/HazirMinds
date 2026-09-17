@@ -86,9 +86,17 @@ ${nav()}
         </div>`).join('')}
 
         <div class="svc-media">
-          <figure class="media-panel" data-reveal>
-            <img src="/img/founder-explainer.webp" alt="How HazirMinds works: capture, train, launch and compound — rendered explainer diagram" width="1600" height="1200" loading="lazy" decoding="async">
-            <figcaption>How a HazirMinds deployment works, end to end</figcaption>
+          <figure class="media-panel media-panel--paper" data-reveal>
+            <div class="flow-figure">
+              ${loop.map((s, i) => `
+              <div class="flow-step">
+                <span class="num">STEP ${s.n}</span>
+                <b>${s.name}</b>
+                <span>${['Every call, chat, text and form — captured in under a second.', 'Your services, pricing, tone and boundaries, approved by you before go-live.', 'Live on your number, supervised, with weekly tuning from real transcripts.', 'Monthly reviews add capability — the team improves every month it runs.'][i]}</span>
+              </div>`).join('')}
+              <span class="flow-loop">↻ the loop repeats — this is the Hazir Loop</span>
+            </div>
+            <figcaption>How a deployment works, end to end — drawn in markup, not a picture, so it stays sharp and screen-readable at any size</figcaption>
           </figure>
         </div>
 

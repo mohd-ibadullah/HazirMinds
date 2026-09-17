@@ -36,7 +36,7 @@ function caseStudies() {
       <div class="grid grid-3" data-reveal="children">
         ${site.personas.map(p => `
         <article class="card card--hover" style="display:flex;flex-direction:column;gap:16px">
-          <div class="cs-media"><img src="${p.img}" alt="Representative portrait — ${esc(p.trade)}" width="400" height="400" loading="lazy" decoding="async"></div>
+          <div class="cs-mark" aria-hidden="true"><span>${p.mark}</span></div>
           <span class="cs-caption">Representative result — composite persona, not a client</span>
           <div>
             <h3>${p.name}</h3>

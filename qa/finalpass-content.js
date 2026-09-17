@@ -54,6 +54,26 @@ for (const c of ['60-Day ROI Guarantee', 'HIPAA-eligible', 'BAAs signed', 'US ·
   t(!allText.includes(c), `REMOVED claim absent: "${c}"`);
 }
 
+/* ---- 6b. the machine-readable surface must not drift ----
+   llms.txt is not an index.html, so the walk above never read it — which is exactly how a
+   retired market claim survived there long after it was removed from every page. It is read
+   explicitly here, and both it and /ai are checked against the live article list rather than
+   trusted to stay in step by hand. */
+const llms = read('llms.txt');
+const ART = require('../src/data/articles');
+t(llms.length > 500, 'llms.txt is present and substantial');
+for (const bad of ['United Kingdom', 'Canada', 'US · UK']) {
+  t(!llms.includes(bad), `llms.txt carries no retired market claim "${bad}"`);
+  t(!(txt['/ai'] || '').includes(bad), `/ai carries no retired market claim "${bad}"`);
+}
+t(!/·\s*·/.test(llms), 'llms.txt has no empty field left between separators');
+t(!/·\s*·/.test(txt['/ai'] || ''), '/ai has no empty field left between separators (empty phone)');
+t(!/Demo line[^\n]*:\s*$/m.test(llms), 'llms.txt does not advertise an empty demo line');
+ART.forEach(a => {
+  t(llms.includes('/resources/' + a.slug), `llms.txt lists the article ${a.slug}`);
+  t((txt['/ai'] || '').includes(a.title.slice(0, 26)), `/ai lists the article "${a.title.slice(0, 26)}"`);
+});
+
 /* ---- 7. every stat carries a source label (claim ↔ source pairing) ---- */
 t(SJ.stats.every(s => s.source && s.source.length > 4), 'every homepage stat has a source string');
 SJ.stats.forEach(s => notes.push('INFO  stat "' + s.value + '" <- ' + s.source));

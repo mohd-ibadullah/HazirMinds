@@ -102,10 +102,15 @@ ${nav()}
           </ul>
         </div>
         <div data-reveal>
-          <figure class="media-panel" style="border-radius:var(--r-panel);overflow:hidden;border:1px solid rgba(250,247,242,.12)">
-            <img src="/img/guide-explainer.webp" alt="Enterprise deployment guide explainer: assessment, architecture, pilot, scale" width="1600" height="1000" loading="lazy" decoding="async" style="aspect-ratio:720/450">
+          <figure class="media-panel" style="border-radius:var(--r-panel);overflow:hidden;border:1px solid rgba(250,247,242,.12);background:rgba(250,247,242,.04)">
+            <div class="flow-figure flow-figure--dark">
+              <div class="flow-step"><span class="num">PHASE 1</span><b>Readiness audit</b><span>What you have, what is missing, and what each gap costs you.</span></div>
+              <div class="flow-step"><span class="num">PHASE 2</span><b>Architecture</b><span>Permission scopes, approval gates and data boundaries — in writing.</span></div>
+              <div class="flow-step"><span class="num">PHASE 3</span><b>Pilot</b><span>One team, one workflow, measured against acceptance criteria you sign.</span></div>
+              <div class="flow-step"><span class="num">PHASE 4</span><b>Scale</b><span>Widen scope only after the pilot's criteria are met and signed off.</span></div>
+            </div>
           </figure>
-          <figcaption class="stat-note" style="margin-top:10px;color:rgba(250,247,242,.72)">From readiness audit to scaled rollout in four phases</figcaption>
+          <figcaption class="stat-note" style="margin-top:10px;color:rgba(250,247,242,.72)">From readiness audit to scaled rollout in four phases — drawn in markup, not a picture</figcaption>
         </div>
       </div>
       <div style="margin-top:72px">

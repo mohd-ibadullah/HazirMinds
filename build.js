@@ -9,6 +9,10 @@ const site = require('./src/data/site');
 const SJ = require('./src/data/site.json');
 const T = SJ.tiers;
 const addon = id => SJ.addons.find(a => a.id === id).price;
+/* The reading list feeds llms.txt and /ai, so those two can never drift from the pages they
+   describe. Both previously carried a hand-copied summary that went stale. */
+const ARTICLES = require('./src/data/articles');
+const L = require('./src/lib');
 
 /* ---------- pages ---------- */
 const home = require('./src/pages/home');
@@ -147,18 +151,27 @@ Details: ${site.url}/pricing
 ${SJ.competitors.filter(c => c.slug).map(c => `- vs ${c.name}: ${c.model} — ${c.entry} vs our done-for-you governed firm from $${T.chronos.monthly}/mo flat. ${site.url}/compare/${c.slug}`).join('\n')}
 - Compare hub: ${site.url}/compare
 
+## Resource articles
+${ARTICLES.map(a => `- ${a.title} (${a.cat}, ${a.read}): ${site.url}/resources/${a.slug}`).join('\n')}
+- Index: ${site.url}/resources
+
 ## Contact
 - Email: ${site.email}
-- Demo line (call the AI): ${site.phone}
-- Website: ${site.url}
-- Markets: United States, United Kingdom, Canada. Prices in USD.
+${site.phone ? `- Demo line (call the AI): ${site.phone}\n` : ''}- Website: ${site.url}
+- Market: United States. Prices in USD.
 `);
 
 /* ---------- /ai/ summary page ---------- */
 write('ai/index.html', `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>HazirMinds — AI Summary</title><meta name="description" content="Machine-readable summary of HazirMinds: governed done-for-you AI teams for US businesses — services, published pricing, and how outcomes are proven."><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/main.css?v=${require('./src/lib').ASSET_VER}"></head>
-<body><a class="skip-link" href="#main">Skip to content</a><main class="container section" id="main" style="max-width:840px">
-<h1>HazirMinds — concise summary</h1>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HazirMinds — AI Summary</title><meta name="description" content="Machine-readable summary of HazirMinds: governed done-for-you AI teams for US businesses — services, published pricing, and how outcomes are proven."><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/main.css?v=${L.ASSET_VER}"></head>
+<body><a class="skip-link" href="#main">Skip to content</a>${L.roiBar()}${L.nav()}
+<main id="main">
+<section class="hero-sub-plain section--paper" style="padding-bottom:0"><div class="container">
+<span class="eyebrow">Machine-readable summary</span>
+<h1 style="max-width:20ch;margin-top:12px;font-size:clamp(26px,3.6vw,42px)">HazirMinds — concise summary</h1>
+<p class="lede" style="max-width:58ch;margin-top:18px">A plain summary of what HazirMinds is, what it costs and how outcomes are proven — written so an answer engine can quote it accurately, and readable if a person opens it.</p>
+</div></section>
+<section class="section" style="padding-top:34px"><div class="container"><article class="article-body" style="max-width:74ch">
 <p>HazirMinds is a governed, done-for-you AI firm for small and mid-sized businesses in the United States. Its AI teams answer every inbound call in under one second, 24/7, book appointments into the customer's calendar, write to their CRM, and text confirmations — inside a governance layer: bounded authority ("ability is not authority"), hallucination control with source receipts, and labeled proof horizons on every public claim. Deployment is done-for-you and typically live in 7–14 days. All services run on the HazirMinds Operating Substrate — isolated client environments, dedicated numbers, go-live acceptance criteria.</p>
 <h2>Pricing (USD)</h2>
 <ul>
@@ -172,12 +185,20 @@ write('ai/index.html', `<!doctype html>
 <ul>
 ${SJ.competitors.filter(c => c.slug).map(c => `<li><b>vs ${c.name}:</b> ${c.model} (${c.entry}) vs done-for-you governed firm from $${T.chronos.monthly}/mo flat.</li>`).join('\n')}
 </ul>
+<h2>Resource articles</h2>
+<ul>
+${ARTICLES.map(a => `<li><b>${a.title}</b> — ${a.cat}, ${a.read} — <a href="/resources/${a.slug}">${site.url}/resources/${a.slug}</a></li>`).join('\n')}
+</ul>
+<p>All six live at <a href="/resources">${site.url}/resources</a>, alongside the Governance Report Card and the revenue-leak calculator.</p>
 <h2>How outcomes are proven</h2>
 <p>Every deployment is measured against acceptance criteria the client signs before go-live, and reported in writing. Plans are month-to-month after the first 60 days. The full usage rate card is published before go-live — no unpublished meters.</p>
 <h2>Contact</h2>
-<p>${site.email} · ${site.phone} · ${site.url}</p>
-<p><a href="/">← Back to hazirminds.ai</a></p>
-</main></body></html>`);
+<p>${site.email}${site.phone ? ' · ' + site.phone : ''} · ${site.url}</p>
+<p>Market: United States. Prices in USD.</p>
+</article></div></section>
+</main>
+${L.footer()}
+${L.chromeEnd()}`);
 
 /* ---------- F4 gate: no price literals outside site.json ---------- */
 const literalFiles = ['src/pages/home.js', 'src/pages/pricing.js', 'src/pages/services.js', 'src/pages/misc.js', 'src/pages/listings.js', 'src/pages/enterprise.js', 'src/pages/chief-of-staff.js', 'src/pages/compare.js', 'src/lib.js', 'src/data/pricing.js', 'src/data/compare.js', 'src/data/services.js', 'src/data/industries.js', 'src/data/usecases.js', 'src/data/site.js'];
