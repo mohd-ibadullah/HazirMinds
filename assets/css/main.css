@@ -130,7 +130,10 @@ h3{font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.015em}
 .pill{
   display:inline-flex;align-items:center;gap:7px;padding:7px 15px;border-radius:var(--r-pill);
   border:1px solid var(--hairline);background:var(--card);font-size:13.5px;font-weight:500;line-height:1.2;
-  white-space:nowrap;
+  /* Badge text is dynamic and sometimes long ("72-hour incident notice (our commitment)"). With
+     nowrap it sized to max-content and pushed the document sideways at 320px — the WCAG 1.4.10
+     reflow width — on /enterprise, /services and /masjids. Let it wrap and never exceed its box. */
+  white-space:normal;max-width:100%;
 }
 .pill--brass{border-color:rgba(185,138,46,.45);background:rgba(185,138,46,.08);color:var(--brass-text)}
 .pill--ok{border-color:rgba(62,124,79,.35);background:rgba(62,124,79,.08);color:var(--ok-text)}
@@ -521,7 +524,10 @@ table.compare tfoot td{background:var(--paper)}
   .masjid-secure .ms-head{grid-template-columns:1fr;gap:16px}
 }
 @media (max-width:1024px){.masjid-lifecycle{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:640px){.masjid-lifecycle{grid-template-columns:1fr}.masjid-channels .mc-fan{grid-template-columns:repeat(2,auto)}}
+@media (max-width:640px){.masjid-lifecycle{grid-template-columns:1fr}.masjid-channels .mc-fan{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* A nowrap pill inside an `auto` grid column sizes to max-content and pushes the page sideways
+   at 320px (WCAG 1.4.10 reflow). Let the label wrap, and let the columns share the width. */
+.masjid-channels .mc-fan .pill{white-space:normal;max-width:100%}
 .checks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
 .checks li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.6;color:rgba(25,22,19,.8)}
 .checks svg{width:17px;height:17px;color:var(--ok);flex:none;margin-top:3px}
@@ -705,7 +711,12 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 .switch[aria-checked="true"]::after{transform:translateX(24px)}
 .save-pill{font-size:12px}
 .price-table-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-panel);box-shadow:var(--shadow-1)}
-.price-table-wrap table{width:100%;border-collapse:collapse;min-width:760px}
+.price-table-wrap table{width:100%;border-collapse:collapse;min-width:1000px}
+/* "Choose Hazir Pro" needs 175px but the column gave its cell 201px, leaving the button 161px —
+   14px short, and .btn clips silently (no ellipsis), so at 200% zoom the CTA read "Choose Hazir
+   Pr". 225px leaves the button 185px: the label, the arrow and 10px of slack. The wrapper scrolls
+   when the table then exceeds the viewport, which is the intended behaviour for this table. */
+.price-table-wrap th:not(:first-child),.price-table-wrap td:not(:first-child){min-width:225px}
 .price-table-wrap th,.price-table-wrap td{padding:15px 20px;text-align:center;border-bottom:1px solid var(--hairline);font-size:14.5px}
 .price-table-wrap th:first-child,.price-table-wrap td:first-child{text-align:left;font-weight:600}
 .price-table-wrap thead th{font-family:var(--font-display);font-size:15px;background:var(--paper)}
@@ -774,6 +785,10 @@ html.no-motion .hero h1 .line>span{transform:none!important}
   transition:border-color .2s,box-shadow .2s;width:100%;
 }
 .form-field input:focus,.form-field select:focus,.form-field textarea:focus{outline:none;border-color:var(--rust-text);box-shadow:0 0 0 3px rgba(198,65,16,.12)}
+/* The rule above clears the outline and leaves a 12%-alpha ring, which is fine as a hover-ish
+   cue but too faint to serve as the keyboard focus indicator (WCAG 2.4.7 / 2.4.11). Keyboard
+   users get the real ring back; pointer users keep the subtle one. */
+.form-field input:focus-visible,.form-field select:focus-visible,.form-field textarea:focus-visible{outline:2px solid var(--rust);outline-offset:2px;box-shadow:0 0 0 3px rgba(198,65,16,.18)}
 .form-field .err{font-size:12.5px;color:var(--rust-text);display:none}
 .form-field.invalid input,.form-field.invalid select,.form-field.invalid textarea{border-color:var(--rust-text)}
 .form-field.invalid .err{display:block}
@@ -1069,6 +1084,9 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 .article-body .note p{margin:0 0 8px}
 .article-body .note p:last-child{margin:0}
 .article-body .src{font-size:12.5px;color:var(--muted);font-family:var(--font-mono);letter-spacing:.02em}
+/* A raw URL in prose has no spaces to break at, so a long one pushed /ai 44px sideways at
+   320px. anywhere lets it break mid-token instead of overflowing. */
+.article-body a{overflow-wrap:anywhere}
 /* A three-column comparison table cannot fit a phone without becoming unreadable. The table
    scrolls inside this wrapper instead of pushing the whole page sideways. */
 .table-scroll{overflow-x:auto;max-width:100%}

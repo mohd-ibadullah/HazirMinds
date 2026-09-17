@@ -546,9 +546,11 @@ preview server.
 npm run serve &            # http://localhost:4173
 
 npm run qa                 # DoD: 49 assertion checks over the built output
-npm run qa:e2e             # 38 routes × 3 widths = 114 loads: console errors, overflow, images
+npm run qa:e2e             # 44 routes × 3 widths = 132 loads: console errors, overflow, images
 npm run qa:contrast        # WCAG contrast on every text node of every route
-npm run qa:axe             # axe-core accessibility sweep, 17 rules across 17 pages
+npm run qa:axe             # axe-core accessibility sweep across 23 pages
+npm run qa:a11y            # keyboard, focus visibility, reflow@320, 200% zoom
+npm run qa:crossbrowser    # WebKit (Safari) and Firefox, not just Chromium
 npm run qa:cls             # cumulative layout shift, 16 routes × 4 widths
 npm run qa:structure       # links, anchors, duplicate IDs, image dims/alt, headings, meta
 npm run qa:content         # prices vs the single source, arithmetic, removed-claim sweep
@@ -557,15 +559,33 @@ npm run qa:content         # prices vs the single source, arithmetic, removed-cl
 A few gates worth knowing about, because they encode decisions rather than mechanics:
 
 - **`qa/finalpass-content.js`** re-derives tier prices and the annual discount arithmetic from
-  `src/data/site.json` and fails if a rendered page disagrees.
+  `src/data/site.json`, and reads `llms.txt` explicitly — a retired market claim survived one whole
+  sweep by hiding in that file while the walker only ever opened `index.html`.
 - **`qa/dod.js`** asserts the *absence* of retired claims (a compliance term the contract does not
   support, a refund guarantee that is no longer offered) — so the gate protects the current
   decision instead of the old one.
 - **`qa/finalpass-struct.js`** walks all 43 pages for dead links, dead anchors, duplicate IDs,
   images without dimensions or alt text, heading-order breaks and duplicate meta.
+- **`qa/a11y.mjs`** covers what axe cannot: it tabs through each page, proves every focusable has a
+  *visible* focus change (a rule that clears the outline and substitutes a 12%-alpha ring passes
+  axe and fails a keyboard user), then re-lays-out the page at 320px — the WCAG 1.4.10 reflow width
+  — and at 720px, which is 200% zoom on a 1440px window. Safari's default keyboard behaviour does
+  not Tab to links, so the skip-link check asserts the link becomes visible when focused rather
+  than assuming a Chromium tab order.
+- **`qa/crossbrowser.mjs`** runs the same checks as `qa/e2e.js` on WebKit and Firefox. Every engine
+  spells a cancelled request differently and every one of them is the same harness artifact, so
+  cancellations are ignored outright rather than pattern-matched.
 
-Latest full run: **DoD 49/49 · E2E clean (P0/P1/P2 = 0) · contrast 0 failures · axe 0 violations
-across 17 pages · worst CLS 0.013 · structure 0 issues · content 50/50.**
+Latest full run: **DoD 49/49 · E2E clean 132 loads · contrast 0 failures · axe 0 violations across
+23 pages · a11y clean across 43 routes · WebKit clean 132 loads · Firefox clean 132 loads ·
+structure 0 issues · content 0 failures / 70 guards.**
+
+Two things the cross-browser pass settled:
+
+- **Cross-document view transitions are Chromium and WebKit only.** Firefox has no support, so
+  navigation there stays an instant swap — a deliberate degradation, not a bug. The capability is
+  tested, not assumed: an earlier probe used `CSS.supports('contain','paint')` as a fallback and
+  therefore reported "supported" everywhere, including Firefox.
 
 ---
 
