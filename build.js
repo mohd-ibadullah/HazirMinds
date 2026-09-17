@@ -64,10 +64,15 @@ copyDir(path.join(ROOT, 'assets'), path.join(DIST, 'assets'));
    host needs at the document root has to live inside dist/ — not at the repo root. */
 write('.htaccess', fs.readFileSync(path.join(ROOT, 'deploy', 'htaccess.conf'), 'utf8'));
 
-const API_DIR = path.join(DIST, 'api');
-fs.mkdirSync(API_DIR, { recursive: true });
-for (const f of ['lead.php', 'config.sample.php', '.htaccess']) {
-  fs.copyFileSync(path.join(ROOT, 'api', f), path.join(API_DIR, f));
+/* The PHP endpoint exists only for cPanel-style hosting. Vercel runs api/lead.js as a
+   serverless function and rejects a build in which two files claim the same route, so on
+   Vercel the PHP copies are skipped and only the function is deployed. */
+if (!process.env.VERCEL) {
+  const API_DIR = path.join(DIST, 'api');
+  fs.mkdirSync(API_DIR, { recursive: true });
+  for (const f of ['lead.php', 'config.sample.php', '.htaccess']) {
+    fs.copyFileSync(path.join(ROOT, 'api', f), path.join(API_DIR, f));
+  }
 }
 /* api/config.php and api/leads.log are per-deployment and gitignored — never copied from the
    repo. Copying them here would overwrite a live configuration on rebuild. */

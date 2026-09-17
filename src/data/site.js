@@ -8,7 +8,7 @@ module.exports = {
      (verified: connection fails), so every og:image pointed at a dead host and every shared
      link resolved to a broken preview. The custom domain is now live, so ogBase === site.url. */
   ogBase: 'https://hazirminds.ai',
-  leadEndpoint: '/api/lead.php',
+  leadEndpoint: '/api/lead',
   email: 'hello@hazirminds.ai',
   /* Empty until a real, working number exists. The site previously carried "+1 (888) 555-0142";
      the 555-01xx range is reserved for fiction, so it could never connect. Set this to a real

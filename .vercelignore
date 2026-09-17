@@ -7,3 +7,10 @@ ui-evidence/
 package-lock.json
 *.log
 *.bak
+
+# Vercel cannot run PHP, and api/lead.js claims the same route as api/lead.php — leaving both
+# in the build fails the deployment with a conflicting-paths error. These ship only to
+# cPanel-style hosting (see build.js).
+api/lead.php
+api/config.sample.php
+api/.htaccess
