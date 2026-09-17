@@ -1047,10 +1047,8 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 }
 
 /* ---------- view transitions (progressive) ---------- */
-::view-transition-old(root){animation:vtFade .18s ease both}
-::view-transition-new(root){animation:vtIn .22s ease both}
-@keyframes vtFade{to{opacity:0}}
-@keyframes vtIn{from{opacity:0}to{opacity:1}}
+/* The animation itself lives at the end of this file, next to @view-transition — the old
+   vtFade/vtIn pair here was dead weight and was overridden by the later rule. */
 
 .micro b{color:var(--ok-text)}
 
@@ -1099,12 +1097,24 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 /* sticky two-column (enterprise invariants, masjid modules, pricing explainer) */
 .sticky-rail{position:sticky;top:88px;align-self:start}
 @media (max-width:1024px){.sticky-rail{position:static}}
-/* (k) route fade 120ms for browsers without View Transitions */
+/* ---------- page transitions (cross-document View Transitions) ----------
+   This is a static site, so every link is a real document navigation — the API that fires is the
+   cross-document one. @view-transition turns it on and the old/new pseudo-elements carry the
+   animation. The previous 120ms read as "instant"; this is long enough to see and short enough
+   not to delay the page. Firefox does not support it yet and navigates exactly as before. */
 @view-transition{navigation:auto}
-::view-transition-old(root){animation:vt-out .12s cubic-bezier(.22,1,.36,1) both}
-::view-transition-new(root){animation:vt-in .12s cubic-bezier(.22,1,.36,1) both}
-@keyframes vt-out{to{opacity:0}}
-@keyframes vt-in{from{opacity:0}}
+/* Header and footer hold their place across the change instead of dissolving along with the
+   content. That continuity is what makes a navigation feel like one site rather than two
+   documents loading in sequence. */
+.nav-wrap{view-transition-name:site-header}
+.footer{view-transition-name:site-footer}
+::view-transition-old(root){animation:vt-out .2s cubic-bezier(.4,0,.9,.4) both}
+::view-transition-new(root){animation:vt-in .34s cubic-bezier(.22,1,.36,1) both}
+::view-transition-old(site-header),::view-transition-new(site-header),
+::view-transition-old(site-footer),::view-transition-new(site-footer){animation:vt-hold .3s linear both}
+@keyframes vt-out{to{opacity:0;transform:translateY(-8px)}}
+@keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
+@keyframes vt-hold{from{opacity:1}to{opacity:1}}
 /* (r) chip pop 1.04 */
 .pill{transition:transform .18s cubic-bezier(.22,1,.36,1),border-color .2s,color .2s}
 .chip-row .pill:hover,.hero-chips .pill:hover,.trade-chip:hover{transform:scale(1.04)}

@@ -292,7 +292,25 @@ Tokens live at the top of `assets/css/main.css`.
 weights actually used above the fold.
 
 **Motion.** GSAP + ScrollTrigger + Lenis, all self-hosted. Reveals are opacity and translate only;
-no layout-affecting animation. Everything respects `prefers-reduced-motion`.
+no layout-affecting animation.
+
+**Motion runs for every visitor.** The site deliberately does not read
+`prefers-reduced-motion` and carries no motion switch, so there is no reduced-motion branch in
+either the CSS or `assets/js/main.js` — this is a product decision, and both QA suites assert the
+absence of those branches so they cannot creep back in. Content visibility is guaranteed
+separately, by the self-heal fail-safe: nothing stays hidden if the motion engines fail to load.
+
+**Page transitions.** Navigation between pages is a real document load, so the site uses the
+**cross-document View Transitions API**: `@view-transition { navigation: auto }` opts in, and
+`::view-transition-old/new(root)` carry a 200ms fade-out and a 340ms rise. The header and footer
+are given `view-transition-name` so they hold their place instead of dissolving with the content —
+that continuity is what makes the change feel like one site rather than two documents loading in
+sequence. Browsers without support (Firefox today, as well as anything older) ignore the at-rule
+and navigate exactly as before; nothing breaks.
+
+The measurements that matter when touching this: the header's `view-transition-name` must not
+disturb the sticky bar or the mega menu, and it does not — `contain` stays `none` and the mega
+panel's geometry at 1440/1024/390 is byte-identical with the name present and forced to `none`.
 
 ---
 
