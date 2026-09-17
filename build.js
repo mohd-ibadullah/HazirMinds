@@ -20,6 +20,7 @@ const listings = require('./src/pages/listings'); // industries + use-cases
 const cosPage = require('./src/pages/chief-of-staff'); // /chief-of-staff flagship
 const compare = require('./src/pages/compare');  // /compare hub + 5 competitor pages
 const masjids = require('./src/pages/masjids');  // /masjids flagship (Masjid AI OS)
+const articles = require('./src/pages/articles'); // /resources/<slug> reading list
 
 const pages = [
   { file: 'index.html', html: home.html },
@@ -27,6 +28,7 @@ const pages = [
   { file: 'pricing/index.html', html: pricing.html },
   { file: 'enterprise/index.html', html: enterprise.html },
   ...misc.pages,
+  ...articles.pages,
   ...listings.pages,
   { file: 'chief-of-staff/index.html', html: cosPage.html },
   { file: 'masjids/index.html', html: masjids.html },

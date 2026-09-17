@@ -1054,6 +1054,23 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 
 .micro b{color:var(--ok-text)}
 
+/* ---------- resource article body (/resources/<slug>) ---------- */
+.article-body{font-size:16.5px;line-height:1.72;color:rgba(25,22,19,.86)}
+.article-body h2{font-size:clamp(21px,2.3vw,28px);margin:40px 0 12px;letter-spacing:-.015em;color:var(--ink)}
+.article-body h3{font-size:18px;margin:26px 0 8px;color:var(--ink)}
+.article-body p{margin:0 0 16px}
+.article-body ul,.article-body ol{margin:0 0 18px;padding-left:22px;display:flex;flex-direction:column;gap:8px}
+.article-body li{line-height:1.66}
+.article-body strong{color:var(--ink)}
+.article-body table{margin:24px 0}
+.article-body .note{background:var(--paper);border:1px solid var(--hairline);border-radius:14px;padding:16px 18px;font-size:14.5px;color:var(--muted);margin:22px 0}
+.article-body .note p{margin:0 0 8px}
+.article-body .note p:last-child{margin:0}
+.article-body .src{font-size:12.5px;color:var(--muted);font-family:var(--font-mono);letter-spacing:.02em}
+/* A three-column comparison table cannot fit a phone without becoming unreadable. The table
+   scrolls inside this wrapper instead of pushing the whole page sideways. */
+.table-scroll{overflow-x:auto;max-width:100%}
+
 /* ---------- metric-adjusted fallbacks (§0.6/§7: no font-swap reflow) ---------- */
 @font-face{font-family:"Inter Fallback";src:local("Arial"),local("Helvetica");size-adjust:107%;ascent-override:90%;descent-override:22%;line-gap-override:0%}
 @font-face{font-family:"Jakarta Fallback";src:local("Arial"),local("Helvetica");size-adjust:104%;ascent-override:96%;descent-override:24%;line-gap-override:0%}

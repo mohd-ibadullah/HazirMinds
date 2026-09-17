@@ -7,7 +7,7 @@
 The production website for HazirMinds — a governed, done-for-you AI operations firm
 serving US businesses, with a dedicated operating system for masjids and Islamic centers.
 
-[**hazirminds.ai**](https://hazirminds.ai) · 37 pages · zero build dependencies · zero external runtime requests
+[**hazirminds.ai**](https://hazirminds.ai) · 43 pages · zero build dependencies · zero external runtime requests
 
 </div>
 
@@ -55,11 +55,11 @@ and animation libraries.
 | | |
 |---|---|
 | **Live** | https://hazirminds.ai |
-| **Hosting** | SpaceShip shared hosting (cPanel / Apache) |
-| **Pages** | 37 |
+| **Hosting** | Vercel (Git-connected — pushing to `main` deploys) |
+| **Pages** | 43 |
 | **Build output** | `dist/` — 6.3 MB total, of which ~4 MB is photography |
 | **Runtime dependencies** | none — no CDN, no analytics script, no third-party request |
-| **Form backend** | `api/lead.php` (PHP, ships with the site) |
+| **Form backend** | `api/lead.js` (Vercel function) → Resend, with `api/lead.php` for cPanel-style hosting |
 | **Node required for build** | yes, locally only |
 
 ---
@@ -106,7 +106,8 @@ and a human-and-machine readable `/ai/` summary — see [SEO and AI discoverabil
 │   │   ├── pricing.js       plan feature matrix + pricing FAQs
 │   │   ├── compare.js       comparison doctrine, invariants, governance copy
 │   │   ├── industries.js    the 8 verticals
-│   │   └── usecases.js      the 9 use-case pages
+│   │   ├── usecases.js      the 9 use-case pages
+│   │   └── articles.js      the /resources/<slug> article bodies (figures bound to site.json)
 │   └── pages/
 │       ├── home.js          /
 │       ├── services.js      /services
@@ -116,6 +117,7 @@ and a human-and-machine readable `/ai/` summary — see [SEO and AI discoverabil
 │       ├── enterprise.js    /enterprise
 │       ├── compare.js       /compare + 5 competitor pages + /compare/masjid-platforms
 │       ├── listings.js      /industries/* and /use-cases/*
+│       ├── articles.js      /resources/<slug> — renders the six playbooks
 │       └── misc.js          /about /demo /resources /case-studies /privacy /terms
 │
 ├── assets/
@@ -332,16 +334,43 @@ immediately.
 
 ---
 
-## Deploying to SpaceShip (cPanel)
+## Deploying
+
+Two supported routes. **Vercel is what the live site uses**; the cPanel route below is kept
+because the site is plain HTML and a shared host works equally well if you ever prefer one.
+
+### Vercel — the live route
+
+The project is connected to `github.com/mohd-ibadullah/HazirMinds`, so deployment is a push:
+
+```bash
+git push            # Vercel builds and deploys main automatically
+```
+
+Vercel runs `node build.js` (set in `vercel.json`), serves `dist/`, and mounts `api/lead.js` as a
+serverless function. Nothing else is required — no CLI, no upload step.
+
+**Notes that matter:**
+
+- `.vercelignore` excludes the PHP endpoint. Vercel cannot run PHP, and shipping both would fail
+  the build with a conflicting-paths error, because `api/lead.php` and `api/lead.js` claim the
+  same route. `build.js` checks for `process.env.VERCEL` and skips copying the PHP for the same
+  reason.
+- Only the build output is public. `src/`, `qa/`, `deploy/`, `build.js` and the repo files return
+  404 on the live domain — verified, not assumed.
+- Custom domain `hazirminds.ai` plus `www.hazirminds.ai` (308 → apex) live in the project's
+  Domains tab, with certificates issued and renewed automatically.
+
+### SpaceShip / cPanel — the file-upload route
 
 The site is plain HTML, so deployment is a file upload — no Node, no build step, no pipeline.
 
-### One-time: confirm your document root
+#### One-time: confirm your document root
 
 In cPanel, the domain's document root is normally `public_html`. If you added `hazirminds.ai` as
 an addon or primary domain, confirm the path under **Domains** before uploading.
 
-### Option 1 — File Manager (no tools needed)
+#### Option 1 — File Manager (no tools needed)
 
 1. `node build.js` locally.
 2. Zip the **contents** of `dist/` (not the folder itself — you want `index.html` at the top level
@@ -478,7 +507,7 @@ From line fails SPF/DKIM alignment and gets foldered as spam. If you route throu
 
 | Artifact | Purpose |
 |---|---|
-| `sitemap.xml` | all 37 routes, slashless, matching every canonical tag |
+| `sitemap.xml` | all 43 routes, slashless, matching every canonical tag |
 | `robots.txt` | crawl rules + sitemap pointer |
 | `llms.txt` | a concise, structured summary for AI answer engines — services, pricing, positioning |
 | `/ai/` | a machine-readable summary page (`noindex`, for retrieval rather than ranking) |
@@ -514,7 +543,7 @@ A few gates worth knowing about, because they encode decisions rather than mecha
 - **`qa/dod.js`** asserts the *absence* of retired claims (a compliance term the contract does not
   support, a refund guarantee that is no longer offered) — so the gate protects the current
   decision instead of the old one.
-- **`qa/finalpass-struct.js`** walks all 37 pages for dead links, dead anchors, duplicate IDs,
+- **`qa/finalpass-struct.js`** walks all 43 pages for dead links, dead anchors, duplicate IDs,
   images without dimensions or alt text, heading-order breaks and duplicate meta.
 
 Latest full run: **DoD 49/49 · E2E clean (P0/P1/P2 = 0) · contrast 0 failures · axe 0 violations

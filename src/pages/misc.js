@@ -240,14 +240,7 @@ function about() {
 /* ---------------- resources ---------------- */
 function resources() {
   const bc = L.breadcrumbs([['Home', '/'], ['Resources', '/resources']]);
-  const articles = [
-    ['The true cost of a missed call, by industry', 'Pricing', '6 min'],
-    ['Speed-to-lead: the 60-second rule that triples contact rates', 'Playbook', '8 min'],
-    ['AI receptionist vs human receptionist: an honest ledger', 'Comparison', '7 min'],
-    ['Consent, disclosure and call recording: what the rules actually require', 'Compliance', '5 min'],
-    ['Database reactivation: found money in your CRM', 'Playbook', '4 min'],
-    ['From voicemail to booked job in 5 seconds', 'Tactics', '3 min']
-  ];
+  const articles = require('../data/articles').map(a => [a.title, a.cat, a.read, a.slug]);
   const main = `
   <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container">
@@ -361,13 +354,13 @@ function resources() {
       </div>
       <div class="grid grid-3" data-reveal="children">
         ${articles.map(a => `
-        <div class="card" style="display:flex;flex-direction:column;gap:10px">
+        <a class="card" href="/resources/${a[3]}" style="display:flex;flex-direction:column;gap:10px;text-decoration:none">
           <span class="num">${a[1]} · ${a[2]}</span>
           <h3 style="font-size:18px">${a[0]}</h3>
-          <span class="form-note" style="margin-top:auto">Not published yet</span>
-        </div>`).join('')}
+          <span class="link-arrow" style="margin-top:auto">Read it</span>
+        </a>`).join('')}
       </div>
-      <p class="center form-note" style="margin-top:18px">Full articles ship with the content engine — subscribe via the demo form to get them first.</p>
+      <p class="center form-note" style="margin-top:18px">Every figure in these articles is either your own arithmetic or a named source with its date — see the <a href="/resources/missed-call-cost">first one</a> for how that works.</p>
     </div>
   </section>
   <section class="section">

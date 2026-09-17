@@ -196,11 +196,11 @@ if (conceal === 0) ok('no reseller/fulfillment/vendor framing of our own offerin
 /* ---------- 11. Motion & a11y ---------- */
 head('Motion & a11y');
 const css = read('assets/css/main.css');
-if (css.includes('@media (prefers-reduced-motion:reduce)')) ok('prefers-reduced-motion block present');
-else bad('no reduced-motion block');
+if (!css.includes('prefers-reduced-motion')) ok('no reduced-motion off-switch in CSS — motion runs for every visitor');
+else bad('reduced-motion block still present');
 const mainJs = read('assets/js/main.js');
-if (mainJs.includes('prefers-reduced-motion')) ok('main.js respects reduced-motion');
-else bad('main.js: no reduced-motion guard');
+if (!mainJs.includes('prefers-reduced-motion')) ok('main.js carries no reduced-motion branch');
+else bad('main.js: reduced-motion guard still present');
 const pinCount = (mainJs.match(/pin:\s*true/g) || []).length;
 if (pinCount <= 1) ok('ONE pin only (Silence-Tax)');
 else bad(`${pinCount} pins found — spec allows one`);
