@@ -520,7 +520,6 @@ table.compare tfoot td{background:var(--paper)}
   .masjid-secure{padding:26px 20px}
   .masjid-secure .ms-head{grid-template-columns:1fr;gap:16px}
 }
-@media (prefers-reduced-motion:reduce){.ms-pillar{transition:none}.ms-pillar:hover{transform:none}}
 @media (max-width:1024px){.masjid-lifecycle{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){.masjid-lifecycle{grid-template-columns:1fr}.masjid-channels .mc-fan{grid-template-columns:repeat(2,auto)}}
 .checks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:11px}
@@ -1048,24 +1047,10 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 }
 
 /* ---------- view transitions (progressive) ---------- */
-@media (prefers-reduced-motion: no-preference){
-  ::view-transition-old(root){animation:vtFade .18s ease both}
-  ::view-transition-new(root){animation:vtIn .22s ease both}
-}
+::view-transition-old(root){animation:vtFade .18s ease both}
+::view-transition-new(root){animation:vtIn .22s ease both}
 @keyframes vtFade{to{opacity:0}}
 @keyframes vtIn{from{opacity:0}to{opacity:1}}
-
-/* ---------- reduced motion: everything off, content visible ---------- */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.001s!important;scroll-behavior:auto!important}
-  [data-reveal],[data-reveal="children"]>*{opacity:1!important;transform:none!important}
-  .bubble{opacity:1;transform:none}
-  .marquee-track{animation:none!important;flex-wrap:wrap;width:auto}
-  .cursor-glow{display:none}
-  .cos-svg .edge{animation:none}
-  .kenburns img,.kenburns-slow img{animation:none}
-  .sticky-cta{transition:none}
-}
 
 .micro b{color:var(--ok-text)}
 
@@ -1106,10 +1091,6 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 /* (r) chip pop 1.04 */
 .pill{transition:transform .18s cubic-bezier(.22,1,.36,1),border-color .2s,color .2s}
 .chip-row .pill:hover,.hero-chips .pill:hover,.trade-chip:hover{transform:scale(1.04)}
-@media (prefers-reduced-motion: reduce){
-  .masjid-channels .mc-core,.masjid-channels .mc-fan .pill{animation-duration:.001s!important;animation-iteration-count:1!important}
-  ::view-transition-old(root),::view-transition-new(root){animation:none!important}
-}
 
 /* ============================================================
    ROYAL CHROME — overlays & utility states (§1 inventory)
@@ -1194,9 +1175,3 @@ body.consent-open .asst-btn,body.consent-open .to-top{opacity:0;pointer-events:n
 @keyframes toast-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes toast-out{to{opacity:0;transform:translateY(8px)}}
 @media (max-width:640px){.toast-host{right:12px;left:12px;bottom:160px;justify-items:stretch}.toast{max-width:none}}
-
-@media (prefers-reduced-motion: reduce){
-  .asst-btn .dot{animation:none}
-  .skel::after{animation:none;transform:none;background:rgba(255,253,249,.5)}
-  .to-top,.toast,.asst-panel.open{transition:none;animation:none}
-}

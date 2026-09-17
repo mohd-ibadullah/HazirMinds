@@ -31,7 +31,7 @@ check('force-show backstops (no-motion / print / reveal-force)',
   /html\.no-motion[^{]*\{[^}]*opacity:1!important/.test(css) && /@media print\{[\s\S]{0,240}opacity:1!important/.test(css) && /\.reveal-force\{[^}]*opacity:1!important/.test(css), '');
 check('no reveal group hides itself (children-groups delegate)', !/html\.motion-ready \[data-reveal\]\{/.test(css), '');
 check('print fallback forces visibility', /@media print/.test(css) && /\.reveal[^{]*\{[^}]*opacity:1!important/.test(css), '');
-check('reduced-motion off-switch present', /prefers-reduced-motion/.test(css), '');
+check('motion runs for every visitor — no reduced-motion off-switch', !/prefers-reduced-motion/.test(css), '');
 check('motion toggle removed — motion is on by default', !all.some(a => a.h.includes('data-motion-toggle')), '');
 
 /* 3 site.json single source */

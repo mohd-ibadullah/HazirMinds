@@ -1,32 +1,19 @@
 /* ============================================================
    HAZIRMINDS — motion + interactions
    Lenis (lerp .1) · GSAP + ScrollTrigger · transform/opacity only
-   prefers-reduced-motion → all motion off, content visible
+   motion runs for every visitor — no reduced-motion branch, no site switch
    ============================================================ */
 (function () {
   'use strict';
   var docEl = document.documentElement;
   docEl.classList.add('js');
 
-  /* reduced-motion is a LIVE media query (a one-time read misses OS toggles) */
-  var MQ_REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var REDUCE = MQ_REDUCE.matches;
-  /* Motion is on by default. The only thing that turns it off is the reader's own operating
-     system asking for reduced motion — there is no site-level switch. */
-  if (REDUCE) docEl.classList.add('no-motion');
-
-  /* fail-safe: if the OS setting flips mid-session, content must never stay hidden */
-  var onReduceChange = function (e) {
-    if (e.matches) {
-      docEl.classList.add('no-motion');
-      docEl.classList.remove('motion-ready');
-      forceShowAll();
-    } else {
-      docEl.classList.remove('no-motion');
-    }
-  };
-  if (MQ_REDUCE.addEventListener) MQ_REDUCE.addEventListener('change', onReduceChange);
-  else if (MQ_REDUCE.addListener) MQ_REDUCE.addListener(onReduceChange);
+  /* Motion runs for every visitor on every device. The site deliberately does not read the
+     operating system's reduce-motion signal and carries no site-level switch, so REDUCE is a
+     hard false: the animation code below still consults it, and every branch it guards is
+     simply live. Content visibility stays guaranteed by the self-heal fail-safe further down,
+     not by turning motion off. */
+  var REDUCE = false;
 
   /* Self-heal / reveal insurance (§0.5). Anything the reader has already reached —
      including groups skipped by a fast flick or a stalled engine — is force-shown.
