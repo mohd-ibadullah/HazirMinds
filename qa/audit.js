@@ -210,9 +210,38 @@ const log = (s) => console.log(s);
       await page.select('#d-industry', 'Dental');
       await page.select('#d-size', '2–10');
       await page.click('#demo-form button[type=submit]');
-      await new Promise(r => setTimeout(r, 500));
-      const success = await page.evaluate(() => document.querySelector('#demo-form .form-success').classList.contains('show'));
-      if (!success) bugs.push(`[${vp.name}] demo — form success state did not show`);
+      await new Promise(r => setTimeout(r, 1200));
+      /* This runs against `node server.js`, which serves static files and has NO /api/lead
+         function — production does. So the only correct outcome here is the FAILURE panel:
+         the form fails closed, keeps the inputs mounted and offers a mailto. Asserting the
+         success panel locally (as this check used to) tests the wrong thing, and if it ever
+         passed it would mean the success path had gone optimistic — the exact defect the
+         whole gate exists to catch. Verify the endpoint really is absent first, so the check
+         cannot quietly become meaningless on a machine where it happens to exist. */
+      const endpointStatus = await page.evaluate(async () => {
+        try { const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }); return r.status; }
+        catch (e) { return 0; }
+      });
+      if (endpointStatus !== 404 && endpointStatus !== 0) {
+        bugs.push(`[${vp.name}] demo — /api/lead answered ${endpointStatus} locally, so this check proves nothing`);
+      } else {
+        const afterSubmit = await page.evaluate(() => {
+          const q = s => document.querySelector(s);
+          const shown = el => !!el && getComputedStyle(el).display !== 'none' && el.getBoundingClientRect().height > 0;
+          return {
+            success: shown(q('#demo-form .form-success')),
+            error: shown(q('#demo-form .form-error')),
+            alert: !!q('#demo-form .form-error[role=alert]'),
+            mailto: (q('#demo-form a[href^="mailto:"]') || {}).getAttribute ? q('#demo-form a[href^="mailto:"]').getAttribute('href') : null,
+            inputs: document.querySelectorAll('#demo-form input').length,
+          };
+        });
+        if (afterSubmit.success) bugs.push(`[${vp.name}] demo — success shown without a confirmed send (optimistic success path)`);
+        if (!afterSubmit.error) bugs.push(`[${vp.name}] demo — no failure panel after a failed send`);
+        if (!afterSubmit.alert) bugs.push(`[${vp.name}] demo — failure panel is not role=alert`);
+        if (!afterSubmit.mailto || !/^mailto:/.test(afterSubmit.mailto)) bugs.push(`[${vp.name}] demo — failure panel offers no mailto fallback`);
+        if (afterSubmit.inputs < 4) bugs.push(`[${vp.name}] demo — inputs unmounted after failure, so the visitor cannot retry (${afterSubmit.inputs})`);
+      }
 
       // nav mega menu (desktop only)
       if (vp.name === 'desktop') {
