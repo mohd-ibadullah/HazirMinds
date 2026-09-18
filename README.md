@@ -550,6 +550,7 @@ npm run qa:e2e             # 44 routes × 3 widths = 132 loads: console errors, 
 npm run qa:contrast        # WCAG contrast on every text node of every route
 npm run qa:axe             # axe-core accessibility sweep across 23 pages
 npm run qa:a11y            # keyboard, focus visibility, reflow@320, 200% zoom
+npm run qa:nav             # nav parity: mobile menu must offer every desktop nav link
 npm run qa:crossbrowser    # WebKit (Safari) and Firefox, not just Chromium
 npm run qa:cls             # cumulative layout shift, 16 routes × 4 widths
 npm run qa:structure       # links, anchors, duplicate IDs, image dims/alt, headings, meta
@@ -577,8 +578,15 @@ A few gates worth knowing about, because they encode decisions rather than mecha
   cancellations are ignored outright rather than pattern-matched.
 
 Latest full run: **DoD 49/49 · E2E clean 132 loads · contrast 0 failures · axe 0 violations across
-23 pages · a11y clean across 43 routes · WebKit clean 132 loads · Firefox clean 132 loads ·
-structure 0 issues · content 0 failures / 70 guards.**
+23 pages · a11y clean across 43 routes · nav parity PASS (3 pages × 4 widths) · WebKit clean 132
+loads · Firefox clean 132 loads · structure 0 issues · content 0 failures / 128 guards.**
+
+The mobile nav is an accordion built from native `<details>`/`<summary>` — no JS, keyboard-operable,
+and the group containing the current page opens by itself. `qa/nav-parity.mjs` asserts the part that
+regresses silently: **every href the desktop nav offers must also be reachable from the mobile
+panel**, at every breakpoint. It asks the page which mode it is in rather than hardcoding the
+`max-width:900px` switch, and it reads child visibility with `checkVisibility()` because
+`getBoundingClientRect()` reports non-zero for the children of a closed `<details>`.
 
 Two things the cross-browser pass settled:
 

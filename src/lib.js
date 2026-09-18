@@ -168,7 +168,18 @@ function nav(active) {
     const on = isCurrentHref(n.href);
     return `<li class="nav-item${on ? ' is-current' : ''}"><a class="nav-link" href="${n.href}"${on ? ' aria-current="page"' : ''}>${n.label}</a></li>`;
   }).join('');
-  const mobile = site.nav.map(n => `<a href="${n.href}"${isCurrentHref(n.href) ? ' aria-current="page"' : ''}>${n.label}</a>`).join('');
+  /* The mobile panel used to render ONE link per top-level item, which silently dropped every
+     mega-menu child: on a phone "Products" went to /services and "Industries" to /industries/hvac
+     only, so /masjids, /chief-of-staff, seven industries and six comparison pages were unreachable
+     from the navbar. It now mirrors the desktop nav exactly, as native <details> accordions — no
+     JS needed, keyboard-operable, and it opens the group the current page belongs to. */
+  const mobile = site.nav.map(n => {
+    const flat = n.mega ? n.mega.flatMap(m => m.col) : [];
+    const on = isCurrentHref(n.href) || flat.some(l => isCurrentHref(l.href));
+    if (!n.mega) return `<a class="m-link" href="${n.href}"${isCurrentHref(n.href) ? ' aria-current="page"' : ''}>${n.label}</a>`;
+    const kids = flat.map(l => `<a class="m-child" href="${l.href}"${isCurrentHref(l.href) ? ' aria-current="page"' : ''}><b>${esc(l.name)}</b><span>${esc(l.desc)}</span></a>`).join('');
+    return `<details class="m-group"${on ? ' open' : ''}><summary>${n.label}<span class="m-n">${flat.length}</span></summary><div class="m-kids">${kids}</div></details>`;
+  }).join('');
   return `<!-- S1 · NAV -->
 <header class="nav-wrap">
   <div class="scroll-progress" aria-hidden="true"></div>

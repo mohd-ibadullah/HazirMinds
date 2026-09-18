@@ -1031,12 +1031,34 @@ html.no-motion .hero h1 .line>span{transform:none!important}
   .nav-mobile{
     display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);
     border-bottom:1px solid var(--hairline);padding:18px 24px 24px;box-shadow:var(--shadow-2);
-    max-height:calc(100dvh - 72px);overflow:auto;
+    max-height:calc(100vh - 72px);max-height:calc(100dvh - 72px);overflow:auto;
   }
   .nav-mobile.open{display:block;animation:fadeIn .2s ease}
   .nav-mobile a{display:block;padding:13px 4px;text-decoration:none;font-weight:600;font-size:16px;border-bottom:1px solid var(--hairline)}
   .nav-mobile a:last-of-type{border:0}
   .nav-mobile .btn{width:100%;margin-top:14px}
+  /* Accordion groups. The panel used to flatten every mega-menu child away, so most of the site
+     was unreachable from a phone's navbar. <details> keeps it JS-free and keyboard-operable. */
+  .nav-mobile .m-group{border-bottom:1px solid var(--hairline)}
+  .nav-mobile .m-group>summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+    padding:13px 4px;font-weight:600;font-size:16px;
+  }
+  .nav-mobile .m-group>summary::-webkit-details-marker{display:none}
+  .nav-mobile .m-group>summary::after{
+    content:"";width:8px;height:8px;margin-left:auto;flex:none;
+    border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+    transform:rotate(45deg) translateY(-2px);transition:transform .2s;
+  }
+  .nav-mobile .m-group[open]>summary::after{transform:rotate(-135deg) translateY(-2px)}
+  .nav-mobile .m-n{
+    font:600 11px/1 var(--font-mono);color:var(--muted);border:1px solid var(--hairline);
+    border-radius:999px;padding:4px 7px;flex:none;
+  }
+  .nav-mobile .m-kids{padding:2px 0 10px 12px;border-left:2px solid var(--brass-band);margin-left:4px}
+  .nav-mobile .m-kids a{font-size:15px;font-weight:500;padding:11px 4px;border-bottom:0}
+  .nav-mobile .m-kids a b{display:block;font-weight:600}
+  .nav-mobile .m-kids a span{display:block;font-size:12.5px;font-weight:400;color:var(--muted);line-height:1.4;margin-top:1px}
   .split-grid,.grid-3,.grid-2,.alc-grid{grid-template-columns:1fr}
   .calc{grid-template-columns:1fr}
   .calc-controls{border-right:0;border-bottom:1px solid var(--hairline)}

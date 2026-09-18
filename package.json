@@ -22,7 +22,8 @@
     "qa:safari": "node qa/crossbrowser.mjs webkit",
     "qa:firefox": "node qa/crossbrowser.mjs firefox",
     "qa:browsers": "node qa/crossbrowser.mjs webkit && node qa/crossbrowser.mjs firefox",
-    "qa:a11y": "node qa/a11y.mjs webkit"
+    "qa:a11y": "node qa/a11y.mjs webkit",
+    "qa:nav": "node qa/nav-parity.mjs"
   },
   "devDependencies": {
     "@fontsource/fraunces": "^5.2.5",
