@@ -1036,7 +1036,9 @@ html.no-motion .hero h1 .line>span{transform:none!important}
   .nav-mobile.open{display:block;animation:fadeIn .2s ease}
   .nav-mobile a{display:block;padding:13px 4px;text-decoration:none;font-weight:600;font-size:16px;border-bottom:1px solid var(--hairline)}
   .nav-mobile a:last-of-type{border:0}
-  .nav-mobile .btn{width:100%;margin-top:14px}
+  /* .nav-mobile a{display:block} above overrides .btn's own inline-flex, which left the CTA label
+     hugging the left edge instead of centred like every other .btn on the site. */
+  .nav-mobile .btn{display:inline-flex;justify-content:center;text-align:center;width:100%;margin-top:14px;border-bottom:0}
   /* Accordion groups. The panel used to flatten every mega-menu child away, so most of the site
      was unreachable from a phone's navbar. <details> keeps it JS-free and keyboard-operable. */
   .nav-mobile .m-group{border-bottom:1px solid var(--hairline)}
