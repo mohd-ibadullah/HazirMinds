@@ -206,7 +206,7 @@ function footer() {
       ${col('Legal & Contact', [['/privacy', 'Privacy Policy'], ['/terms', 'Terms of Service'], ['/ai/', 'AI Summary'], ['mailto:' + site.email, site.email]].concat(site.phone ? [[TEL, CALL_LABEL]] : []))}
     </div>
     <div class="bottom">
-      <span>© 2026 HazirMinds, Inc. All rights reserved.</span>
+      <span>© 2026 HazirMinds. All rights reserved.</span>
       <div class="socials">
         <a href="https://www.linkedin.com/company/hazirminds" aria-label="LinkedIn" rel="noopener">${I('linkedin')}</a>
         <a href="https://x.com/hazirminds" aria-label="X" rel="noopener">${I('x_social')}</a>
@@ -371,7 +371,7 @@ ${compact ? '' : `
       <span class="eyebrow">Hallucination control</span>
       <h3 style="color:var(--cream);font-size:20px;margin-bottom:12px">Grounded answers, or an honest “I don't know”</h3>
       <ul>
-        <li>${I('check')}<span>Grounded answers only from <b style="color:var(--cream)">your approved knowledge</b> — never open improvisation.</span></li>
+        <li>${I('check')}<span>Grounded answers only from <b style="color:var(--cream)">your approved knowledge</b> — no open improvisation.</span></li>
         <li>${I('check')}<span><b style="color:var(--cream)">Confidence gating:</b> low-confidence moments are disclosed and escalated to a human.</span></li>
         <li>${I('check')}<span>Every factual claim carries a <b style="color:var(--cream)">source receipt</b>.</span></li>
         <li>${I('check')}<span><b style="color:var(--cream)">Forbidden-topic list</b> per client, enforced at the substrate level.</span></li>

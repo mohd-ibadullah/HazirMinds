@@ -41,7 +41,7 @@ Details: https://hazirminds.ai/pricing
 
 ## Resource articles
 - The true cost of a missed call, by industry (Pricing, 6 min): https://hazirminds.ai/resources/missed-call-cost
-- Speed-to-lead: the 60-second rule that triples contact rates (Playbook, 8 min): https://hazirminds.ai/resources/speed-to-lead
+- Speed-to-lead: why the first minute decides the lead (Playbook, 8 min): https://hazirminds.ai/resources/speed-to-lead
 - AI receptionist vs human receptionist: an honest ledger (Comparison, 7 min): https://hazirminds.ai/resources/ai-vs-human-receptionist
 - Consent, disclosure and call recording: what the rules actually require (Compliance, 5 min): https://hazirminds.ai/resources/consent-disclosure-recording
 - Database reactivation: found money in your CRM (Playbook, 4 min): https://hazirminds.ai/resources/database-reactivation

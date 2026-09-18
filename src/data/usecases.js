@@ -2,17 +2,17 @@
 module.exports = [
   {
     key: 'after-hours-rescue', name: 'After-Hours Rescue', icon: 'moon',
-    pain: 'Most missed calls land after hours — exactly when nobody is there to answer.',
+    pain: 'Missed calls cluster after hours — exactly when nobody is there to answer.',
     fix: 'A HazirMinds voice agent answers every after-hours call from the second ring: qualifies the caller, answers common questions, and books them into tomorrow\'s calendar.',
-    outcome: 'The call that used to go to voicemail — and your competitor — becomes a confirmed appointment before you wake up.',
-    stat: '24/7/365', statLabel: 'coverage, with pickup in under one second, every day of the year',
+    outcome: 'The call that used to go to voicemail — and your competitor — gets an answer and a booking path before you wake up.',
+    stat: '24/7/365', statLabel: 'coverage, with pickup in about a second, every day of the year',
     services: ['ai-receptionist', 'missed-call-text-back', 'ai-appointment-setter']
   },
   {
     key: 'speed-to-lead', name: 'Speed-to-Lead', icon: 'zap',
-    pain: 'The average business responds to a new web lead in 42 hours. By then, the buyer has already chosen someone else.',
+    pain: 'Most businesses take hours — often a day or more — to answer a new web lead. By then, the buyer has usually chosen someone else.',
     fix: 'The moment a lead arrives, HazirMinds calls and texts within 60 seconds, qualifies interest, and books a time on your calendar while the buyer is still warm.',
-    outcome: 'Contact rates triple and your team only talks to leads who are ready to move.',
+    outcome: 'Contact rates climb and your team only talks to leads who are ready to move.',
     stat: '<60s', statLabel: 'from lead arrival to first human-quality response (illustrative)',
     services: ['speed-to-lead', 'ai-sdr', 'lead-qualification-scoring']
   },
@@ -20,7 +20,7 @@ module.exports = [
     key: 'missed-call-textback', name: 'Missed-Call Text-Back', icon: 'message',
     pain: 'Missed calls are silent revenue leaks — the caller rarely tries twice.',
     fix: 'Within seconds of a missed call, HazirMinds texts the caller: acknowledges the miss, opens a two-way conversation, and rescues the booking.',
-    outcome: 'Roughly a third of missed calls convert into booked jobs instead of lost opportunities.',
+    outcome: 'A meaningful share of missed calls convert into booked jobs instead of lost opportunities.',
     stat: '5s', statLabel: 'from missed call to personalized text-back (illustrative)',
     services: ['missed-call-text-back', 'ai-receptionist', 'workflow-automation']
   },
@@ -28,7 +28,7 @@ module.exports = [
     key: 'no-show-reduction', name: 'No-Show Reduction', icon: 'calendar',
     pain: 'Empty slots cost the same as full ones: staff, rooms, prep — with zero revenue attached.',
     fix: 'Multi-touch confirmation sequences, one-tap rescheduling, and waitlist backfill run automatically for every appointment.',
-    outcome: 'No-shows typically drop 30–60% and cancelled slots get refilled from the waitlist.',
+    outcome: 'No-shows fall and cancelled slots get refilled from the waitlist.',
     stat: '30–60%', statLabel: 'typical no-show reduction across HazirMinds clients (illustrative)',
     services: ['no-show-reduction', 'sms-text-agent', 'workflow-automation']
   },
@@ -51,8 +51,8 @@ module.exports = [
   {
     key: 'review-engine', name: 'Review Engine', icon: 'star',
     pain: 'Happy customers forget to review; unhappy ones never do. Your rating stalls while competitors climb.',
-    fix: 'HazirMinds asks for the review at the perfect moment, routes unhappy customers to private feedback first, and replies to every public review in your voice.',
-    outcome: 'A steady stream of fresh 5-star reviews — and problems you hear about privately, not publicly.',
+    fix: 'HazirMinds asks for the review at the perfect moment, routes unhappy customers to private feedback first, and replies to public reviews in your voice.',
+    outcome: 'More fresh reviews — and problems you hear about privately, not publicly.',
     stat: '4.9★', statLabel: 'typical maintained rating with automated requests and replies (illustrative)',
     services: ['review-reputation-ai', 'ai-content-engine', 'local-seo-gbp']
   },
@@ -67,7 +67,7 @@ module.exports = [
   {
     key: 'ai-employee', name: 'Custom AI Employee', icon: 'user',
     pain: 'You need another pair of hands for a specific role — but hiring, training and retention are expensive.',
-    fix: 'HazirMinds builds, trains and manages an AI teammate around the exact role: intake, support, back-office, research — scoped in days, live in weeks.',
+    fix: 'HazirMinds configures, trains and manages an AI teammate around the exact role: intake, support, back-office, research — scoped in days, live in weeks.',
     outcome: 'A reliable teammate that works every shift, never quits, and costs a fraction of a salary.',
     stat: 'Weeks', statLabel: 'from role definition to a working AI teammate (illustrative)',
     services: ['custom-ai-employee', 'rag-knowledge-base', 'internal-copilots']

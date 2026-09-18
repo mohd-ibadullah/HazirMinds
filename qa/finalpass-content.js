@@ -54,6 +54,48 @@ for (const c of ['60-Day ROI Guarantee', 'HIPAA-eligible', 'BAAs signed', 'US ·
   t(!allText.includes(c), `REMOVED claim absent: "${c}"`);
 }
 
+/* ---- 6a. the word-by-word claim audit of 2026-09-18 must not be undone ----
+   Two classes of defect were removed, and both return quietly if nothing guards them:
+   - OWNERSHIP: the platform IP is the vendor's, so "we build / our substrate / designed
+     topology" describes someone else's architecture as ours. "we run / operate / configure /
+     deploy / train" is the permitted framing and is deliberately NOT guarded here.
+   - UNSOURCED ABSOLUTES: a number or an "every/never/always" with no source and no label.
+   Re-point or reword these deliberately; do not delete a line to make the gate pass.
+   Full audit, method and verification: audit/CLAIM-AUDIT-2026-09-18.md */
+const OWNERSHIP_GONE = [
+  'survive any model or vendor change', 'components underneath can be swapped',
+  'We build the AI team we run for you', 'HazirMinds is a technology company',
+  'HazirMinds builds AI teams', 'built into the substrate itself',
+  'built into the HazirMinds Operating Substrate', 'Designed topology of cooperating agents',
+  'we build, train and manage', 'Your requirement, our substrate', 'on our own stack',
+  'substrate features, not add-ons', 'That is the layer we build', 'Custom AI Employee Builds',
+  'HazirMinds builds, trains and manages', 'on infrastructure we run for you', 'not a middleman',
+];
+for (const c of OWNERSHIP_GONE) t(!allText.includes(c), `OWNERSHIP claim absent: "${c}"`);
+
+const UNSOURCED_GONE = [
+  'triples contact rates', 'Most clients walk through all three', "most never realise it's AI",
+  'Most missed calls land after hours', 'Roughly a third of missed calls', 'No-shows typically drop',
+  'in 42 hours', 'Contact rates triple', 'No-shows cut in half', 'answers first usually wins',
+  '100% call transcription', 'Verified Sept 2026', 'Nobody else offers this',
+  'never improvises your brand', 'never open improvisation',
+  'confirmed appointment before you wake up', 'A steady stream of fresh 5-star reviews',
+  'replies to every public review', 'every time, in any language', 'Never lose a new patient',
+  'single biggest conversion lever', 'in under a second, forever',
+  'answer every inbound call in under one second', 'Pricing that pays for itself',
+  'zero-compromise privacy', 'TCPA-compliant', 'HazirMinds, Inc',
+  'A technology company is a group of people',
+];
+for (const c of UNSOURCED_GONE) t(!allText.includes(c), `UNSOURCED claim absent: "${c}"`);
+
+/* the replacements must actually be the wording that ships, so a revert cannot pass silently */
+for (const c of ['We run the AI team that works for you.', 'HazirMinds runs AI teams for businesses.',
+  'Custom AI Employee Deployments', 'That is the layer we run.', 'Source-checked Sept 2026',
+  '© 2026 HazirMinds. All rights reserved.', 'TCPA-aware', 'privacy by design',
+  'why the first minute decides the lead']) {
+  t(allText.includes(c), `REPLACEMENT shipped: "${c}"`);
+}
+
 /* ---- 6b. the machine-readable surface must not drift ----
    llms.txt is not an index.html, so the walk above never read it — which is exactly how a
    retired market claim survived there long after it was removed from every page. It is read

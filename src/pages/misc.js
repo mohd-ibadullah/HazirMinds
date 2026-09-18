@@ -91,7 +91,7 @@ function caseStudies() {
         <h2>Why these numbers repeat</h2>
       </div>
       <div class="grid grid-4" data-reveal="children">
-        <div class="card"><span class="num">01</span><h3 style="font-size:18px;margin-top:8px">Zero missed calls</h3><p class="muted" style="font-size:14px">The baseline win: every call answered in under a second, forever.</p></div>
+        <div class="card"><span class="num">01</span><h3 style="font-size:18px;margin-top:8px">Zero missed calls</h3><p class="muted" style="font-size:14px">The baseline win: every call answered, day or night.</p></div>
         <div class="card"><span class="num">02</span><h3 style="font-size:18px;margin-top:8px">Instant booking</h3><p class="muted" style="font-size:14px">Answered calls convert because the AI books on the call, not "someone will call back."</p></div>
         <div class="card"><span class="num">03</span><h3 style="font-size:18px;margin-top:8px">Follow-up that fires</h3><p class="muted" style="font-size:14px">No-shows, quotes and stale leads get chased automatically until they resolve.</p></div>
         <div class="card"><span class="num">04</span><h3 style="font-size:18px;margin-top:8px">Compounding tuning</h3><p class="muted" style="font-size:14px">Weekly script improvements from real transcripts lift conversion month over month.</p></div>
@@ -121,8 +121,8 @@ function about() {
   <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container">
       ${bc.html}
-      <h1 style="max-width:18ch">We build the AI team we run for you.</h1>
-      <p class="lede" style="margin-top:18px;max-width:60ch">HazirMinds is a technology company. Our agents, our configuration, our governance — operated by us, on infrastructure we run for you. When you call, you reach HazirMinds, not a middleman.</p>
+      <h1 style="max-width:18ch">We run the AI team that works for you.</h1>
+      <p class="lede" style="margin-top:18px;max-width:60ch">HazirMinds runs AI teams for businesses. Your agents, your configuration, your governance — operated for you, and accountable to you. When you call, you reach HazirMinds.</p>
     </div>
   </section>
   <section class="section" style="padding-bottom:0">
@@ -134,7 +134,7 @@ function about() {
              loading="lazy" decoding="async"
              alt="People working through a problem together — the work behind the platform.">
       </div>
-      <p class="stat-note center" style="margin-top:12px">A technology company is a group of people making decisions. Ours leaves records too.</p>
+      <p class="stat-note center" style="margin-top:12px">Behind the platform is a group of people making decisions. Ours leaves records too.</p>
     </div>
   </section>
   <section class="section">
@@ -142,7 +142,7 @@ function about() {
       <div data-reveal="children">
         <span class="eyebrow">Why “HazirMinds”</span>
         <h2 style="font-size:clamp(26px,3vw,40px)">Always hazir</h2>
-        <p class="muted" style="margin-top:16px"><em>Hazir</em> — Urdu and Arabic — means present, ready, attentive. It's the word a household uses for the person you can count on: the one who is <em>there</em> when it matters. HazirMinds builds AI teams that are always hazir — present on every call, every lead, every decision — while your people keep the authority.</p>
+        <p class="muted" style="margin-top:16px"><em>Hazir</em> — Urdu and Arabic — means present, ready, attentive. It's the word a household uses for the person you can count on: the one who is <em>there</em> when it matters. HazirMinds runs AI teams that are always hazir — present on every call, every lead, every decision — while your people keep the authority.</p>
         <p class="muted">Our proof standard follows from the name: every claim on this site is labeled with its evidence horizon — Built → Deployed → Operated → Verified outcome → Accepted by client. We never promote a lower horizon into a stronger claim. That's what “always present” means when applied to ourselves.</p>
         <div class="chips" style="margin-top:20px">
           <span class="pill pill--brass">Founded 2024</span>
@@ -536,7 +536,7 @@ function legal(kind) {
     <div class="container">
       ${bc.html}
       <h1 style="max-width:14ch">${title}</h1>
-      <p class="muted" style="margin-top:12px">Last updated September 2026 · HazirMinds, Inc.</p>
+      <p class="muted" style="margin-top:12px">Last updated September 2026 · HazirMinds</p>
     </div>
   </section>
   <section class="section" style="padding-top:44px">

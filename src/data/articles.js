@@ -89,7 +89,7 @@ module.exports = [
   },
   {
     slug: 'speed-to-lead',
-    title: 'Speed-to-lead: the 60-second rule that triples contact rates',
+    title: 'Speed-to-lead: why the first minute decides the lead',
     cat: 'Playbook',
     read: '8 min',
     lede: 'The direction of this one is solid and well-replicated in vendor research. The precise multipliers are not. Here is what to actually build, and how to measure whether it worked for you.',

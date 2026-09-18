@@ -380,7 +380,7 @@
         },
         {
           "q": "What about governance?",
-          "a": "Synthflow doesn't offer hallucination controls, source receipts, proof horizons or an audit layer — those are HazirMinds substrate features, not add-ons."
+          "a": "Synthflow doesn't offer hallucination controls, source receipts, proof horizons or an audit layer — those are part of the HazirMinds configuration, not add-ons."
         },
         {
           "q": "Can you match their per-minute pricing?",

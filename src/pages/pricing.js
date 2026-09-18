@@ -46,7 +46,7 @@ ${nav()}
   <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container center">
       <div style="display:inline-block;text-align:left">${bc.html}</div>
-      <h1 style="margin-inline:auto;max-width:18ch">Pricing that pays for itself.</h1>
+      <h1 style="margin-inline:auto;max-width:18ch">Pricing you can do the math on.</h1>
       <p class="lede center" style="margin:18px auto 0">Every plan is month-to-month after 60 days, publishes its usage rate card before go-live, and goes live in 7–14 days. Prices in USD.</p>
       <div class="toggle-wrap" style="justify-content:center">
         <span data-show-monthly>Monthly</span>
@@ -104,7 +104,7 @@ ${nav()}
   <section class="section section--paper" id="market">
     <div class="container">
       <div class="sec-head center" data-reveal="children">
-        <span class="eyebrow">The market, honestly</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Verified Sept 2026</span>
+        <span class="eyebrow">The market, honestly</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
         <h2>What the alternatives actually cost</h2>
         <p class="lede center" style="margin-inline:auto">Same verified 2026 data as our comparison pages — because a rate card only means something next to the alternatives. Sources cited on-page.</p>
       </div>

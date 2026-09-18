@@ -11,15 +11,15 @@ module.exports = [
     ],
     stat: '42%', statLabel: 'of after-hours HVAC calls go unanswered by a typical shop — HazirMinds answers all of them (illustrative)',
     integrations: 'ServiceTitan, Jobber, Housecall Pro, Google Calendar, Stripe',
-    compliance: 'TCPA-compliant texting · Call recording disclosures built in'
+    compliance: 'TCPA-aware texting · Call recording disclosures built in'
   },
   {
     key: 'dental', name: 'Dental', img: '/img/trade-dental.webp',
     pain: 'A missed call is a missed patient — and they\'re already dialing the next practice.',
     sub: 'Your front desk can\'t answer while chairside. HazirMinds\'s can — every hour.',
     outcomes: [
-      { icon: 'phone', t: 'Never lose a new patient to voicemail', d: 'New-patient calls answered instantly, insurance questions handled, appointments booked on the spot.' },
-      { icon: 'calendar', t: 'No-shows cut in half', d: 'Smart confirmations and rescheduling keep chairs full without front-desk nagging.' },
+      { icon: 'phone', t: 'No new patient lost to voicemail', d: 'New-patient calls answered instantly, insurance questions handled, appointments booked on the spot.' },
+      { icon: 'calendar', t: 'Fewer no-shows, fuller chairs', d: 'Smart confirmations and rescheduling keep chairs full without front-desk nagging.' },
       { icon: 'shield', t: 'PHI-conscious handling', d: 'Consent capture, encrypted transcripts, role-based access and an audit trail on every interaction.' }
     ],
     stat: 'from $' + require('./site.json').tiers['hazir-pro'].monthly + '/mo', statLabel: 'flat governed front desk — vs lifetime value lost per missed new-patient call (illustrative)',
@@ -28,7 +28,7 @@ module.exports = [
   },
   {
     key: 'legal', name: 'Legal', img: '/img/trade-legal.webp',
-    pain: 'Clients with emergencies call after hours. The firm that answers first usually wins the case.',
+    pain: 'Clients with emergencies call after hours. Urgent callers rarely leave a message — they call the next firm.',
     sub: 'HazirMinds screens every call, captures the matter details, and books consults — 24/7, conflicts-aware.',
     outcomes: [
       { icon: 'phone', t: 'Intake that never sleeps', d: 'Every after-hours caller gets a full, structured intake instead of a beep.' },
@@ -45,7 +45,7 @@ module.exports = [
     sub: 'HazirMinds answers every call — reservations, hours, allergies, large parties — without touching your floor team.',
     outcomes: [
       { icon: 'phone', t: 'Reservations without the juggle', d: 'Bookings flow into OpenTable or SevenRooms while your host stays with guests.' },
-      { icon: 'menu', t: 'Menu questions, answered instantly', d: 'Hours, allergens, parking, dress code — answered accurately, every time, in any language.' },
+      { icon: 'menu', t: 'Menu questions, answered instantly', d: 'Hours, allergens, parking, dress code — answered accurately, in the language your guest is using.' },
       { icon: 'star', t: 'Waitlist and large-party handling', d: 'Group inquiries captured, qualified and routed to a manager when it matters.' }
     ],
     stat: '3 in 4', statLabel: 'callers who reach voicemail at a restaurant simply call the next one (illustrative)',
@@ -57,13 +57,13 @@ module.exports = [
     pain: 'Listings generate calls at all hours. Every lead you answer late is a lead your rival signed.',
     sub: 'HazirMinds qualifies every inquiry in seconds, books viewings, and keeps your pipeline moving while you\'re showing homes.',
     outcomes: [
-      { icon: 'zap', t: 'Speed-to-lead in under 60 seconds', d: 'Portal and sign calls get an instant response — the single biggest conversion lever in real estate.' },
+      { icon: 'zap', t: 'Speed-to-lead in under 60 seconds', d: 'Portal and sign calls get an instant response — a major conversion lever in real estate.' },
       { icon: 'calendar', t: 'Viewings booked around your day', d: 'The agent checks your live calendar and proposes slots you\'d have proposed yourself.' },
       { icon: 'filter', t: 'Serious buyers, filtered and scored', d: 'Finance questions and timelines qualify buyers before they reach your calendar.' }
     ],
     stat: '78%', statLabel: 'of buyers work with the first agent who responds (illustrative)',
     integrations: 'Follow Up Boss, kvCORE, Pipedrive, Google Calendar, Twilio',
-    compliance: 'Fair-housing-safe scripts · TCPA-compliant outreach'
+    compliance: 'Fair-housing-safe scripts · TCPA-aware outreach'
   },
   {
     key: 'auto', name: 'Auto Services', img: '/img/trade-auto.webp',
@@ -76,7 +76,7 @@ module.exports = [
     ],
     stat: '25%', statLabel: 'of service calls at a busy shop go unanswered during peak hours (illustrative)',
     integrations: 'Tekmetric, Shop-Ware, ServiceTitan, Google Calendar, Stripe',
-    compliance: 'TCPA-compliant reminders · Recorded-line disclosures'
+    compliance: 'TCPA-aware reminders · Recorded-line disclosures'
   },
   {
     key: 'ecommerce', name: 'E-commerce', img: '/img/trade-ecommerce.webp',

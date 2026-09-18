@@ -181,6 +181,7 @@ ${nav()}
           <tr><td>Scalability</td><td>Lost revenue</td><td>Hire &amp; train per seat</td><td class="col-hazir">Instant, unlimited</td></tr>
         </tbody>
       </table>
+      <p class="src-note center" style="margin-top:10px">"Missed calls" cost is ${JS.stats[1].value} lost per missed call — <b>${JS.stats[1].source}</b>. Human-receptionist cost is a loaded salary estimate. Both are indicative, not audited.</p>
     </div>
   </div>
 </section>
@@ -191,7 +192,7 @@ ${nav()}
     <div class="sec-head center" data-reveal="children">
       <span class="eyebrow">The Three Doors</span>
       <h2>Three ways teams put HazirMinds to work</h2>
-      <p class="lede center" style="margin-inline:auto">Start with the door that hurts most. Most clients walk through all three within a year.</p>
+      <p class="lede center" style="margin-inline:auto">Start with the door that hurts most. Most teams add the others once the first one has paid for itself.</p>
     </div>
     <div class="grid grid-3" data-reveal="children">
       <div class="card card--hover door">
@@ -236,8 +237,8 @@ ${nav()}
   <div class="container">
     <div class="sec-head center" data-reveal="children">
       <span class="eyebrow">The Governance Layer</span>
-      <h2>Nobody else offers this. We publish it.</h2>
-      <p class="lede center" style="margin-inline:auto">Four invariants every deployment inherits — built into the HazirMinds Operating Substrate, not bolted on as policy. Responsibility layers, hallucination control, source receipts and proof horizons are documented in full on the enterprise page.</p>
+      <h2>We publish it. Nobody has to take our word.</h2>
+      <p class="lede center" style="margin-inline:auto">Four invariants every deployment inherits — part of the HazirMinds Operating Substrate, not bolted on as policy. Responsibility layers, hallucination control, source receipts and proof horizons are documented in full on the enterprise page.</p>
     </div>
     ${L.governanceBand({ compact: true })}
     <div class="hero-ctas" style="justify-content:center;margin-top:52px" data-reveal="children">

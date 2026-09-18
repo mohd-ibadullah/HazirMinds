@@ -9,7 +9,7 @@ module.exports = {
     { t: 'Capability ≠ Authority', d: '“Ability is not authority.” An AI that can do a thing is not an AI that may do a thing — every agent carries least-privilege permissions per role: what it may touch, spend, say or send.' },
     { t: 'Execution ≠ Liability', d: '“Execution is not liability.” Your business stays accountable. Our AI carries work inside delegated scope — and the boundary of that scope is written, enforced and auditable.' },
     { t: 'Deployment ≠ Adoption', d: '“Deployment is not adoption.” Going live proves nothing by itself. We prove outcomes against go-live acceptance criteria you sign — and report against them openly.' },
-    { t: 'Continuity ≠ Persona', d: '“Continuity is not persona.” Your memory, rules and evidence survive any model or vendor change. The substrate persists; components underneath can be swapped without losing your business.' }
+    { t: 'Continuity ≠ Persona', d: '“Continuity is not persona.” Your memory, rules and evidence belong to your business and stay with it — portable, exportable, never locked to one setup.' }
   ],
 
   /* Doctrine lines — /enterprise (§2) */

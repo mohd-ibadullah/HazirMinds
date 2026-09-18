@@ -94,7 +94,7 @@ ${nav()}
           <span class="pill">isolated workspace per client</span>
           <span class="pill">permission scopes</span>
           <span class="pill">audit trails</span>
-          <span class="pill">zero-compromise privacy</span>
+          <span class="pill">privacy by design</span>
         </div>
       </div>
     </div>

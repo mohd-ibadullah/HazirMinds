@@ -80,7 +80,7 @@ check('capability labels table', ['Contract-supported', 'Available', 'Configured
 check('included vs external cost table', /included hazirminds capabilities/i.test(mj) && /remain external/i.test(mj), '');
 check('fragmented-stack example labeled', mj.includes('$380/mo') && /published list prices, Sept 2026/.test(mj), '');
 check('no affirmative "never hallucinates" claim (refusal wording allowed)', !all.some(a => affirmative(a.t, 'never hallucinates')), '');
-check('masjid compare: verified stamp + sources', mjc.includes('Verified Sept 2026') && mjc.includes('Sources:'), '');
+check('masjid compare: source-checked stamp + sources', mjc.includes('Source-checked Sept 2026') && mjc.includes('Sources:'), '');
 check('masjid compare: "who should NOT buy"', /who should NOT buy/i.test(mjc), '');
 check('masjid collateral gated by demo form', mj.includes('Masjid AI OS deck') && /demo/i.test(mj), '');
 
@@ -89,7 +89,7 @@ const pr = read('pricing/index.html');
 check('pricing: all four tiers', ['Chronos', 'Hazir Pro', 'Aeon', 'Archon'].every(t => pr.includes(t)), '');
 check('pricing: add-ons present', ['$1,500', '$2,500', '$7,500', '$997', '$500 + 10%', '$0.35'].every(t => strip(pr).includes(t)), '');
 check('pricing: competitor cost table', /Done-for-you governed AI firm/.test(pr) && /Hidden meters/.test(pr), '');
-check('Verified Sept 2026 stamp on compare* + pricing', all.filter(a => /compare|pricing/.test(a.f)).filter(a => a.h.includes('Verified Sept 2026')).length >= 7, '');
+check('Source-checked Sept 2026 stamp on compare* + pricing', all.filter(a => /compare|pricing/.test(a.f)).filter(a => a.h.includes('Source-checked Sept 2026')).length >= 7, '');
 check('every stat has a source footnote', (() => { const band = read('index.html'); const stats = (band.match(/class="stat"/g) || []).length; const srcs = (band.match(/class="src"/g) || []).length; return stats === srcs && stats >= 4; })(), '');
 
 /* 11 trust rules */

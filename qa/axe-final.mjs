@@ -9,6 +9,8 @@ const p = await b.newPage();
 await p.evaluateOnNewDocument(() => { try { localStorage.setItem('hazirminds_consent', 'essential'); } catch (e) {} });
 await p.setViewport({ width: 1440, height: 900 });
 let bad = 0;
+let fair = 0;
+const blinded = [];
 for (const r of routes) {
   await p.goto('http://localhost:4173' + r, { waitUntil: 'networkidle2', timeout: 60000 });
   await p.addScriptTag({ content: AXE });
@@ -28,6 +30,40 @@ for (const r of routes) {
     return !!(t && t.iterations === Infinity);
   }), { timeout: 10000, polling: 100 }).catch(() => { });
   await new Promise(res => setTimeout(res, 250));
+  /* The settle condition is "nothing is part-way transparent". An earlier attempt froze the page
+     with `animation:none!important`, which was WRONG: it deletes the fill of a fill-mode:both
+     reveal, so two chat bubbles on `/` fell back to their base opacity:0 and axe skipped them. Those
+     two bubbles are also exactly the pair that flapped colour-contrast — measured mid-fade, a bubble
+     blends toward the background and reports a colour the reader never sees. */
+  await p.waitForFunction(() => {
+    for (const el of document.querySelectorAll('body *')) {
+      const cs = getComputedStyle(el);
+      if (cs.visibility === 'hidden' || cs.display === 'none') continue;
+      const o = parseFloat(cs.opacity);
+      if (o > 0.01 && o < 0.99) return false;
+    }
+    return true;
+  }, { timeout: 10000, polling: 100 }).catch(() => { });
+  await new Promise(res => setTimeout(res, 120));
+
+  /* Proof that the wait did not blind the audit: the count of visible elements before and after must
+     match. A drop would mean content went invisible, axe would skip it, and "AXE CLEAN" would mean
+     "nothing was measured". */
+  const visible = () => p.evaluate(() => {
+    let n = 0;
+    for (const el of document.querySelectorAll('body *')) {
+      const cs = getComputedStyle(el);
+      if (cs.visibility === 'hidden' || cs.display === 'none' || parseFloat(cs.opacity) < 0.05) continue;
+      const b = el.getBoundingClientRect();
+      if (b.width > 0 && b.height > 0) n++;
+    }
+    return n;
+  });
+  const visBefore = await visible();
+  await new Promise(res => setTimeout(res, 320));
+  const visAfter = await visible();
+  if (visAfter < visBefore) fair++;
+  blinded.push([r, visBefore, visAfter]);
   const v = await p.evaluate(async (rules) => {
     const o = await window.axe.run(document, { runOnly: rules });
     return o.violations.map(x => x.id + '(' + x.impact + ':' + x.nodes.length + ')');
@@ -35,5 +71,8 @@ for (const r of routes) {
   if (v.length) bad++;
   console.log('  ' + r.padEnd(34) + (v.length ? v.join(' ') : 'AXE CLEAN'));
 }
-console.log('\n  pages with violations: ' + bad + '/' + routes.length);
+console.log('\n  settle check: ' + (blinded.filter(x => x[2] < x[1]).length === 0
+  ? 'no page lost a visible element while settling — the audit measured what a reader sees'
+  : 'CONTENT WENT INVISIBLE on: ' + blinded.filter(x => x[2] < x[1]).map(x => x[0] + ' ' + x[1] + '->' + x[2]).join(', ')));
+console.log('  pages with violations: ' + bad + '/' + routes.length);
 await b.close();

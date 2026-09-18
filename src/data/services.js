@@ -28,7 +28,7 @@ module.exports = [
       { n: '14', slug: 'lead-qualification-scoring', name: 'Lead Qualification & Scoring', outcome: 'Every lead scored, routed and prioritised so your team only works the ones worth working.', points: ['Custom scoring built on your close data', 'Auto-routing to the right rep', 'Junk leads filtered before they cost time'], gov: null },
       { n: '15', slug: 'crm-setup-migration', name: 'CRM Setup', outcome: 'Your CRM set up end-to-end — contacts, pipelines, integrations, done and validated.', points: ['Pipelines mapped to your sales motion', 'Integrations configured and tested', 'Team onboarded with playbooks'], gov: null },
       { n: '16', slug: 'no-show-reduction', name: 'No-Show Reduction', outcome: 'Reminder cadences and one-tap confirmations that keep the calendar full.', points: ['Multi-touch reminder sequences', 'One-tap confirm and reschedule', 'Fewer empty chairs within the first month'], gov: null },
-      { n: '17', slug: 'call-analytics', name: 'Call Analytics', outcome: 'Every call transcribed, scored and analysed — what customers ask, feel and abandon.', points: ['100% call transcription and tagging', 'Sentiment and outcome scoring', 'Coaching insights for your team'], gov: null },
+      { n: '17', slug: 'call-analytics', name: 'Call Analytics', outcome: 'Every call transcribed, scored and analysed — what customers ask, feel and abandon.', points: ['Every call transcribed and tagged', 'Sentiment and outcome scoring', 'Coaching insights for your team'], gov: null },
       { n: '18', slug: 'governance-config', name: 'Governance & Compliance Configuration', outcome: 'Your permission scopes, approval gates, forbidden topics and escalation rules — configured and audited.', points: ['Role-based permission scopes', 'Approval gates on consequential actions', 'Audit trail mapped to your policies'], gov: 'This is the substrate being tailored to you.' },
       { n: '19', slug: 'readiness-audit-coe', name: 'Governance Readiness Audit', outcome: 'A scored read on AI risk, consent trail, audit readiness and escalation gaps — sequenced by ROI.', points: ['Opportunity map scored by ROI', 'Governance gap list with fixes', 'Roadmap for quick wins'], gov: 'Fee credited in full against 6-month plans.' }
     ]
@@ -38,13 +38,13 @@ module.exports = [
     promise: 'Scoped, priced and acceptance-tested per engagement — stated plainly. These are programs, not plans.',
     services: [
       { n: '20', slug: 'chief-of-staff-agent-team', name: 'Chief-of-Staff Agent Team', outcome: 'One orchestrating agent that routes work to specialists, holds context, enforces approval gates, reports with receipts.', points: ['One inbox of intent, many hands', 'Specialists coordinated automatically', 'Escalation rules you approve'], gov: 'Scoped per engagement. See /chief-of-staff.' },
-      { n: '21', slug: 'multi-agent-orchestration', name: 'Multi-Agent Orchestration', outcome: 'Complex workflows decomposed across cooperating agents with monitoring and control throughout.', points: ['Designed topology of cooperating agents', 'Shared memory and handoff protocols', 'Full observability on every hop'], gov: 'Scoped per engagement.' },
+      { n: '21', slug: 'multi-agent-orchestration', name: 'Multi-Agent Orchestration', outcome: 'Complex workflows decomposed across cooperating agents with monitoring and control throughout.', points: ['Configured topology of cooperating agents', 'Shared memory and handoff protocols', 'Full observability on every hop'], gov: 'Scoped per engagement.' },
       { n: '22', slug: 'permission-approval-framework', name: 'Permission & Approval Framework', outcome: 'Bounded authority made concrete: least-privilege scopes and human sign-off by policy.', points: ['Role-based permission scopes', 'Approval gates on sensitive actions', 'Delegation mapped to your org chart'], gov: 'Scoped per engagement.' },
       { n: '23', slug: 'audit-trail-receipts', name: 'Audit Trail & Receipts', outcome: 'Every action, decision and handoff logged immutably and exportable to your systems.', points: ['Immutable action log', 'Evidence receipts per claim', 'Export to your SIEM / compliance stack'], gov: 'Scoped per engagement.' },
       { n: '24', slug: 'cost-governance', name: 'Cost Governance', outcome: 'Per-agent budgets, hard ceilings and alerts keep spend predictable at any scale.', points: ['Per-agent budget envelopes', 'Hard ceilings with alerts', 'Monthly spend report with receipts'], gov: 'Scoped per engagement.' },
       { n: '25', slug: 'hallucination-control-program', name: 'Hallucination-Control Program', outcome: 'Grounded answers only: approved knowledge, confidence gating, source receipts, nightly regression tests.', points: ['Grounded in approved knowledge', 'Confidence gates + human escalation', 'Nightly regression tests on call flows'], gov: 'Scoped per engagement.' },
       { n: '26', slug: 'erp-data-integration', name: 'ERP / Data Integration', outcome: 'Secure, documented integrations into ERP, warehouses and the systems you already run.', points: ['API and middleware integration', 'Field-level mapping documentation', 'Tested failover and rollback'], gov: 'Scoped per engagement.' },
-      { n: '27', slug: 'custom-ai-employee', name: 'Custom AI Employee Builds', outcome: 'Describe the role; we build, train and manage a governed AI teammate around your workflows.', points: ['Scoped, built and launched in weeks', 'Trained on your playbooks and data', 'Ongoing management and tuning included'], gov: 'Scoped per engagement; from ' + require('./site.json').addons.find(a => a.id === 'custom-agent').price + ' à-la-carte.' }
+      { n: '27', slug: 'custom-ai-employee', name: 'Custom AI Employee Deployments', outcome: 'Describe the role; we configure, train and manage a governed AI teammate around your workflows.', points: ['Scoped, built and launched in weeks', 'Trained on your playbooks and data', 'Ongoing management and tuning included'], gov: 'Scoped per engagement; from ' + require('./site.json').addons.find(a => a.id === 'custom-agent').price + ' à-la-carte.' }
     ]
   },
   {
@@ -62,14 +62,14 @@ module.exports = [
   },
   {
     id: 'client-builds', num: 'E', name: 'Client-requirement builds',
-    promise: 'Your requirement, our substrate. Every new client requirement is scoped, priced and acceptance-tested as it arrives — "scoped per engagement", always.',
+    promise: 'Your requirement, configured to it. Every new client requirement is scoped, priced and acceptance-tested as it arrives — "scoped per engagement", always.',
     services: [
       { n: null, slug: 'scoped-engagement', name: 'Scoped Client Requirement', outcome: 'Bring a requirement; we scope it, price it, define acceptance criteria, then build on the governed substrate.', points: ['Written scope + acceptance criteria up front', 'Governance applies from day one', 'Same receipts and audit trail'], gov: null }
     ]
   },
   {
-    id: 'growth-addons', num: 'F', name: 'Growth add-ons (own stack, labeled)',
-    promise: 'Marketing and growth engineering on our own stack — labeled as add-ons, priced separately, same honesty standard.',
+    id: 'growth-addons', num: 'F', name: 'Growth add-ons (priced separately)',
+    promise: 'Marketing and growth engineering, handled as separate add-ons and priced separately — same honesty standard.',
     services: [
       { n: '35', slug: 'aeo-geo-visibility', name: 'AEO / GEO — AI-Search Visibility', outcome: 'Get cited by AI answer engines: structured data, llms.txt, comparison pages, quotable sourced stats.', points: ['AI-engine citation strategy', 'Schema + llms.txt + /ai/ summary', 'Citation monitoring monthly'], gov: null },
       { n: '36', slug: 'review-reputation-ai', name: 'Review & Reputation Engine', outcome: 'Ask at the right moment, reply to every review, turn reputation into a ranking asset.', points: ['Smart review requests after each job', 'AI replies in your brand voice', 'Negative feedback intercepted first'], gov: null },

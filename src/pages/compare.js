@@ -29,7 +29,7 @@ function comparePage(slug) {
   <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container" style="max-width:860px">
       ${bc.html}
-      <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass stamp-verified" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Verified Sept 2026</span>
+      <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass stamp-verified" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
       <h1 style="font-size:clamp(32px,4vw,52px)">HazirMinds vs ${p.name}</h1>
     </div>
   </section>
@@ -97,7 +97,7 @@ function compareHub() {
   <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container" style="max-width:860px">
       ${bc.html}
-      <span class="eyebrow eyebrow--rust">The whole market, honestly</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Verified Sept 2026</span>
+      <span class="eyebrow eyebrow--rust">The whole market, honestly</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
       <h1 style="font-size:clamp(32px,4vw,52px)">HazirMinds vs everyone</h1>
       <p class="lede" style="margin-top:18px">Every competitor sells a different shape: DIY platforms, metered minutes, per-call buckets, contract SDRs, or payroll. We sell governed outcomes at flat tiers — and we publish the honest trade-offs, including who should <em>not</em> buy us.</p>
     </div>
@@ -147,9 +147,9 @@ function masjidPlatforms() {
   <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container" style="max-width:900px">
       ${bc.html}
-      <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Verified Sept 2026</span>
+      <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
       <h1 style="font-size:clamp(32px,4vw,52px)">HazirMinds Masjid AI OS vs masjid platforms</h1>
-      <p class="lede" style="margin-top:18px">The established masjid platforms solve communications, donations and apps. None of them offer governed AI, one-record→many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. That is the layer we build. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
+      <p class="lede" style="margin-top:18px">The established masjid platforms solve communications, donations and apps. None of them offer governed AI, one-record→many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. That is the layer we run. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
     </div>
   </section>
   <section class="section" style="padding-top:44px">
@@ -162,7 +162,7 @@ function masjidPlatforms() {
           </tbody>
         </table>
       </div>
-      <p class="src-note" style="margin-top:10px">Sources: ${[...new Set(M.competitors.map(c => c.source))].join(' · ')}. Verified Sept 2026. Vendor prices change — verify before deciding.</p>
+      <p class="src-note" style="margin-top:10px">Sources: ${[...new Set(M.competitors.map(c => c.source))].join(' · ')}. Source-checked Sept 2026. Vendor prices change — verify before deciding.</p>
 
       <div style="margin-top:52px" data-reveal="children">
         <span class="eyebrow">What no reviewed platform offers together</span>
@@ -196,7 +196,7 @@ function masjidPlatforms() {
   return shell({
     title: 'Masjid AI OS vs Masjid Platforms (2026) — ConnectMazjid, MOHID, Masjidal & More',
     path: '/compare/masjid-platforms',
-    desc: 'Verified Sept 2026 comparison: HazirMinds Masjid AI OS vs ConnectMazjid, MOHID, Masjidal/Athan+, The Masjid App, Ummah, Donorbox and more — vendor-published prices read live, and where a governed agent layer differs from donor AI and advisory chatbots.',
+    desc: 'Source-checked Sept 2026 comparison: HazirMinds Masjid AI OS vs ConnectMazjid, MOHID, Masjidal/Athan+, The Masjid App, Ummah, Donorbox and more — vendor-published prices read live, and where a governed agent layer differs from donor AI and advisory chatbots.',
     ld: [L.orgLd(), bc.ld],
     main
   });
