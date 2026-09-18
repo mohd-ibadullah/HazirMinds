@@ -318,7 +318,7 @@ function exitModal() {
     <button class="close" data-modal-close aria-label="Close">${I('close')}</button>
     <span class="eyebrow eyebrow--rust">Before you go</span>
     <h3 id="exit-title" style="font-size:26px;margin-bottom:10px">Get your free Governance Report Card</h3>
-    <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps — normally ${SJ.addons.find(a => a.id === 'audit').price}, free.</p>
+    <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps.</p>
     <form data-validate id="audit-form" data-endpoint="${site.leadEndpoint}" style="margin-top:18px">
       <div data-fields class="form-grid">
         <div class="form-field"><label for="ex-name">Name</label><input id="ex-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>

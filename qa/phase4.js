@@ -72,8 +72,8 @@ if (ent.includes('Ability is not authority')) ok('/enterprise: governance layer 
 /* ---------- 4. Services A–F ---------- */
 head('Services');
 const svc = read('services/index.html');
-const missingN = []; for (let i = 1; i <= 40; i++) { const n = String(i).padStart(2, '0'); if (!svc.includes('SERVICE ' + n)) missingN.push(n); }
-if (missingN.length === 0) ok('services page: SERVICE 01..40 all present');
+const missingN = []; for (let i = 1; i <= 39; i++) { const n = String(i).padStart(2, '0'); if (!svc.includes('SERVICE ' + n)) missingN.push(n); }
+if (missingN.length === 0) ok('services page: SERVICE 01..39 all present');
 else bad('services missing: ' + missingN.join(','));
 if (svc.includes('YOUR REQUIREMENT')) ok('services page: client-requirement slot present (unnumbered, group E)');
 else bad('services page: client-requirement slot missing');

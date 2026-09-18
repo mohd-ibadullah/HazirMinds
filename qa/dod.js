@@ -44,7 +44,7 @@ const svc = read('services/index.html');
 check('no blanket "40/41 services" claim', !/all 4[01] services|Browse all 4[01]|40 services|41 services/i.test(svc), '');
 check('"19 out-of-box" count language', svc.includes('19 out-of-box') || svc.includes('Nineteen out-of-box'), '');
 check('capability chips present (>=5 kinds)', ['AVAILABLE', 'CONFIGURED AT ONBOARDING', 'SCOPED PER ENGAGEMENT', 'ADD-ON', 'PLANNED'].filter(c => svc.includes(c)).length >= 4, '');
-check('SERVICE 01..40 + unnumbered client slot', svc.includes('SERVICE 01') && svc.includes('SERVICE 40') && svc.includes('YOUR REQUIREMENT'), '');
+check('SERVICE 01..39 + unnumbered client slot', svc.includes('SERVICE 01') && svc.includes('SERVICE 39') && svc.includes('YOUR REQUIREMENT'), '');
 
 /* 5 smith.ai route + SOC 2 */
 check('/compare/smith-ai route exists & non-blank', (() => { try { return strip(read('compare/smith-ai/index.html')).trim().length > 800; } catch (e) { return false; } })(), '');

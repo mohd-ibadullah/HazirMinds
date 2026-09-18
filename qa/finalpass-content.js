@@ -88,6 +88,16 @@ const UNSOURCED_GONE = [
 ];
 for (const c of UNSOURCED_GONE) t(!allText.includes(c), `UNSOURCED claim absent: "${c}"`);
 
+/* ---- 6a2. services we cannot deliver must not be advertised ----
+   AEO/GEO is search-visibility work: the vendor's Exclusions schedule does not provide it, so
+   offering it means WE have to do it, and until that is confirmed the page must not sell it.
+   Removing it left the numbering contiguous (SERVICE 01..39 + one unnumbered client slot), which
+   qa/dod.js and qa/phase4.js both assert. */
+for (const c of ['AEO / GEO', 'aeo-geo-visibility', 'Get cited by AI answer engines']) {
+  t(!allText.includes(c), `UNDELIVERABLE service absent: "${c}"`);
+}
+t(!allText.includes('normally'), 'no "normally $X, free" anchor in the exit modal');
+
 /* the replacements must actually be the wording that ships, so a revert cannot pass silently */
 for (const c of ['We run the AI team that works for you.', 'HazirMinds runs AI teams for businesses.',
   'Custom AI Employee Deployments', 'That is the layer we run.', 'Source-checked Sept 2026',
