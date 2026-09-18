@@ -1,0 +1,28 @@
+# Line endings.
+#
+# This repo had no attribute file, so it accumulated a mix: files written by Windows tooling
+# arrived as CRLF while files written by the build arrived as LF. That stayed invisible until a
+# scripted edit read a file with universal newlines and wrote it back, which silently converted
+# two large files from CRLF to LF and buried ~960 lines of pure line-ending churn inside a commit
+# whose real content was ten lines. Declaring the policy here means git normalises on the way in,
+# so the working tree, the index and every clone agree and that cannot happen again.
+* text=auto eol=lf
+
+# Rasters, fonts and documents must never be line-ending rewritten.
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.svg   text eol=lf
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.pdf   binary
+*.zip   binary
+
+# Generated output. It is committed so the live site can be diffed, but it is produced by
+# build.js and must not be hand-edited.
+dist/** -text
