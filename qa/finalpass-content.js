@@ -88,6 +88,42 @@ const UNSOURCED_GONE = [
 ];
 for (const c of UNSOURCED_GONE) t(!allText.includes(c), `UNSOURCED claim absent: "${c}"`);
 
+/* ---- 6a1b. the 2026-09-18 homepage update removed four sections ----
+   The after-hours photograph, #why, the proof band and the FAQ are asserted ABSENT from the homepage
+   so a revert cannot slip back in silently. Assertions run against the HOMEPAGE text, not the whole
+   site: two of these strings still appear legitimately elsewhere (/pricing carries an acceptance-
+   criteria line, /demo carries a similar instruction), so an allText check would be wrong. The
+   promises those sections carried are asserted PRESENT in their new homes, so neither direction of
+   the change can pass unnoticed. */
+const homeText = txt['/'] || '';
+const HOMEPAGE_REMOVED = [
+  'AFTER-HOURS PHOTOGRAPH', '6:42 PM. The business is closed', 'hm-afterhours',
+  'Why this keeps happening', 'You built a great business. The phone didn',
+  'Without HazirMinds', 'PROBLEM → SOLUTION',
+  'PROOF BAND', 'We prove outcomes against acceptance criteria you sign',
+  'Or watch the transcript demo again', 'guarantee-list', 'callcard-num',
+  'OBJECTIONS FAQ', 'Fair questions', 'The objections, answered plainly',
+];
+for (const c of HOMEPAGE_REMOVED) t(!homeText.includes(c), `removed homepage section gone: "${c}"`);
+t(!homeText.includes('$80–$1,200'), 'removed homepage comparison table gone: the $80–$1,200 range');
+
+/* the other direction: what replaced them must actually ship */
+t(homeText.includes('Live in 7–14 days for most businesses'), 'proof promise survives in the final CTA');
+t(homeText.includes('timeline confirmed at kickoff'), 'the 7–14 day promise stays conditional on the business');
+t(homeText.includes('Acceptance criteria you sign before we go live'), 'acceptance-criteria line still on the homepage');
+t(ALL['/'].includes('data-no-magnet'), 'FX-01: the Chief-of-Staff button carries data-no-magnet');
+t(ALL['/'].includes('data-trade-cta-label'), 'FX-02: the trade CTA label is wrapped for targeting');
+t(/scope="col"><span style="position:absolute;left:-9999px">/.test(ALL['/']) === false, 'the removed table header is gone');
+/* the five retired FAQ answers moved into the assistant knowledge base */
+{
+  const m = ALL['/'].match(/id="asst-kb">([\s\S]*?)<\/script>/);
+  let kb = [];
+  try { kb = JSON.parse(m[1]); } catch (e) { }
+  t(kb.length >= 10, `assistant KB carries the retired FAQ answers (${kb.length} entries)`);
+  t(kb.some(k => k.href === '/pricing#faq'), 'the retired FAQ answers link somewhere real');
+  t(!ALL['/'].includes('"@type": "FAQPage"'), 'FAQPage JSON-LD removed with the visible FAQ section');
+}
+
 /* ---- 6a2. services we cannot deliver must not be advertised ----
    AEO/GEO is search-visibility work: the vendor's Exclusions schedule does not provide it, so
    offering it means WE have to do it, and until that is confirmed the page must not sell it.

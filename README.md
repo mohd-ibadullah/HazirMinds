@@ -551,6 +551,7 @@ npm run qa:contrast        # WCAG contrast on every text node of every route
 npm run qa:axe             # axe-core accessibility sweep across 23 pages
 npm run qa:a11y            # keyboard, focus visibility, reflow@320, 200% zoom
 npm run qa:nav             # nav parity: mobile menu must offer every desktop nav link
+npm run qa:interactions    # FX guards: menu outside-click/Escape, trade CTA label, no hover jump
 npm run qa:crossbrowser    # WebKit (Safari) and Firefox, not just Chromium
 npm run qa:cls             # cumulative layout shift, 16 routes × 4 widths
 npm run qa:structure       # links, anchors, duplicate IDs, image dims/alt, headings, meta
@@ -579,7 +580,12 @@ A few gates worth knowing about, because they encode decisions rather than mecha
 
 Latest full run: **DoD 49/49 · E2E clean 132 loads · contrast 0 failures · axe 0 violations across
 23 pages · a11y clean across 43 routes · nav parity PASS (3 pages × 4 widths) · WebKit clean 132
-loads · Firefox clean 132 loads · structure 0 issues · content 0 failures / 128 guards.**
+loads · Firefox clean 132 loads · structure 0 issues · content 0 failures / 153 guards.**
+
+The homepage runs a tightened spacing rhythm (the scale is **10 · 12 · 15 · 18 · 20 · 25 · 35 · 50 px**).
+Where the spec touched a class shared by every page — `.eyebrow`, `.lede`, `.sec-head`, `.card`,
+`.num`, `.grid`, `.form-note` — the homepage value is scoped by section id instead of changed
+globally, so `/pricing`, `/services`, `/enterprise` and `/chief-of-staff` keep their own rhythm.
 
 The mobile nav is an accordion built from native `<details>`/`<summary>` — no JS, keyboard-operable,
 and the group containing the current page opens by itself. `qa/nav-parity.mjs` asserts the part that

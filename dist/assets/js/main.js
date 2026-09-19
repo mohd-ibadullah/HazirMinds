@@ -186,12 +186,29 @@
     var burger = document.querySelector('.nav-burger');
     var mobile = document.querySelector('.nav-mobile');
     if (burger && mobile) {
+      var closeMobile = function () {
+        mobile.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      };
       burger.addEventListener('click', function () {
         var open = mobile.classList.toggle('open');
         burger.setAttribute('aria-expanded', String(open));
       });
       mobile.addEventListener('click', function (e) {
-        if (e.target.closest('a')) mobile.classList.remove('open');
+        if (e.target.closest('a')) closeMobile();
+      });
+      /* The panel used to close only from its own button or a link inside it, so tapping anywhere
+         else left it covering the page. Close on outside click and on Escape, keeping aria-expanded
+         in sync and returning focus to the burger. */
+      document.addEventListener('click', function (e) {
+        if (!mobile.classList.contains('open')) return;
+        if (mobile.contains(e.target) || burger.contains(e.target)) return;
+        closeMobile();
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape' || !mobile.classList.contains('open')) return;
+        closeMobile();
+        burger.focus();
       });
     }
   }
@@ -216,6 +233,11 @@
         stagger: 0.07,
         scrollTrigger: { trigger: group, start: 'top 85%', once: true }
       });
+      /* Do NOT clear the reveal's transform here. The pre-reveal offset is a CSS rule
+         (html.motion-ready [data-reveal="children"] > * { transform: translateY(24px) }), not an
+         inline value, so clearProps deletes GSAP's y:0 and the CSS offset snaps straight back —
+         every revealed element lands 24px low. The hover jump was the magnetic handler, and that is
+         fixed at its source with data-no-magnet. */
       if (media.length) gsap.to(media, {
         opacity: 1, duration: .5, ease: 'power2.out', delay: .12,
         scrollTrigger: { trigger: group, start: 'top 85%', once: true }
@@ -327,6 +349,9 @@
   function initMagnetic() {
     if (REDUCE || IS_TOUCH) return;
     document.querySelectorAll('.btn--primary, .btn--brass').forEach(function (btn) {
+      /* data-no-magnet opts a button out. The per-event inline translate reads as a jump on a wide
+         button the cursor crosses slowly, so those get colour-only hover feedback instead. */
+      if (btn.hasAttribute('data-no-magnet') || btn.closest('[data-no-magnet]')) return;
       var r = null;
       btn.addEventListener('mousemove', function (e) {
         r = r || btn.getBoundingClientRect();
@@ -742,7 +767,11 @@
         img.src = d.img; img.alt = d.alt;
         img.closest('.img').classList.remove('trade-swap'); void img.offsetWidth; img.closest('.img').classList.add('trade-swap');
       }
-      if (cta) cta.href = d.href;
+      if (cta) {
+        cta.href = d.href;
+        var lbl = cta.querySelector('[data-trade-cta-label]');
+        if (lbl) lbl.textContent = 'See the ' + d.name + ' playbook';
+      }
       try { history.replaceState(null, '', key === 'hvac' ? location.pathname : '?trade=' + key); } catch (e) { }
       A.send('calculator_use', { type: 'trade_picker', value: key });
     }

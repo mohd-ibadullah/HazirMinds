@@ -18,8 +18,11 @@ const stripTags = (h) => h.replace(/<[^>]+>/g, '');
 head('Structure');
 const home = read('index.html');
 const sections = [...home.matchAll(/<!-- S(\d+)[ ·]/g)].map(m => m[1]);
-const expect = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14'];
-if (JSON.stringify(sections) === JSON.stringify(expect)) ok('home: S0..S14 markers in order (guarantee bar, nav, 12 content sections, footer)');
+/* S6 (#why), S9 (proof band) and S12 (FAQ) were removed with the 2026-09-18 homepage update, and
+   the homepage's ledger moves to the pricing page. Their absence is the expected state now — the
+   content gate asserts each removed section stays gone, so a revert cannot pass here either. */
+const expect = ['0','1','2','3','4','5','7','8','10','11','13','14'];
+if (JSON.stringify(sections) === JSON.stringify(expect)) ok('home: S0..S14 minus the three removed sections, markers in order (S6, S9, S12 gone by design)');
 else bad(`home sections: [${sections.join(',')}] expected [${expect.join(',')}]`);
 
 const routes = ['', 'services', 'pricing', 'enterprise', 'chief-of-staff', 'compare',
@@ -166,7 +169,11 @@ head('Pricing');
 {
   const allTxt = walk(DIST).filter(f => f.endsWith('.html')).map(f => stripTags(fs.readFileSync(f, 'utf8')));
   const drift = [];
-  [['$497'], ['$997'], ['$1,997'], ['$7,500'], ['$0.35'], ['62%'], ['$80–$1,200']].forEach(([tok]) => {
+  /* '$80–$1,200' is replaced by '$1,200': the RANGE was only ever rendered by the removed #why
+     comparison table, while the Silence Tax stat card renders this same figure as an animated
+     counter, so '$1,200' is the form still published. Re-pointing the token keeps the guard on the
+     same claim instead of deleting the check. */
+  [['$497'], ['$997'], ['$1,997'], ['$7,500'], ['$0.35'], ['62%'], ['$1,200']].forEach(([tok]) => {
     const pages = walk(DIST).filter(f => f.endsWith('.html')).filter(f => stripTags(fs.readFileSync(f, 'utf8')).includes(tok));
     if (pages.length) ok(`${tok} stated on ${pages.length} page(s) — single-source value`);
     else drift.push(tok);

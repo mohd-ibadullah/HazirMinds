@@ -281,7 +281,13 @@ function assistant() {
       q: 'Do you build for masjids and Islamic centers?',
       a: 'Yes — the HazirMinds AI Operating System for Masjids connects events, communications, registrations, facilities, volunteers, donations, knowledge and reporting through one controlled operational layer, with committee routing, approval chains and audit receipts.',
       href: '/masjids', label: 'Masjid AI OS'
-    }
+    },
+    /* The homepage FAQ block was removed as redundant with the assistant, which is the stated
+       replacement channel — so its five answers are answered from the knowledge base here. Derived
+       from the same source the pricing page renders, so the two cannot drift apart. */
+    ...require('./data/pricing').faqs.slice(0, 5).map(function (f) {
+      return { q: f.q, a: f.a, href: '/pricing#faq', label: 'Pricing & FAQ' };
+    })
   ];
   return `
 <button class="asst-btn" id="asst-btn" type="button" aria-expanded="false" aria-controls="asst-panel" aria-label="Open the governed website assistant">${I('chat')}<span class="dot" aria-hidden="true"></span></button>
