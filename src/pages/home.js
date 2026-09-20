@@ -224,9 +224,6 @@ ${nav()}
 <section class="section section--paper" style="padding-top:0">
   <div class="container">
     <div class="final-cta" data-reveal>
-      <div class="bg kenburns-slow" aria-hidden="true">
-        <img src="/img/sunrise-yard.webp" alt="" width="1600" height="900" loading="lazy" decoding="async">
-      </div>
       <div class="inner">
         <span class="serif-accent">${site.tagline}</span>
         <h2>Hear your own AI receptionist answer a live call</h2>

@@ -125,18 +125,6 @@ function about() {
       <p class="lede" style="margin-top:16px;max-width:60ch">HazirMinds runs AI teams for businesses. Your agents, your configuration, your governance — operated for you, and accountable to you. When you call, you reach HazirMinds.</p>
     </div>
   </section>
-  <section class="section" style="padding-bottom:0">
-    <div class="container">
-      <div class="band-media" data-reveal>
-        <img src="/img/ab/ab-team-1200.webp"
-             srcset="/img/ab/ab-team-600.webp 600w, /img/ab/ab-team-900.webp 900w, /img/ab/ab-team-1200.webp 1200w, /img/ab/ab-team-1600.webp 1600w"
-             sizes="(max-width: 900px) 100vw, 1200px" width="1600" height="1200"
-             loading="lazy" decoding="async"
-             alt="People working through a problem together — the work behind the platform.">
-      </div>
-      <p class="stat-note center" style="margin-top:12px">Behind the platform is a group of people making decisions. Ours leaves records too.</p>
-    </div>
-  </section>
   <section class="section section--paper">
     <div class="container grid grid-2" style="align-items:start;overflow:clip">
       <div data-reveal="children">
@@ -254,13 +242,6 @@ function demo() {
   </section>
   <section class="section" style="padding-top:44px">
     <div class="container" style="max-width:760px">
-      <div class="band-media" data-reveal style="margin-bottom:24px">
-        <img src="/img/dm/dm-welcome-1200.webp"
-             srcset="/img/dm/dm-welcome-600.webp 600w, /img/dm/dm-welcome-900.webp 900w, /img/dm/dm-welcome-1200.webp 1200w, /img/dm/dm-welcome-1600.webp 1600w"
-             sizes="(max-width: 900px) 100vw, 760px" width="1600" height="1200"
-             loading="lazy" decoding="async"
-             alt="A welcome area prepared for a meeting — what a demo slot is set up to feel like.">
-      </div>
       <div class="card card--panel" data-reveal>
         <span class="eyebrow">Book a Free Demo</span>
         <form data-validate id="demo-form" data-endpoint="${site.leadEndpoint}" aria-label="Demo booking form">

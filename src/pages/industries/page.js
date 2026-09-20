@@ -114,7 +114,7 @@ function industryPage(d, all) {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--dark">
     <div class="container">
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow">Fits your stack</span>

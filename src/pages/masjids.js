@@ -65,18 +65,6 @@ const main = `
     </div>
   </section>
 
-  <section class="section section--paper" style="padding-bottom:0">
-    <div class="container">
-      <div class="band-media" data-reveal>
-        <img src="/img/mj/mj-hall-1600.webp"
-             srcset="/img/mj/mj-hall-600.webp 600w, /img/mj/mj-hall-900.webp 900w, /img/mj/mj-hall-1600.webp 1600w, /img/mj/mj-hall-2400.webp 2400w"
-             sizes="(max-width: 900px) 100vw, 1200px" width="2400" height="1600"
-             loading="eager" fetchpriority="high" decoding="async"
-             alt="Architectural detail of a masjid hall in daylight — quiet, ordered, and in use.">
-      </div>
-      <p class="stat-note center" style="margin-top:12px">A masjid runs on records. Today most of them live on paper, in WhatsApp, and in someone's memory.</p>
-    </div>
-  </section>
 
   <section class="section" id="lifecycle" data-pin-story="lifecycle">
     <div class="container">
