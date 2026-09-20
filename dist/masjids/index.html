@@ -36,7 +36,6 @@
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai","logo":"https://hazirminds.ai/img/og-card.jpg","email":"contact@hazirminds.ai","sameAs":["https://www.linkedin.com/company/hazirminds","https://x.com/hazirminds","https://www.youtube.com/@hazirminds"],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"contact@hazirminds.ai","availableLanguage":["en"]}],"slogan":"Always present. Never missed."}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hazirminds.ai/"},{"@type":"ListItem","position":2,"name":"For Masjids","item":"https://hazirminds.ai/masjids"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do you support Hijri dates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each organization sets its calendar rules — primary calendar (Gregorian or Hijri), adjustment preferences, and dual-date rendering — applied consistently across website, app, newsletters, screens and confirmations."}},{"@type":"Question","name":"Does WhatsApp messaging cost extra?","acceptedAnswer":{"@type":"Answer","text":"WhatsApp runs through the WhatsApp Business API; Meta charges per-conversation fees that remain external usage costs. We show them transparently in the included-vs-external table — never buried."}},{"@type":"Question","name":"Can lobby screens and the app show the same events?","acceptedAnswer":{"@type":"Answer","text":"Yes — screens, site, app, newsletter and WhatsApp all render from the same approved record. When a record changes, every channel updates through the cascade."}},{"@type":"Question","name":"Do we need a branded mobile app?","acceptedAnswer":{"@type":"Answer","text":"No. The core system is web-first and works on any phone. A branded app is available as a scoped addition; app-store accounts remain external."}},{"@type":"Question","name":"How is zakat handled?","acceptedAnswer":{"@type":"Answer","text":"Zakat-designated campaigns can be routed and reported separately from general funds at the campaign level, with settlement through your payment processor. We make no financial or religious-advice claims."}},{"@type":"Question","name":"Who owns the data?","acceptedAnswer":{"@type":"Answer","text":"The masjid does. Export at any time, deletion on request, and strict per-organization isolation: one mosque can never access another's data, users or knowledge."}},{"@type":"Question","name":"What does multi-masjid isolation mean in practice?","acceptedAnswer":{"@type":"Answer","text":"Each organization is a separate tenant with its own data, users, permissions, knowledge base, automations, communications and audit history — isolated at the substrate level, not by policy alone."}}]}</script>
 <link rel="stylesheet" href="/assets/css/main.css?v=0cf3aeefc6.c1d205eafb">
 <style>
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2)format("woff2")}
@@ -232,21 +231,21 @@
         <p class="lede center" style="margin-inline:auto">No rip-and-replace. Each integration below carries the same honest label as the rest of this page — including the ones that are not built yet.</p>
       </div>
       <div class="compare-wrap" data-reveal>
-        <table class="compare compare--3col">
-          <thead><tr><th scope="col">System</th><th scope="col">What it does here</th><th scope="col">Status</th></tr></thead>
-          <tbody>
-            <tr><td>WordPress</td><td>Publishes event content, then verifies the live page: right image, right date, working registration button, expired announcements removed.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Constant Contact</td><td>Assembles the weekly newsletter from approved announcements — masjid items first, community items after, Gregorian and Hijri dates both updated.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Cognito Forms</td><td>Registration with capacity, waitlist, guardian fields, closing date, confirmations and reminders.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Google Workspace</td><td>Docs, Sheets, Drive and Calendar — the shared record and the committee calendar.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Stripe / your processor</td><td>Donations and facility bookings at your processor's published rates, shown transparently. Funds stay yours.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>CRM platforms</td><td>HubSpot, Salesforce, Pipedrive-class systems — members, families, donors and enquiry history stay in sync.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Madina Apps · hall screens · app slideshow</td><td>Approved screen graphics uploaded, dated, ordered, and expired on schedule.</td><td><span class="pill pill--brass">Available</span></td></tr>
-            <tr><td>Canva</td><td>An approved template library your team fills from the event record — one visual identity, no re-designing from scratch.</td><td><span class="pill">Configured at onboarding</span></td></tr>
-            <tr><td>WhatsApp Business API</td><td>Team submission and notification, so information stops being copied out of a group chat by hand. Per-conversation fees are set by Meta.</td><td><span class="pill">Configured at onboarding</span></td></tr>
-            <tr><td>Branded mobile app</td><td>Your own app receiving selected high-priority announcements.</td><td><span class="pill">Custom / scoped</span></td></tr>
-            <tr><td>Facility deposits, payments &amp; e-signatures</td><td>Not built yet. Named here so nobody has to guess.</td><td><span class="pill">Planned</span></td></tr>
-          </tbody>
+        <table class="compare compare--2col">
+          <thead><tr><th scope="col">System</th><th scope="col">What it does here</th></tr></thead>
+           <tbody>
+             <tr><td>Content Management System</td><td>Publishes event content, then verifies the live page: right image, right date, working registration button, expired announcements removed.</td></tr>
+             <tr><td>Email Marketing Platform</td><td>Assembles the weekly newsletter from approved announcements — masjid items first, community items after, Gregorian and Hijri dates both updated.</td></tr>
+             <tr><td>Online Forms & Registration</td><td>Registration with capacity, waitlist, guardian fields, closing date, confirmations and reminders.</td></tr>
+             <tr><td>Productivity & Collaboration Suite</td><td>Docs, Sheets, Drive and Calendar — the shared record and the committee calendar.</td></tr>
+             <tr><td>Payment Processing</td><td>Donations and facility bookings at your processor's published rates, shown transparently. Funds stay yours.</td></tr>
+             <tr><td>Customer Relationship Management</td><td>HubSpot, Salesforce, Pipedrive-class systems — members, families, donors and enquiry history stay in sync.</td></tr>
+             <tr><td>Digital Signage & Mobile Apps</td><td>Approved screen graphics uploaded, dated, ordered, and expired on schedule.</td></tr>
+             <tr><td>Design & Template Platform</td><td>An approved template library your team fills from the event record — one visual identity, no re-designing from scratch.</td></tr>
+             <tr><td>Business Messaging</td><td>Team submission and notification, so information stops being copied out of a group chat by hand. Per-conversation fees are set by Meta.</td></tr>
+             <tr><td>Branded Mobile Application</td><td>Your own app receiving selected high-priority announcements.</td></tr>
+             <tr><td>Facility Booking & Digital Agreements</td><td>Not built yet. Named here so nobody has to guess.</td></tr>
+           </tbody>
         </table>
       </div>
       <p class="stat-note" style="margin-top:12px">Integrations are designed to be replaceable — if your masjid changes a system, the platform is reconfigured rather than rebuilt.</p>
@@ -366,16 +365,14 @@
         <h2>What is available, and what is not yet</h2>
       </div>
       <div class="compare-wrap" data-reveal>
-        <table class="compare compare--2col">
-          <thead><tr><th scope="col">Capability</th><th scope="col">Label</th></tr></thead>
-          <tbody>
-            <tr><td>Core events, communications, registrations, facilities, volunteers, CRM, AI assistants, governance</td><td><span class="pill pill--ok">Contract-supported</span></td></tr>
-            <tr><td>Prayer-time publishing, screens, app channels, reporting packs</td><td><span class="pill pill--brass">Available</span></td></tr>
-            <tr><td>Branding, terminology, Hijri rules, flyer templates, approval chains</td><td><span class="pill">Configured at onboarding</span></td></tr>
-            <tr><td>Branded mobile app, custom integrations, custom agent builds</td><td><span class="pill">Custom / scoped per engagement</span></td></tr>
-            <tr><td>Deposits &amp; payments for facility bookings, e-signatures, conflict auto-detection</td><td><span class="pill">Planned</span></td></tr>
-          </tbody>
-        </table>
+        <ul class="gov-chips" style="list-style:none;padding:0;margin:0" data-reveal>
+        <li><span>Core events, communications, registrations, facilities, volunteers, CRM, AI assistants, governance</span></li>
+        <li><span>Prayer-time publishing, screens, app channels, reporting packs</span></li>
+        <li><span>Branding, terminology, Hijri rules, flyer templates, approval chains</span></li>
+        <li><span>Branded mobile app, custom integrations, custom agent builds</span></li>
+        <li><span>Deposits &amp; payments for facility bookings, e-signatures, conflict auto-detection</span></li>
+      </ul>
+      
       </div>
     </div>
   </section>
@@ -468,42 +465,7 @@
     </div>
   </section>
 
-  <section class="section" id="faq-masjid">
-    <div class="container" style="max-width:860px">
-      <div class="sec-head center" data-reveal="children">
-        <h2>Masjid AI OS questions</h2>
-      </div>
-      <div class="faq" data-reveal="children">
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">Do you support Hijri dates?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>Yes. Each organization sets its calendar rules — primary calendar (Gregorian or Hijri), adjustment preferences, and dual-date rendering — applied consistently across website, app, newsletters, screens and confirmations.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">Does WhatsApp messaging cost extra?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>WhatsApp runs through the WhatsApp Business API; Meta charges per-conversation fees that remain external usage costs. We show them transparently in the included-vs-external table — never buried.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">Can lobby screens and the app show the same events?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>Yes — screens, site, app, newsletter and WhatsApp all render from the same approved record. When a record changes, every channel updates through the cascade.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">Do we need a branded mobile app?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>No. The core system is web-first and works on any phone. A branded app is available as a scoped addition; app-store accounts remain external.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">How is zakat handled?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>Zakat-designated campaigns can be routed and reported separately from general funds at the campaign level, with settlement through your payment processor. We make no financial or religious-advice claims.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">Who owns the data?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>The masjid does. Export at any time, deletion on request, and strict per-organization isolation: one mosque can never access another's data, users or knowledge.</p></div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">What does multi-masjid isolation mean in practice?<span class="ind"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
-      <div class="faq-a"><p>Each organization is a separate tenant with its own data, users, permissions, knowledge base, automations, communications and audit history — isolated at the substrate level, not by policy alone.</p></div>
-    </div></div>
-    </div>
-  </section>
+  
 
   <section class="section section--paper" id="masjid-compare">
     <div class="container">

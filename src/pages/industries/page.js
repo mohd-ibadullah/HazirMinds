@@ -87,9 +87,9 @@ function industryPage(d, all) {
       </div>
       <div class="compare-wrap" data-reveal>
         <table class="compare compare-table">
-          <thead><tr><th scope="col">Service</th><th scope="col">What it does here</th><th scope="col">Where it sits</th></tr></thead>
+          <thead><tr><th scope="col">Service</th><th scope="col">What it does here</th></tr></thead>
           <tbody>
-            ${d.services.map(s => `<tr><td><b>${s[0]}</b></td><td>${s[1]}</td><td class="muted">${s[2]}</td></tr>`).join('')}
+            ${d.services.map(s => `<tr><td><b>${s[0]}</b></td><td>${s[1]}</td></tr>`).join('')}
           </tbody>
         </table>
       </div>

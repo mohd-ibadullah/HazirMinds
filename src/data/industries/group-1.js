@@ -45,7 +45,7 @@ module.exports = [
         ['4', 'Hand off', 'Booked into the schedule, or escalated to a person with the context attached']
       ] }
     ],
-    integrations: 'Field-service software (ServiceTitan, Jobber, Housecall Pro), Google Calendar, Outlook, Twilio, Stripe',
+    integrations: 'Field-Service Management, Calendars &amp; Email, Business Messaging, Payment Processing',
     governance: [
       'Text-back runs on opt-out-aware messaging with consent capture on every outbound thread',
       'Call-recording disclosure is part of the greeting, configured per state where you operate',
@@ -90,7 +90,7 @@ module.exports = [
         ['4', 'Record', 'The practice gets the intake and an audit entry, not a message slip']
       ] }
     ],
-    integrations: 'Practice-management software (Dentrix, Open Dental), Google Calendar, Outlook, Twilio',
+    integrations: 'Practice Management, Calendars &amp; Email, Business Messaging',
     governance: [
       'Consent capture on every interaction, and recording disclosure built into the greeting',
       'Encrypted transcripts with role-based access — staff see what their role needs, nothing more',
@@ -134,7 +134,7 @@ module.exports = [
         ['4', 'Record', 'The firm receives a structured intake and an audit entry']
       ] }
     ],
-    integrations: 'Clio, Filevine, Lawmatics, MyCase, Outlook, Google Calendar, Twilio',
+    integrations: 'Legal Practice Management, Calendars &amp; Email, Business Messaging',
     governance: [
       'Confidentiality by default: encrypted transcripts, access controls and an audit trail on every interaction',
       'Screening runs only on the questions you supply — the agent does not give legal advice or assess merits',
@@ -177,7 +177,7 @@ module.exports = [
         ['4', 'Record', 'Written to your CRM with an audit entry attached']
       ] }
     ],
-    integrations: 'CRM and practice software, Google Calendar, Outlook, Twilio, Stripe',
+    integrations: 'Customer Relationship Management, Calendars &amp; Email, Business Messaging, Payment Processing',
     governance: [
       'Consent capture and opt-out-aware messaging on every outbound thread',
       'Recording disclosure built into the greeting where it applies',

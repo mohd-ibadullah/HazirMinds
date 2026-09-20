@@ -31,7 +31,7 @@ module.exports = [
         ['4', 'Record', 'Written to your CRM with the call logged as a receipt']
       ] }
     ],
-    integrations: 'Follow Up Boss, kvCORE, Pipedrive, Google Calendar, Outlook, Twilio',
+    integrations: 'Real-Estate CRM, Calendars &amp; Email, Business Messaging',
     governance: [
       'Consent capture and opt-out-aware messaging on every outbound thread',
       'Recording disclosure built into the greeting where it applies',
@@ -74,7 +74,7 @@ module.exports = [
         ['4', 'Record', 'The booking and the call are logged as a receipt']
       ] }
     ],
-    integrations: 'OpenTable, SevenRooms, Square, Shopify, Slack, Google Calendar, Twilio',
+    integrations: 'Reservations &amp; POS, E-commerce, Team Messaging, Calendars &amp; Email, Business Messaging',
     governance: [
       'Recording disclosure built into the greeting',
       'Consent capture and opt-out-aware messaging on outbound review requests and texts',
@@ -117,7 +117,7 @@ module.exports = [
         ['4', 'Record', 'The call and the dispatch are logged for the morning']
       ] }
     ],
-    integrations: 'Tekmetric, Shop-Ware, ServiceTitan, Google Calendar, Twilio, Stripe',
+    integrations: 'Shop Management, Calendars &amp; Email, Business Messaging, Payment Processing',
     governance: [
       'Recording disclosure built into the greeting where it applies',
       'Consent capture and opt-out-aware messaging on outbound threads',
@@ -161,7 +161,7 @@ module.exports = [
         ['4', 'Record', 'The booking lands in your diary with a logged receipt']
       ] }
     ],
-    integrations: 'Booking and diary software where an integration exists, Google Calendar, Twilio, Stripe',
+    integrations: 'Booking &amp; Diary Systems, Calendars &amp; Email, Business Messaging, Payment Processing',
     governance: [
       'Consent capture and opt-out-aware messaging on every outbound text',
       'Recording disclosure built into the greeting where it applies',

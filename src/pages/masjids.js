@@ -44,7 +44,6 @@ function channels() {
   <p class="stat-note center" style="margin-top:12px">Volunteers never re-enter data. A change or cancellation cascades to every channel — registrants and teams notified, originals archived.</p>`;
 }
 
-const faq = L.faqBlock(M.faqs);
 
 const main = `
   <section class="section masjid-hero on-dark" style="padding-top:96px">
@@ -154,21 +153,21 @@ const main = `
         <p class="lede center" style="margin-inline:auto">No rip-and-replace. Each integration below carries the same honest label as the rest of this page — including the ones that are not built yet.</p>
       </div>
       <div class="compare-wrap" data-reveal>
-        <table class="compare compare--3col">
-          <thead><tr><th scope="col">System</th><th scope="col">What it does here</th><th scope="col">Status</th></tr></thead>
-          <tbody>
-            <tr><td>WordPress</td><td>Publishes event content, then verifies the live page: right image, right date, working registration button, expired announcements removed.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Constant Contact</td><td>Assembles the weekly newsletter from approved announcements — masjid items first, community items after, Gregorian and Hijri dates both updated.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Cognito Forms</td><td>Registration with capacity, waitlist, guardian fields, closing date, confirmations and reminders.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Google Workspace</td><td>Docs, Sheets, Drive and Calendar — the shared record and the committee calendar.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Stripe / your processor</td><td>Donations and facility bookings at your processor's published rates, shown transparently. Funds stay yours.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>CRM platforms</td><td>HubSpot, Salesforce, Pipedrive-class systems — members, families, donors and enquiry history stay in sync.</td><td><span class="pill pill--ok">Available</span></td></tr>
-            <tr><td>Madina Apps · hall screens · app slideshow</td><td>Approved screen graphics uploaded, dated, ordered, and expired on schedule.</td><td><span class="pill pill--brass">Available</span></td></tr>
-            <tr><td>Canva</td><td>An approved template library your team fills from the event record — one visual identity, no re-designing from scratch.</td><td><span class="pill">Configured at onboarding</span></td></tr>
-            <tr><td>WhatsApp Business API</td><td>Team submission and notification, so information stops being copied out of a group chat by hand. Per-conversation fees are set by Meta.</td><td><span class="pill">Configured at onboarding</span></td></tr>
-            <tr><td>Branded mobile app</td><td>Your own app receiving selected high-priority announcements.</td><td><span class="pill">Custom / scoped</span></td></tr>
-            <tr><td>Facility deposits, payments &amp; e-signatures</td><td>Not built yet. Named here so nobody has to guess.</td><td><span class="pill">Planned</span></td></tr>
-          </tbody>
+        <table class="compare compare--2col">
+          <thead><tr><th scope="col">System</th><th scope="col">What it does here</th></tr></thead>
+           <tbody>
+             <tr><td>Content Management System</td><td>Publishes event content, then verifies the live page: right image, right date, working registration button, expired announcements removed.</td></tr>
+             <tr><td>Email Marketing Platform</td><td>Assembles the weekly newsletter from approved announcements — masjid items first, community items after, Gregorian and Hijri dates both updated.</td></tr>
+             <tr><td>Online Forms & Registration</td><td>Registration with capacity, waitlist, guardian fields, closing date, confirmations and reminders.</td></tr>
+             <tr><td>Productivity & Collaboration Suite</td><td>Docs, Sheets, Drive and Calendar — the shared record and the committee calendar.</td></tr>
+             <tr><td>Payment Processing</td><td>Donations and facility bookings at your processor's published rates, shown transparently. Funds stay yours.</td></tr>
+             <tr><td>Customer Relationship Management</td><td>HubSpot, Salesforce, Pipedrive-class systems — members, families, donors and enquiry history stay in sync.</td></tr>
+             <tr><td>Digital Signage & Mobile Apps</td><td>Approved screen graphics uploaded, dated, ordered, and expired on schedule.</td></tr>
+             <tr><td>Design & Template Platform</td><td>An approved template library your team fills from the event record — one visual identity, no re-designing from scratch.</td></tr>
+             <tr><td>Business Messaging</td><td>Team submission and notification, so information stops being copied out of a group chat by hand. Per-conversation fees are set by Meta.</td></tr>
+             <tr><td>Branded Mobile Application</td><td>Your own app receiving selected high-priority announcements.</td></tr>
+             <tr><td>Facility Booking & Digital Agreements</td><td>Not built yet. Named here so nobody has to guess.</td></tr>
+           </tbody>
         </table>
       </div>
       <p class="stat-note" style="margin-top:12px">Integrations are designed to be replaceable — if your masjid changes a system, the platform is reconfigured rather than rebuilt.</p>
@@ -289,16 +288,14 @@ const main = `
         <h2>What is available, and what is not yet</h2>
       </div>
       <div class="compare-wrap" data-reveal>
-        <table class="compare compare--2col">
-          <thead><tr><th scope="col">Capability</th><th scope="col">Label</th></tr></thead>
-          <tbody>
-            <tr><td>Core events, communications, registrations, facilities, volunteers, CRM, AI assistants, governance</td><td><span class="pill pill--ok">Contract-supported</span></td></tr>
-            <tr><td>Prayer-time publishing, screens, app channels, reporting packs</td><td><span class="pill pill--brass">Available</span></td></tr>
-            <tr><td>Branding, terminology, Hijri rules, flyer templates, approval chains</td><td><span class="pill">Configured at onboarding</span></td></tr>
-            <tr><td>Branded mobile app, custom integrations, custom agent builds</td><td><span class="pill">Custom / scoped per engagement</span></td></tr>
-            <tr><td>Deposits &amp; payments for facility bookings, e-signatures, conflict auto-detection</td><td><span class="pill">Planned</span></td></tr>
-          </tbody>
-        </table>
+        <ul class="gov-chips" style="list-style:none;padding:0;margin:0" data-reveal>
+        <li><span>Core events, communications, registrations, facilities, volunteers, CRM, AI assistants, governance</span></li>
+        <li><span>Prayer-time publishing, screens, app channels, reporting packs</span></li>
+        <li><span>Branding, terminology, Hijri rules, flyer templates, approval chains</span></li>
+        <li><span>Branded mobile app, custom integrations, custom agent builds</span></li>
+        <li><span>Deposits &amp; payments for facility bookings, e-signatures, conflict auto-detection</span></li>
+      </ul>
+      
       </div>
     </div>
   </section>
@@ -398,14 +395,7 @@ const main = `
     </div>
   </section>
 
-  <section class="section" id="faq-masjid">
-    <div class="container" style="max-width:860px">
-      <div class="sec-head center" data-reveal="children">
-        <h2>Masjid AI OS questions</h2>
-      </div>
-      <div class="faq" data-reveal="children">${faq.html}</div>
-    </div>
-  </section>
+  
 
   <section class="section section--paper" id="masjid-compare">
     <div class="container">
@@ -458,7 +448,7 @@ ${L.head({
   title: 'Masjid AI OS — AI Operating System for Masjids & Islamic Centers',
   path: '/masjids',
   desc: 'HazirMinds Masjid AI OS: events, communications, registrations, facilities, volunteers, donations, knowledge and governed AI — one controlled operational layer for masjids and Islamic community organizations.',
-  ld: [L.orgLd(), bc.ld, faq.ld],
+  ld: [L.orgLd(), bc.ld],
   themeAccent: M.accent
 })}
 <body>

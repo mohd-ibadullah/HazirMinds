@@ -30,7 +30,7 @@ module.exports = [
         ['4', 'Record', 'The qualification and the routing are logged as a receipt']
       ] }
     ],
-    integrations: 'HubSpot, Pipedrive, Zoho, Google Workspace, Slack, Google Calendar',
+    integrations: 'Customer Relationship Management, Productivity &amp; Collaboration Suite, Team Messaging, Calendars &amp; Email',
     governance: [
       'Consent capture and opt-out-aware messaging on outbound campaigns',
       'Permission scopes per role, so an agent touches only the systems its role allows',
@@ -73,7 +73,7 @@ module.exports = [
         ['4', 'Record', 'Every interaction is logged, so patterns become visible']
       ] }
     ],
-    integrations: 'Shopify, WooCommerce, Gorgias, Slack, Twilio, Stripe',
+    integrations: 'E-commerce, Support Desk, Team Messaging, Business Messaging, Payment Processing',
     governance: [
       'Order and customer data stay in your workspace, access scoped by role',
       'Consent capture and opt-out-aware messaging on outbound threads',
@@ -116,7 +116,7 @@ module.exports = [
         ['4', 'Record', 'The enquiry and the booking are logged for the team in the morning']
       ] }
     ],
-    integrations: 'Calendar and CRM tools where an integration exists, Google Calendar, Outlook, Twilio',
+    integrations: 'Calendars &amp; Email, Customer Relationship Management, Business Messaging',
     governance: [
       'Consent capture on every interaction, with particular care where a minor\u2019s details are involved',
       'Recording disclosure built into the greeting',
