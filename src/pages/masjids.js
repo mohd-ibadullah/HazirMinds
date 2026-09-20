@@ -44,7 +44,6 @@ function channels() {
   <p class="stat-note center" style="margin-top:12px">Volunteers never re-enter data. A change or cancellation cascades to every channel — registrants and teams notified, originals archived.</p>`;
 }
 
-
 const main = `
   <section class="section masjid-hero on-dark" style="padding-top:96px">
     <div class="container" style="max-width:900px">
@@ -63,7 +62,6 @@ const main = `
       </div>
     </div>
   </section>
-
 
   <section class="section" id="lifecycle" data-pin-story="lifecycle">
     <div class="container">
@@ -99,10 +97,10 @@ const main = `
           <h3>AI phone assistant</h3>
           <p class="muted" style="font-size:15px">Answers <em>only</em> from the approved knowledge base: prayer times, Jumu\u2019ah, programs, youth, registration, hall booking, location, events.</p>
           <ul class="checks">
-            <li>${I('check')}<span>Answers 24/7 on the masjid\u2019s dedicated number</span></li>
-            <li>${I('check')}<span>Says \u201cI\u2019ll check with the office\u201d when unsure — and routes the message</span></li>
-            <li>${I('check')}<span>Every answer carries its source receipt</span></li>
-            <li>${I('check')}<span>Religious questions route to a named scholar or imam — and the routing is logged</span></li>
+            <li>${I('check')}<span>Answers 24/7 on the masjid\u2019s dedicated number</li>
+            <li>${I('check')}<span>Says \u201cI\u2019ll check with the office\u201d when unsure — and routes the message</li>
+            <li>${I('check')}<span>Every answer carries its source receipt</li>
+            <li>${I('check')}<span>Religious questions route to a named scholar or imam — and the routing is logged</li>
           </ul>
         </div>
         <div class="card card--hover" data-reveal>
@@ -110,9 +108,9 @@ const main = `
           <h3>Website assistant</h3>
           <p class="muted" style="font-size:15px">Same governed source: current answers, event finder, registration links, program explanations, routing to the right committee.</p>
           <ul class="checks">
-            <li>${I('check')}<span>Never invents; discloses uncertainty honestly</span></li>
-            <li>${I('check')}<span>Validates against current records before answering</span></li>
-            <li>${I('check')}<span>Escalates outside scope to the right human</span></li>
+            <li>${I('check')}<span>Never invents; discloses uncertainty honestly</li>
+            <li>${I('check')}<span>Validates against current records before answering</li>
+            <li>${I('check')}<span>Escalates outside scope to the right human</li>
           </ul>
         </div>
       </div>
@@ -269,37 +267,16 @@ const main = `
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Security &amp; isolation</span>
           <ul class="checks" style="margin-top:16px">
-            <li>${I('check')}<span>Isolated environment per organization — one mosque can never access another\u2019s data</span></li>
-            <li>${I('check')}<span>Least-privilege access, MFA, encryption in transit and at rest</span></li>
-            <li>${I('check')}<span>Audit logs, backups + recovery, incident response, access reviews</span></li>
-            <li>${I('check')}<span>Restricted AI tool permissions; controlled external actions only</span></li>
+            <li>${I('check')}<span>Isolated environment per organization — one mosque can never access another\u2019s data</li>
+            <li>${I('check')}<span>Least-privilege access, MFA, encryption in transit and at rest</li>
+            <li>${I('check')}<span>Audit logs, backups + recovery, incident response, access reviews</li>
+            <li>${I('check')}<span>Restricted AI tool permissions; controlled external actions only</li>
           </ul>
           <p class="stat-note" style="margin-top:12px">We publish measurable controls — we never claim \u201cend-to-end encryption\u201d or \u201czero risk.\u201d</p>
         </div>
       </div>
     </div>
   </section>
-
-  <section class="section section--paper" id="labels">
-    <div class="container">
-      <div class="sec-head center" data-reveal="children">
-        ${/* The "Capability labels" eyebrow was removed by request and the heading rewritten to state
-             scope plainly. The table below still carries an Available / Planned label on every row. */ ''}
-        <h2>What is available, and what is not yet</h2>
-      </div>
-      <div class="compare-wrap" data-reveal>
-        <ul class="gov-chips" style="list-style:none;padding:0;margin:0" data-reveal>
-        <li><span>Core events, communications, registrations, facilities, volunteers, CRM, AI assistants, governance</span></li>
-        <li><span>Prayer-time publishing, screens, app channels, reporting packs</span></li>
-        <li><span>Branding, terminology, Hijri rules, flyer templates, approval chains</span></li>
-        <li><span>Branded mobile app, custom integrations, custom agent builds</span></li>
-        <li><span>Deposits &amp; payments for facility bookings, e-signatures, conflict auto-detection</span></li>
-      </ul>
-      
-      </div>
-    </div>
-  </section>
-
   <section class="section" id="cost">
     <div class="container">
       <div class="sec-head center" data-reveal="children">
@@ -310,16 +287,16 @@ const main = `
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Included HazirMinds capabilities</span>
           <ul class="checks" style="margin-top:12px">
-            <li>${I('check')}<span>The full operating layer: lifecycle, approvals, channels, registration, facilities, volunteers, CRM, analytics</span></li>
-            <li>${I('check')}<span>Governed AI assistants on your approved knowledge base</span></li>
-            <li>${I('check')}<span>Templates, communication standards, onboarding, training, support</span></li>
-            <li>${I('check')}<span>Required infrastructure and integrations covered by the engagement</span></li>
+            <li>${I('check')}<span>The full operating layer: lifecycle, approvals, channels, registration, facilities, volunteers, CRM, analytics</li>
+            <li>${I('check')}<span>Governed AI assistants on your approved knowledge base</li>
+            <li>${I('check')}<span>Templates, communication standards, onboarding, training, support</li>
+            <li>${I('check')}<span>Required infrastructure and integrations covered by the engagement</li>
           </ul>
         </div>
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Third-party accounts &amp; usage that remain external</span>
           <ul class="checks" style="margin-top:12px">
-            ${M.external.map(x => `<li>${I('info')}<span>${x}</span></li>`).join('')}
+            ${M.external.map(x => `<li>${I('info')}<span>${x}</li>`).join('')}
           </ul>
           <p class="stat-note" style="margin-top:12px">We never claim third-party software is free or owned by HazirMinds.</p>
         </div>
@@ -357,11 +334,11 @@ const main = `
           <span class="icon-tile icon-tile--brass">${I('chart')}</span>
           <h3>What it contains</h3>
           <ul class="checks">
-            <li>${I('check')}<span>Volume handled: calls answered, questions resolved, escalations raised</span></li>
-            <li>${I('check')}<span>Every answer sourced — what the agent relied on to say it</span></li>
-            <li>${I('check')}<span>Escalations and who they went to, with timestamps</span></li>
-            <li>${I('check')}<span>Approvals: who signed off what, and when</span></li>
-            <li>${I('check')}<span>Corrections: what was wrong, and what changed as a result</span></li>
+            <li>${I('check')}<span>Volume handled: calls answered, questions resolved, escalations raised</li>
+            <li>${I('check')}<span>Every answer sourced — what the agent relied on to say it</li>
+            <li>${I('check')}<span>Escalations and who they went to, with timestamps</li>
+            <li>${I('check')}<span>Approvals: who signed off what, and when</li>
+            <li>${I('check')}<span>Corrections: what was wrong, and what changed as a result</li>
           </ul>
         </div>
         <div class="card card--hover" data-reveal>
@@ -402,12 +379,16 @@ const main = `
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
         <h2 style="margin-top:8px">HazirMinds Masjid AI OS vs masjid platforms</h2>
-        <p class="lede" style="max-width:78ch">The established masjid platforms solve communications, donations and apps. None of them offer governed AI, one-record→many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. That is the layer we run. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
+        <p class="lede" style="max-width:78ch">The established masjid platforms solve communications, donations and apps. The first row is us. The rows below it are the established platforms, and none of them offer governed AI, a one-record → many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
       </div>
       <div class="compare-wrap" data-reveal style="margin-top:32px">
         <table class="compare compare-table">
           <thead><tr><th scope="col">Platform</th><th scope="col">Entry price</th><th scope="col">Model</th><th scope="col">Governed AI</th></tr></thead>
           <tbody data-row-reveal>
+            ${/* Our own row, first and marked. It is written here rather than added to M.competitors so the
+                 sources note below still lists only vendor sources, and so the "not evidenced" column
+                 cannot accidentally read as if it applied to us. */ ''}
+            <tr class="row-hazir"><td><b>HazirMinds Masjid AI OS</b></td><td>Custom scoped quote — no public price list</td><td>One record → every channel, with humans approving</td><td>Approval gates · audit receipts · isolated multi-masjid tenancy</td></tr>
             ${M.competitors.map(c => `<tr><td><b>${c.name}</b>${c.flag ? ` <span class="stat-note" style="display:inline">(${c.flag})</span>` : ''}</td><td>${c.entry}</td><td>${c.model}</td><td>${c.ai}</td></tr>`).join('')}
           </tbody>
         </table>

@@ -8,8 +8,7 @@ const CTX = require('../../data/context');
 function industryPage(d, all) {
   const ctx = CTX[d.key] || CTX.fallback;
   const bc = L.breadcrumbs([['Home', '/'], ['Industries', '/industries'], [d.name, '']]);
-  const faq = L.faqBlock(d.faqs, '/industries/' + d.key);
-  const ld = [{
+    const ld = [{
     '@context': 'https://schema.org', '@type': 'Service',
     name: 'HazirMinds for ' + d.name,
     serviceType: 'AI receptionist, sales and workflow automation for ' + d.name,
@@ -19,7 +18,7 @@ function industryPage(d, all) {
       '@type': 'OfferCatalog', name: d.name + ' sub-sectors',
       itemListElement: d.subsectors.map(s => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s[0], description: s[1] } }))
     }
-  }, bc.ld, faq.ld];
+  }, bc.ld];
 
   const others = all.filter(x => x.key !== d.key);
 
@@ -113,18 +112,6 @@ function industryPage(d, all) {
       <p class="stat-note center" style="margin-top:20px">Drawn in markup, not a picture — it stays sharp and readable at any size.</p>
     </div>
   </section>
-
-  <section class="section section--dark">
-    <div class="container">
-      <div class="sec-head" data-reveal="children">
-        <span class="eyebrow">Fits your stack</span>
-        <h2>Systems this works with</h2>
-      </div>
-      <div class="int-line" data-reveal>${d.integrations.split(', ').map(t => `<span class="pill">${I('workflow')}${t}</span>`).join('')}</div>
-      <p class="stat-note" style="margin-top:12px">These are the tools we deploy most in this sector. Anything outside the list is scoped as a client-requirement build rather than promised here.</p>
-    </div>
-  </section>
-
   ${d.governance ? `
   <section class="section section--paper">
     <div class="container" style="max-width:860px">
@@ -137,16 +124,6 @@ function industryPage(d, all) {
       </ul>
     </div>
   </section>` : ''}
-
-  <section class="section">
-    <div class="container" style="max-width:820px">
-      <div class="sec-head" data-reveal="children">
-        <h2>${d.name} questions</h2>
-      </div>
-      <div class="faq" data-reveal="children">${faq.html}</div>
-    </div>
-  </section>
-
   <section class="section section--paper">
     <div class="container">
       <div class="grid grid-2" style="align-items:start;gap:40px">

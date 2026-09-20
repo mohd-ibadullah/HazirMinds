@@ -426,8 +426,12 @@ table.compare tbody tr:last-child td{border-bottom:0}
 table.compare td:first-child{font-weight:600;color:var(--muted);font-size:13.5px;width:22%}
 /* two-column variant (the /masjids capability-label table): the label column is a short
    pill, so the 22% first-column width above would squash the capability text instead. */
-table.compare--2col td:first-child{width:auto;font-size:14.5px;color:var(--ink);font-weight:500}
-table.compare--2col td:last-child{width:1%;white-space:nowrap}
+table.compare--2col td:first-child{width:26%;font-size:14.5px;color:var(--ink);font-weight:500;vertical-align:top}
+table/* This rule assumed the last column was a short badge ("Available"). The masjid integrations table
+   dropped that column, so the last column is now a full sentence and nowrap clipped it off the
+   right edge with no scrollbar. Prose wraps; the first column keeps a sane width instead of
+   squeezing the description. */
+.compare--2col td:last-child{width:auto;white-space:normal}
 table.compare--2col td,table.compare--2col th{font-size:15px}
 /* 3-col variant: neutralise the rust "last column" highlight (that treatment is for the HazirMinds column only) */
 table.compare--3col td:first-child{width:20%;font-size:14.5px;color:var(--ink);font-weight:600;white-space:nowrap}
@@ -573,32 +577,9 @@ a.trade-chip--link:hover{border-color:var(--brass);color:var(--brass-text)}
 .price-card:hover{border-color:var(--brass);transform:translateY(-4px);box-shadow:var(--shadow-2)}
 .price-card--featured::before{content:"Most popular";position:absolute;top:-11px;left:24px;background:var(--brass);color:#161006;font-size:11px;font-weight:700;font-family:var(--font-display);padding:4px 12px;border-radius:var(--r-pill);letter-spacing:.02em}
 .price-card--featured .amount{color:var(--rust-text)}
-
-/* ---------- FAQ (S10) ---------- */
-.faq{max-width:820px;margin-inline:auto}
-.faq-item{border:1px solid var(--hairline);border-radius:var(--r-card);background:var(--card);margin-bottom:12px;overflow:hidden;transition:border-color .2s,box-shadow .2s}
-.faq-item[open],.faq-item.open{border-color:rgba(185,138,46,.4);box-shadow:var(--shadow-1)}
-.faq-item:hover{border-color:rgba(185,138,46,.4)}
-.faq-q:hover{background:rgba(185,138,46,.06)}
-.faq-q{transition:background .18s}
-.faq-q:hover .ind{background:var(--rust-text);color:#fff;border-color:var(--rust-text)}
-.faq-q{
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;
-  padding:24px 26px;font-family:var(--font-display);font-weight:700;font-size:17.5px;letter-spacing:-.012em;
-  line-height:1.35;
-}
-.faq-q .ind{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--hairline);display:grid;place-items:center;transition:transform .3s,background .2s}
-.faq-q .ind svg{width:13px;height:13px}
-.faq-item.open .faq-q .ind{transform:rotate(45deg);background:var(--rust);color:#fff;border-color:var(--rust-text)}
-.faq-a{padding:0 24px;overflow:hidden;height:0;transition:height .35s cubic-bezier(.2,.7,.3,1)}
-.faq-a p{color:var(--muted);font-size:15.5px;line-height:1.7;margin:0 0 22px;max-width:66ch}
 /* FAQ presentation: give the open item a brass spine so the open question is obvious.
    inset box-shadow, not border-left — a 3px border would change the box and shift the
    content 2px on open (CLS). */
-.faq-item.open,.faq-item[open]{box-shadow:inset 3px 0 0 var(--brass),var(--shadow-1)}
-.faq-item[open],.faq-item.open{border-color:rgba(185,138,46,.4)}
-.faq-a a{color:var(--rust-text);font-weight:600;text-decoration:none}
-.faq-a a:hover{text-decoration:underline}
 
 /* ---------- final CTA (S11) ---------- */
 .final-cta{position:relative;overflow:clip;border-radius:var(--r-panel);background:var(--dark);color:var(--cream);border-top:2px solid var(--brass)}
@@ -722,8 +703,6 @@ html.no-motion .hero h1 .line>span{transform:none!important}
   .band-media--scrim.band-media--paper::after{background:linear-gradient(180deg,rgba(255,253,249,.60),rgba(255,253,249,.94))}
 }
 .stat-note{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);line-height:1.6}
-.int-line{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.int-line .lbl{font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-right:4px}
 
 /* ---------- pricing ---------- */
 .toggle-wrap{display:flex;align-items:center;justify-content:center;gap:12px;margin:24px 0 40px;font-weight:600;font-size:15px;flex-wrap:wrap}
@@ -1037,12 +1016,16 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 .chip-row--three{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:768px){.chip-row--three{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.chip-row--three{grid-template-columns:1fr}}
-.on-dark .chip-row .pill,.section--dark .chip-row .pill,.section--dark .int-line .pill{background:rgba(250,247,242,.05);border-color:rgba(250,247,242,.16);color:rgba(250,247,242,.85)}
+.on-dark .chip-row .pill,.section--dark .chip-row .pill,
 .cos-diagram-lg .node-hub{animation:hubPulse 3s ease-in-out infinite}
 @keyframes hubPulse{0%,100%{stroke:rgba(185,138,46,.1);stroke-width:0}50%{stroke:rgba(185,138,46,.6);stroke-width:3}}
 .cos-diagram-lg .edge{stroke-dasharray:6 6}
 .compare-table td:first-child{font-weight:600;color:var(--muted);font-size:13.5px;width:20%}
 .compare-table .col-hazir{background:rgba(198,65,16,.05);font-weight:600}
+/* The masjid comparison leads with our own row, marked the same way the /compare table marks our
+   column. Hover is deliberately excluded so the mark survives the row highlight. */
+.compare-table tr.row-hazir td{background:rgba(198,65,16,.06);font-weight:500;border-bottom-color:rgba(198,65,16,.2)}
+.compare-table tr.row-hazir td:first-child{font-weight:700;color:var(--ink)}
 .compare-table tbody tr{transition:background .2s}
 .compare-table tbody tr:hover td{background:rgba(185,138,46,.05)}
 .verdict-box{background:var(--card);border:1px solid var(--hairline);border-left:4px solid var(--brass);border-radius:var(--r-card);padding:28px;box-shadow:var(--shadow-1)}

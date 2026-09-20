@@ -395,34 +395,7 @@
   }
 
   /* ---------------- accordions ---------------- */
-  function initAccordions() {
-    document.querySelectorAll('.faq-item').forEach(function (item) {
-      var q = item.querySelector('.faq-q');
-      var a = item.querySelector('.faq-a');
-      if (!q || !a) return;
-      q.setAttribute('aria-expanded', 'false');
-      q.addEventListener('click', function () {
-        var open = item.classList.contains('open');
-        // close siblings in same group
-        var group = item.parentElement;
-        group.querySelectorAll('.faq-item.open').forEach(function (o) {
-          if (o !== item) { o.classList.remove('open'); o.querySelector('.faq-a').style.height = '0px'; o.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); }
-        });
-        if (open) {
-          item.classList.remove('open');
-          a.style.height = '0px';
-          q.setAttribute('aria-expanded', 'false');
-        } else {
-          item.classList.add('open');
-          a.style.height = a.scrollHeight + 'px';
-          q.setAttribute('aria-expanded', 'true');
-        }
-      });
-      window.addEventListener('resize', function () {
-        if (item.classList.contains('open')) a.style.height = 'auto';
-      });
-    });
-  }
+  
 
   /* ---------------- tabs (cross-fade 250ms) ---------------- */
   function initTabs() {
@@ -1280,8 +1253,7 @@
     initAssistant();
     initNav();
     initProgress();
-    initAccordions();
-    initTabs();
+      initTabs();
     initDropdowns();
     initDemoContext();
     initForms();

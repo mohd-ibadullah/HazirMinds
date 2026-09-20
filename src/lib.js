@@ -511,19 +511,6 @@ const QUOTE_SHORT = "Configured to your workflow — custom quote, no published 
 const btnDemo = (label, cta, cls, ctx) => `<a class="btn ${cls || 'btn--primary'}" href="/demo${ctx ? '?for=' + ctx : ''}" data-cta="${cta}"><span class="shine"></span>${label || 'Book a Free Demo'} ${I('arrow')}</a>`;
 const btnDemoPlain = (label, cta, cls, ctx) => `<a class="btn ${cls || 'btn--primary'}" href="/demo${ctx ? '?for=' + ctx : ''}" data-cta="${cta}"><span class="shine"></span>${label || 'Book a Free Demo'}</a>`;
 
-function faqBlock(faqs, jsonLdPath) {
-  const ld = {
-    '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/<[^>]+>/g, '') } }))
-  };
-  const html = faqs.map(f => `
-    <div class="faq-item">
-      <button class="faq-q" aria-expanded="false">${f.q}<span class="ind">${I('plus')}</span></button>
-      <div class="faq-a"><p>${f.a}</p></div>
-    </div>`).join('');
-  return { ld, html };
-}
-
 function breadcrumbs(items) {
   return {
     ld: {
@@ -550,4 +537,4 @@ function websiteLd() {
 }
 
 module.exports = {
-  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, auditForm, reportCard, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };
+  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, auditForm, reportCard, btnDemo, btnDemoPlain, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };

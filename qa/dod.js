@@ -99,10 +99,10 @@ check('lifecycle chain verbatim', /ONE REQUEST[\s\S]{0,40}ONE SOURCE OF TRUTH[\s
 /* The Label column was removed by request. The guard INVERTS and also proves the capability copy
    itself survived the removal — losing the content along with its badges would pass a one-sided
    check. 'Available' is left out because that word is used elsewhere on the page. */
-check('capability labels removed, capabilities kept',
-  !['Contract-supported', 'Configured at onboarding', 'Custom / scoped per engagement'].some(l => mj.includes(l))
-    && mj.includes('What is available, and what is not yet')
-    && mj.includes('Prayer-time publishing'), '');
+/* The capability section itself was removed by request, so the guard proves it is gone — heading and
+   copy both — rather than that it survived. */
+check('capability section removed',
+  !mj.includes('What is available, and what is not yet') && !mj.includes('Prayer-time publishing'), '');
 check('included vs external cost table', /included hazirminds capabilities/i.test(mj) && /remain external/i.test(mj), '');
 check('fragmented-stack example carries no figures', !/\$\s?[\d,]+|\d+\s?%/.test(strip(mj).slice(strip(mj).indexOf('fragmented stack'), strip(mj).indexOf('fragmented stack') + 600)) && /patchwork/i.test(mj), '');
 check('no affirmative "never hallucinates" claim (refusal wording allowed)', !all.some(a => affirmative(a.t, 'never hallucinates')), '');
