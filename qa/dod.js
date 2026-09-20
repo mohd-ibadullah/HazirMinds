@@ -119,7 +119,9 @@ check('every stat has a source footnote', (() => { const band = read('index.html
 /* 11 trust rules */
 check('no fake testimonial/persona claims (labeled representative)', !all.some(a => /testimonial/i.test(a.t)), '');
 check('no affirmative "end-to-end encryption"/"zero risk" claims', !all.some(a => affirmative(a.t, 'end-to-end encryption') || affirmative(a.t, 'zero risk')), '');
-check('rate-card honesty statement', all.some(a => a.t.includes('No unpublished meters')), '');
+/* The "No unpublished meters" top banner was removed by request. The guard INVERTS, so a revert
+   cannot pass silently and no page can quietly put the strip back. */
+check('the "No unpublished meters" banner stays removed', !all.some(a => a.t.includes('No unpublished meters')), all.filter(a => a.t.includes('No unpublished meters')).map(a => a.f).join(', '));
 check('60-Day ROI Guarantee removed', !strip(read('index.html')).includes('60-Day ROI Guarantee'));
 
 /* 12 routes */

@@ -52,6 +52,9 @@ module.exports = {
       /* The Compare dropdown was removed by request: the individual comparison pages it listed
          are gone, so the nav item is a plain link to the hub. */
       label: 'Compare', href: '/compare'
+  },
+  {
+    label: 'About', href: '/about'
     },
   ],
 

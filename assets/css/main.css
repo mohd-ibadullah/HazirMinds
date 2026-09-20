@@ -62,7 +62,7 @@
   --card:rgba(250,247,242,.04);
 }
 /* safety net for always-dark containers */
-.footer,.roi-bar,.final-cta,.proof-band,.gov-band,.masjid-hero,.masjid-secure,.section--dark,.on-dark,.hallucination-panel{
+.footer,.final-cta,.proof-band,.gov-band,.masjid-hero,.masjid-secure,.section--dark,.on-dark,.hallucination-panel{
   /* same rule as [data-band="dark"]: surfaces keep --rust, only text tokens turn brass. */
   --rust-text:var(--brass-band);
   --muted:rgba(250,247,242,.78);--brass:var(--brass-band);--brass-text:var(--brass-band);--ok:var(--ok-band);--ok-text:var(--ok-band);--hairline:rgba(250,247,242,.16);
@@ -226,12 +226,6 @@ h3{font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.015em}
 .sec-head .lede{margin-top:12px}
 
 /* ---------- top bar (S0) ---------- */
-.roi-bar{
-  background:var(--deep);color:var(--cream);font-size:13.5px;text-align:center;
-  padding:8px 16px;position:relative;z-index:60;
-}
-.roi-bar strong{color:var(--brass);font-weight:600}
-.roi-bar a{color:var(--cream);text-underline-offset:3px;display:inline-block;padding:4px 2px}
 
 /* ---------- nav (S1) ---------- */
 .nav-wrap{position:sticky;top:0;z-index:65}
@@ -276,8 +270,8 @@ h3{font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.015em}
    the Pricing nav item was removed and the remaining items spread out. The last two items anchor to
    their own right edge instead of centring, which always stays inside the viewport because the panel
    is never wider than the viewport. The max-width is a belt-and-braces guard for narrow laptops. */
-.nav-links > .nav-item:nth-last-child(-n+2) .mega{left:auto;right:0;transform:translate(0,6px);max-width:calc(100vw - 24px)}
-.nav-links > .nav-item:nth-last-child(-n+2).open .mega{transform:translate(0,0)}
+.nav-links > .nav-item:nth-last-child(-n+3) .mega{left:auto;right:0;transform:translate(0,6px);max-width:calc(100vw - 24px)}
+.nav-links > .nav-item:nth-last-child(-n+3).open .mega{transform:translate(0,0)}
 /* invisible bridge across the 10px gap between the nav button and the panel — without it
    mouseleave fires mid-travel and the menu closes while the user is moving into it */
 .mega::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px}
@@ -1199,6 +1193,17 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 .footer{padding:56px 0 28px}
 .footer p{max-width:34ch}
 .footer .bottom{padding-top:20px}
+}
+
+/* The desktop mega nav needs roughly 760px of clear width for its widest panel, so the burger takes
+   over below 1010px even though the rest of the 900px rules stay where they are. Adding a nav item
+   (About) shifted the panels rightward and the Industries panel clipped 42px off the LEFT edge at
+   980px — invisible as a scrollbar, because the nav clips it, and obvious as missing content. */
+@media (min-width:901px) and (max-width:1010px){
+.nav-links{display:none}
+.nav-burger{display:grid}
+.nav-cta{display:none}
+.nav-mobile.open{display:block;animation:fadeIn .2s ease}
 }
 
 /* ---------- view transitions (progressive) ---------- */

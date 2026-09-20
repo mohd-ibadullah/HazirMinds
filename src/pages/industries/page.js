@@ -83,7 +83,7 @@ function industryPage(d, all) {
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow">Relevant services</span>
         <h2>What we deploy here</h2>
-        <p class="lede" style="max-width:74ch">A subset of the catalogue — the services that actually apply to this sector, and where each one sits.</p>
+        <p class="lede" style="max-width:74ch">A subset of the catalogue — the services that actually apply to this sector.</p>
       </div>
       <div class="compare-wrap" data-reveal>
         <table class="compare compare-table">
@@ -141,7 +141,6 @@ function industryPage(d, all) {
   <section class="section">
     <div class="container" style="max-width:820px">
       <div class="sec-head" data-reveal="children">
-        <span class="eyebrow">Straight answers</span>
         <h2>${d.name} questions</h2>
       </div>
       <div class="faq" data-reveal="children">${faq.html}</div>

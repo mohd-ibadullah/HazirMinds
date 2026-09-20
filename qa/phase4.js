@@ -203,8 +203,9 @@ head('Pricing');
   if (lockIn.length === 0) ok('no lock-in / month-to-month commercial language anywhere');
   else bad('lock-in language still published: ' + lockIn.join(', '));
 }
-if (pricingTxt.includes('No unpublished meters') || homeTxt.includes('No unpublished meters') || homeTxt.includes('no unpublished meters')) ok('"no unpublished meters — rate card before go-live" stated');
-else bad('rate-card statement missing');
+/* The banner that carried this line was removed by request; the guard now proves it has not returned. */
+if (!pricingTxt.includes('No unpublished meters') && !homeTxt.includes('No unpublished meters') && !homeTxt.includes('no unpublished meters')) ok('the "No unpublished meters" banner stays removed');
+else bad('the "No unpublished meters" banner is back');
 /* The annual figures are no longer displayed anywhere (that was /pricing copy), so the guard moves
    to the single source of truth instead of disappearing. */
 {

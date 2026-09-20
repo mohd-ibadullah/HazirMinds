@@ -160,7 +160,8 @@ ${ld}
 /* ---------------- page chrome ---------------- */
 function roiBar() {
   return `<!-- S0 · GUARANTEE BAR -->
-<aside class="roi-bar" aria-label="No unpublished meters"><strong>No unpublished meters</strong> — the full usage rate card is in your hands before go-live.</aside>`;
+${/* The "No unpublished meters" top banner was removed by request. roiBar() stays callable from every
+     page shell and returns nothing, so removing it is one change rather than twenty. */ ''}`;
 }
 
 function nav(active) {

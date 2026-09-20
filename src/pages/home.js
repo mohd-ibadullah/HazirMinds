@@ -193,7 +193,6 @@ ${nav()}
     ${L.governanceBand({ compact: true })}
     <div class="hero-ctas" style="justify-content:center;margin-top:48px" data-reveal="children">
       <a class="btn btn--brass btn--lg" data-no-magnet href="/chief-of-staff" data-cta="gov_cos_arch"><span class="shine"></span>See the Chief-of-Staff architecture ${I('arrow')}</a>
-      <a class="btn btn--outline-light btn--lg" href="/chief-of-staff" data-cta="gov_front_door">One front door to your AI team ${I('arrow')}</a>
     </div>
   </div>
 </section>

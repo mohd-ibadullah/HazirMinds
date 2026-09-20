@@ -296,8 +296,9 @@ const main = `
   <section class="section section--paper" id="labels">
     <div class="container">
       <div class="sec-head center" data-reveal="children">
-        <span class="eyebrow">Capability labels</span>
-        <h2>Every capability labeled — never overclaimed</h2>
+        ${/* The "Capability labels" eyebrow was removed by request and the heading rewritten to state
+             scope plainly. The table below still carries an Available / Planned label on every row. */ ''}
+        <h2>What is available, and what is not yet</h2>
       </div>
       <div class="compare-wrap" data-reveal>
         <table class="compare compare--2col">
@@ -412,7 +413,6 @@ const main = `
   <section class="section" id="faq-masjid">
     <div class="container" style="max-width:860px">
       <div class="sec-head center" data-reveal="children">
-        <span class="eyebrow">Straight answers</span>
         <h2>Masjid AI OS questions</h2>
       </div>
       <div class="faq" data-reveal="children">${faq.html}</div>
