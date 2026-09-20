@@ -36,7 +36,7 @@
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai","logo":"https://hazirminds.ai/img/og-card.jpg","email":"contact@hazirminds.ai","sameAs":["https://www.linkedin.com/company/hazirminds","https://x.com/hazirminds","https://www.youtube.com/@hazirminds"],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"contact@hazirminds.ai","availableLanguage":["en"]}],"slogan":"Always present. Never missed."}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hazirminds.ai/"},{"@type":"ListItem","position":2,"name":"Book a Demo","item":"https://hazirminds.ai/demo"}]}</script>
-<link rel="stylesheet" href="/assets/css/main.css?v=de95454cec.3be43d04c9">
+<link rel="stylesheet" href="/assets/css/main.css?v=3add8a6f15.c1d205eafb">
 <style>
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2)format("woff2")}
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2)format("woff2")}
@@ -140,25 +140,115 @@
       <div class="sec-head center" data-reveal="children">
         <span class="eyebrow eyebrow--rust">Governance Readiness Audit</span>
         <h2>Get your free Governance Report Card</h2>
-        <p class="lede center">A scored read on your AI risk, consent trail, audit readiness and escalation gaps — prepared for your business and emailed to you.</p>
+        <p class="lede center">A scored read on your AI risk, consent trail, audit readiness and escalation gaps. Ten questions, about a minute — and your score appears as you answer.</p>
       </div>
       
-    <form data-validate id="demo-audit-form" data-endpoint="/api/lead">
-      <div data-fields class="form-grid">
-        <div class="form-field"><label for="da-name">Name</label><input id="da-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
-        <div class="form-field"><label for="da-email">Work email</label><input id="da-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
-        <div class="form-field full"><label for="da-company">Company</label><input id="da-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
-        <div class="form-field full"><button class="btn btn--primary" type="submit"><span class="shine"></span>Send me the audit</button></div>
+  <div class="report-card" data-report-card>
+    
+      <div class="rc-q">
+        <b>1. When the AI cannot answer something, is there a named person it goes to?</b>
+        <div class="rc-opts" role="group" aria-label="When the AI cannot answer something, is there a named person it goes to?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
       </div>
-      <div class="form-success">
-        <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We'll email your Governance Report Card to the address you entered. Questions first? Email <a href="mailto:contact@hazirminds.ai" style="color:var(--rust-text)">contact@hazirminds.ai</a>.</p></div>
+      <div class="rc-q">
+        <b>2. Does every AI answer show where the answer came from?</b>
+        <div class="rc-opts" role="group" aria-label="Does every AI answer show where the answer came from?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
       </div>
-      <div class="form-error" role="alert">
-        <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <div><b>That didn't send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="contact@hazirminds.ai" href="mailto:contact@hazirminds.ai" style="color:var(--rust-text)">contact@hazirminds.ai</a> and we'll send the report card from there.</p></div>
+      <div class="rc-q">
+        <b>3. Is anything customer-facing held for approval before it goes out?</b>
+        <div class="rc-opts" role="group" aria-label="Is anything customer-facing held for approval before it goes out?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
       </div>
-    </form>
+      <div class="rc-q">
+        <b>4. Can you name who is responsible for what the AI decides?</b>
+        <div class="rc-opts" role="group" aria-label="Can you name who is responsible for what the AI decides?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="rc-q">
+        <b>5. Is every action recorded — who, what, when?</b>
+        <div class="rc-opts" role="group" aria-label="Is every action recorded — who, what, when?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="rc-q">
+        <b>6. Are there written acceptance criteria the AI is measured against?</b>
+        <div class="rc-opts" role="group" aria-label="Are there written acceptance criteria the AI is measured against?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="rc-q">
+        <b>7. Do you record consent before you call or message someone?</b>
+        <div class="rc-opts" role="group" aria-label="Do you record consent before you call or message someone?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="rc-q">
+        <b>8. Does the AI refuse to answer outside your approved knowledge?</b>
+        <div class="rc-opts" role="group" aria-label="Does the AI refuse to answer outside your approved knowledge?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="rc-q">
+        <b>9. Could you leave your current setup and take your data with you?</b>
+        <div class="rc-opts" role="group" aria-label="Could you leave your current setup and take your data with you?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+      <div class="rc-q">
+        <b>10. Has anyone tested the AI against your exceptions, not just the happy path?</b>
+        <div class="rc-opts" role="group" aria-label="Has anyone tested the AI against your exceptions, not just the happy path?">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>
+    <div class="rc-result" hidden>
+      <span class="eyebrow eyebrow--rust">Your score</span>
+      <div class="rc-score" data-rc-score>—</div>
+      <p class="lede" data-rc-note style="margin-top:8px"></p>
+      <p class="form-note" style="margin-top:6px">Ten questions, two points each. Nothing is sent until you ask for the full report card.</p>
+      <form data-validate id="report-card-form" data-endpoint="/api/lead" style="margin-top:20px">
+        <div data-fields class="form-grid">
+          <div class="form-field"><label for="rc-name">Name</label><input id="rc-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
+          <div class="form-field"><label for="rc-email">Work email</label><input id="rc-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
+          <input type="hidden" name="score" data-rc-hidden-score value="">
+          <input type="hidden" name="band" data-rc-hidden-band value="">
+          <div class="form-field full"><button class="btn btn--primary" type="submit"><span class="shine"></span>Email me the full report card</button></div>
+        </div>
+        <div class="form-success">
+          <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We will email your full Governance Report Card, scored against these ten questions, to the address you entered. Questions first? Email <a href="mailto:contact@hazirminds.ai" style="color:var(--rust-text)">contact@hazirminds.ai</a>.</p></div>
+        </div>
+        <div class="form-error" role="alert">
+          <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <div><b>That did not send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="contact@hazirminds.ai" href="mailto:contact@hazirminds.ai" style="color:var(--rust-text)">contact@hazirminds.ai</a> and we will send the report card from there.</p></div>
+        </div>
+      </form>
+    </div>
+  </div>
     </div>
   </section>
 <script type="application/json" id="demo-context">{"home":{"label":"See it on your own line","short":"See it on your line","about":"what a deployment looks like for your business","industry":""},"services":{"label":"Find the right services","short":"Find your services","about":"the service catalogue","industry":""},"chief-of-staff":{"label":"Design Your AI Chief-of-Staff","short":"Design your Chief-of-Staff","about":"the Chief-of-Staff Platform","industry":"Business services, agencies & technology"},"compare":{"label":"Talk through the alternatives","short":"Talk it through","about":"the comparison","industry":""},"masjids":{"label":"Discuss Your Masjid Workflow","short":"Discuss masjid workflow","about":"Masjid AI OS","industry":"Education, nonprofits & community"},"industries":{"label":"Discuss your industry needs","short":"Discuss your industry","about":"your industry","industry":""},"about":{"label":"Talk to the team behind it","short":"Talk to our team","about":"how we work","industry":""},"case-studies":{"label":"See how this would run for you","short":"See it on your business","about":"a deployment like the ones shown here","industry":""},"home-field-services":{"label":"Discuss Your Service Calls","short":"Discuss your calls","about":"field-service call handling","industry":"Home & field services"},"healthcare-dental":{"label":"Discuss Your Practice Needs","short":"Discuss your practice","about":"practice front-desk handling","industry":"Healthcare & dental"},"legal":{"label":"Discuss Your Intake Flow","short":"Discuss your intake","about":"after-hours legal intake","industry":"Legal"},"financial-professional-services":{"label":"Discuss Your Client Enquiries","short":"Discuss your enquiries","about":"advisory enquiry handling","industry":"Financial & professional advisory"},"real-estate-property":{"label":"Discuss Your Enquiry Flow","short":"Discuss your enquiries","about":"property enquiry response","industry":"Real estate & property"},"food-hospitality-events":{"label":"Discuss Your Booking Flow","short":"Discuss your bookings","about":"reservation and event enquiries","industry":"Food, hospitality & events"},"automotive-fleet":{"label":"Discuss Your Service Desk","short":"Discuss your service desk","about":"sales, service and roadside calls","industry":"Automotive & fleet"},"beauty-wellness-personal-care":{"label":"Discuss Your Booking Desk","short":"Discuss your bookings","about":"appointment booking","industry":"Beauty, wellness & personal care"},"business-services-agencies":{"label":"Discuss Your Lead Flow","short":"Discuss your lead flow","about":"inbound lead qualification","industry":"Business services, agencies & technology"},"retail-ecommerce-order-taking":{"label":"Discuss Your Order Enquiries","short":"Discuss your orders","about":"order and support enquiries","industry":"Retail, e-commerce & order-taking"},"education-nonprofits-community":{"label":"Discuss Your Enquiry Flow","short":"Discuss your enquiries","about":"admissions and community enquiries","industry":"Education, nonprofits & community"},"fallback":{"label":"Book a Free Demo","short":"Book a Free Demo","about":"our services","industry":""}}</script>
@@ -250,6 +340,6 @@
 <script src="/vendor/gsap.min.js" defer></script>
 <script src="/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/vendor/lenis.min.js" defer></script>
-<script src="/assets/js/main.js?v=de95454cec.3be43d04c9" defer></script>
+<script src="/assets/js/main.js?v=3add8a6f15.c1d205eafb" defer></script>
 </body>
 </html>

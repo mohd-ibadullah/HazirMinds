@@ -350,6 +350,64 @@ function auditForm(prefix, id) {
     </form>`;
 }
 
+/* ---------------- the scored Governance Report Card ----------------
+   Someone wrote the scoring engine and its styles a while back and never committed the markup, so
+   initReportCard() has been returning on a null root ever since. This is that markup. Every question
+   asks about something the site already claims to do — escalation, source receipts, approval gates,
+   responsibility, audit, acceptance criteria, consent, refusal, data ownership, exception testing —
+   so no question promises a capability the site does not describe elsewhere.
+   Scoring: Yes 2 / Partly 1 / No 0, ten questions, 20 possible. */
+function reportCard() {
+  const q = (n, text) => `
+      <div class="rc-q">
+        <b>${n}. ${text}</b>
+        <div class="rc-opts" role="group" aria-label="${text.replace(/"/g, '&quot;')}">
+          <button type="button" class="rc-opt" data-w="2" aria-pressed="false">Yes</button>
+          <button type="button" class="rc-opt" data-w="1" aria-pressed="false">Partly</button>
+          <button type="button" class="rc-opt" data-w="0" aria-pressed="false">No</button>
+        </div>
+      </div>`;
+  const QUESTIONS = [
+    'When the AI cannot answer something, is there a named person it goes to?',
+    'Does every AI answer show where the answer came from?',
+    'Is anything customer-facing held for approval before it goes out?',
+    'Can you name who is responsible for what the AI decides?',
+    'Is every action recorded — who, what, when?',
+    'Are there written acceptance criteria the AI is measured against?',
+    'Do you record consent before you call or message someone?',
+    'Does the AI refuse to answer outside your approved knowledge?',
+    'Could you leave your current setup and take your data with you?',
+    'Has anyone tested the AI against your exceptions, not just the happy path?'
+  ];
+  return `
+  <div class="report-card" data-report-card>
+    ${QUESTIONS.map((t, i) => q(i + 1, t)).join('')}
+    <div class="rc-result" hidden>
+      <span class="eyebrow eyebrow--rust">Your score</span>
+      <div class="rc-score" data-rc-score>—</div>
+      <p class="lede" data-rc-note style="margin-top:8px"></p>
+      <p class="form-note" style="margin-top:6px">Ten questions, two points each. Nothing is sent until you ask for the full report card.</p>
+      <form data-validate id="report-card-form" data-endpoint="${site.leadEndpoint}" style="margin-top:20px">
+        <div data-fields class="form-grid">
+          <div class="form-field"><label for="rc-name">Name</label><input id="rc-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
+          <div class="form-field"><label for="rc-email">Work email</label><input id="rc-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
+          <input type="hidden" name="score" data-rc-hidden-score value="">
+          <input type="hidden" name="band" data-rc-hidden-band value="">
+          <div class="form-field full"><button class="btn btn--primary" type="submit"><span class="shine"></span>Email me the full report card</button></div>
+        </div>
+        <div class="form-success">
+          ${I('check')}
+          <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We will email your full Governance Report Card, scored against these ten questions, to the address you entered. Questions first? Email <a href="mailto:${site.email}" style="color:var(--rust-text)">${site.email}</a>.</p></div>
+        </div>
+        <div class="form-error" role="alert">
+          ${I('info')}
+          <div><b>That did not send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="${site.email}" href="mailto:${site.email}" style="color:var(--rust-text)">${site.email}</a> and we will send the report card from there.</p></div>
+        </div>
+      </form>
+    </div>
+  </div>`;
+}
+
 /* ---------------- exit-intent modal ---------------- */
 function exitModal() {
   return `
@@ -491,4 +549,4 @@ function websiteLd() {
 }
 
 module.exports = {
-  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, auditForm, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };
+  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, auditForm, reportCard, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };

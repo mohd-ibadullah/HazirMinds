@@ -1064,6 +1064,12 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 .report-card .rc-opt:hover{border-color:var(--muted)}
 .report-card .rc-opt[aria-pressed="true"]{background:var(--deep);color:var(--cream);border-color:var(--deep)}
 .rc-score{font-family:var(--font-display);font-weight:800;font-size:clamp(48px,6vw,72px);color:var(--rust-text);line-height:1}
+/* The scored result: a card that appears once every question is answered, and holds the only form on
+   the page that sends anything. */
+.report-card{margin-top:8px}
+.rc-result{margin-top:20px;padding:28px;border:1px solid var(--brass-band);border-radius:var(--r-panel);background:var(--paper)}
+.rc-result .rc-score{margin-top:10px}
+.report-card .rc-q:last-of-type{margin-bottom:0}
 .approval-demo .ad-state{border:1px dashed rgba(185,138,46,.5);border-radius:var(--r-card);padding:20px;margin-top:12px;font-size:14px}
 .approval-demo .ad-state.blocked{border-color:rgba(198,65,16,.5);background:rgba(198,65,16,.05)}
 .approval-demo .ad-state.allowed{border-color:rgba(62,124,79,.5);background:rgba(62,124,79,.05)}

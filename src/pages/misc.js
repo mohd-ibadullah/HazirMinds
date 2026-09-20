@@ -311,9 +311,9 @@ function demo() {
       <div class="sec-head center" data-reveal="children">
         <span class="eyebrow eyebrow--rust">Governance Readiness Audit</span>
         <h2>Get your free Governance Report Card</h2>
-        <p class="lede center">A scored read on your AI risk, consent trail, audit readiness and escalation gaps — prepared for your business and emailed to you.</p>
+        <p class="lede center">A scored read on your AI risk, consent trail, audit readiness and escalation gaps. Ten questions, about a minute — and your score appears as you answer.</p>
       </div>
-      ${L.auditForm('da', 'demo-audit-form')}
+      ${L.reportCard()}
     </div>
   </section>`;
   /* The CTA that brought the visitor here carries ?for=<key>. The page is static, so the map is

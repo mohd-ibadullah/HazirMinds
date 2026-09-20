@@ -1110,10 +1110,16 @@
       if (answered === qs.length) {
         var res = root.querySelector('.rc-result');
         res.hidden = false;
-        var badge = score >= 13 ? 'Governed' : score >= 8 ? 'Emerging' : 'Exposed';
-        root.querySelector('[data-rc-score]').textContent = score + '/16';
-        root.querySelector('[data-rc-note]').textContent = badge + ' — ' + (score >= 13 ? 'your posture is strong; we can stress-test it.' : score >= 8 ? 'good bones, real gaps. The demo maps them.' : 'meaningful exposure. The demo is where we start.');
-        A.send('report_card', { score: score });
+        /* Ten questions, two points each. The thresholds are 80% and 50% of 20. */
+        var badge = score >= 16 ? 'Governed' : score >= 10 ? 'Emerging' : 'Exposed';
+        root.querySelector('[data-rc-score]').textContent = score + '/20';
+        root.querySelector('[data-rc-note]').textContent = badge + ' — ' + (score >= 16 ? 'your posture is strong; we can stress-test it.' : score >= 10 ? 'good bones, real gaps. The demo maps them.' : 'meaningful exposure. The demo is where we start.');
+        /* Carry the score into the form itself, so the lead arrives with it attached rather than as a
+           number in an analytics event nobody reads. */
+        var hs = root.querySelector('[data-rc-hidden-score]'), hb = root.querySelector('[data-rc-hidden-band]');
+        if (hs) hs.value = score + '/20';
+        if (hb) hb.value = badge;
+        A.send('report_card', { score: score, band: badge });
         res.scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth', block: 'nearest' });
       }
     }
