@@ -53,7 +53,7 @@ function compareHub() {
       <div class="card card--panel card--hairline-top center" data-reveal style="max-width:820px;margin-inline:auto">
         <div class="seal" style="margin-inline:auto">PROOF</div>
         <span class="eyebrow" style="justify-content:center">How we measure it</span>
-        <h2 style="font-size:clamp(26px,3vw,38px)">We prove outcomes against acceptance criteria you sign.</h2>
+        <h2 >We prove outcomes against acceptance criteria you sign.</h2>
         <p class="lede" style="margin:16px auto 0">Before we go live, we agree — in writing — the criteria that define success for your business. Every deployment is then measured against them and reported to you, built from real transcripts. If the measured outcomes aren't there, you can say so and leave — the exit terms live in the agreement you sign, not in a retention clause.</p>
         <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
           ${L.btnDemo('See what we measure', 'measurement_compare', 'btn--primary btn--lg', 'compare')}

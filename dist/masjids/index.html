@@ -37,7 +37,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai","logo":"https://hazirminds.ai/img/og-card.jpg","email":"contact@hazirminds.ai","sameAs":["https://www.linkedin.com/company/hazirminds","https://x.com/hazirminds","https://www.youtube.com/@hazirminds"],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"contact@hazirminds.ai","availableLanguage":["en"]}],"slogan":"Always present. Never missed."}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hazirminds.ai/"},{"@type":"ListItem","position":2,"name":"For Masjids","item":"https://hazirminds.ai/masjids"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do you support Hijri dates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each organization sets its calendar rules — primary calendar (Gregorian or Hijri), adjustment preferences, and dual-date rendering — applied consistently across website, app, newsletters, screens and confirmations."}},{"@type":"Question","name":"Does WhatsApp messaging cost extra?","acceptedAnswer":{"@type":"Answer","text":"WhatsApp runs through the WhatsApp Business API; Meta charges per-conversation fees that remain external usage costs. We show them transparently in the included-vs-external table — never buried."}},{"@type":"Question","name":"Can lobby screens and the app show the same events?","acceptedAnswer":{"@type":"Answer","text":"Yes — screens, site, app, newsletter and WhatsApp all render from the same approved record. When a record changes, every channel updates through the cascade."}},{"@type":"Question","name":"Do we need a branded mobile app?","acceptedAnswer":{"@type":"Answer","text":"No. The core system is web-first and works on any phone. A branded app is available as a scoped addition; app-store accounts remain external."}},{"@type":"Question","name":"How is zakat handled?","acceptedAnswer":{"@type":"Answer","text":"Zakat-designated campaigns can be routed and reported separately from general funds at the campaign level, with settlement through your payment processor. We make no financial or religious-advice claims."}},{"@type":"Question","name":"Who owns the data?","acceptedAnswer":{"@type":"Answer","text":"The masjid does. Export at any time, deletion on request, and strict per-organization isolation: one mosque can never access another's data, users or knowledge."}},{"@type":"Question","name":"What does multi-masjid isolation mean in practice?","acceptedAnswer":{"@type":"Answer","text":"Each organization is a separate tenant with its own data, users, permissions, knowledge base, automations, communications and audit history — isolated at the substrate level, not by policy alone."}}]}</script>
-<link rel="stylesheet" href="/assets/css/main.css?v=ecd1dc88dd.3be43d04c9">
+<link rel="stylesheet" href="/assets/css/main.css?v=de95454cec.3be43d04c9">
 <style>
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2)format("woff2")}
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2)format("woff2")}
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="section" style="padding-bottom:0">
+  <section class="section section--paper" style="padding-bottom:0">
     <div class="container">
       <div class="band-media" data-reveal>
         <img src="/img/mj/mj-hall-1600.webp"
@@ -522,7 +522,7 @@
     <div class="container">
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
-        <h2 style="font-size:clamp(26px,3vw,38px);margin-top:8px">HazirMinds Masjid AI OS vs masjid platforms</h2>
+        <h2 style="margin-top:8px">HazirMinds Masjid AI OS vs masjid platforms</h2>
         <p class="lede" style="max-width:78ch">The established masjid platforms solve communications, donations and apps. None of them offer governed AI, one-record→many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. That is the layer we run. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
       </div>
       <div class="compare-wrap" data-reveal style="margin-top:32px">
@@ -550,7 +550,7 @@
     </div>
   </section>
 
-  <section class="section section--paper">
+  <section class="section">
     <div class="container">
       <div class="final-cta" data-reveal>
         <div class="inner" style="max-width:660px">
@@ -627,12 +627,13 @@
     <span class="eyebrow eyebrow--rust">Before you go</span>
     <h3 id="exit-title" style="font-size:26px;margin-bottom:10px">Get your free Governance Report Card</h3>
     <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps.</p>
-    <form data-validate id="audit-form" data-endpoint="/api/lead" style="margin-top:18px">
+    
+    <form data-validate id="audit-form" data-endpoint="/api/lead">
       <div data-fields class="form-grid">
         <div class="form-field"><label for="ex-name">Name</label><input id="ex-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
         <div class="form-field"><label for="ex-email">Work email</label><input id="ex-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
         <div class="form-field full"><label for="ex-company">Company</label><input id="ex-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
-        <div class="form-field full"><button class="btn btn--primary" type="submit" style="width:100%"><span class="shine"></span>Send me the audit</button></div>
+        <div class="form-field full"><button class="btn btn--primary" type="submit"><span class="shine"></span>Send me the audit</button></div>
       </div>
       <div class="form-success">
         <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -648,6 +649,6 @@
 <script src="/vendor/gsap.min.js" defer></script>
 <script src="/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/vendor/lenis.min.js" defer></script>
-<script src="/assets/js/main.js?v=ecd1dc88dd.3be43d04c9" defer></script>
+<script src="/assets/js/main.js?v=de95454cec.3be43d04c9" defer></script>
 </body>
 </html>

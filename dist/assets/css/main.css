@@ -105,6 +105,9 @@ hr{border:0;border-top:1px solid var(--hairline);margin:0}
 .section--paper{background:var(--paper)}
 .section--card{background:var(--card)}
 .section--dark{background:var(--dark);color:var(--cream)}
+/* The deeper shade: two dark sections in a row (a dark hero and the panel under it) still read as
+   two sections, which is the point of alternating backgrounds at all. */
+.section--dark--deep{background:var(--dark-2)}
 .section--dark .muted,.section--dark p{color:rgba(250,247,242,.72)}
 .section--dark .hairline{border-color:rgba(250,247,242,.14)}
 
@@ -197,6 +200,8 @@ h3{font-size:clamp(20px,2vw,24px);font-weight:700;letter-spacing:-.015em}
 /* Card hierarchy: a card's h3 is a section-level label, not body copy. It was inheriting
    the global h3 size, so the icon-tile cards on /masjids read flat against their own text. */
 .card h3{margin-bottom:8px;font-size:21px;line-height:1.25;letter-spacing:-.012em}
+/* A heading inside a card is the same size whether it is an h2 (a numbered legal section) or an h3. */
+.card h2,.card .card-head{margin-bottom:8px;font-size:21px;line-height:1.25;letter-spacing:-.012em}
 .card--panel h3{font-size:23px}
 .card--panel>.eyebrow,.card>.eyebrow+.chip-row{margin-top:0}
 .grid{display:grid;gap:20px}
@@ -1063,23 +1068,11 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 .approval-demo .ad-state.blocked{border-color:rgba(198,65,16,.5);background:rgba(198,65,16,.05)}
 .approval-demo .ad-state.allowed{border-color:rgba(62,124,79,.5);background:rgba(62,124,79,.05)}
 
-/* ---------- homepage rhythm ----------
-   .eyebrow, .lede, .sec-head, .card, .num, .grid and .form-note are shared by every page, so the
-   homepage-specific values are scoped by section id and the global rules are left untouched. */
-#silence-tax .sec-head .eyebrow,#loop .sec-head .eyebrow,#doors .sec-head .eyebrow,
-#governance .sec-head .eyebrow,#your-trade .sec-head .eyebrow,#plans .sec-head .eyebrow{font-size:15px;margin-bottom:16px}
-#silence-tax .sec-head,#loop .sec-head,#doors .sec-head,#governance .sec-head,
-#your-trade .sec-head,#plans .sec-head{margin-bottom:48px}
-#silence-tax .lede.center,#loop .lede.center,#doors .lede.center,#governance .lede.center,
-#plans .lede.center{margin-top:16px;margin-bottom:16px}
-#silence-tax .sec-head .lede,#loop .sec-head .lede,#doors .sec-head .lede,
-#governance .sec-head .lede,#plans .sec-head .lede{margin-top:16px}
-.calc-controls .eyebrow,.calc-result .eyebrow{font-size:20px;margin-bottom:16px}
-.calc-controls .form-note{font-size:15px;margin-bottom:8px}
-#loop .pin-stage .card{padding:24px}
-#loop .pin-stage .num{font-size:13px}
-#doors .grid.grid-3{gap:24px}
-
+/* The homepage used to carry its own scoped rhythm here — a list of section-id overrides for the
+   eyebrow size, the sec-head margin, the lede margins, a card padding and a grid gap. That is the
+   definition of one-off styling: the same components rendered at a different size on one page than on
+   the other twenty-one, and one of the ids (#plans) no longer existed, so its rule was already dead.
+   The homepage now inherits the global values like every other page. */
 /* ---------- responsive ---------- */
 @media (max-width:1080px){
   .nav-links{gap:0}
@@ -1098,7 +1091,15 @@ html.no-motion .hero h1 .line>span{transform:none!important}
   .grid-4{grid-template-columns:repeat(2,1fr)}
   .stats-band{grid-template-columns:repeat(2,1fr)}
   .price-strip{grid-template-columns:repeat(2,1fr)}
-  .footer .top{grid-template-columns:1fr 1fr}
+   .footer .top{grid-template-columns:1fr 1fr;gap:26px 20px;padding-bottom:26px}
+ /* The brand cell takes the full width and the three link columns pair up, so the footer stays a
+    two-column block instead of four stacked ones on a phone. */
+  .footer .top > :first-child{grid-column:1 / -1}
+ .footer{padding:46px 0 26px}
+ .footer .bottom{padding-top:18px}
+ /* Once the brand cell owns the full row, let its copy use that row: held to 34ch it wrapped to five
+    narrow lines inside a 976px cell and added ~90px of footer height for nothing. */
+ .footer p{max-width:62ch}
 }
 @media (max-width:900px){
   .nav-cta .btn--ghost{display:inline-flex}
@@ -1160,16 +1161,38 @@ html.no-motion .hero h1 .line>span{transform:none!important}
 }
 @media (max-width:560px){
   body{font-size:16px}
-  .container{padding-inline:16px}
+  .container{padding-inline:20px}
   .stats-band,.price-strip,.grid-4{grid-template-columns:1fr}
   .card--panel{padding:24px}
-  .footer .top{grid-template-columns:1fr}
+   /* Compact on a phone: the same two-column link grid, tighter gaps and smaller type, so the footer
+    reads as a footer instead of taking more than a screen before the visitor reaches the bottom. */
+  .footer{padding:34px 0 20px}
+ .footer .top{grid-template-columns:1fr 1fr;gap:18px 14px;padding-bottom:18px}
+ .footer .top > :first-child{grid-column:1 / -1}
+ .footer p{font-size:13px;line-height:1.55;max-width:none;margin-top:8px}
+ .footer .brand{margin-bottom:2px}
+ .footer .chips{margin-top:10px !important}
+ .footer h4,.footer .fcol-h{margin-bottom:10px;font-size:10.5px}
+ .footer ul a{padding:3px 0;font-size:13.5px}
+ .footer .bottom{padding-top:16px;font-size:12.5px;gap:10px}
+ .footer .socials a{width:32px;height:32px}
+ .footer .socials svg{width:14px;height:14px}
   .hero{padding:56px 0 72px}
   .hero-ctas .btn{width:100%}
   .trade-chip{padding:8px 15px;font-size:13px}
   .hero-split .hero-ctas .btn{flex:1 1 100%}
   .modal{padding:28px 22px}
   .proof-card{padding:24px}
+}
+
+/* The footer keeps its four columns down to 900px — between 900 and 1080 there is still room for them,
+   and folding to two columns there cost ~200px of height for no gain. */
+@media (min-width:901px) and (max-width:1080px){
+.footer .top{grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:32px}
+.footer .top > :first-child{grid-column:auto}
+.footer{padding:56px 0 28px}
+.footer p{max-width:34ch}
+.footer .bottom{padding-top:20px}
 }
 
 /* ---------- view transitions (progressive) ---------- */

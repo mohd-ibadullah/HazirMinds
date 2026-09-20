@@ -65,7 +65,7 @@ const main = `
     </div>
   </section>
 
-  <section class="section" style="padding-bottom:0">
+  <section class="section section--paper" style="padding-bottom:0">
     <div class="container">
       <div class="band-media" data-reveal>
         <img src="/img/mj/mj-hall-1600.webp"
@@ -423,7 +423,7 @@ const main = `
     <div class="container">
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
-        <h2 style="font-size:clamp(26px,3vw,38px);margin-top:8px">HazirMinds Masjid AI OS vs masjid platforms</h2>
+        <h2 style="margin-top:8px">HazirMinds Masjid AI OS vs masjid platforms</h2>
         <p class="lede" style="max-width:78ch">The established masjid platforms solve communications, donations and apps. None of them offer governed AI, one-record→many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. That is the layer we run. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
       </div>
       <div class="compare-wrap" data-reveal style="margin-top:32px">
@@ -451,7 +451,7 @@ const main = `
     </div>
   </section>
 
-  <section class="section section--paper">
+  <section class="section">
     <div class="container">
       <div class="final-cta" data-reveal>
         <div class="inner" style="max-width:660px">

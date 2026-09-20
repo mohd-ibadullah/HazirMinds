@@ -52,7 +52,7 @@ function caseStudies() {
       </div>
     </div>
   </section>
-  <section class="section">
+  <section class="section section--paper">
     <div class="container">
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow">Deployment detail</span>
@@ -84,7 +84,7 @@ function caseStudies() {
       </article>`).join('')}
     </div>
   </section>
-  <section class="section section--paper">
+  <section class="section">
     <div class="container">
       <div class="sec-head center" data-reveal="children">
         <span class="eyebrow">The framework</span>
@@ -137,15 +137,15 @@ function about() {
       <p class="stat-note center" style="margin-top:12px">Behind the platform is a group of people making decisions. Ours leaves records too.</p>
     </div>
   </section>
-  <section class="section">
+  <section class="section section--paper">
     <div class="container grid grid-2" style="align-items:start;overflow:clip">
       <div data-reveal="children">
         <span class="eyebrow">Why “HazirMinds”</span>
-        <h2 style="font-size:clamp(26px,3vw,40px)">Always hazir</h2>
+        <h2 >Always hazir</h2>
         <p class="muted" style="margin-top:16px"><em>Hazir</em> — Urdu and Arabic — means present, ready, attentive. It's the word a household uses for the person you can count on: the one who is <em>there</em> when it matters. HazirMinds runs AI teams that are always hazir — present on every call, every lead, every decision — while your people keep the authority.</p>
         <p class="muted">Our proof standard follows from the name: every claim on this site is labeled with its evidence horizon — Built → Deployed → Operated → Verified outcome → Accepted by client. We never promote a lower horizon into a stronger claim. That's what “always present” means when applied to ourselves.</p>
         <div class="chips" style="margin-top:20px">
-          <span class="pill pill--brass">Founded 2024</span>
+          <span class="pill pill--brass">Founded 2026</span>
           <span class="pill">United States</span>
           <span class="pill">Isolated per-client environments</span>
           <span class="pill">Public honesty standard</span>
@@ -162,7 +162,7 @@ function about() {
       </div>
     </div>
   </section>
-  <section class="section section--paper" style="padding-top:0">
+  <section class="section" style="padding-top:0">
     <div class="container">
       <div class="sec-head" data-reveal="children">
         <span class="eyebrow">Our doctrine — the part that never changes</span>
@@ -189,11 +189,11 @@ function about() {
       </div>
     </div>
   </section>
-  <section class="section">
+  <section class="section section--paper">
     <div class="container grid grid-2" style="align-items:start;gap:48px">
       <div data-reveal="children">
         <span class="eyebrow">How we work</span>
-        <h2 style="font-size:clamp(24px,2.6vw,34px)">Five steps between first call and first answered call</h2>
+        <h2 >Five steps between first call and first answered call</h2>
         <ol class="steps-plain">
           <li><b>Scoping.</b> We map where calls and leads are leaking, and — more importantly — how much authority your team is actually willing to delegate. No authority, no deployment.</li>
           <li><b>Build.</b> Agents are trained on your services, pricing, hours, exceptions and tone of voice. Nothing ships on defaults and nothing ships on our assumptions about your business.</li>
@@ -204,7 +204,7 @@ function about() {
       </div>
       <div data-reveal="children">
         <span class="eyebrow">Team principles</span>
-        <h2 style="font-size:clamp(24px,2.6vw,34px)">What we hold ourselves to</h2>
+        <h2 >What we hold ourselves to</h2>
         <div class="card card--panel" style="margin-top:20px">
           <div class="kv"><span>We say what we can prove</span><b>Every claim carries its evidence horizon</b></div>
           <div class="kv"><span>We quote before we build</span><b>Full rate card before go-live</b></div>
@@ -216,7 +216,7 @@ function about() {
       </div>
     </div>
   </section>
-  <section class="section section--paper" style="padding-top:0">
+  <section class="section" style="padding-top:0">
     <div class="container">
       <div class="final-cta" data-reveal>
         <div class="inner" style="max-width:640px">
@@ -298,12 +298,22 @@ function demo() {
       </div>
     </div>
   </section>
-  <section class="section">
+  <section class="section section--paper">
     <div class="container" style="max-width:820px">
       <div class="card card--panel" data-reveal>
         <span class="eyebrow">Your data</span>
         <p class="muted" style="margin-top:8px">The demo form sends us only what you type here — name, work email, company, phone, industry, team size and your note. We use it to prepare your demo and follow up. No ad trackers, no third-party cookies, nothing sold. Call recordings and transcripts from a live deployment stay in your workspace and are used to tune your own deployment. Full detail in our <a href="/privacy" style="color:var(--rust-text)">Privacy Policy</a>.</p>
       </div>
+    </div>
+  </section>
+  <section class="section" id="governance-audit">
+    <div class="container" style="max-width:820px">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow eyebrow--rust">Governance Readiness Audit</span>
+        <h2>Get your free Governance Report Card</h2>
+        <p class="lede center">A scored read on your AI risk, consent trail, audit readiness and escalation gaps — prepared for your business and emailed to you.</p>
+      </div>
+      ${L.auditForm('da', 'demo-audit-form')}
     </div>
   </section>`;
   /* The CTA that brought the visitor here carries ?for=<key>. The page is static, so the map is
@@ -347,7 +357,7 @@ function legal(kind) {
     ['Contact', 'Questions about these terms: ' + site.email + '.']
   ];
   const main = `
-  <section class="hero-sub-plain" style="padding-bottom:0">
+  <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container">
       ${bc.html}
       <h1 style="max-width:14ch">${title}</h1>
@@ -356,7 +366,7 @@ function legal(kind) {
   </section>
   <section class="section" style="padding-top:44px">
     <div class="container" style="max-width:800px">
-      ${ps.map((p, i) => `<div class="card" style="margin-bottom:16px" data-reveal><h2 style="font-size:18px;line-height:1.25;letter-spacing:-.012em;margin-bottom:8px">${i + 1}. ${p[0]}</h2><p class="muted" style="margin:8px 0 0;font-size:15px">${p[1]}</p></div>`).join('')}
+      ${ps.map((p, i) => `<div class="card" style="margin-bottom:16px" data-reveal><h2 class="card-head">${i + 1}. ${p[0]}</h2><p class="muted" style="margin:8px 0 0;font-size:15px">${p[1]}</p></div>`).join('')}
       <p class="form-note">Plain-English summaries; the full legal documents are available on request at ${site.email}.</p>
     </div>
   </section>`;
@@ -372,7 +382,7 @@ function legal(kind) {
 /* ---------------- 404 ---------------- */
 function notFound() {
   const main = `
-  <section class="section center" style="min-height:60vh;display:grid;place-items:center">
+  <section class="section section--paper center" style="min-height:60vh;display:grid;place-items:center">
     <div class="container" style="max-width:560px">
       <span class="eyebrow" style="justify-content:center">Error 404</span>
       <h1 style="font-size:clamp(48px,8vw,90px)">404</h1>

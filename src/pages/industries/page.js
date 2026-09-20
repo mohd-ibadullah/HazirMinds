@@ -153,7 +153,7 @@ function industryPage(d, all) {
       <div class="grid grid-2" style="align-items:start;gap:40px">
         <div data-reveal="children">
           <span class="eyebrow">Other industries</span>
-          <h2 style="font-size:clamp(22px,2.4vw,30px);margin-top:8px">Not your sector?</h2>
+          <h2 style="margin-top:8px">Not your sector?</h2>
           <p class="muted" style="font-size:15px;max-width:52ch">Eleven umbrellas cover the US market we actually serve. Anything outside them is a sector we do not claim.</p>
           <p style="margin-top:12px"><a class="link-arrow" href="/industries">See all industries ${I('arrow')}</a></p>
         </div>

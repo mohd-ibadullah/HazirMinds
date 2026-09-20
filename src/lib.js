@@ -325,6 +325,31 @@ ${exitModal()}
 </html>`;
 }
 
+/* ---------------- the Governance Report Card form, in ONE place ----------------
+   It renders twice: inside the exit-intent modal on every page, and as its own /demo section below
+   the demo form. Two copies of a form with ids would collide (the modal is on /demo too), so the
+   field prefix is a parameter and the copy is written once. */
+function auditForm(prefix, id) {
+  const P = prefix;
+  return `
+    <form data-validate${id ? ' id="' + id + '"' : ''} data-endpoint="${site.leadEndpoint}">
+      <div data-fields class="form-grid">
+        <div class="form-field"><label for="${P}-name">Name</label><input id="${P}-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
+        <div class="form-field"><label for="${P}-email">Work email</label><input id="${P}-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
+        <div class="form-field full"><label for="${P}-company">Company</label><input id="${P}-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
+        <div class="form-field full"><button class="btn btn--primary" type="submit"${id ? '' : ' style="width:100%"'}><span class="shine"></span>Send me the audit</button></div>
+      </div>
+      <div class="form-success">
+        ${I('check')}
+        <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We'll email your Governance Report Card to the address you entered. Questions first? Email <a href="mailto:${site.email}" style="color:var(--rust-text)">${site.email}</a>.</p></div>
+      </div>
+      <div class="form-error" role="alert">
+        ${I('info')}
+        <div><b>That didn't send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="${site.email}" href="mailto:${site.email}" style="color:var(--rust-text)">${site.email}</a> and we'll send the report card from there.</p></div>
+      </div>
+    </form>`;
+}
+
 /* ---------------- exit-intent modal ---------------- */
 function exitModal() {
   return `
@@ -335,22 +360,7 @@ function exitModal() {
     <span class="eyebrow eyebrow--rust">Before you go</span>
     <h3 id="exit-title" style="font-size:26px;margin-bottom:10px">Get your free Governance Report Card</h3>
     <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps.</p>
-    <form data-validate id="audit-form" data-endpoint="${site.leadEndpoint}" style="margin-top:18px">
-      <div data-fields class="form-grid">
-        <div class="form-field"><label for="ex-name">Name</label><input id="ex-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
-        <div class="form-field"><label for="ex-email">Work email</label><input id="ex-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
-        <div class="form-field full"><label for="ex-company">Company</label><input id="ex-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
-        <div class="form-field full"><button class="btn btn--primary" type="submit" style="width:100%"><span class="shine"></span>Send me the audit</button></div>
-      </div>
-      <div class="form-success">
-        ${I('check')}
-        <div><b>Request received.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">We'll email your Governance Report Card to the address you entered. Questions first? Email <a href="mailto:${site.email}" style="color:var(--rust-text)">${site.email}</a>.</p></div>
-      </div>
-      <div class="form-error" role="alert">
-        ${I('info')}
-        <div><b>That didn't send.</b><p class="muted" style="font-size:13.5px;margin:4px 0 0">Something failed on our end — your details are still in the form above, so you can try again. Or email <a data-mailto="${site.email}" href="mailto:${site.email}" style="color:var(--rust-text)">${site.email}</a> and we'll send the report card from there.</p></div>
-      </div>
-    </form>
+    ${auditForm('ex', 'audit-form')}
   </div>
 </div>`;
 }
@@ -481,4 +491,4 @@ function websiteLd() {
 }
 
 module.exports = {
-  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };
+  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, auditForm, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };

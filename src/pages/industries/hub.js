@@ -33,7 +33,7 @@ function industriesHub(data) {
           <span class="num">INDUSTRY ${d.n}</span>
           ${/* h2, not h3: each umbrella is a major section directly under the h1, and an h1→h3 jump is a
                  heading-order violation. The inline size keeps the card looking exactly as it did. */ ''}
-            <h2 class="ind-card-name" style="font-size:19px;margin:0">${d.name}</h2>
+            <h2 class="ind-card-name" style="margin:0">${d.name}</h2>
           <span class="muted" style="font-size:13.5px">${d.subsectors.length} sub-sectors — ${d.subsectors.slice(0, 3).map(s => s[0]).join(' · ')}${d.subsectors.length > 3 ? ' …' : ''}</span>
           <span class="link-arrow" style="margin-top:auto">See this industry ${I('arrow')}</span>
         </a>`).join('')}
@@ -117,7 +117,7 @@ function industriesHub(data) {
     <div class="container" style="max-width:860px">
       <div class="card card--panel card--hairline-top center" data-reveal>
         <span class="eyebrow" style="justify-content:center">Not on the list?</span>
-        <h2 style="font-size:clamp(24px,2.6vw,34px)">If your sector is not here, tell us why it should be</h2>
+        <h2 >If your sector is not here, tell us why it should be</h2>
         <p class="lede" style="margin:16px auto 0;max-width:64ch">The taxonomy is built to take new sectors without rework. If we have missed a fit, the reason will be the same one that qualifies every page here — calls decide revenue, and nobody is free to answer them.</p>
         <div class="hero-ctas" style="justify-content:center;margin-top:24px">${L.btnDemo(CTX.industries.label, 'ind_hub_cta', 'btn--primary btn--lg', 'industries')}</div>
       </div>

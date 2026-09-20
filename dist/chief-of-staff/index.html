@@ -37,7 +37,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai","logo":"https://hazirminds.ai/img/og-card.jpg","email":"contact@hazirminds.ai","sameAs":["https://www.linkedin.com/company/hazirminds","https://x.com/hazirminds","https://www.youtube.com/@hazirminds"],"contactPoint":[{"@type":"ContactPoint","contactType":"sales","email":"contact@hazirminds.ai","availableLanguage":["en"]}],"slogan":"Always present. Never missed."}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://hazirminds.ai/"},{"@type":"ListItem","position":2,"name":"Chief-of-Staff Platform","item":"https://hazirminds.ai/chief-of-staff"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"HazirMinds Personal AI Chief-of-Staff Platform","serviceType":"Multi-agent AI workspace with Chief-of-Staff orchestration","provider":{"@type":"Organization","name":"HazirMinds","url":"https://hazirminds.ai"},"areaServed":["US","GB","CA"]}</script>
-<link rel="stylesheet" href="/assets/css/main.css?v=ecd1dc88dd.3be43d04c9">
+<link rel="stylesheet" href="/assets/css/main.css?v=de95454cec.3be43d04c9">
 <style>
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-700-normal.woff2)format("woff2")}
 @font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url(/vendor/fonts/plus-jakarta-sans-latin-800-normal.woff2)format("woff2")}
@@ -95,7 +95,7 @@
     </div>
   </section>
 
-  <section class="section section--dark on-dark" id="orchestration" style="padding-top:0">
+  <section class="section section--dark section--dark--deep on-dark" id="orchestration" style="padding-top:0">
     <div class="container">
       <div class="cos-panel" data-reveal style="background:rgba(250,247,242,.04);border-color:rgba(250,247,242,.12)">
         
@@ -216,7 +216,7 @@
       <div class="grid grid-2" style="align-items:stretch">
         <div data-reveal>
           <span class="eyebrow">Core capabilities</span>
-          <h2 style="font-size:clamp(24px,2.6vw,34px);margin-bottom:20px">What the platform does</h2>
+          <h2 style="margin-bottom:20px">What the platform does</h2>
           <div class="grid grid-2" style="gap:14px">
             
             <div class="card" style="padding:18px">
@@ -292,7 +292,7 @@
       <div class="grid grid-2" style="align-items:stretch">
         <div class="card" data-reveal>
           <span class="eyebrow">Governance, built in</span>
-          <h2 style="font-size:22px;margin-bottom:4px">Enterprise controls on every workflow</h2>
+          <h3 style="margin-bottom:4px">Enterprise controls on every workflow</h3>
           <ul class="gov-chips">
             <li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><b>Permission scopes.</b> <span style="color:var(--muted)">Every agent operates inside least-privilege scopes you define — by role, system and data class.</span></span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><b>Approval gates.</b> <span style="color:var(--muted)">Sensitive actions — refunds, contracts, data deletion — pause for human sign-off, by policy.</span></span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><b>Audit trail.</b> <span style="color:var(--muted)">Every action, decision and handoff is logged immutably and exportable to your SIEM.</span></span></li><li><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><b>Cost governance.</b> <span style="color:var(--muted)">Per-agent budgets, hard ceilings and alerts keep spend predictable at any scale.</span></span></li>
           </ul>
@@ -545,12 +545,13 @@
     <span class="eyebrow eyebrow--rust">Before you go</span>
     <h3 id="exit-title" style="font-size:26px;margin-bottom:10px">Get your free Governance Report Card</h3>
     <p class="muted" style="font-size:14.5px">A scored read on your AI risk, consent trail, audit readiness and escalation gaps.</p>
-    <form data-validate id="audit-form" data-endpoint="/api/lead" style="margin-top:18px">
+    
+    <form data-validate id="audit-form" data-endpoint="/api/lead">
       <div data-fields class="form-grid">
         <div class="form-field"><label for="ex-name">Name</label><input id="ex-name" name="name" required autocomplete="name"><span class="err">Please enter your name</span></div>
         <div class="form-field"><label for="ex-email">Work email</label><input id="ex-email" name="email" type="email" required autocomplete="email"><span class="err">Enter a valid email</span></div>
         <div class="form-field full"><label for="ex-company">Company</label><input id="ex-company" name="company" required autocomplete="organization"><span class="err">Please enter your company</span></div>
-        <div class="form-field full"><button class="btn btn--primary" type="submit" style="width:100%"><span class="shine"></span>Send me the audit</button></div>
+        <div class="form-field full"><button class="btn btn--primary" type="submit"><span class="shine"></span>Send me the audit</button></div>
       </div>
       <div class="form-success">
         <svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -566,6 +567,6 @@
 <script src="/vendor/gsap.min.js" defer></script>
 <script src="/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/vendor/lenis.min.js" defer></script>
-<script src="/assets/js/main.js?v=ecd1dc88dd.3be43d04c9" defer></script>
+<script src="/assets/js/main.js?v=de95454cec.3be43d04c9" defer></script>
 </body>
 </html>

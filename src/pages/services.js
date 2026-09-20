@@ -36,7 +36,7 @@ ${L.head({
 ${roiBar()}
 ${nav()}
 <main id="main">
-  <section class="hero-sub-plain" style="padding-bottom:0">
+  <section class="hero-sub-plain section--paper" style="padding-bottom:0">
     <div class="container">
       <p class="crumbs"><a href="/">Home</a> <span>/</span> <span aria-current="page">Services</span></p>
       <h1 style="max-width:16ch">Every service. One governed team that runs it for you.</h1>
@@ -54,7 +54,7 @@ ${nav()}
           <summary class="svc-group-head">
             <span class="gn">${g.num}</span>
             <div>
-              <h2 style="font-size:clamp(24px,2.6vw,34px)">${g.name}</h2>
+              <h2 >${g.name}</h2>
               <p class="muted" style="max-width:62ch;margin-top:8px">${g.promise}</p>
             </div>
           </summary>
@@ -81,7 +81,7 @@ ${nav()}
 
         <div id="loop" data-reveal="children">
           <span class="eyebrow">The Hazir Loop</span>
-          <h2 style="font-size:clamp(26px,3vw,40px)">Catch → Train → Launch → Compound</h2>
+          <h2 >Catch → Train → Launch → Compound</h2>
           <div data-tabs>
             <div class="loop-tabs" role="tablist" aria-label="The Hazir Loop">
               ${loop.map((s, i) => `<button class="loop-tab" role="tab" aria-selected="${i === 0}" aria-controls="loop-p${i}" id="loop-t${i}">${s.n}. ${s.name}</button>`).join('')}

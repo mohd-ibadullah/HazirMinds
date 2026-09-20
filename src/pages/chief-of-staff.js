@@ -109,7 +109,7 @@ ${nav()}
     </div>
   </section>
 
-  <section class="section section--dark on-dark" id="orchestration" style="padding-top:0">
+  <section class="section section--dark section--dark--deep on-dark" id="orchestration" style="padding-top:0">
     <div class="container">
       <div class="cos-panel" data-reveal style="background:rgba(250,247,242,.04);border-color:rgba(250,247,242,.12)">
         ${cosDiagram()}
@@ -165,7 +165,7 @@ ${nav()}
       <div class="grid grid-2" style="align-items:stretch">
         <div data-reveal>
           <span class="eyebrow">Core capabilities</span>
-          <h2 style="font-size:clamp(24px,2.6vw,34px);margin-bottom:20px">What the platform does</h2>
+          <h2 style="margin-bottom:20px">What the platform does</h2>
           <div class="grid grid-2" style="gap:14px">
             ${capabilities.map(c => `
             <div class="card" style="padding:18px">
@@ -206,7 +206,7 @@ ${nav()}
       <div class="grid grid-2" style="align-items:stretch">
         <div class="card" data-reveal>
           <span class="eyebrow">Governance, built in</span>
-          <h2 style="font-size:22px;margin-bottom:4px">Enterprise controls on every workflow</h2>
+          <h3 style="margin-bottom:4px">Enterprise controls on every workflow</h3>
           <ul class="gov-chips">
             ${gov.map(g => `<li>${I('shield')}<span><b>${g[0]}.</b> <span style="color:var(--muted)">${g[1]}</span></span></li>`).join('')}
           </ul>
