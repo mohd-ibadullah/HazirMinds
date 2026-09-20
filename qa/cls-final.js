@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer-core');
 const EXE = 'C:/Users/froms/.cache/puppeteer/chrome/win64-153.0.8010.36/chrome-win64/chrome.exe';
-const routes = ['/', '/masjids', '/enterprise', '/chief-of-staff', '/about', '/pricing', '/demo', '/compare', '/compare/masjid-platforms', '/services', '/resources', '/case-studies', '/use-cases/after-hours-rescue', '/use-cases/review-engine', '/industries/dental', '/privacy'];
+const routes = ['/', '/about', '/case-studies', '/chief-of-staff', '/compare', '/demo', '/industries', '/masjids', '/privacy', '/services', '/terms', '/industries/automotive-fleet', '/industries/beauty-wellness-personal-care'];
 const vps = [{ n: '1440', w: 1440, h: 900 }, { n: '1024', w: 1024, h: 900 }, { n: '768', w: 768, h: 1024 }, { n: '390', w: 390, h: 844 }];
 (async () => {
   const b = await puppeteer.launch({ executablePath: EXE, headless: 'new', args: ['--no-sandbox'] });

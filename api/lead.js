@@ -20,7 +20,7 @@
  *
  * Configure in Vercel → Project → Settings → Environment Variables:
  *   RESEND_API_KEY   required for delivery (any HTTP mail API works, see below)
- *   LEAD_TO_EMAIL    where leads land              (default hello@hazirminds.ai)
+ *   LEAD_TO_EMAIL    where leads land              (default contact@hazirminds.ai)
  *   LEAD_FROM_EMAIL  verified sender               (default Resend onboarding sender)
  */
 
@@ -105,7 +105,7 @@ module.exports = async function handler(req, res) {
   }
 
   const key = process.env.RESEND_API_KEY;
-  const to = process.env.LEAD_TO_EMAIL || 'hello@hazirminds.ai';
+  const to = process.env.LEAD_TO_EMAIL || 'contact@hazirminds.ai';
   const from = process.env.LEAD_FROM_EMAIL || 'HazirMinds Leads <onboarding@resend.dev>';
 
   // Always leave a trace in the function logs, so a missing key degrades to

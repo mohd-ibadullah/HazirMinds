@@ -4,7 +4,7 @@ const JS = require('./site.json');
 const C = JS.competitors;
 
 module.exports = {
-  /* Four invariants — home S7 + /enterprise */
+  /* Four invariants — home S8 only (the /enterprise page was merged into /chief-of-staff) */
   invariants: [
     { t: 'Capability ≠ Authority', d: '“Ability is not authority.” An AI that can do a thing is not an AI that may do a thing — every agent carries least-privilege permissions per role: what it may touch, spend, say or send.' },
     { t: 'Execution ≠ Liability', d: '“Execution is not liability.” Your business stays accountable. Our AI carries work inside delegated scope — and the boundary of that scope is written, enforced and auditable.' },
@@ -12,12 +12,6 @@ module.exports = {
     { t: 'Continuity ≠ Persona', d: '“Continuity is not persona.” Your memory, rules and evidence belong to your business and stay with it — portable, exportable, never locked to one setup.' }
   ],
 
-  /* Doctrine lines — /enterprise (§2) */
-  doctrine: [
-    { t: 'Governance compounds in the substrate — it accumulates as policy', d: 'Controls live inside the HazirMinds Operating Substrate: they apply to every agent, every workflow, every deployment — automatically, not by memo.' },
-    { t: 'Office persists, agents execute', d: 'The Office (scope, permissions, lineage, evidence) outlives every individual agent. Change a model, swap a specialist — the office and its rules stay put.' },
-    { t: 'Capability plateaus, governance compounds', d: 'Every vendor can rent the same models; capability converges. What compounds is the governed record of what your AI did, was allowed to do, and proved it did.' }
-  ],
 
   /* Responsibility layers — animated diagram */
   layers: [
@@ -38,7 +32,8 @@ module.exports = {
   ],
 
   /* Governance chips */
-  chips: ['permission scopes', 'approval gates', 'full audit trail', 'cost governance', 'data isolation per client', 'dedicated numbers', '72-hour incident notice (our commitment)', 'consent & TCPA proof trail'],
+  /* The '72-hour incident notice' and 'consent & TCPA proof trail' points were removed by request. */
+  chips: ['permission scopes', 'approval gates', 'full audit trail', 'cost governance', 'data isolation per client', 'dedicated numbers'],
 
   /* Verified 2026 comparison matrix — cells from site.json (single source) */
   matrix: {

@@ -15,9 +15,9 @@
 
 return [
     // Where leads are delivered.
-    'to'   => 'hello@hazirminds.ai',
+    'to'   => 'contact@hazirminds.ai',
 
     // The envelope + From address. Must be a mailbox that exists on this domain, e.g.
-    // hello@hazirminds.ai — create it in cPanel → Email Accounts.
-    'from' => 'hello@hazirminds.ai',
+    // contact@hazirminds.ai — create it in cPanel → Email Accounts.
+    'from' => 'contact@hazirminds.ai',
 ];

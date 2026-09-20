@@ -90,6 +90,17 @@ let CURRENT_PATH = '/';
 const normPath = p => '/' + String(p || '').split('#')[0].replace(/^\/+|\/+$/g, '');
 const isCurrentHref = href => (href ? normPath(href) === normPath(CURRENT_PATH) : false);
 
+/* Which context does the CURRENT page belong to? Derived from the path rather than passed in by every
+   page, so the nav, the mobile bar and the sticky CTA cannot be forgotten — they all render through
+   here. Returns '' when the page has no context (privacy, terms, the demo page itself). */
+const ctxFromPath = () => {
+  const CTX = require('./data/context');
+  const parts = normPath(CURRENT_PATH).replace(/^\/|\/$/g, '').split('/');
+  if (!parts[0]) return 'home';
+  if (parts[0] === 'industries') return parts[1] && CTX[parts[1]] ? parts[1] : 'industries';
+  return CTX[parts[0]] ? parts[0] : '';
+};
+
 function head(o) {
   CURRENT_PATH = o.path || '/';
   const title = o.rawTitle || (o.title + ' | HazirMinds');
@@ -130,7 +141,6 @@ function head(o) {
 <meta name="theme-color" content="#FAF7F2">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
-<link rel="sitemap" href="/sitemap.xml">
 ${ld}
 <link rel="stylesheet" href="/assets/css/main.css?v=${ASSET_VER}">
 <style>
@@ -150,12 +160,12 @@ ${ld}
 /* ---------------- page chrome ---------------- */
 function roiBar() {
   return `<!-- S0 · GUARANTEE BAR -->
-<aside class="roi-bar" aria-label="No unpublished meters"><strong>No unpublished meters</strong> — the full usage rate card is in your hands before go-live. <a href="/pricing">See pricing</a></aside>`;
+<aside class="roi-bar" aria-label="No unpublished meters"><strong>No unpublished meters</strong> — the full usage rate card is in your hands before go-live.</aside>`;
 }
 
 function nav(active) {
   /* If a top-level item is the current page, it owns the marker — the same destination can
-     also appear as a mega-menu child ("/enterprise" sits under Products as well), and without
+     also appear as a mega-menu child ("/chief-of-staff" sits under Products as well), and without
      this gate the parent lit up too, marking two nav items on one page. */
   const topMatch = site.nav.some(n => !n.mega && isCurrentHref(n.href));
   const items = site.nav.map(n => {
@@ -169,7 +179,7 @@ function nav(active) {
     return `<li class="nav-item${on ? ' is-current' : ''}"><a class="nav-link" href="${n.href}"${on ? ' aria-current="page"' : ''}>${n.label}</a></li>`;
   }).join('');
   /* The mobile panel used to render ONE link per top-level item, which silently dropped every
-     mega-menu child: on a phone "Products" went to /services and "Industries" to /industries/hvac
+     mega-menu child: on a phone "Products" went to /services and "Industries" to /industries/home-field-services
      only, so /masjids, /chief-of-staff, seven industries and six comparison pages were unreachable
      from the navbar. It now mirrors the desktop nav exactly, as native <details> accordions — no
      JS needed, keyboard-operable, and it opens the group the current page belongs to. */
@@ -188,13 +198,13 @@ function nav(active) {
       <a class="brand" href="/"><span class="mark">H</span>Hazir<em>Minds</em></a>
       <ul class="nav-links">${items}</ul>
       <div class="nav-cta">
-        <a class="btn btn--primary btn--sm" href="/demo" data-cta="nav_book_demo"><span class="shine"></span>Book a Demo</a>
+        <a class="btn btn--primary btn--sm" href="/demo${ctxFromPath() ? '?for=' + ctxFromPath() : ''}" data-cta="nav_book_demo"><span class="shine"></span>Book a Demo</a>
       </div>
       <button class="nav-burger" aria-expanded="false" aria-label="Open menu">${I('menu')}</button>
     </div>
     <div class="nav-mobile">
       ${mobile}
-      <a class="btn btn--primary" href="/demo" data-cta="mobile_book_demo"><span class="shine"></span>Book a Free Demo</a>
+      <a class="btn btn--primary" href="/demo${ctxFromPath() ? '?for=' + ctxFromPath() : ''}" data-cta="mobile_book_demo"><span class="shine"></span>Book a Free Demo</a>
     </div>
   </nav>
 </header>`;
@@ -212,9 +222,9 @@ function footer() {
         <p>${site.tagline} HazirMinds deploys and runs governed AI teams for businesses in the United States — bounded authority, evidence receipts, audit trails, on the HazirMinds Operating Substrate.</p>
         <div class="chips" style="margin-top:16px"><span class="pill pill--dark">Serving the United States</span></div>
       </div>
-      ${col('Products', [['/services', 'All services A–F'], ['/services#ai-receptionist', 'AI Receptionist 24/7'], ['/chief-of-staff', 'Chief-of-Staff Platform'], ['/masjids', 'Masjid AI OS (For Masjids)'], ['/enterprise', 'Enterprise Governance']])}
-      ${col('Company', [['/about', 'About HazirMinds'], ['/case-studies', 'Case Studies'], ['/resources', 'Resources'], ['/pricing', 'Pricing & rate card']])}
-      ${col('Legal & Contact', [['/privacy', 'Privacy Policy'], ['/terms', 'Terms of Service'], ['/ai/', 'AI Summary'], ['mailto:' + site.email, site.email]].concat(site.phone ? [[TEL, CALL_LABEL]] : []))}
+      ${col('Products', [['/services', 'All services A–E'], ['/chief-of-staff', 'Chief-of-Staff Platform'], ['/masjids', 'Masjid AI OS (For Masjids)']])}
+      ${col('Company', [['/about', 'About HazirMinds'], ['/case-studies', 'Case Studies']])}
+      ${col('Legal & Contact', [['/privacy', 'Privacy Policy'], ['/terms', 'Terms of Service'], ['mailto:' + site.email, site.email]].concat(site.phone ? [[TEL, CALL_LABEL]] : []))}
     </div>
     <div class="bottom">
       <span>© 2026 HazirMinds. All rights reserved.</span>
@@ -229,7 +239,10 @@ function footer() {
 }
 
 function stickyCTA() {
-  return `<div class="sticky-cta"><a class="btn btn--primary" href="/demo" data-cta="sticky_mobile"><span class="shine"></span>Book a Free Demo</a><a class="btn btn--ghost" href="${TEL}" data-cta="sticky_call">${I(CALL_ICON)} ${CALL_TEXT}</a></div>`;
+  const k = ctxFromPath();
+  const CTX = require('./data/context');
+  const c = (k && CTX[k]) || CTX.fallback;
+  return `<div class="sticky-cta"><a class="btn btn--primary" href="/demo${k ? '?for=' + k : ''}" data-cta="sticky_mobile"><span class="shine"></span>${c.short || 'Book a Free Demo'}</a><a class="btn btn--ghost" href="${TEL}" data-cta="sticky_call">${I(CALL_ICON)} ${CALL_TEXT}</a></div>`;
 }
 
 /* ---------------- royal chrome: back-to-top · consent · assistant · toasts ---------------- */
@@ -253,9 +266,6 @@ function consentBanner() {
    Everything is built from site.json, so it can never quote a stale price, and
    anything outside the approved set is disclosed and escalated, never guessed. */
 function assistant() {
-  const T = SJ.tiers;
-  const priceLine = [T.chronos, T['hazir-pro'], T.aeon]
-    .map(t => `${t.name} $${t.monthly.toLocaleString('en-US')}/mo`).join(' · ') + ' · Archon custom enterprise';
   const kb = [
     {
       q: 'What does HazirMinds actually do?',
@@ -263,14 +273,9 @@ function assistant() {
       href: '/services', label: 'Services catalog'
     },
     {
-      q: 'What does it cost?',
-      a: `Flat tiers: ${priceLine}. No unpublished meters — the full usage rate card is published before go-live, and every deployment is measured against the acceptance criteria you sign.`,
-      href: '/pricing', label: 'Pricing & rate card'
-    },
-    {
       q: 'Can the AI make things up?',
       a: 'Answers are grounded in your approved knowledge base only, with confidence gating: when something is unknown, outdated or out of scope, the assistant says so and escalates to a human. Every factual claim carries a source receipt, and call flows run nightly regression tests.',
-      href: '/enterprise', label: 'Governance layer'
+      href: '/chief-of-staff', label: 'Governance layer'
     },
     {
       q: 'How is this different from GoHighLevel or Smith.ai?',
@@ -281,13 +286,7 @@ function assistant() {
       q: 'Do you build for masjids and Islamic centers?',
       a: 'Yes — the HazirMinds AI Operating System for Masjids connects events, communications, registrations, facilities, volunteers, donations, knowledge and reporting through one controlled operational layer, with committee routing, approval chains and audit receipts.',
       href: '/masjids', label: 'Masjid AI OS'
-    },
-    /* The homepage FAQ block was removed as redundant with the assistant, which is the stated
-       replacement channel — so its five answers are answered from the knowledge base here. Derived
-       from the same source the pricing page renders, so the two cannot drift apart. */
-    ...require('./data/pricing').faqs.slice(0, 5).map(function (f) {
-      return { q: f.q, a: f.a, href: '/pricing#faq', label: 'Pricing & FAQ' };
-    })
+    }
   ];
   return `
 <button class="asst-btn" id="asst-btn" type="button" aria-expanded="false" aria-controls="asst-panel" aria-label="Open the governed website assistant">${I('chat')}<span class="dot" aria-hidden="true"></span></button>
@@ -302,7 +301,7 @@ function assistant() {
   </div>
   <form class="asst-bar" id="asst-form">
     <label for="asst-input" style="position:absolute;left:-9999px">Ask a question</label>
-    <input id="asst-input" name="q" autocomplete="off" placeholder="Ask about pricing, governance…">
+    <input id="asst-input" name="q" autocomplete="off" placeholder="Ask about services, governance…">
     <button class="btn btn--primary btn--sm" type="submit">Ask</button>
   </form>
 </div>
@@ -356,19 +355,22 @@ function exitModal() {
 </div>`;
 }
 
-/* ---------------- governance layer partial (home S7, /enterprise) ---------------- */
+/* ---------------- governance layer partial (home S8, /chief-of-staff) ---------------- */
 function governanceBand(opts) {
   const C = require('./data/compare');
   const compact = opts && opts.compact;
+  /* The four invariants render on the home page. The merged Chief-of-Staff page takes the rest of
+     the governance body WITHOUT them — they were removed from that page by request. */
+  const invariants = !(opts && opts.noInvariants);
   return `
-<div class="invariant-grid" data-reveal="children">
+${invariants ? `<div class="invariant-grid" data-reveal="children">
   ${C.invariants.map((iv, i) => `
   <div class="invariant">
     <span class="inv-n">INVARIANT ${'0' + (i + 1)}</span>
     <h3>“${iv.t}”</h3>
     <p>${iv.d}</p>
   </div>`).join('')}
-</div>
+</div>` : ''}
 ${compact ? '' : `
 <div class="grid grid-2" style="margin-top:56px;align-items:start">
   <div class="card on-dark" data-reveal style="background:rgba(250,247,242,.04);border-color:rgba(250,247,242,.12)">
@@ -400,7 +402,7 @@ ${compact ? '' : `
       <div class="receipt" data-receipt>
         <div class="rc-head"><span class="rc-pulse" aria-hidden="true"></span><span>Live receipt</span><span class="rc-time">today · 14:02</span></div>
         <div class="rc-row"><span class="rc-dot ok" aria-hidden="true"></span><div><b>Sourced</b><span>pricing_tiers.json · rev 14</span></div><code>src-ok</code></div>
-        <div class="rc-row"><span class="rc-dot ok" aria-hidden="true"></span><div><b>Decided</b><span>quote accepted — rule: owner-approval &lt; ${SJ.sampleReceipt.approvalRule}</span></div><code>gate-pass</code></div>
+        <div class="rc-row"><span class="rc-dot ok" aria-hidden="true"></span><div><b>Decided</b><span>quote accepted — rule: owner approval above ${SJ.sampleReceipt.approvalRule}</span></div><code>gate-pass</code></div>
         <div class="rc-row"><span class="rc-dot ok" aria-hidden="true"></span><div><b>Executed</b><span>booking written → CRM #8412</span></div><code>14:02:11</code></div>
         <div class="rc-row"><span class="rc-dot ok" aria-hidden="true"></span><div><b>Verified</b><span>transcript + sentiment attached</span></div><code>2 files</code></div>
         <div class="rc-row"><span class="rc-dot ok" aria-hidden="true"></span><div><b>Accepted</b><span>client sign-off · audit export #2026-06</span></div><code>signed</code></div>
@@ -428,8 +430,17 @@ ${compact ? '' : `
 }
 
 /* ---------------- shared components ---------------- */
-const btnDemo = (label, cta, cls) => `<a class="btn ${cls || 'btn--primary'}" href="/demo" data-cta="${cta}"><span class="shine"></span>${label || 'Book a Free Demo'} ${I('arrow')}</a>`;
-const btnDemoPlain = (label, cta, cls) => `<a class="btn ${cls || 'btn--primary'}" href="/demo" data-cta="${cta}"><span class="shine"></span>${label || 'Book a Free Demo'}</a>`;
+/* `ctx` is a key into src/data/context.js. It rides along as ?for=<key> so the demo page knows what
+   the visitor was reading and can carry it into the form — a contextual CTA that loses its context on
+   click is just a differently worded generic button. */
+/* Wherever a price used to be published, this is what stands in its place. One constant, so the
+   wording cannot drift page to page. It promises nothing numeric: scope is configured per workflow
+   and quoted per engagement. */
+const QUOTE = "Tell us what you need. We'll configure the right solution around your workflow and provide a custom quote.";
+const QUOTE_SHORT = "Configured to your workflow — custom quote, no published rate card.";
+
+const btnDemo = (label, cta, cls, ctx) => `<a class="btn ${cls || 'btn--primary'}" href="/demo${ctx ? '?for=' + ctx : ''}" data-cta="${cta}"><span class="shine"></span>${label || 'Book a Free Demo'} ${I('arrow')}</a>`;
+const btnDemoPlain = (label, cta, cls, ctx) => `<a class="btn ${cls || 'btn--primary'}" href="/demo${ctx ? '?for=' + ctx : ''}" data-cta="${cta}"><span class="shine"></span>${label || 'Book a Free Demo'}</a>`;
 
 function faqBlock(faqs, jsonLdPath) {
   const ld = {
@@ -469,4 +480,5 @@ function websiteLd() {
   return { '@context': 'https://schema.org', '@type': 'WebSite', name: 'HazirMinds', url: site.url };
 }
 
-module.exports = { esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };
+module.exports = {
+  QUOTE, QUOTE_SHORT, esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, exitModal, btnDemo, btnDemoPlain, faqBlock, breadcrumbs, orgLd, websiteLd, governanceBand, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON, ASSET_VER };

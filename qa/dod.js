@@ -42,21 +42,40 @@ check('build gate: price literal outside site.json fails build', /F4 GATE FAIL/.
 /* 4 honest count + chips */
 const svc = read('services/index.html');
 check('no blanket "40/41 services" claim', !/all 4[01] services|Browse all 4[01]|40 services|41 services/i.test(svc), '');
-check('"19 out-of-box" count language', svc.includes('19 out-of-box') || svc.includes('Nineteen out-of-box'), '');
+/* The hero count line was removed by request, so the guard inverts: it must not come back. */
+check('no "19 out-of-box" count language on /services', !svc.includes('19 out-of-box') && !svc.includes('Nineteen out-of-box'), '');
 check('capability chips present (>=5 kinds)', ['AVAILABLE', 'CONFIGURED AT ONBOARDING', 'SCOPED PER ENGAGEMENT', 'ADD-ON', 'PLANNED'].filter(c => svc.includes(c)).length >= 4, '');
 check('SERVICE 01..39 + unnumbered client slot', svc.includes('SERVICE 01') && svc.includes('SERVICE 39') && svc.includes('YOUR REQUIREMENT'), '');
 
 /* 5 smith.ai route + SOC 2 */
-check('/compare/smith-ai route exists & non-blank', (() => { try { return strip(read('compare/smith-ai/index.html')).trim().length > 800; } catch (e) { return false; } })(), '');
+/* The individual comparison pages were removed by request, so the guard INVERTS: they must not come
+   back, and a revert cannot pass silently. */
+check('the five individual comparison pages are gone', ['go-high-level','synthflow','smith-ai','ai-sdr','human-receptionist'].every(s => !fs.existsSync(path.join(DIST, 'compare', s, 'index.html'))), '');
 check('no "SOC 2-ready" anywhere', !all.some(a => /SOC\s?2/i.test(a.h)), all.filter(a => /SOC\s?2/i.test(a.h)).map(a => a.f).join(', '));
 check('"compliance-ready" claim removed', !all.some(a => a.h.includes('compliance-ready')), '');
-check('no HIPAA claim anywhere (agreement does not mention it)', !all.some(a => /HIPAA-eligible|HIPAA compliant|BAAs signed/i.test(a.t)), '');
+/* The healthcare page ANSWERS "Is this HIPAA compliant?" with a refusal, so a plain regex flags the
+   question and the disclaimer as if they were claims. Only an affirmative use counts. */
+check('no HIPAA claim anywhere (agreement does not mention it)',
+  !all.some(a => {
+    /* 'HIPAA compliant' also appears inside the FAQ QUESTION we answer with a refusal, so a bare
+       phrase match is a false positive. Only an assertion counts. */
+    const t = a.t;
+    const re = /HIPAA-eligible|HIPAA compliant|BAAs signed/gi;
+    let m; while ((m = re.exec(t))) {
+      const before = t.slice(Math.max(0, m.index - 70), m.index).toLowerCase();
+      if (!/never|not\b|no\b|don't|do not|refuse|without|is this|is it\b|\?/.test(before)) return true;
+    }
+    return false;
+  }),
+  all.filter(a => affirmative(a.t, 'HIPAA-eligible') || affirmative(a.t, 'HIPAA compliant') || affirmative(a.t, 'BAAs signed')).map(a => a.f).join(', '));
 
-/* 6 doctrine cards + horizons */
-const ent = read('enterprise/index.html');
-check('four invariants with ≠ labels', ['Capability ≠ Authority', 'Execution ≠ Liability', 'Deployment ≠ Adoption', 'Continuity ≠ Persona'].every(x => ent.includes(x)), '');
-check('doctrine lines on /enterprise', ent.includes('Office persists, agents execute') && ent.includes('governance compounds'), '');
-check('proof horizons on /enterprise', /Built[\s\S]{0,400}Deployed[\s\S]{0,400}Operated[\s\S]{0,400}Verified outcome[\s\S]{0,400}Accepted/.test(ent), '');
+/* 6 governance — /enterprise was merged into /chief-of-staff. The four invariants render on the
+   HOME page; the doctrine cards were removed by request, so that guard inverts. */
+const ent = read('chief-of-staff/index.html');
+const homeG = read('index.html');
+check('four invariants with ≠ labels (home)', ['Capability ≠ Authority', 'Execution ≠ Liability', 'Deployment ≠ Adoption', 'Continuity ≠ Persona'].every(x => homeG.includes(x)), '');
+check('doctrine cards are gone', !ent.includes('Office persists, agents execute') && !ent.includes('governance compounds'), '');
+check('proof horizons on /chief-of-staff', /Built[\s\S]{0,400}Deployed[\s\S]{0,400}Operated[\s\S]{0,400}Verified outcome[\s\S]{0,400}Accepted/.test(ent), '');
 
 /* 7 case studies labels */
 const cs = read('case-studies/index.html');
@@ -69,28 +88,33 @@ check('CoS: ONE integrated service, ONE payment', /ONE integrated service[\s\S]{
 check('CoS: privacy panel (zero compromise)', /zero compromise/i.test(cos), '');
 check('CoS: 7 specialists', (cos.match(/AVATAR|specialist/gi) || []).length >= 7, '');
 check('CoS: approval gate demo', cos.includes('APPROVAL REQUIRED') || /approval/i.test(cos), '');
-check('CoS: pricing from $7,500 setup + monthly', /\$7,500/.test(strip(cos)) && /setup/.test(cos), '');
+check('CoS: no setup price published — the fee is scoped per engagement', !/\$\s?[\d,]+/.test(strip(cos)) && /scoped/i.test(cos), '');
 
 /* 9 Masjid OS */
 const mj = read('masjids/index.html');
-const mjc = read('compare/masjid-platforms/index.html');
+/* The masjid comparison moved to the end of /masjids when its own page was removed. */
+const mjc = mj;
 check('masjid hero positioning verbatim', mj.includes('provides a governed AI operating system for masjids and Islamic community organizations that connects events, communications, registrations, facilities, volunteers, donations, knowledge, AI assistance, and reporting through one controlled operational layer'), '');
 check('lifecycle chain verbatim', /ONE REQUEST[\s\S]{0,40}ONE SOURCE OF TRUTH[\s\S]{0,40}APPROVAL[\s\S]{0,40}AI WORK[\s\S]{0,40}MANY CHANNELS[\s\S]{0,40}FOLLOW-UP[\s\S]{0,40}REPORTING[\s\S]{0,40}AUDIT/.test(mj), '');
 check('capability labels table', ['Contract-supported', 'Available', 'Configured at onboarding', 'Custom / scoped per engagement', 'Planned'].every(l => mj.includes(l)), '');
 check('included vs external cost table', /included hazirminds capabilities/i.test(mj) && /remain external/i.test(mj), '');
-check('fragmented-stack example labeled', mj.includes('$380/mo') && /published list prices, Sept 2026/.test(mj), '');
+check('fragmented-stack example carries no figures', !/\$\s?[\d,]+|\d+\s?%/.test(strip(mj).slice(strip(mj).indexOf('fragmented stack'), strip(mj).indexOf('fragmented stack') + 600)) && /patchwork/i.test(mj), '');
 check('no affirmative "never hallucinates" claim (refusal wording allowed)', !all.some(a => affirmative(a.t, 'never hallucinates')), '');
 check('masjid compare: source-checked stamp + sources', mjc.includes('Source-checked Sept 2026') && mjc.includes('Sources:'), '');
 check('masjid compare: "who should NOT buy"', /who should NOT buy/i.test(mjc), '');
 check('masjid collateral gated by demo form', mj.includes('Masjid AI OS deck') && /demo/i.test(mj), '');
 
-/* 10 pricing + footnotes */
-const pr = read('pricing/index.html');
-check('pricing: all four tiers', ['Chronos', 'Hazir Pro', 'Aeon', 'Archon'].every(t => pr.includes(t)), '');
-check('pricing: add-ons present', ['$1,500', '$2,500', '$7,500', '$997', '$500 + 10%', '$0.35'].every(t => strip(pr).includes(t)), '');
-check('pricing: competitor cost table', /Done-for-you governed AI firm/.test(pr) && /Hidden meters/.test(pr), '');
-check('Source-checked Sept 2026 stamp on compare* + pricing', all.filter(a => /compare|pricing/.test(a.f)).filter(a => a.h.includes('Source-checked Sept 2026')).length >= 7, '');
-check('every stat has a source footnote', (() => { const band = read('index.html'); const stats = (band.match(/class="stat"/g) || []).length; const srcs = (band.match(/class="src"/g) || []).length; return stats === srcs && stats >= 4; })(), '');
+/* 10 rate card + footnotes — /pricing, and then /ai, were removed by request. The tier lines now
+   render on the home page and the published rates on /terms; the à-la-carte add-on prices that lived
+   only on /ai (audit, Chief-of-Staff engagement) are no longer published anywhere, which is the cost
+   of the removal rather than a defect. */
+const pr = read('index.html');
+check('rate card: all four tiers on the home page', ['Chronos', 'Hazir Pro', 'Aeon', 'Archon'].every(t => pr.includes(t)), '');
+check('no numeric rate survives anywhere in the legal or comparison copy', !/\$\s?\d|\d+\s?\/\s?min\b/.test(strip(read('terms/index.html'))) && !/\$\s?\d/.test(strip(read('compare/index.html'))), '');
+const cmp = read('compare/index.html');
+check('comparison cost table', /Done-for-you governed AI firm/.test(cmp) && /Hidden meters/.test(cmp), '');
+check('the comparison tables still name where their facts come from', /Sources: vendor public pricing pages/.test(read('compare/index.html')) && /vendor pricing page|read 2026-09-16|BLS/.test(read('masjids/index.html')), '');
+check('every stat has a source footnote', (() => { const band = read('index.html'); const stats = (band.match(/class="stat"/g) || []).length; const srcs = (band.match(/class="src"/g) || []).length; return stats === srcs && stats > 1; })(), '');
 
 /* 11 trust rules */
 check('no fake testimonial/persona claims (labeled representative)', !all.some(a => /testimonial/i.test(a.t)), '');
@@ -100,7 +124,7 @@ check('60-Day ROI Guarantee removed', !strip(read('index.html')).includes('60-Da
 
 /* 12 routes */
 check('every route renders non-blank', all.every(a => strip(a.h).trim().length > 400), all.filter(a => strip(a.h).trim().length <= 400).map(a => a.f).join(', '));
-check('llms.txt + /ai/ + sitemap + robots present', ['llms.txt', 'ai/index.html', 'sitemap.xml', 'robots.txt'].every(f => fs.existsSync(path.join(DIST, f))), '');
+check('llms.txt + /ai/ + sitemap + robots are gone as requested', ['llms.txt', 'ai/index.html', 'sitemap.xml', 'robots.txt'].every(f => !fs.existsSync(path.join(DIST, f))), '');
 
 const pass = results.filter(r => r.pass).length;
 console.log('\n=== §12 DEFINITION OF DONE ===\n');

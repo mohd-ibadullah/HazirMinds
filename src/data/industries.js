@@ -1,107 +1,64 @@
-// HazirMinds industries — 8 trade pages
-module.exports = [
-  {
-    key: 'hvac', name: 'HVAC', img: '/img/trade-hvac.webp',
-    pain: 'Your best tech is answering the phone instead of fixing the furnace.',
-    sub: 'Emergency calls don\'t wait for business hours. Neither does your HazirMinds AI team.',
-    outcomes: [
-      { icon: 'phone', t: 'Every emergency call answered', d: 'Heat out at 2 AM? Your AI dispatcher answers, triages and books the earliest slot — while your techs sleep.' },
-      { icon: 'calendar', t: 'Maintenance plans on autopilot', d: 'Seasonal tune-up reminders go out automatically, filling slow weeks and multiplying contract value.' },
-      { icon: 'zap', t: 'Techs stay on tools, not phones', d: 'Dispatch, status updates and customer texts run themselves between jobs.' }
-    ],
-    stat: '42%', statLabel: 'of after-hours HVAC calls go unanswered by a typical shop — HazirMinds answers all of them (illustrative)',
-    integrations: 'ServiceTitan, Jobber, Housecall Pro, Google Calendar, Stripe',
-    compliance: 'TCPA-aware texting · Call recording disclosures built in'
-  },
-  {
-    key: 'dental', name: 'Dental', img: '/img/trade-dental.webp',
-    pain: 'A missed call is a missed patient — and they\'re already dialing the next practice.',
-    sub: 'Your front desk can\'t answer while chairside. HazirMinds\'s can — every hour.',
-    outcomes: [
-      { icon: 'phone', t: 'No new patient lost to voicemail', d: 'New-patient calls answered instantly, insurance questions handled, appointments booked on the spot.' },
-      { icon: 'calendar', t: 'Fewer no-shows, fuller chairs', d: 'Smart confirmations and rescheduling keep chairs full without front-desk nagging.' },
-      { icon: 'shield', t: 'PHI-conscious handling', d: 'Consent capture, encrypted transcripts, role-based access and an audit trail on every interaction.' }
-    ],
-    stat: 'from $' + require('./site.json').tiers['hazir-pro'].monthly + '/mo', statLabel: 'flat governed front desk — vs lifetime value lost per missed new-patient call (illustrative)',
-    integrations: 'Dentrix, Open Dental, Google Calendar, Twilio, Zapier',
-    compliance: 'Consent capture · encrypted transcripts · audit trail on every interaction'
-  },
-  {
-    key: 'legal', name: 'Legal', img: '/img/trade-legal.webp',
-    pain: 'Clients with emergencies call after hours. Urgent callers rarely leave a message — they call the next firm.',
-    sub: 'HazirMinds screens every call, captures the matter details, and books consults — 24/7, conflicts-aware.',
-    outcomes: [
-      { icon: 'phone', t: 'Intake that never sleeps', d: 'Every after-hours caller gets a full, structured intake instead of a beep.' },
-      { icon: 'filter', t: 'Only qualified matters reach partners', d: 'Screening questions filter tyre-kickers before they cost billable time.' },
-      { icon: 'shield', t: 'Confidentiality by default', d: 'Encrypted transcripts, access controls and audit trails for every interaction.' }
-    ],
-    stat: '35%', statLabel: 'of legal callers hang up before finishing a voicemail — each one a competitor\'s client (illustrative)',
-    integrations: 'Clio, Filevine, Lawmatics, MyCase, Outlook',
-    compliance: 'Confidential intake handling · role-based access · audit trail'
-  },
-  {
-    key: 'restaurant', name: 'Restaurants', img: '/img/trade-restaurant.webp',
-    pain: 'Friday at 7 PM, the phone rings off the hook. Your host is mid-seating and can\'t pick up.',
-    sub: 'HazirMinds answers every call — reservations, hours, allergies, large parties — without touching your floor team.',
-    outcomes: [
-      { icon: 'phone', t: 'Reservations without the juggle', d: 'Bookings flow into OpenTable or SevenRooms while your host stays with guests.' },
-      { icon: 'menu', t: 'Menu questions, answered instantly', d: 'Hours, allergens, parking, dress code — answered accurately, in the language your guest is using.' },
-      { icon: 'star', t: 'Waitlist and large-party handling', d: 'Group inquiries captured, qualified and routed to a manager when it matters.' }
-    ],
-    stat: '3 in 4', statLabel: 'callers who reach voicemail at a restaurant simply call the next one (illustrative)',
-    integrations: 'OpenTable, SevenRooms, Square, Shopify, Slack',
-    compliance: 'Consent capture for reservations · recorded-line disclosures'
-  },
-  {
-    key: 'realestate', name: 'Real Estate', img: '/img/trade-realestate.webp',
-    pain: 'Listings generate calls at all hours. Every lead you answer late is a lead your rival signed.',
-    sub: 'HazirMinds qualifies every inquiry in seconds, books viewings, and keeps your pipeline moving while you\'re showing homes.',
-    outcomes: [
-      { icon: 'zap', t: 'Speed-to-lead in under 60 seconds', d: 'Portal and sign calls get an instant response — a major conversion lever in real estate.' },
-      { icon: 'calendar', t: 'Viewings booked around your day', d: 'The agent checks your live calendar and proposes slots you\'d have proposed yourself.' },
-      { icon: 'filter', t: 'Serious buyers, filtered and scored', d: 'Finance questions and timelines qualify buyers before they reach your calendar.' }
-    ],
-    stat: '78%', statLabel: 'of buyers work with the first agent who responds (illustrative)',
-    integrations: 'Follow Up Boss, kvCORE, Pipedrive, Google Calendar, Twilio',
-    compliance: 'Fair-housing-safe scripts · TCPA-aware outreach'
-  },
-  {
-    key: 'auto', name: 'Auto Services', img: '/img/trade-auto.webp',
-    pain: 'Service advisors buried in calls while the bays are full and the queue is long.',
-    sub: 'HazirMinds books appointments, answers status calls, and follows up on quotes — so advisors stay with customers at the counter.',
-    outcomes: [
-      { icon: 'calendar', t: 'Service bookings on autopilot', d: 'Oil changes to diagnostics, slotted by bay availability and tech skills.' },
-      { icon: 'phone', t: 'Status calls handled instantly', d: '"Is my car ready?" answered from your shop system without pulling an advisor off the floor.' },
-      { icon: 'star', t: 'Declined-services follow-up', d: 'Every declined line item gets a polite follow-up — recovering revenue you already earned.' }
-    ],
-    stat: '25%', statLabel: 'of service calls at a busy shop go unanswered during peak hours (illustrative)',
-    integrations: 'Tekmetric, Shop-Ware, ServiceTitan, Google Calendar, Stripe',
-    compliance: 'TCPA-aware reminders · Recorded-line disclosures'
-  },
-  {
-    key: 'ecommerce', name: 'E-commerce', img: '/img/trade-ecommerce.webp',
-    pain: 'Where\'s my order? at 11 PM — and every hour of silence is a chargeback risk.',
-    sub: 'HazirMinds\'s support agents resolve order status, returns and pre-sale questions instantly across chat, email and social.',
-    outcomes: [
-      { icon: 'package', t: 'WISMO tickets resolved instantly', d: 'Order status answered from your store data — no human needed, no ticket queue.' },
-      { icon: 'cart', t: 'Carts saved in real time', d: 'Hesitant shoppers get answers before they leave; abandoned carts get a smart nudge.' },
-      { icon: 'shield', t: 'Returns that keep customers', d: 'Policy-accurate return flows that resolve fast and protect margin.' }
-    ],
-    stat: '65%', statLabel: 'of e-commerce support tickets are "where is my order" — all automatable (illustrative)',
-    integrations: 'Shopify, WooCommerce, Gorgias, Slack, Stripe',
-    compliance: 'CCPA-aware data flows · PCI-aware payments handling'
-  },
-  {
-    key: 'proservices', name: 'Professional Services', img: '/img/trade-proservices.webp',
-    pain: 'Your expertise is billable. Chasing leads, bookings and invoices is not.',
-    sub: 'HazirMinds runs the front office — intake, scheduling, follow-up, invoicing — for consultants, agencies and advisors.',
-    outcomes: [
-      { icon: 'phone', t: 'Every inquiry captured properly', d: 'Structured intake with qualification, so proposals go to real opportunities.' },
-      { icon: 'calendar', t: 'Consults scheduled without email tennis', d: 'The AI proposes times, confirms, and sends prep questions automatically.' },
-      { icon: 'zap', t: 'Invoices followed up politely', d: 'Payment reminders that protect relationships and your cash flow.' }
-    ],
-    stat: '27%', statLabel: 'of new inquiries at small firms never get a same-day response (illustrative)',
-    integrations: 'HubSpot, Pipedrive, Zoho, Google Workspace, Stripe',
-    compliance: 'Isolated per-client environments · audit trail on every interaction'
-  }
+// HazirMinds — industry taxonomy. 11 umbrella industries → sub-sectors.
+//
+// Structure decided after reviewing SBA "United States 2026" small-business counts by NAICS sector,
+// the Census NAICS hierarchy, and the industry navigation of Smith.ai (9 verticals), Ruby (6),
+// AnswerConnect (48) and Dialzara (82). The market splits into broad umbrella and granular long tail;
+// this site uses the hybrid — 11 umbrellas that stay readable in a navbar, sub-sectors on the page.
+//
+// A sub-sector appears here only where HazirMinds' actual services are genuinely relevant AND the
+// sector appears in at least one independent competitor taxonomy or in the SBA sector data.
+// Everything deliberately excluded, and why, is in `exclusions` — that list is what keeps
+// "we serve everyone" off the site.
+//
+// Replaces the previous 8 flat trade pages. Those carried eight unsourced statistics labelled
+// "(illustrative)"; every one of them is gone. Pages now reference one of the four figures this site
+// has a source for, by KEY, resolved below.
+const SJ = require('./site.json');
+
+const groups = [
+  ...require('./industries/group-1'),
+  ...require('./industries/group-2'),
+  ...require('./industries/group-3')
 ];
+
+/* The ONLY four performance numbers this site has a source for. A page references one by KEY, and the
+   figure is resolved here — so the same number always comes from the same place and no page carries
+   a per-industry statistic invented for it. */
+const STAT = {
+  unanswered: SJ.stats[0],   // 62% — 411 Locals (2016), vendor study, 85 businesses over 30 days
+  response: SJ.stats[1]      // ~5 min — InsideSales.com / MIT Lead Response Management (Oldroyd, 2007)
+};
+
+const items = groups.map((g, i) => Object.assign({}, g, {
+  n: String(i + 1).padStart(2, '0'),
+  href: '/industries/' + g.key,
+  statObj: g.stat ? STAT[g.stat] : null
+}));
+
+/* Sectors that are real and large, and that we are deliberately NOT claiming. Counts are small
+   businesses per sector: SBA Office of Advocacy, "United States 2026". */
+const exclusions = [
+  { name: 'Agriculture, Forestry, Fishing & Hunting', count: '286,246', why: 'Seasonal and commodity-driven, with almost no inbound consumer call volume.' },
+  { name: 'Mining, Quarrying & Oil and Gas Extraction', count: '94,390', why: 'Enterprise and B2B procurement, not an SMB front desk.' },
+  { name: 'Utilities', count: '23,829', why: 'Regulated and non-competitive — there is no call-capture problem to solve.' },
+  { name: 'Manufacturing (as a whole)', count: '632,885', why: 'Mostly B2B and wholesale. Only the order-taking and after-hours dispatch slice is addressable, and that sits inside Retail & Order-Taking.' },
+  { name: 'Management of Companies & Enterprises', count: '18,040', why: 'Holding companies. There is no front desk.' },
+  { name: 'Transportation & Warehousing', count: '4,089,883', why: 'Mostly owner-operator trucking and warehousing. Towing, moving, black-car and freight brokerage are addressable and sit inside Automotive & Fleet.' }
+];
+
+/* The seven flat trade pages whose URL actually CHANGED, each 301'd to its umbrella rather than
+   deleted, so no existing link or search result 404s. Consumed by vercel.json and deploy/htaccess.conf.
+   'legal' is deliberately absent: that umbrella kept its slug, so /industries/legal is the same page it
+   always was. Listing it here (or in either config) would emit a 301 from a URL to itself — a loop the
+   gate below now refuses to build. */
+const legacy = {
+  hvac: 'home-field-services',
+  dental: 'healthcare-dental',
+  restaurant: 'food-hospitality-events',
+  realestate: 'real-estate-property',
+  auto: 'automotive-fleet',
+  ecommerce: 'retail-ecommerce-order-taking',
+  proservices: 'business-services-agencies'
+};
+
+module.exports = { items, exclusions, legacy, STAT };

@@ -36,6 +36,22 @@ ErrorDocument 404 /404.html
   RewriteRule ^ /%1 [R=301,L]
 
   # -------------------------------------------------------------------------
+  #  2b. Industry taxonomy change (2026): the eight flat trade pages became
+  #      eleven umbrella industries. Each old URL 301s to the umbrella that
+  #      absorbed it. These MUST stay above rule 3 — the slashless rewrite
+  #      would otherwise map /industries/hvac onto a file that no longer
+  #      exists and answer 404 instead of redirecting.
+  #      Mirrors `legacy` in src/data/industries.js; build.js asserts they match.
+  # -------------------------------------------------------------------------
+  RewriteRule ^industries/hvac/?$ /industries/home-field-services [R=301,L]
+  RewriteRule ^industries/dental/?$ /industries/healthcare-dental [R=301,L]
+  RewriteRule ^industries/restaurant/?$ /industries/food-hospitality-events [R=301,L]
+  RewriteRule ^industries/realestate/?$ /industries/real-estate-property [R=301,L]
+  RewriteRule ^industries/auto/?$ /industries/automotive-fleet [R=301,L]
+  RewriteRule ^industries/ecommerce/?$ /industries/retail-ecommerce-order-taking [R=301,L]
+  RewriteRule ^industries/proservices/?$ /industries/business-services-agencies [R=301,L]
+
+  # -------------------------------------------------------------------------
   #  3. Slashless pretty URLs. /about -> /about/index.html, rewritten
   #     internally so the address bar keeps the canonical form and no redirect
   #     is spent on it.

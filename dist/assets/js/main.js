@@ -105,6 +105,10 @@
 
   /* ---------------- Lenis smooth scroll ---------------- */
   var lenis = null;
+  /* How far below the viewport top an anchor click parks its target, ON TOP of the target's own CSS
+     `scroll-margin-top`. The rail scroll-spy must use the same number as its "passed" line, or every
+     click highlights the previous item. */
+  var ANCHOR_OFFSET = 90;
   function initLenis() {
     if (REDUCE || !window.Lenis) return;
     /* Windows wheel + Lenis smoothing feels sticky (stops/starts); keep native wheel there */
@@ -128,7 +132,7 @@
       var el = document.querySelector(id);
       if (!el) return;
       e.preventDefault();
-      if (lenis) lenis.scrollTo(el, { offset: -90 });
+      if (lenis) lenis.scrollTo(el, { offset: -ANCHOR_OFFSET });
       else el.scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth', block: 'start' });
     });
   }
@@ -643,6 +647,148 @@
     if (cta) A.send('cta_click', { cta: cta.getAttribute('data-cta') });
   });
 
+  /* ---------------- custom dropdown ---------------- */
+  /* A native <select>'s open list is drawn by the browser, so its hover row ignores the stylesheet
+     entirely — that is the system grey the owner saw while every input showed the site's rust. This
+     builds a themed listbox FROM the existing <select>: the options stay defined once in the markup,
+     the form still submits through the select (which the form code already reads), and with JS off
+     the native control is what the visitor gets. */
+  function initDropdowns() {
+    Array.prototype.forEach.call(document.querySelectorAll('select[data-dropdown]'), function (sel) {
+      var field = sel.closest('.form-field');
+      if (!field) return;
+      var base = sel.id || ('dd-' + Math.random().toString(36).slice(2, 7));
+      var dd = document.createElement('div'); dd.className = 'dd';
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.id = base + '-btn'; btn.className = 'dd-btn';
+      btn.setAttribute('aria-haspopup', 'listbox'); btn.setAttribute('aria-expanded', 'false');
+      var val = document.createElement('span'); val.className = 'dd-value placeholder';
+      var chev = document.createElement('span'); chev.className = 'dd-chev'; chev.setAttribute('aria-hidden', 'true');
+      chev.innerHTML = '<svg viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1.5 6 6.5 11 1.5"/></svg>';
+      btn.appendChild(val); btn.appendChild(chev);
+      var list = document.createElement('div'); list.className = 'dd-list'; list.setAttribute('role', 'listbox');
+      var opts = Array.prototype.map.call(sel.options, function (o, i) {
+        var d = document.createElement('div');
+        d.className = 'dd-opt'; d.id = base + '-opt-' + i;
+        d.setAttribute('role', 'option'); d.setAttribute('data-value', o.value);
+        d.setAttribute('aria-selected', 'false'); d.textContent = o.textContent;
+        list.appendChild(d); return d;
+      });
+      dd.appendChild(btn); dd.appendChild(list);
+      /* The field's <label for> now points at the button (the control a visitor can see and reach), which
+         left the hidden <select> with no accessible name — a P1 "input without label" on every demo
+         page. Name it from the same label text, here, so the two can never drift. */
+      var lblEl = field.querySelector('label');
+      if (lblEl) sel.setAttribute('aria-label', lblEl.textContent.trim().replace(/\s*\(optional\)\s*$/i, ''));
+      /* the select stays in the form (it is what submits) but leaves the tab order */
+      sel.classList.add('dd-native'); sel.setAttribute('tabindex', '-1');
+      field.appendChild(dd);
+      var lab = field.querySelector('label');
+      if (lab) { if (!lab.id) lab.id = base + '-label'; lab.setAttribute('for', btn.id); btn.setAttribute('aria-labelledby', lab.id); }
+
+      var active = -1;
+      function sync() {
+        var cur = opts.filter(function (d) { return d.getAttribute('data-value') === sel.value; })[0];
+        val.textContent = cur ? cur.textContent : (opts[0] ? opts[0].textContent : '');
+        val.classList.toggle('placeholder', !sel.value);
+        opts.forEach(function (d) { d.setAttribute('aria-selected', d === cur ? 'true' : 'false'); });
+      }
+      function mark() {
+        opts.forEach(function (d, i) { d.classList.toggle('active', i === active); });
+        if (opts[active]) {
+          var r = opts[active].getBoundingClientRect(), lr = list.getBoundingClientRect();
+          if (r.top < lr.top) list.scrollTop -= (lr.top - r.top);
+          else if (r.bottom > lr.bottom) list.scrollTop += (r.bottom - lr.bottom);
+        }
+      }
+      function open(state) {
+        dd.classList.toggle('open', state);
+        btn.setAttribute('aria-expanded', state ? 'true' : 'false');
+        if (state) {
+          active = 0;
+          opts.forEach(function (d, i) { if (d.getAttribute('data-value') === sel.value) active = i; });
+          mark();
+        } else { opts.forEach(function (d) { d.classList.remove('active'); }); }
+      }
+      function pick(d) {
+        sel.value = d.getAttribute('data-value');
+        sync();
+        /* the form's own validation listens for these on the select */
+        ['input', 'change', 'blur'].forEach(function (t) { sel.dispatchEvent(new Event(t, { bubbles: true })); });
+        open(false); btn.focus();
+      }
+      btn.addEventListener('click', function () { open(!dd.classList.contains('open')); });
+      btn.addEventListener('keydown', function (e) {
+        var k = e.key, isOpen = dd.classList.contains('open');
+        if (!isOpen && (k === 'ArrowDown' || k === 'ArrowUp' || k === 'Enter' || k === ' ')) { e.preventDefault(); open(true); return; }
+        if (k === 'Escape' || k === 'Tab') { open(false); return; }
+        if (k === 'ArrowDown') { e.preventDefault(); active = Math.min(opts.length - 1, active + 1); mark(); }
+        else if (k === 'ArrowUp') { e.preventDefault(); active = Math.max(0, active - 1); mark(); }
+        else if (k === 'Home') { e.preventDefault(); active = 0; mark(); }
+        else if (k === 'End') { e.preventDefault(); active = opts.length - 1; mark(); }
+        else if (k === 'Enter' || k === ' ') { e.preventDefault(); if (opts[active]) pick(opts[active]); }
+      });
+      opts.forEach(function (d, i) {
+        d.addEventListener('click', function () { pick(d); });
+        d.addEventListener('mouseenter', function () { active = i; mark(); });
+      });
+      document.addEventListener('click', function (e) { if (!dd.contains(e.target)) open(false); });
+      if (sel.form) sel.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+      /* A programmatic value change — the demo page preselecting an industry from ?for= — has to reach
+         the button label as well. The <select> is the value holder; the button is what the visitor reads. */
+      sel.addEventListener('change', sync);
+      sync();
+    });
+  }
+
+  /* ---------------- demo page context ----------------
+     A contextual CTA can only stay contextual if the click carries the context. ?for=<key> is resolved
+     against the map on the demo page, and lands in three places: the hidden field the form submits,
+     the industry preselection, and the line above the form. Without it the visitor re-explains what
+     they were just reading. */
+  function initDemoContext() {
+    var el = document.getElementById('demo-context');
+    if (!el) return;
+    var map;
+    try { map = JSON.parse(el.textContent); } catch (e) { return; }
+    var key = '';
+    try { key = new URLSearchParams(location.search).get('for') || ''; } catch (e) { }
+    var ctx = map[key];
+    /* A service card links with ?for=service-<slug> — a per-SERVICE context, not a per-page one. */
+    if (!ctx && key.indexOf('service-') === 0) {
+      var svcEl = document.getElementById('demo-services');
+      var svc = {};
+      try { svc = JSON.parse(svcEl.textContent); } catch (e) { }
+      var nm = svc[key.slice(8)];
+      if (nm) ctx = { about: 'the ' + nm + ' service', industry: '' };
+    }
+    if (!ctx) return;
+    var form = document.getElementById('demo-form');
+    if (!form) return;
+    /* 1. the form submits what the visitor was asking about */
+    var hid = form.querySelector('input[name="context"]');
+    if (hid) hid.value = ctx.about + ' (' + key + ')';
+    /* 2. preselect the industry, where the page maps to one */
+    if (ctx.industry) {
+      var sel = document.getElementById('d-industry');
+      if (sel) {
+        for (var i = 0; i < sel.options.length; i++) {
+          /* Case-insensitive: the taxonomy writes "Healthcare & Dental", the context map may not. */
+          if (sel.options[i].textContent.trim().toLowerCase() === ctx.industry.trim().toLowerCase()) {
+            sel.value = sel.options[i].value || ctx.industry;
+            break;
+          }
+        }
+        if (sel.value) sel.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+    /* 3. say it back, so the form does not read as a cold generic form */
+    var line = document.querySelector('[data-demo-context-line]');
+    var wrap = document.querySelector('[data-demo-context]');
+    if (line) line.textContent = ctx.about;
+    if (wrap) wrap.hidden = false;
+  }
+
   /* ---------------- forms (inline validation + success) ---------------- */
   function initForms() {
     document.querySelectorAll('form[data-validate]').forEach(function (form) {
@@ -673,7 +819,13 @@
         var allOk = els.map(validate).every(Boolean);
         if (!allOk) {
           var first = form.querySelector('.form-field.invalid input, .form-field.invalid select, .form-field.invalid textarea');
-          if (first) first.focus();
+          if (first) {
+            /* A dropdown's native <select> is hidden, so focusing it would do nothing — its button is
+               what the visitor can actually see and reach. */
+            var fld = first.closest('.form-field');
+            var ddb = fld ? fld.querySelector('.dd-btn') : null;
+            (ddb || first).focus();
+          }
           return;
         }
         A.send('form_submit', { form: form.id || 'form' });
@@ -749,7 +901,6 @@
     if (!root) return;
     var chips = root.querySelectorAll('.trade-chip');
     var line = root.querySelector('[data-trade-line]');
-    var img = root.querySelector('[data-trade-img]');
     var cta = root.querySelector('[data-trade-cta]');
     var dataEl = document.getElementById('trade-data');
     var data = JSON.parse(dataEl.textContent);
@@ -763,21 +914,20 @@
         line.innerHTML = d.line;
         line.classList.remove('trade-swap'); void line.offsetWidth; line.classList.add('trade-swap');
       }
-      if (img) {
-        img.src = d.img; img.alt = d.alt;
-        img.closest('.img').classList.remove('trade-swap'); void img.offsetWidth; img.closest('.img').classList.add('trade-swap');
-      }
       if (cta) {
         cta.href = d.href;
         var lbl = cta.querySelector('[data-trade-cta-label]');
         if (lbl) lbl.textContent = 'See the ' + d.name + ' playbook';
       }
-      try { history.replaceState(null, '', key === 'hvac' ? location.pathname : '?trade=' + key); } catch (e) { }
+      try { history.replaceState(null, '', key === data[0].key ? location.pathname : '?trade=' + key); } catch (e) { }
       A.send('calculator_use', { type: 'trade_picker', value: key });
     }
     chips.forEach(function (c) { c.addEventListener('click', function () { select(c.dataset.trade); }); });
     var params = new URLSearchParams(location.search);
-    select(params.get('trade') || 'hvac');
+    /* The default must come from the taxonomy itself: 'hvac' was the old flat default and stopped
+       existing the day the umbrella taxonomy landed, which left the preview panel permanently empty. */
+    var want = params.get('trade');
+    select(byKey[want] ? want : data[0].key);
   }
 
   /* ---------------- leak calculator ---------------- */
@@ -855,17 +1005,66 @@
   function simpleSpy(rail) {
     var links = Array.from(rail.querySelectorAll('a'));
     var groups = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+    /* The "current" line must sit BELOW the point an anchor click parks its target at, which is that
+       target's own CSS scroll-margin-top PLUS ANCHOR_OFFSET. It used to be a flat 140px while a
+       click lands its target at ~200px, so the group just clicked was still under the line, the spy
+       picked the PREVIOUS one, and the rail highlighted one item behind on EVERY click — most
+       visible on the short D group, whose predecessor is the very tall C group. */
+    var first = null;
+    for (var gi = 0; gi < groups.length; gi++) { if (groups[gi]) { first = groups[gi]; break; } }
+    var LINE = (first ? parseFloat(getComputedStyle(first).scrollMarginTop) || 0 : 0) + ANCHOR_OFFSET + 24;
+
+    function update() {
+      var idx = 0;
+      groups.forEach(function (g, i) { if (g && g.getBoundingClientRect().top < LINE) idx = i; });
+      links.forEach(function (a, i) { a.classList.toggle('active', i === idx); });
+    }
+
+    /* Service groups are <details>, so a rail link has to OPEN the group it points at — otherwise
+       the target is a collapsed box and the anchor scrolls to nothing. Same for a cold deep link. */
+    var openTarget = function (hash) {
+      if (!hash || hash.length < 2) return;
+      var t = document.getElementById(hash.slice(1));
+      if (t && t.tagName === 'DETAILS') t.open = true;
+    };
+    /* Highlight the clicked item immediately and HOLD it while the smooth scroll runs, so the rail
+       does not flick through every group on the way down. The hold releases when the scroll actually
+       settles (three frames without movement, 2.5s cap), then the spy takes over from real geometry. */
+    var lock = false;
+    links.forEach(function (a) {
+      a.addEventListener('click', function () {
+        openTarget(a.getAttribute('href'));
+        var i = links.indexOf(a);
+        links.forEach(function (x, n) { x.classList.toggle('active', n === i); });
+        lock = true;
+        var last = window.scrollY, still = 0, t0 = Date.now();
+        (function settle() {
+          var y = window.scrollY;
+          still = Math.abs(y - last) < 0.5 ? still + 1 : 0;
+          last = y;
+          if (still < 3 && Date.now() - t0 < 2500) { requestAnimationFrame(settle); return; }
+          lock = false;
+          update();
+        })();
+      });
+    });
+    openTarget(location.hash);
+    window.addEventListener('hashchange', function () { openTarget(location.hash); });
+    /* Re-measure reveals after a toggle: cards inside a group that was collapsed when its trigger
+       would have fired are still at the CSS pre-state until ScrollTrigger re-evaluates them. */
+    Array.prototype.forEach.call(document.querySelectorAll('details.svc-group'), function (d) {
+      d.addEventListener('toggle', function () {
+        if (d.open && window.ScrollTrigger && window.ScrollTrigger.refresh) window.ScrollTrigger.refresh();
+      });
+    });
     var ticking = false;
     window.addEventListener('scroll', function () {
-      if (ticking) return;
+      if (ticking || lock) return;
       ticking = true;
-      requestAnimationFrame(function () {
-        var idx = 0;
-        groups.forEach(function (g, i) { if (g && g.getBoundingClientRect().top < 140) idx = i; });
-        links.forEach(function (a, i) { a.classList.toggle('active', i === idx); });
-        ticking = false;
-      });
+      requestAnimationFrame(function () { update(); ticking = false; });
     }, { passive: true });
+    update();
   }
 
   /* ---------------- governance: layers draw-in + horizons stamp ---------------- */
@@ -1062,7 +1261,7 @@
       if (!hit && /hallucin|made up|accurate|reliable|governance|audit/.test(q)) hit = KB[2];
       if (!hit && /compare|versus|vs|gohighlevel|smith/.test(q)) hit = KB[3];
       answer(hit || {
-        a: 'That is not in our approved site knowledge, so I will not guess. A human from HazirMinds will answer it properly — reach us at hello@hazirminds.ai, or book a free demo and we will bring the answer with receipts.',
+        a: 'That is not in our approved site knowledge, so I will not guess. A human from HazirMinds will answer it properly — reach us at contact@hazirminds.ai, or book a free demo and we will bring the answer with receipts.',
         href: '/demo', label: 'Book a free demo'
       }, !hit);
     });
@@ -1077,6 +1276,8 @@
     initProgress();
     initAccordions();
     initTabs();
+    initDropdowns();
+    initDemoContext();
     initForms();
     initTradePicker();
     initCalculator();

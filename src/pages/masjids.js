@@ -3,6 +3,7 @@ const L = require('../lib');
 const { esc, I, nav, footer, chromeEnd, roiBar, site } = L;
 const SJ = require('../data/site.json');
 const M = SJ.masjid;
+const CTX = require('../data/context');
 
 const bc = L.breadcrumbs([['Home', '/'], ['For Masjids', '/masjids']]);
 
@@ -27,7 +28,7 @@ function lifecycle() {
       <p>${s.d}</p>
     </div>${i < steps.length - 1 ? '<span class="lc-arrow" aria-hidden="true">' + I('arrow') + '</span>' : ''}`).join('')}
   </div>
-  <p class="stat-note center" style="margin-top:18px">ONE REQUEST → ONE SOURCE OF TRUTH → APPROVAL → AI WORK → MANY CHANNELS → FOLLOW-UP → REPORTING → AUDIT</p>`;
+  <p class="stat-note center" style="margin-top:16px">ONE REQUEST → ONE SOURCE OF TRUTH → APPROVAL → AI WORK → MANY CHANNELS → FOLLOW-UP → REPORTING → AUDIT</p>`;
 }
 
 /* Channels fan-out visual */
@@ -54,10 +55,10 @@ const main = `
         <h1 style="font-size:clamp(32px,4.6vw,58px);color:var(--cream)">The operating system for masjid work — one record, every channel, governed AI.</h1>
         <p class="lede" style="color:rgba(250,247,242,.75)">${M.positioning}</p>
         <div class="hero-ctas" style="margin-top:28px">
-          ${L.btnDemo('Book a Masjid Demo', 'masjid_hero', 'btn--brass btn--lg')}
-          <a class="btn btn--outline-light btn--lg" href="/compare/masjid-platforms" data-cta="masjid_compare">Compare masjid platforms</a>
+          ${L.btnDemo(CTX.masjids.label, 'masjid_hero', 'btn--brass btn--lg', 'masjids')}
+          <a class="btn btn--outline-light btn--lg" href="#masjid-compare" data-cta="masjid_compare">Compare masjid platforms</a>
         </div>
-        <div class="chip-row" style="margin-top:26px" data-reveal="children">
+        <div class="chip-row" style="margin-top:24px" data-reveal="children">
           <span class="pill">events &amp; communications</span><span class="pill">registrations &amp; check-in</span><span class="pill">facilities &amp; volunteers</span><span class="pill">donations &amp; CRM</span><span class="pill">governed AI assistants</span><span class="pill">multi-masjid isolation</span>
         </div>
       </div>
@@ -129,7 +130,7 @@ const main = `
         </div>
       </div>
       <p class="stat-note center" style="margin-top:20px">The assistants answer questions about your masjid\u2019s operations, programs, facilities and events. They do not issue religious rulings and do not replace imams or scholars — religious questions are routed to a named person, and every routing is recorded.</p>
-      <div class="hallucination-panel" data-reveal style="margin-top:26px;background:var(--deep);border-color:rgba(250,247,242,.12)">
+      <div class="hallucination-panel" data-reveal style="margin-top:24px;background:var(--deep);border-color:rgba(250,247,242,.12)">
         <span class="eyebrow">No-hallucination design</span>
         <h3 style="color:var(--cream);font-size:22px;letter-spacing:-.015em;line-height:1.25;margin:10px 0 18px">Governed, source-linked AI with escalation — our honest claim</h3>
         <div class="chip-row chip-row--dense chip-row--three">
@@ -182,7 +183,7 @@ const main = `
           </tbody>
         </table>
       </div>
-      <p class="stat-note" style="margin-top:14px">Integrations are designed to be replaceable — if your masjid changes a system, the platform is reconfigured rather than rebuilt.</p>
+      <p class="stat-note" style="margin-top:12px">Integrations are designed to be replaceable — if your masjid changes a system, the platform is reconfigured rather than rebuilt.</p>
     </div>
   </section>
 
@@ -222,10 +223,10 @@ const main = `
           </tbody>
         </table>
       </div>
-      <div class="card card--panel" data-reveal style="margin-top:26px">
+      <div class="card card--panel" data-reveal style="margin-top:24px">
         <span class="eyebrow">What the audit trail actually records</span>
         <p class="muted" style="margin-top:12px;font-size:15px">Not a summary line. Every consequential action stores <b>who</b> acted, <b>when</b>, <b>what action</b>, the <b>previous value</b>, the <b>new value</b>, and the <b>approval history</b> behind it. So when a date changes, you can see who changed it, from what, to what, and who signed it off.</p>
-        <p class="stat-note" style="margin-top:14px">Example chain: a coordinator submits an event → the youth lead approves → communications edits the flyer copy → the communications admin approves → the website publishes → the newsletter sends. Every step carries a name and a timestamp.</p>
+        <p class="stat-note" style="margin-top:12px">Example chain: a coordinator submits an event → the youth lead approves → communications edits the flyer copy → the communications admin approves → the website publishes → the newsletter sends. Every step carries a name and a timestamp.</p>
       </div>
     </div>
   </section>
@@ -270,13 +271,13 @@ const main = `
         </div>
       </div>
 
-      <div class="grid grid-2" style="align-items:stretch;margin-top:26px">
+      <div class="grid grid-2" style="align-items:stretch;margin-top:24px">
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Built-in governance</span>
           <div class="chip-row chip-row--dense" style="margin-top:16px">
             ${['permission scopes', 'role-based access', 'approval gates', 'audit trail', 'source-linked info', 'confidence levels', 'human escalation', 'org policies', 'action logging', 'data boundaries'].map(c => `<span class="pill">${I('shield')}${c}</span>`).join('')}
           </div>
-          <p class="muted" style="margin-top:18px;font-size:15px">Nine admin roles — from System Admin to Read Only — and a full admin dashboard: users, committees, templates, knowledge, AI policies, workflows, audit logs, settings.</p>
+          <p class="muted" style="margin-top:16px;font-size:15px">Nine admin roles — from System Admin to Read Only — and a full admin dashboard: users, committees, templates, knowledge, AI policies, workflows, audit logs, settings.</p>
         </div>
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Security &amp; isolation</span>
@@ -286,7 +287,7 @@ const main = `
             <li>${I('check')}<span>Audit logs, backups + recovery, incident response, access reviews</span></li>
             <li>${I('check')}<span>Restricted AI tool permissions; controlled external actions only</span></li>
           </ul>
-          <p class="stat-note" style="margin-top:14px">We publish measurable controls — we never claim \u201cend-to-end encryption\u201d or \u201czero risk.\u201d</p>
+          <p class="stat-note" style="margin-top:12px">We publish measurable controls — we never claim \u201cend-to-end encryption\u201d or \u201czero risk.\u201d</p>
         </div>
       </div>
     </div>
@@ -322,7 +323,7 @@ const main = `
       <div class="grid grid-2" style="align-items:stretch">
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Included HazirMinds capabilities</span>
-          <ul class="checks" style="margin-top:14px">
+          <ul class="checks" style="margin-top:12px">
             <li>${I('check')}<span>The full operating layer: lifecycle, approvals, channels, registration, facilities, volunteers, CRM, analytics</span></li>
             <li>${I('check')}<span>Governed AI assistants on your approved knowledge base</span></li>
             <li>${I('check')}<span>Templates, communication standards, onboarding, training, support</span></li>
@@ -331,15 +332,15 @@ const main = `
         </div>
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Third-party accounts &amp; usage that remain external</span>
-          <ul class="checks" style="margin-top:14px">
+          <ul class="checks" style="margin-top:12px">
             ${M.external.map(x => `<li>${I('info')}<span>${x}</span></li>`).join('')}
           </ul>
           <p class="stat-note" style="margin-top:12px">We never claim third-party software is free or owned by HazirMinds.</p>
         </div>
       </div>
-      <div class="honesty-note" data-reveal style="margin-top:30px">
+      <div class="honesty-note" data-reveal style="margin-top:28px">
         <h3 style="font-size:17px">The fragmented stack it replaces</h3>
-        <p>Typical patchwork: separate app subscription (${M.stack.tools}) + donation-platform fees (${M.stack.fees}) + kiosk hardware (${M.stack.hardware}) + volunteer spreadsheets + unanswered phones — <em>${M.stack.stamp}</em>. Consolidated: one governed service with a clear included-vs-external split.</p>
+        <p>Typical patchwork: ${M.stack.parts.join(', ')} — <em>${M.stack.stamp}</em>. Consolidated: one governed service with a clear included-vs-external split.</p>
       </div>
     </div>
   </section>
@@ -352,9 +353,9 @@ const main = `
         <p class="lede center" style="margin-inline:auto">Board papers, budget approvals and volunteer briefings need documents, not marketing pages. Book a demo and we send the full set to your committee.</p>
       </div>
       <div class="grid grid-3" data-reveal="children">
-        ${[['Masjid AI OS deck', 'The full platform walkthrough for board and committee review'], ['Leave-behind one-pager', 'A single page your board can read between salah and meetings'], ['Implementation playbook', 'Onboarding steps, roles, timelines and acceptance criteria'], ['ROI framework', 'How to model your masjid\u2019s leak, savings and volunteer hours saved'], ['Lifecycle walkthrough (video)', 'One request in — every channel out, with approvals and receipts'], ['Governance & privacy brief', 'Tenant isolation, permissions, audit trail and data ownership']].map(c => `<div class="card card--hover"><span class="icon-tile icon-tile--brass">${I('package')}</span><h3>${c[0]}</h3><p class="muted" style="font-size:15px">${c[1]}</p><div style="margin-top:14px">${L.btnDemo('Request with demo', 'masjid_collateral', 'btn--ghost btn--sm')}</div></div>`).join('')}
+        ${[['Masjid AI OS deck', 'The full platform walkthrough for board and committee review'], ['Leave-behind one-pager', 'A single page your board can read between salah and meetings'], ['Implementation playbook', 'Onboarding steps, roles, timelines and acceptance criteria'], ['ROI framework', 'How to model your masjid\u2019s leak, savings and volunteer hours saved'], ['Lifecycle walkthrough (video)', 'One request in — every channel out, with approvals and receipts'], ['Governance & privacy brief', 'Tenant isolation, permissions, audit trail and data ownership']].map(c => `<div class="card card--hover"><span class="icon-tile icon-tile--brass">${I('package')}</span><h3>${c[0]}</h3><p class="muted" style="font-size:15px">${c[1]}</p><div style="margin-top:12px">${L.btnDemo('Request with demo', 'masjid_collateral', 'btn--ghost btn--sm', 'masjids')}</div></div>`).join('')}
       </div>
-      <p class="stat-note center" style="margin-top:14px">Released through the demo form — so we can tailor the walkthrough to your committee\u2019s priorities.</p>
+      <p class="stat-note center" style="margin-top:12px">Released through the demo form — so we can tailor the walkthrough to your committee\u2019s priorities.</p>
     </div>
   </section>
 
@@ -418,6 +419,38 @@ const main = `
     </div>
   </section>
 
+  <section class="section section--paper" id="masjid-compare">
+    <div class="container">
+      <div class="sec-head" data-reveal="children">
+        <span class="eyebrow eyebrow--rust">Verified 2026 comparison</span> <span class="pill pill--brass" style="font-size:11px;vertical-align:middle;margin-left:8px">✓ Source-checked Sept 2026</span>
+        <h2 style="font-size:clamp(26px,3vw,38px);margin-top:8px">HazirMinds Masjid AI OS vs masjid platforms</h2>
+        <p class="lede" style="max-width:78ch">The established masjid platforms solve communications, donations and apps. None of them offer governed AI, one-record→many-channels lifecycle with approval gates, audit receipts or isolated multi-masjid tenancy. That is the layer we run. Re-verify any vendor price at publish time — rows marked are directory-sourced.</p>
+      </div>
+      <div class="compare-wrap" data-reveal style="margin-top:32px">
+        <table class="compare compare-table">
+          <thead><tr><th scope="col">Platform</th><th scope="col">Entry price</th><th scope="col">Model</th><th scope="col">Governed AI</th></tr></thead>
+          <tbody data-row-reveal>
+            ${M.competitors.map(c => `<tr><td><b>${c.name}</b>${c.flag ? ` <span class="stat-note" style="display:inline">(${c.flag})</span>` : ''}</td><td>${c.entry}</td><td>${c.model}</td><td>${c.ai}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <p class="src-note" style="margin-top:8px">Sources: ${[...new Set(M.competitors.map(c => c.source))].join(' · ')}. Source-checked Sept 2026. Vendor prices change — verify before deciding.</p>
+
+      <div style="margin-top:52px" data-reveal="children">
+        <span class="eyebrow">What no reviewed platform offers together</span>
+        <h3 style="font-size:clamp(22px,2.4vw,30px);margin-top:8px">The gap list</h3>
+        <div class="grid grid-2" style="margin-top:20px">
+          ${M.gaps.map(g => `<div class="card"><span class="icon-tile icon-tile--ok">${I('check')}</span><p style="font-size:15px;margin:0">${g}</p></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="honesty-note" data-reveal style="margin-top:44px">
+        <h3>Who should NOT buy HazirMinds</h3>
+        <p>If your masjid needs a display-only website and app with prayer times and announcements — and budget is the deciding factor — Masjidal/CMZ-style free or low-cost tiers are honest choices. For campaign crowdfunding reach, LaunchGood does that one job well. If you want to own the code of a custom-branded app outright, a build shop like Buildify is the right lane. HazirMinds is for organizations that want the <em>operating layer</em>: governed AI, one record to every channel, approvals, receipts — priced and acceptance-tested per engagement.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--paper">
     <div class="container">
       <div class="final-cta" data-reveal>
@@ -425,7 +458,7 @@ const main = `
           <span class="serif-accent">Always present. Never missed.</span>
           <h2>Book a Masjid Demo</h2>
           <p style="color:rgba(250,247,242,.75)">See the lifecycle live: one request in, every channel out, approvals and receipts throughout. Scoped, priced and acceptance-tested with your committee.</p>
-          <div class="hero-ctas" style="justify-content:center">${L.btnDemoPlain('Book a Masjid Demo', 'masjid_final', 'btn--brass btn--lg')}</div>
+          <div class="hero-ctas" style="justify-content:center">${L.btnDemoPlain(CTX.masjids.label, 'masjid_final', 'btn--brass btn--lg', 'masjids')}</div>
         </div>
       </div>
     </div>

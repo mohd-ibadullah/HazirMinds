@@ -2,22 +2,31 @@
 const L = require('../lib');
 const { esc, jsonAttr, I, head, roiBar, nav, footer, chromeEnd, site, TEL, CALL_LABEL, CALL_TEXT, CALL_ICON } = L;
 const pricing = require('../data/pricing');
-const industries = require('../data/industries');
 const C = require('../data/compare');
 const JS = require('../data/site.json');
 const loop = require('../data/loop');
 
-const tradeData = industries.map(d => ({ key: d.key, name: d.name, img: d.img, alt: d.name + ' — HazirMinds AI team at work', line: `<h3>${esc(d.pain)}</h3><p class="lede">${esc(d.sub)}</p>`, href: '/industries/' + d.key }));
+const IND = require('../data/industries').items;
+/* The picker is built from the taxonomy, so it cannot list an industry the rest of the site does not
+   have. No image: the industry pages carry none, and the preview reads as text instead. */
+const tradeData = IND.map(d => ({
+  key: d.key,
+  name: d.name,
+  line: `<h3>${esc(d.name)}</h3><p class="lede">${esc(d.serves)}</p><p class="stat-note">${d.subsectors.length} sub-sectors — ${esc(d.subsectors.slice(0, 4).map(x => x[0]).join(' · '))}${d.subsectors.length > 4 ? ' …' : ''}</p>`,
+  href: d.href
+}));
 
 /* The homepage FAQ section is gone — those five answers now live in the assistant knowledge base
    (src/lib.js). Google requires FAQPage markup to match visible content on the same URL, so the
-   JSON-LD goes with the section; the Q&As stay visible on /pricing, which keeps its own markup. */
+   JSON-LD goes with the section. */
 const svcLd = pricing.tiers.map(t => ({
   '@context': 'https://schema.org', '@type': 'Service',
   name: 'HazirMinds ' + t.name, serviceType: 'AI automation platform',
   provider: { '@type': 'Organization', name: 'HazirMinds', url: site.url },
   areaServed: ['US', 'GB', 'CA'],
-  offers: { '@type': 'Offer', price: t.monthly ? String(t.monthly) : undefined, priceCurrency: 'USD', availability: 'https://schema.org/InStock', url: site.url + '/pricing', ...(t.monthly ? {} : { priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'USD', valueAddedTaxIncluded: false } }) }
+  /* No offers block: the pricing page was removed by request, and structured data must describe
+     what the page actually shows. Advertising a tier price Google can read but a visitor cannot see
+     is the same defect as FAQPage markup for a FAQ that is no longer on the page. */
 }));
 
 const html = `${head({ rawTitle: 'HazirMinds — Governed AI Receptionists & Sales Agents | Always Present. Never Missed.', path: '/', desc: site.desc, ld: [L.orgLd(), L.websiteLd(), svcLd[0], svcLd[1], svcLd[2], svcLd[3]] })}
@@ -56,7 +65,7 @@ ${nav()}
         <div class="demo-body" role="tabpanel" id="demo-panel" aria-labelledby="demo-tab-0" aria-live="polite"></div>
         <div class="demo-chips"></div>
         <div class="demo-foot">
-          <span class="micro">Want to hear it on <b>your</b> business? <a href="/demo" data-cta="demo_micro">Book a demo</a></span>
+          <span class="micro">Want to hear it on <b>your</b> business? <a href="/demo?for=home" data-cta="demo_micro">Book a demo</a></span>
           <span class="micro" style="white-space:nowrap">Avg. pickup <b style="color:var(--ok-text)">&lt;1s</b></span>
         </div>
       </div>
@@ -81,7 +90,7 @@ ${nav()}
           <div class="src">${s.source.toUpperCase()}</div>
         </div>`).join('')}
       </div>
-      <div style="margin-top:22px" data-reveal="children">
+      <div style="margin-top:24px" data-reveal="children">
         <div class="calc" data-calc>
           <div class="calc-controls">
             <span class="eyebrow">What is silence costing you?</span>
@@ -91,7 +100,7 @@ ${nav()}
             </div>
             <div class="calc-field">
               <label for="calc-value">Average job value <output for="calc-value" data-out-value>$${JS.calc.value}</output></label>
-              <input id="calc-value" type="range" min="50" max="5000" step="50" value="400" data-calc-value>
+              <input id="calc-value" type="range" min="50" max="5000" step="50" value="${JS.calc.value}" data-calc-value>
             </div>
             <p class="form-note">Conservative estimate: each missed call is a job you never quoted. Drag the sliders.</p>
           </div>
@@ -99,16 +108,17 @@ ${nav()}
             <span class="eyebrow">Monthly revenue leak</span>
             <div class="big" data-calc-out>$${(JS.calc.calls * JS.calc.value).toLocaleString('en-US')}</div>
             <p>That's <b data-calc-year>$${(JS.calc.calls * JS.calc.value * 12).toLocaleString('en-US')}</b> a year walking out the door.</p>
-            <span class="note">Illustrative estimate — your demo includes a business-specific ROI model.</span>
+            <span class="note">Your own numbers, illustrative — the ROI model we build for you is specific to your business.</span>
           </div>
         </div>
+        <p class="lede center" style="margin-inline:auto;margin-top:24px">${L.QUOTE}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- S4 · THE HAZIR LOOP (PINNED STORY) -->
-<section class="section" id="loop" data-pin-story="loop" style="padding-top:25px;padding-bottom:30px">
+<section class="section" id="loop" data-pin-story="loop" style="padding-top:24px;padding-bottom:28px">
   <div class="container">
     <div class="sec-head center" data-reveal="children">
       <span class="eyebrow">The Hazir Loop</span>
@@ -147,7 +157,6 @@ ${nav()}
           <li>${I('check')}<span>Chat, WhatsApp and SMS answered in seconds</span></li>
           <li>${I('check')}<span>Missed-call text-back rescues every slip</span></li>
         </ul>
-        <div class="door-foot"><span class="price">from $${JS.tiers.chronos.monthly}<small>/month</small></span>${L.btnDemo('Book', 'door_answer', 'btn--sm')}</div>
       </div>
       <div class="card card--hover door">
         <span class="icon-tile icon-tile--brass">${I('zap')}</span>
@@ -158,7 +167,6 @@ ${nav()}
           <li>${I('check')}<span>AI SDR books meetings while you sleep</span></li>
           <li>${I('check')}<span>Review engine keeps your stars climbing</span></li>
         </ul>
-        <div class="door-foot"><span class="price">from $${JS.tiers['hazir-pro'].monthly}<small>/month</small></span>${L.btnDemo('Book', 'door_sell', 'btn--sm')}</div>
       </div>
       <div class="card card--hover door">
         <span class="icon-tile icon-tile--ok">${I('building')}</span>
@@ -169,23 +177,22 @@ ${nav()}
           <li>${I('check')}<span>Custom AI employees for any role</span></li>
           <li>${I('check')}<span><a href="/masjids" style="color:inherit;text-decoration:underline;text-decoration-color:var(--brass)">Masjid AI OS</a> for masjids &amp; Islamic centers</span></li>
         </ul>
-        <div class="door-foot"><span class="price">Custom<small>scoped to your ops</small></span><a class="btn btn--ghost btn--sm" href="/chief-of-staff" data-cta="door_run">Explore ${I('arrow')}</a></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- S8 · GOVERNANCE LAYER -->
-<section class="section gov-band on-dark" id="governance" style="padding-top:50px;padding-bottom:50px">
+<section class="section gov-band on-dark" id="governance" style="padding-top:48px;padding-bottom:48px">
   <div class="container">
     <div class="sec-head center" data-reveal="children">
       <span class="eyebrow">The Governance Layer</span>
       <h2>We publish it. Nobody has to take our word.</h2>
-      <p class="lede center" style="margin-inline:auto">Four invariants every deployment inherits — part of the HazirMinds Operating Substrate, not bolted on as policy. Responsibility layers, hallucination control, source receipts and proof horizons are documented in full on the enterprise page.</p>
+      <p class="lede center" style="margin-inline:auto">Four invariants every deployment inherits — part of the HazirMinds Operating Substrate, not bolted on as policy. Responsibility layers, hallucination control, source receipts and proof horizons are documented in full on the Chief-of-Staff page.</p>
     </div>
     ${L.governanceBand({ compact: true })}
-    <div class="hero-ctas" style="justify-content:center;margin-top:50px" data-reveal="children">
-      <a class="btn btn--brass btn--lg" data-no-magnet href="/enterprise" data-cta="gov_cos_arch"><span class="shine"></span>See the Chief-of-Staff architecture ${I('arrow')}</a>
+    <div class="hero-ctas" style="justify-content:center;margin-top:48px" data-reveal="children">
+      <a class="btn btn--brass btn--lg" data-no-magnet href="/chief-of-staff" data-cta="gov_cos_arch"><span class="shine"></span>See the Chief-of-Staff architecture ${I('arrow')}</a>
       <a class="btn btn--outline-light btn--lg" href="/chief-of-staff" data-cta="gov_front_door">One front door to your AI team ${I('arrow')}</a>
     </div>
   </div>
@@ -200,41 +207,17 @@ ${nav()}
     </div>
     <div data-trade-picker data-reveal="children">
       <div class="trade-chips" role="group" aria-label="Choose your industry">
-        ${industries.map(d => `<button class="trade-chip" data-trade="${d.key}" aria-pressed="false">${I('phone')}${d.name}</button>`).join('')}
+        ${IND.map(d => `<button class="trade-chip" data-trade="${d.key}" aria-pressed="false">${I('phone')}${d.name}</button>`).join('')}
         <a class="trade-chip trade-chip--link" href="/masjids" data-cta="trade_masjid">${I('building')}Masjids &amp; Islamic Centers</a>
       </div>
-      <div class="trade-preview">
+      <div class="trade-preview trade-preview--text">
         <div class="txt" data-trade-line></div>
-        <div class="img"><img data-trade-img src="/img/trade-hvac.webp" alt="HVAC" width="640" height="480" loading="lazy" decoding="async"></div>
       </div>
       <div style="margin-top:24px;display:flex;justify-content:center">
-        <a class="btn btn--primary" data-trade-cta href="/industries/hvac" data-cta="trade_page"><span class="shine"></span><span data-trade-cta-label>See the HVAC playbook</span> ${I('arrow')}</a>
+        <a class="btn btn--primary" data-trade-cta href="${IND[0].href}" data-cta="trade_page"><span class="shine"></span><span data-trade-cta-label>See the ${IND[0].name} playbook</span> ${I('arrow')}</a>
       </div>
     </div>
     <script type="application/json" id="trade-data">${JSON.stringify(tradeData)}</script>
-  </div>
-</section>
-
-<!-- S11 · PRICE STRIP -->
-<section class="section section--paper" id="plans">
-  <div class="container">
-    <div class="sec-head center" data-reveal="children">
-      <span class="eyebrow">Simple pricing</span>
-      <h2>Four plans. Published rate card. No unpublished meters.</h2>
-      <p class="lede center" style="margin-inline:auto">Every plan publishes its usage rate card before go-live, and every deployment is measured against the acceptance criteria you sign. Annual billing gets two months free.</p>
-    </div>
-    <div class="price-strip" data-reveal="children">
-      ${pricing.tiers.map(t => `
-      <div class="card price-card${t.best ? ' price-card--featured' : ''}">
-        <span class="tier">${t.name}</span>
-        ${t.monthly
-          ? `<span class="amount">$<span data-price-m data-monthly="${t.monthly}" data-annual="${t.annual}">${t.monthly.toLocaleString('en-US')}</span><sup>/mo</sup></span>`
-          : `<span class="amount">Custom</span>`}
-        <span class="desc">${t.tagline}</span>
-        <a class="btn ${t.best ? 'btn--primary' : 'btn--ghost'} btn--sm" href="/pricing#${t.id}" data-cta="price_${t.id}"><span class="shine"></span>${t.monthly ? 'See plan' : 'Talk to us'}</a>
-      </div>`).join('')}
-    </div>
-    <p class="center" style="margin-top:22px"><a class="link-arrow" href="/pricing" data-cta="pricing_link">Full feature comparison, à-la-carte &amp; calculator ${I('arrow')}</a></p>
   </div>
 </section>
 
@@ -248,10 +231,10 @@ ${nav()}
       <div class="inner">
         <span class="serif-accent">${site.tagline}</span>
         <h2>Hear your own AI receptionist answer a live call</h2>
-        <p style="color:rgba(250,247,242,.75)">Fifteen minutes. We'll build a version that answers as <em>your business</em> — and let you call it before you spend a dollar.</p>
-        <p style="color:rgba(250,247,242,.75)">Live in 7–14 days for most businesses — timeline confirmed at kickoff, tuned weekly by our team. Month-to-month after day 60, no lock-in.</p>
+        <p style="color:rgba(250,247,242,.75)">We'll build a version that answers as <em>your business</em> — and let you call it before you spend a dollar.</p>
+        <p style="color:rgba(250,247,242,.75)">A done-for-you deployment — trained on your services, your working hours and your exceptions, and tuned weekly by our team.</p>
         <div class="hero-ctas">
-          ${L.btnDemoPlain('Book My Demo', 'final_cta', 'btn--primary btn--lg')}
+          ${L.btnDemoPlain('See it on your own line', 'final_cta', 'btn--primary btn--lg', 'home')}
           <a class="btn btn--outline-light btn--lg" href="${TEL}" data-cta="final_call">${I(CALL_ICON)} ${CALL_LABEL}</a>
         </div>
         <div class="contact">

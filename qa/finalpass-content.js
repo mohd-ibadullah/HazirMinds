@@ -33,8 +33,10 @@ for (const [k, mm] of [['chronos', chr], ['hazir-pro', haz], ['aeon', aeo]]) {
 }
 
 /* ---- 3. price strings actually rendered where expected ---- */
-t(/497/.test(txt['/'] || '') && /997/.test(txt['/'] || ''), 'home shows 497 and 997');
-t(/1,997/.test(txt['/pricing'] || '') || /1997/.test(txt['/pricing'] || ''), '/pricing shows 1,997');
+/* The homepage price strip was removed by request, so this guard flips: the home page must NOT
+   quote tier prices any more, and a revert cannot pass silently. */
+t(!/\$497/.test(txt['/'] || '') && !/\$997/.test(txt['/'] || ''), 'homepage no longer quotes tier prices');
+t(!txt['/pricing'], '/pricing route removed — no built page');
 t(/497/.test(txt['/ai'] || ''), '/ai shows 497');
 
 /* ---- 4. minutes per tier: 300 / 800 / 2000 appear & are consistent ---- */
@@ -119,8 +121,10 @@ t(/scope="col"><span style="position:absolute;left:-9999px">/.test(ALL['/']) ===
   const m = ALL['/'].match(/id="asst-kb">([\s\S]*?)<\/script>/);
   let kb = [];
   try { kb = JSON.parse(m[1]); } catch (e) { }
-  t(kb.length >= 10, `assistant KB carries the retired FAQ answers (${kb.length} entries)`);
-  t(kb.some(k => k.href === '/pricing#faq'), 'the retired FAQ answers link somewhere real');
+  /* The assistant's pricing answers and the five retired homepage FAQs went with /pricing, so the
+     KB shrank. Assert the survivors all point at a page that still exists. */
+  t(kb.length >= 4, `assistant KB has its remaining entries (${kb.length})`);
+  t(kb.every(k => k.href && k.href !== '/pricing' && !k.href.startsWith('/pricing#')), 'no assistant answer points at the removed /pricing page');
   t(!ALL['/'].includes('"@type": "FAQPage"'), 'FAQPage JSON-LD removed with the visible FAQ section');
 }
 
@@ -147,20 +151,10 @@ for (const c of ['We run the AI team that works for you.', 'HazirMinds runs AI t
    retired market claim survived there long after it was removed from every page. It is read
    explicitly here, and both it and /ai are checked against the live article list rather than
    trusted to stay in step by hand. */
-const llms = read('llms.txt');
-const ART = require('../src/data/articles');
-t(llms.length > 500, 'llms.txt is present and substantial');
-for (const bad of ['United Kingdom', 'Canada', 'US · UK']) {
-  t(!llms.includes(bad), `llms.txt carries no retired market claim "${bad}"`);
-  t(!(txt['/ai'] || '').includes(bad), `/ai carries no retired market claim "${bad}"`);
-}
-t(!/·\s*·/.test(llms), 'llms.txt has no empty field left between separators');
-t(!/·\s*·/.test(txt['/ai'] || ''), '/ai has no empty field left between separators (empty phone)');
-t(!/Demo line[^\n]*:\s*$/m.test(llms), 'llms.txt does not advertise an empty demo line');
-ART.forEach(a => {
-  t(llms.includes('/resources/' + a.slug), `llms.txt lists the article ${a.slug}`);
-  t((txt['/ai'] || '').includes(a.title.slice(0, 26)), `/ai lists the article "${a.title.slice(0, 26)}"`);
-});
+['llms.txt', 'sitemap.xml', 'robots.txt', 'ai/index.html', 'resources/index.html'].forEach(f =>
+  t(read(f) === '', f + ' is gone as requested'));
+t(!ALL['/ai'] && !ALL['/resources'], '/ai/ and /resources/ are gone as requested');
+t(!routes.some(r => r.startsWith('/use-cases')), 'all 9 use-case pages are gone as requested');
 
 /* ---- 7. every stat carries a source label (claim ↔ source pairing) ---- */
 t(SJ.stats.every(s => s.source && s.source.length > 4), 'every homepage stat has a source string');
@@ -186,7 +180,7 @@ const groupA = svc.find(g => g.id === 'live-today');
 const numbered = svc.flatMap(g => g.services || []);
 const maxN = Math.max(...numbered.map(s => +s.n).filter(Boolean));
 notes.push('INFO  numbered services: ' + numbered.length + ' max SERVICE ' + maxN);
-t(/19 out-of-box/.test(txt['/services'] || ''), '/services says "19 out-of-box"');
+t(!/19 out-of-box/.test(txt['/services'] || ''), '/services hero no longer claims "19 out-of-box"');
 t(groupA && groupA.services.length === 9, 'group A ("Available") has 9 services (got ' + (groupA && groupA.services.length) + ')');
 notes.push('INFO  group A count = ' + groupA.services.length + ', numbered total = ' + numbered.length);
 

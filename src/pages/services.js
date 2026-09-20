@@ -7,8 +7,7 @@ const groups = require('../data/services');
 const GROUP_CHIP = {
   'live-today': { chip: 'AVAILABLE', cls: 'pill--ok' },
   'onboarding': { chip: 'CONFIGURED AT ONBOARDING', cls: 'pill--brass' },
-  'enterprise-suite': { chip: 'SCOPED PER ENGAGEMENT', cls: 'pill--rust' },
-  'chief-of-staff-suite': { chip: 'SCOPED PER ENGAGEMENT', cls: 'pill--rust' },
+  'chief-of-staff-platform': { chip: 'SCOPED PER ENGAGEMENT', cls: 'pill--rust' },
   'client-builds': { chip: 'SCOPED PER ENGAGEMENT', cls: 'pill--rust' },
   'growth-addons': { chip: 'ADD-ON', cls: '' }
 };
@@ -27,9 +26,9 @@ const loop = require('../data/loop');
 const html = `<!doctype html>
 <html lang="en">
 ${L.head({
-  title: 'All Services A–F — Governed AI Receptionists, Agents & Automations',
+  title: 'All Services A–E — Governed AI Receptionists, Agents & Automations',
   path: '/services',
-  desc: 'The contract-aligned HazirMinds catalog: groups A–F, from AI reception and speed-to-lead to the Personal AI Chief-of-Staff platform — every service on the governed substrate.',
+  desc: 'The contract-aligned HazirMinds catalog: groups A–E, from AI reception and speed-to-lead to the Chief-of-Staff Platform — every service on the governed substrate.',
   ld: [L.orgLd(), svcLd]
 })}
 <body>
@@ -41,13 +40,6 @@ ${nav()}
     <div class="container">
       <p class="crumbs"><a href="/">Home</a> <span>/</span> <span aria-current="page">Services</span></p>
       <h1 style="max-width:16ch">Every service. One governed team that runs it for you.</h1>
-      <p class="lede" style="margin-top:18px;max-width:60ch">Nineteen out-of-box (9 live today + 10 configured at onboarding), everything else scoped per engagement — every card labeled. Plus two flagship platforms: the Personal AI Chief-of-Staff and the Masjid AI OS. All of it runs on the HazirMinds Operating Substrate.</p>
-      <div class="chips" style="margin:22px 0 34px">
-        <span class="pill pill--ok">19 out-of-box</span>
-        <span class="pill pill--rust">everything else scoped — every card labeled</span>
-        <span class="pill">Live in 7–14 days (groups A–B)</span>
-        <span class="pill">Acceptance criteria you sign</span>
-      </div>
     </div>
   </section>
 
@@ -58,14 +50,14 @@ ${nav()}
       </aside>
       <div>
         ${groups.map(g => `
-        <div class="svc-group" id="${g.id}">
-          <div class="svc-group-head" data-reveal="children">
+        <details class="svc-group" id="${g.id}" open>
+          <summary class="svc-group-head">
             <span class="gn">${g.num}</span>
             <div>
               <h2 style="font-size:clamp(24px,2.6vw,34px)">${g.name}</h2>
               <p class="muted" style="max-width:62ch;margin-top:8px">${g.promise}</p>
             </div>
-          </div>
+          </summary>
           <div class="svc-cards" data-reveal="children">
             ${g.services.map(s => `
             <article class="svc-card" id="${s.slug}">
@@ -75,30 +67,17 @@ ${nav()}
               </div>
               <h3>${s.name}</h3>
               <p><b style="color:var(--ink)">${s.outcome}</b></p>
-              <ul style="display:flex;flex-direction:column;gap:7px;margin-bottom:13px">
-                ${s.points.map(p => `<li style="display:flex;gap:9px;font-size:14px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none;margin-top:1px">${I('check')}</span>${p}</li>`).join('')}
+              <ul style="display:flex;flex-direction:column;gap:7px;margin-bottom:12px">
+                ${s.points.map(p => `<li style="display:flex;gap:9px;font-size:14px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none;margin-top:0px">${I('check')}</span>${p}</li>`).join('')}
               </ul>
-              ${s.gov ? `<p style="font-size:13px;line-height:1.6;color:var(--brass-text);border-top:1px solid var(--hairline);padding-top:11px;margin:0 0 13px"><b>GOVERNANCE:</b> ${s.gov}</p>` : ''}
+              ${s.gov ? `<p style="font-size:13px;line-height:1.6;color:var(--brass-text);border-top:1px solid var(--hairline);padding-top:12px;margin:0 0 13px"><b>GOVERNANCE:</b> ${s.gov}</p>` : ''}
 
-              <a class="link-arrow" href="/demo" data-cta="svc_${s.n}">Get this running ${I('arrow')}</a>
+              <a class="link-arrow" href="/demo?for=service-${s.slug}" data-cta="svc_${s.n}">Get this running ${I('arrow')}</a>
             </article>`).join('')}
           </div>
-        </div>`).join('')}
+        </details>`).join('')}
 
-        <div class="svc-media">
-          <figure class="media-panel media-panel--paper" data-reveal>
-            <div class="flow-figure">
-              ${loop.map((s, i) => `
-              <div class="flow-step">
-                <span class="num">STEP ${s.n}</span>
-                <b>${s.name}</b>
-                <span>${['Every call, chat, text and form — captured in under a second.', 'Your services, pricing, tone and boundaries, approved by you before go-live.', 'Live on your number, supervised, with weekly tuning from real transcripts.', 'Monthly reviews add capability — the team improves every month it runs.'][i]}</span>
-              </div>`).join('')}
-              <span class="flow-loop">↻ the loop repeats — this is the Hazir Loop</span>
-            </div>
-            <figcaption>How a deployment works, end to end — drawn in markup, not a picture, so it stays sharp and screen-readable at any size</figcaption>
-          </figure>
-        </div>
+
 
         <div id="loop" data-reveal="children">
           <span class="eyebrow">The Hazir Loop</span>
@@ -113,8 +92,8 @@ ${nav()}
               <p>${s.text}</p>
             </div>`).join('')}
           </div>
-          <p class="serif-accent" style="margin-top:26px">“Hazir” — present, ready, attentive. It's what your AI team always is. It's also the name of our flagship plan.</p>
-          <div style="margin-top:22px">${L.btnDemo('Deploy your first service', 'services_final', 'btn--primary btn--lg')}</div>
+          <p class="serif-accent" style="margin-top:24px">“Hazir” — present, ready, attentive. It's what your AI team always is. It's also the name of our flagship plan.</p>
+          <div style="margin-top:20px">${L.btnDemo('Deploy your first service', 'services_final', 'btn--primary btn--lg', 'services')}</div>
         </div>
       </div>
     </div>

@@ -50,13 +50,13 @@ await p.setViewportSize({ width: 1440, height: 950 });
 await p.goto(B + '/', { waitUntil: 'networkidle' });
 await p.waitForTimeout(700);
 const lbl0 = await p.textContent('[data-trade-cta-label]');
-chk(lbl0.trim() === 'See the HVAC playbook', 'FX-02 default label = "' + lbl0.trim() + '"');
-await p.click('.trade-chip[data-trade="dental"]');
+chk(lbl0.trim() === 'See the Home & Field Services playbook', 'FX-02 default label = "' + lbl0.trim() + '"');
+await p.click('.trade-chip[data-trade="healthcare-dental"]');
 await p.waitForTimeout(500);
 const st = await p.evaluate(() => ({ label: document.querySelector('[data-trade-cta-label]').textContent.trim(), href: document.querySelector('[data-trade-cta]').getAttribute('href'), url: location.search }));
-chk(st.label === 'See the Dental playbook', 'FX-02 label follows selection = "' + st.label + '"');
-chk(st.href === '/industries/dental', 'FX-02 href follows too = ' + st.href);
-chk(st.url.includes('trade=dental'), 'FX-02 deep-link param written = ' + st.url);
+chk(st.label === 'See the Healthcare & Dental playbook', 'FX-02 label follows selection = "' + st.label + '"');
+chk(st.href === '/industries/healthcare-dental', 'FX-02 href follows too = ' + st.href);
+chk(st.url.includes('trade=healthcare-dental'), 'FX-02 deep-link param written = ' + st.url);
 
 // deep link on load
 await p.goto(B + '/?trade=legal', { waitUntil: 'networkidle' });

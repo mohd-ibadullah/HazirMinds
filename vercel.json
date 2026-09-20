@@ -4,31 +4,135 @@
   "outputDirectory": "dist",
   "installCommand": "node --version",
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/industries/hvac",
+      "destination": "/industries/home-field-services",
+      "permanent": true
+    },
+    {
+      "source": "/industries/hvac/",
+      "destination": "/industries/home-field-services",
+      "permanent": true
+    },
+    {
+      "source": "/industries/dental",
+      "destination": "/industries/healthcare-dental",
+      "permanent": true
+    },
+    {
+      "source": "/industries/dental/",
+      "destination": "/industries/healthcare-dental",
+      "permanent": true
+    },
+    {
+      "source": "/industries/restaurant",
+      "destination": "/industries/food-hospitality-events",
+      "permanent": true
+    },
+    {
+      "source": "/industries/restaurant/",
+      "destination": "/industries/food-hospitality-events",
+      "permanent": true
+    },
+    {
+      "source": "/industries/realestate",
+      "destination": "/industries/real-estate-property",
+      "permanent": true
+    },
+    {
+      "source": "/industries/realestate/",
+      "destination": "/industries/real-estate-property",
+      "permanent": true
+    },
+    {
+      "source": "/industries/auto",
+      "destination": "/industries/automotive-fleet",
+      "permanent": true
+    },
+    {
+      "source": "/industries/auto/",
+      "destination": "/industries/automotive-fleet",
+      "permanent": true
+    },
+    {
+      "source": "/industries/ecommerce",
+      "destination": "/industries/retail-ecommerce-order-taking",
+      "permanent": true
+    },
+    {
+      "source": "/industries/ecommerce/",
+      "destination": "/industries/retail-ecommerce-order-taking",
+      "permanent": true
+    },
+    {
+      "source": "/industries/proservices",
+      "destination": "/industries/business-services-agencies",
+      "permanent": true
+    },
+    {
+      "source": "/industries/proservices/",
+      "destination": "/industries/business-services-agencies",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     },
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/vendor/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/img/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*).html",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
     }
   ]
 }

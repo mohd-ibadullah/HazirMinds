@@ -2,6 +2,7 @@
 const L = require('../lib');
 const { I, nav, footer, chromeEnd, roiBar, site } = L;
 const JS = require('../data/site.json');
+const CTX = require('../data/context');
 
 const specialists = [
   { icon: 'chart', name: 'Practice Operations & CFO', d: 'KPIs, pipelines and the cash view — maintained, source-linked, reported with receipts.' },
@@ -57,6 +58,14 @@ const capabilities = [
   ['shield', 'Controlled external actions', 'Nothing leaves the system without your approval.']
 ];
 
+/* Enterprise controls — merged in from the removed /enterprise page. */
+const gov = [
+  ['Permission scopes', 'Every agent operates inside least-privilege scopes you define — by role, system and data class.'],
+  ['Approval gates', 'Sensitive actions — refunds, contracts, data deletion — pause for human sign-off, by policy.'],
+  ['Audit trail', 'Every action, decision and handoff is logged immutably and exportable to your SIEM.'],
+  ['Cost governance', 'Per-agent budgets, hard ceilings and alerts keep spend predictable at any scale.']
+];
+
 const bc = L.breadcrumbs([['Home', '/'], ['Chief-of-Staff Platform', '/chief-of-staff']]);
 
 const html = `<!doctype html>
@@ -87,29 +96,16 @@ ${nav()}
         <h1 style="font-size:clamp(38px,5vw,64px);color:var(--cream)">One front door to your AI team</h1>
         <p class="lede" style="color:rgba(250,247,242,.72)">A secure, enterprise-grade multi-agent workspace. One central Chief-of-Staff agent coordinates specialized AI agents across operations, finance, planning, research, knowledge, content, technology and your client-specific workflows — behind one simple interface.</p>
         <div class="hero-ctas" style="margin-top:28px">
-          ${L.btnDemo('Book a scoped-engagement call', 'cos_hero', 'btn--brass btn--lg')}
+          ${L.btnDemo(CTX['chief-of-staff'].label, 'cos_hero', 'btn--brass btn--lg', 'chief-of-staff')}
           <a class="btn btn--outline-light btn--lg" href="#orchestration" data-cta="cos_arch">See the orchestration</a>
         </div>
-        <div class="chip-row" style="margin-top:26px">
+        <div class="chip-row" style="margin-top:24px">
           <span class="pill">isolated workspace per client</span>
           <span class="pill">permission scopes</span>
           <span class="pill">audit trails</span>
           <span class="pill">privacy by design</span>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--dark on-dark">
-    <div class="container">
-      <div class="band-media" data-reveal>
-        <img src="/img/cos/cos-desk-1600.webp"
-             srcset="/img/cos/cos-desk-600.webp 600w, /img/cos/cos-desk-900.webp 900w, /img/cos/cos-desk-1600.webp 1600w, /img/cos/cos-desk-2400.webp 2400w"
-             sizes="(max-width: 900px) 100vw, 1200px" width="2400" height="1600"
-             loading="lazy" decoding="async"
-             alt="A quiet working desk in daylight — where the routing decisions land.">
-      </div>
-      <p class="stat-note center" style="margin-top:12px">One desk. One queue. Every specialist reads from the same record.</p>
     </div>
   </section>
 
@@ -150,7 +146,7 @@ ${nav()}
       <div class="approval-demo" style="max-width:720px;margin-inline:auto" data-approval-demo>
         <div class="card card--panel" data-reveal>
           <span class="eyebrow">Approval-gate demo</span>
-          <p style="font-size:14.5px;margin-bottom:14px">The agent wants to act. Toggle an action and watch the gate:</p>
+          <p style="font-size:14.5px;margin-bottom:12px">The agent wants to act. Toggle an action and watch the gate:</p>
           <div class="trade-chips">
             <button class="trade-chip" data-action="publish" aria-pressed="true">Publish blog post</button>
             <button class="trade-chip" data-action="email">Email a client</button>
@@ -169,12 +165,12 @@ ${nav()}
       <div class="grid grid-2" style="align-items:stretch">
         <div data-reveal>
           <span class="eyebrow">Core capabilities</span>
-          <h2 style="font-size:clamp(24px,2.6vw,34px);margin-bottom:22px">What the platform does</h2>
+          <h2 style="font-size:clamp(24px,2.6vw,34px);margin-bottom:20px">What the platform does</h2>
           <div class="grid grid-2" style="gap:14px">
             ${capabilities.map(c => `
             <div class="card" style="padding:18px">
               <span class="icon-tile" style="width:38px;height:38px;border-radius:11px">${I(c[0])}</span>
-              <b style="display:block;font-family:var(--font-display);font-size:14px;margin-top:10px">${c[1]}</b>
+              <b style="display:block;font-family:var(--font-display);font-size:14px;margin-top:8px">${c[1]}</b>
               <span class="muted" style="font-size:12.5px">${c[2]}</span>
             </div>`).join('')}
           </div>
@@ -194,12 +190,74 @@ ${nav()}
           </div>
           <div class="hallucination-panel" data-reveal>
             <span class="eyebrow">Reliability stack</span>
-            <ul style="margin-top:10px">
+            <ul style="margin-top:8px">
               <li>${I('check')}<span style="color:var(--muted)">Cost controls, model routing, caching — predictable spend</span></li>
               <li>${I('check')}<span style="color:var(--muted)">Confidence levels + source requirements on every answer</span></li>
               <li>${I('check')}<span style="color:var(--muted)">Privacy boundaries and full auditability, by construction</span></li>
             </ul>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="rollout">
+    <div class="container">
+      <div class="grid grid-2" style="align-items:stretch">
+        <div class="card" data-reveal>
+          <span class="eyebrow">Governance, built in</span>
+          <h2 style="font-size:22px;margin-bottom:4px">Enterprise controls on every workflow</h2>
+          <ul class="gov-chips">
+            ${gov.map(g => `<li>${I('shield')}<span><b>${g[0]}.</b> <span style="color:var(--muted)">${g[1]}</span></span></li>`).join('')}
+          </ul>
+        </div>
+        <div data-reveal>
+          <figure class="media-panel" style="border-radius:var(--r-panel);overflow:hidden;border:1px solid var(--hairline);background:var(--paper-2)">
+            <div class="flow-figure">
+              <div class="flow-step"><span class="num">PHASE 1</span><b>Readiness audit</b><span>What you have, what is missing, and what each gap costs you.</span></div>
+              <div class="flow-step"><span class="num">PHASE 2</span><b>Architecture</b><span>Permission scopes, approval gates and data boundaries — in writing.</span></div>
+              <div class="flow-step"><span class="num">PHASE 3</span><b>Pilot</b><span>One team, one workflow, measured against acceptance criteria you sign.</span></div>
+              <div class="flow-step"><span class="num">PHASE 4</span><b>Scale</b><span>Widen scope only after the pilot's criteria are met and signed off.</span></div>
+            </div>
+          </figure>
+          <figcaption class="stat-note" style="margin-top:8px">From readiness audit to scaled rollout in four phases — drawn in markup, not a picture</figcaption>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gov-band on-dark" id="governance">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">The Governance Layer</span>
+        <h2 style="color:var(--cream)">We publish it. Nobody has to take our word.</h2>
+        <p class="lede center" style="margin-inline:auto;color:rgba(250,247,242,.72)">Responsibility layers, hallucination control, source receipts and proof horizons — part of the HazirMinds Operating Substrate, not bolted on as policy.</p>
+      </div>
+      ${L.governanceBand({ noInvariants: true })}
+    </div>
+  </section>
+
+  <section class="section" id="who">
+    <div class="container">
+      <div class="sec-head center" data-reveal="children">
+        <span class="eyebrow">Who this is for</span>
+        <h2>Built for complexity, priced for outcomes</h2>
+      </div>
+      <div class="grid grid-3" data-reveal="children">
+        <div class="card card--hover">
+          <span class="icon-tile">${I('building')}</span>
+          <h3>Managing multiple businesses</h3>
+          <p class="muted" style="font-size:14.5px">Run several businesses from one place — a shared brain with separate books, separate rules and a separate record per company.</p>
+        </div>
+        <div class="card card--hover">
+          <span class="icon-tile icon-tile--ok">${I('shield')}</span>
+          <h3>Regulated teams</h3>
+          <p class="muted" style="font-size:14.5px">Isolated per-client environments, consent capture on every interaction, and audit trails you can export.</p>
+        </div>
+        <div class="card card--hover">
+          <span class="icon-tile icon-tile--brass">${I('headset')}</span>
+          <h3>High-volume contact operations</h3>
+          <p class="muted" style="font-size:14.5px">Thousands of daily conversations across voice and text, with SLAs, overflow logic and full observability.</p>
         </div>
       </div>
     </div>
@@ -229,8 +287,8 @@ ${nav()}
         <div class="inner" style="max-width:660px">
           <span class="serif-accent">${site.tagline}</span>
           <h2>Scope your Chief-of-Staff engagement</h2>
-          <p style="color:rgba(250,247,242,.75)">Scoped, priced and acceptance-tested per engagement — we define success criteria in writing before work begins. Chief-of-Staff engagements start at ${JS.addons.find(a => a.id === 'cos').price.replace('from ', '')} setup, then a monthly plan scoped to the deployment.</p>
-          <div class="hero-ctas">${L.btnDemoPlain('Book a scoped-engagement call', 'cos_final', 'btn--primary btn--lg')}</div>
+          <p style="color:rgba(250,247,242,.75)">Built around your operation. ${L.QUOTE} The success criteria are agreed in writing before work begins, and the plan is scoped to what the deployment actually does.</p>
+          <div class="hero-ctas">${L.btnDemoPlain(CTX['chief-of-staff'].label, 'cos_final', 'btn--primary btn--lg', 'chief-of-staff')}</div>
         </div>
       </div>
     </div>

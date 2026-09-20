@@ -1,4 +1,19 @@
 // HazirMinds site-wide data: nav, marquee, personas, transcripts
+/* The Industries menu is generated from the taxonomy module itself, so a new umbrella shows up in the
+   navbar, the mega menu and the /industries hub together — or in none of them.
+   Eleven umbrellas over two columns. */
+const INDUSTRIES = require('./industries').items;
+const industryMega = (function () {
+  const half = Math.ceil(INDUSTRIES.length / 2);
+  return [INDUSTRIES.slice(0, half), INDUSTRIES.slice(half)].map(col => ({
+    col: col.map(d => ({
+      name: d.name,
+      href: d.href,
+      desc: d.subsectors.slice(0, 3).map(x => x[0]).join(' · ')
+    }))
+  }));
+})();
+
 module.exports = {
   name: 'HazirMinds',
   domain: 'hazirminds.ai',
@@ -9,7 +24,7 @@ module.exports = {
      link resolved to a broken preview. The custom domain is now live, so ogBase === site.url. */
   ogBase: 'https://hazirminds.ai',
   leadEndpoint: '/api/lead',
-  email: 'hello@hazirminds.ai',
+  email: 'contact@hazirminds.ai',
   /* Empty until a real, working number exists. The site previously carried "+1 (888) 555-0142";
      the 555-01xx range is reserved for fiction, so it could never connect. Set this to a real
      number and every contact CTA across the site switches back from email to a call link. */
@@ -25,49 +40,19 @@ module.exports = {
         { col: [
           { name: 'Chief-of-Staff Platform', href: '/chief-of-staff', desc: 'FLAGSHIP — One front door to your AI team' },
           { name: 'Masjid AI OS', href: '/masjids', desc: 'FLAGSHIP — Operating system for masjids' },
-          { name: 'AI Receptionist 24/7', href: '/services#ai-receptionist', desc: 'Every call answered, booked and logged' },
-          { name: 'Missed-Call Text-Back', href: '/services#missed-call-text-back', desc: 'Rescue missed leads in seconds' },
-          { name: 'Speed-to-Lead', href: '/services#speed-to-lead', desc: 'Reply to every lead in 60 seconds' }
-        ]},
-        { col: [
-          { name: 'Workflow Automation', href: '/services#workflow-automation', desc: 'The busywork between yes and done' },
-          { name: 'All services A–F', href: '/services', desc: 'The full contract-aligned catalog' }
+          { name: 'All services A–E', href: '/services', desc: 'The full contract-aligned catalog' }
         ]}
       ]
     },
     {
-      label: 'Industries', href: '/industries/hvac', mega: [
-        { col: [
-          { name: 'HVAC', href: '/industries/hvac', desc: 'Emergency dispatch, 24/7' },
-          { name: 'Dental', href: '/industries/dental', desc: 'Front desk that never sleeps' },
-          { name: 'Legal', href: '/industries/legal', desc: 'After-hours intake & screening' },
-          { name: 'Restaurants', href: '/industries/restaurant', desc: 'Reservations without the juggle' }
-        ]},
-        { col: [
-          { name: 'Real Estate', href: '/industries/realestate', desc: 'Speed-to-lead for every inquiry' },
-          { name: 'Auto Services', href: '/industries/auto', desc: 'Bookings & status calls on autopilot' },
-          { name: 'E-commerce', href: '/industries/ecommerce', desc: 'WISMO & cart rescue, instantly' },
-          { name: 'Professional Services', href: '/industries/proservices', desc: 'A front office that never sleeps' }
-        ]}
-      ]
+      /* A plain link to the hub — the umbrella list lives in the mega menu below it. */
+      label: 'Industries', href: '/industries', mega: industryMega
     },
     {
-      label: 'Compare', href: '/compare', mega: [
-        { col: [
-          { name: 'vs GoHighLevel', href: '/compare/go-high-level', desc: 'DIY platform vs done-for-you firm' },
-          { name: 'vs Synthflow', href: '/compare/synthflow', desc: 'Metered minutes vs flat tiers' },
-          { name: 'vs Smith.ai', href: '/compare/smith-ai', desc: 'Per-call buckets vs governed AI' }
-        ]},
-        { col: [
-          { name: 'vs AI SDR agencies', href: '/compare/ai-sdr', desc: 'Artisan & 11x contracts vs ours' },
-          { name: 'vs Human receptionist', href: '/compare/human-receptionist', desc: 'Payroll vs governed AI team' },
-          { name: 'vs Masjid platforms', href: '/compare/masjid-platforms', desc: 'ConnectMazjid, MOHID, Masjidal vs Masjid AI OS' },
-          { name: 'Compare hub', href: '/compare', desc: 'All comparisons, verified 2026 data' }
-        ]}
-      ]
+      /* The Compare dropdown was removed by request: the individual comparison pages it listed
+         are gone, so the nav item is a plain link to the hub. */
+      label: 'Compare', href: '/compare'
     },
-    { label: 'Enterprise', href: '/enterprise' },
-    { label: 'Pricing', href: '/pricing' }
   ],
 
   marquee1: ['HubSpot', 'Salesforce', 'Pipedrive', 'Zoho', 'Google Calendar', 'Outlook', 'Calendly', 'Twilio', 'Zapier', 'Make', 'n8n', 'ServiceTitan'],

@@ -53,8 +53,8 @@ page.on('requestfailed', r => {
   const t = (r.failure() && r.failure().errorText) || '';
   /* Every engine reports a cancelled request in its own dialect, and every one of them is the
      same harness artifact: the sweep resizes the viewport between route passes, which cancels an
-     in-flight srcset candidate. The image resolves 200 on the next pass — /enterprise's
-     gv-ops-1200.webp was reported against /industries/auto purely because /enterprise precedes it
+     in-flight srcset candidate. The image resolves 200 on the next pass — /chief-of-staff's
+     cos-desk-1200.webp was reported against a later route purely because /chief-of-staff precedes it
      in route order. Chromium says net::ERR_ABORTED, Firefox NS_BINDING_ABORTED, WebKit
      "Load request cancelled". None is a failure. */
   if (/ERR_ABORTED|NS_BINDING_ABORTED|Load request cancelled|request cancelled/i.test(t)) return;

@@ -73,12 +73,6 @@
       "source": "411 Locals (2016) — vendor study, 85 businesses over 30 days",
       "count": "62",
       "suf": "%"
-    },    { "value": "$80–$1,200", "label": "lost per missed call — vendor estimates by trade; no primary study", "source": "industry vendor estimates (no primary study published)", "count": "1200", "prefix": "$" },
-    {
-      "value": "~$120k/yr",
-      "label": "modelled annual leak — missed calls plus slow follow-up",
-      "source": "HazirMinds model (25 missed calls/mo × $400 avg job = $120,000)",
-      "count": null
     },
     {
       "value": "~5 min",
@@ -106,40 +100,40 @@
     "plan": 997
   },
   "sampleReceipt": {
-    "approvalRule": "$2,500"
+    "approvalRule": "the configured threshold"
   },
   "competitors": [
     {
       "name": "HazirMinds",
       "slug": null,
       "model": "Done-for-you governed AI firm",
-      "entry": "$497/mo flat tier",
+      "entry": "Configured to your workflow — custom quote, no published rate card",
       "at100": "flat tier + published usage card",
       "meters": "none unpublished — rate card before go-live",
       "gov": "Receipts, proof horizons, confidence gating, audit trail",
       "cos": "yes (scoped)",
       "evidence": "yes (public standard)",
-      "source": "hazirminds.ai published tiers",
+      "source": "hazirminds.ai",
       "note": ""
     },
     {
       "name": "GoHighLevel",
       "slug": "go-high-level",
       "model": "DIY platform you operate",
-      "entry": "$97/mo + $50–97/mo AI Employee per enabled location + $1,000 vendor setup",
-      "at100": "plan + metered SMS/voice + add-ons",
-      "meters": "SMS ~$0.008/segment, voice ~$0.012–0.020/min all-in, numbers, A2P, HIPAA +$297/mo",
+      "entry": "Published self-serve tiers plus a per-location AI add-on and a vendor setup fee",
+      "at100": "Plan + metered SMS/voice + add-ons",
+      "meters": "Metered SMS, voice, numbers, A2P registration and a compliance surcharge",
       "gov": "not evidenced",
       "cos": "no",
       "evidence": "no",
       "source": "vendor pricing pages, read 2026-09-16",
-      "note": "voice all-in: outbound $0.0166/min, inbound $0.01165/min"
+      "note": ""
     },
     {
       "name": "Synthflow",
       "slug": "synthflow",
       "model": "DIY no-code voice builder",
-      "entry": "Enterprise-only from $30,000/yr — no published self-serve price",
+      "entry": "Enterprise-only; no published self-serve price",
       "at100": "n/a — enterprise contracts only",
       "meters": "no public rate card; rates scoped in the sales process",
       "gov": "not evidenced",
@@ -152,14 +146,14 @@
       "name": "Smith.ai",
       "slug": "smith-ai",
       "model": "Per-call service (AI or human)",
-      "entry": "AI-first: free (25 calls) · $150/mo (75) · $500/mo (300). Human-first $300/mo (30 calls)",
-      "at100": "~$200–225 AI-first / ~$915 human-first + per-call add-ons",
-      "meters": "overages $2.00–11.50/call, booking $1.50/call add-on",
+      "entry": "Tiered by included call volume, with a separate human-first tier",
+      "at100": "Per-call cost AI-first or human-first, plus add-ons",
+      "meters": "Per-call overages plus a per-booking add-on",
       "gov": "not evidenced",
       "cos": "no",
       "evidence": "no",
       "source": "vendor pricing pages, read 2026-09-16",
-      "note": "$95/mo AI tier no longer published"
+      "note": ""
     },
     {
       "name": "Artisan / 11x",
@@ -178,13 +172,13 @@
       "name": "Human receptionist",
       "slug": "human-receptionist",
       "model": "Payroll",
-      "entry": "$35–45k/yr + benefits",
-      "at100": "~$4.0–4.4k/mo loaded",
+      "entry": "Salary plus benefits",
+      "at100": "Fully loaded payroll cost per desk",
       "meters": "overtime, turnover, training",
       "gov": "human error, no audit layer",
       "cos": "no",
       "evidence": "no",
-      "source": "BLS median $37,230 + 1.25–1.4× payroll load (national; higher in major metros)",
+      "source": "BLS median salary + payroll load (national; higher in major metros)",
       "note": ""
     }
   ],
@@ -194,7 +188,7 @@
     "competitors": [
       {
         "name": "ConnectMazjid",
-        "entry": "free core; community bundle $29.99–34.99/mo",
+        "entry": "free core; paid community bundle",
         "model": "masjid app + communications",
         "ai": "AI Masjid Advisor (setup assistant) — not a governed agent layer",
         "source": "vendor pricing page, read 2026-09-16",
@@ -202,7 +196,7 @@
       },
       {
         "name": "MOHID",
-        "entry": "$99–199/mo + $999 kiosk + $25/mo/device",
+        "entry": "paid subscription plus a kiosk purchase and a per-device fee",
         "model": "management suite + kiosks",
         "ai": "not evidenced",
         "source": "vendor pricing page, read 2026-09-16",
@@ -210,7 +204,7 @@
       },
       {
         "name": "Masjidal / Athan+",
-        "entry": "$0 / $20 / $40 per month (now also $90 Ultimate)",
+        "entry": "a free tier plus paid tiers",
         "model": "app + prayer times",
         "ai": "not evidenced",
         "source": "vendor pricing page, read 2026-09-16",
@@ -218,7 +212,7 @@
       },
       {
         "name": "The Masjid App",
-        "entry": "$99/mo starting (vendor's own claim; no pricing page published)",
+        "entry": "a paid starting tier (vendor's own claim; no pricing page published)",
         "model": "branded mobile app",
         "ai": "not evidenced",
         "source": "vendor about page — no dedicated pricing page exists",
@@ -226,7 +220,7 @@
       },
       {
         "name": "Ummah",
-        "entry": "free (3% platform) · $29/mo (1.5%) · $199/mo (0%)",
+        "entry": "a free tier at a platform percentage, plus paid tiers at lower percentages",
         "model": "donations-first app",
         "ai": "not evidenced",
         "source": "vendor pricing page, read 2026-09-16",
@@ -234,7 +228,7 @@
       },
       {
         "name": "Buildify",
-        "entry": "~$250/mo custom app (Faith plan; Business $850/mo)",
+        "entry": "custom app builds on a paid plan, with a higher Business plan",
         "model": "custom-branded app builds",
         "ai": "AI insights dashboard bundled in its Business plan",
         "source": "vendor pricing page, read 2026-09-16",
@@ -242,7 +236,7 @@
       },
       {
         "name": "Donorbox (adapted)",
-        "entry": "2.95–3.95% + processing; Pro $150/mo at 1.75–2%; kiosk $80/mo",
+        "entry": "a percentage platform fee plus processing; a paid Pro tier at a lower percentage; a kiosk subscription",
         "model": "donation forms & kiosks",
         "ai": "Jay·AI — donor insights, email drafting, campaign targeting (Pro plan)",
         "source": "vendor pricing & AI pages, read 2026-09-16",
@@ -250,7 +244,7 @@
       },
       {
         "name": "LaunchGood",
-        "entry": "0% platform + tips (campaigns only)",
+        "entry": "no platform fee, tips-based (campaigns only)",
         "model": "crowdfunding campaigns",
         "ai": "not evidenced",
         "source": "vendor support documentation, read 2026-09-16",
@@ -258,7 +252,7 @@
       },
       {
         "name": "DeenFund / Givebear",
-        "entry": "Givebear free (5.9%) · $29/mo (2.9%) · $39/mo (1.9%); DeenFund free, capped at 4%",
+        "entry": "free tiers at a platform percentage, plus paid tiers at lower percentages",
         "model": "Islamic giving platforms (subscription, not per-campaign)",
         "ai": "not evidenced",
         "source": "vendor pricing pages, read 2026-09-16",
@@ -288,10 +282,14 @@
       "One integrated commercial service — not a stack of subscriptions and hardware"
     ],
     "stack": {
-      "tools": "$380/mo",
-      "fees": "3–8% of donations",
-      "hardware": "$1–2k",
-      "stamp": "example using published list prices, Sept 2026"
+      "parts": [
+        "a separate app subscription",
+        "donation-platform fees",
+        "a kiosk hardware purchase",
+        "volunteer spreadsheets",
+        "unanswered phones"
+      ],
+      "stamp": "a patchwork of separate subscriptions, fees and hardware, each billed by a different vendor"
     },
     "faqs": [
       {

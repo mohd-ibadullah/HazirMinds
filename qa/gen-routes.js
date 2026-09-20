@@ -16,5 +16,4 @@ const out = [];
 })(DIST);
 out.sort();
 fs.writeFileSync(path.join(__dirname, 'routes.txt'), out.join(' ') + '\n');
-console.log('routes.txt regenerated: ' + out.length + ' routes, ' +
-  out.filter(r => r.startsWith('/resources/')).length + ' of them articles');
+console.log('routes.txt regenerated: ' + out.length + ' routes');

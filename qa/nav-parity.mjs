@@ -1,8 +1,8 @@
 /* Nav parity guard.
  *
  * The navbar used to render ONE link per top-level item on mobile, which silently dropped every
- * mega-menu child: a phone could reach /services and /industries/hvac but not /masjids, not
- * /chief-of-staff, not the other seven industries, and not the comparison pages. Layout sweeps did
+ * mega-menu child: a phone could reach /services and one trade URL but not /masjids, not
+ * /chief-of-staff, not the other industries, and not the comparison pages. Layout sweeps did
  * not catch it because they test overflow and tap targets, never whether the nav is COMPLETE.
  *
  * This asserts the real rendered nav: at every breakpoint, every href the desktop nav offers must
@@ -14,7 +14,7 @@ import { webkit } from 'playwright';
 
 const BASE = process.env.QA_BASE || 'http://localhost:4173';
 const WIDTHS = [390, 768, 1024, 1440];
-const PAGES = ['/', '/industries/dental', '/compare/smith-ai'];
+const PAGES = ['/', '/industries/healthcare-dental', '/masjids'];
 // The logo links home on every breakpoint, so it is not part of the parity set.
 const IGNORE = new Set(['/']);
 

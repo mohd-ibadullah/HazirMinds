@@ -1,4 +1,4 @@
-// HazirMinds services — contract-aligned groups A–F
+// HazirMinds services — contract-aligned groups A–E
 // A) Available now · B) Configured at onboarding · C) Enterprise Governance & CoS suite
 // D) Personal AI Chief-of-Staff suite · E) Client-requirement builds · F) Growth add-ons
 module.exports = [
@@ -34,8 +34,8 @@ module.exports = [
     ]
   },
   {
-    id: 'enterprise-suite', num: 'C', name: 'Enterprise Governance & Chief-of-Staff suite',
-    promise: 'Scoped, priced and acceptance-tested per engagement — stated plainly. These are programs, not plans.',
+    id: 'chief-of-staff-platform', num: 'C', name: 'Chief-of-Staff Platform — enterprise governance and personal specialists',
+    promise: 'Our flagship platform in two scopes: enterprise governance programs (orchestration, permissions, audit, cost control) and personal specialists. Scoped, priced and acceptance-tested per engagement — programs, not plans. Dedicated page: /chief-of-staff.',
     services: [
       { n: '20', slug: 'chief-of-staff-agent-team', name: 'Chief-of-Staff Agent Team', outcome: 'One orchestrating agent that routes work to specialists, holds context, enforces approval gates, reports with receipts.', points: ['One inbox of intent, many hands', 'Specialists coordinated automatically', 'Escalation rules you approve'], gov: 'Scoped per engagement. See /chief-of-staff.' },
       { n: '21', slug: 'multi-agent-orchestration', name: 'Multi-Agent Orchestration', outcome: 'Complex workflows decomposed across cooperating agents with monitoring and control throughout.', points: ['Configured topology of cooperating agents', 'Shared memory and handoff protocols', 'Full observability on every hop'], gov: 'Scoped per engagement.' },
@@ -44,13 +44,7 @@ module.exports = [
       { n: '24', slug: 'cost-governance', name: 'Cost Governance', outcome: 'Per-agent budgets, hard ceilings and alerts keep spend predictable at any scale.', points: ['Per-agent budget envelopes', 'Hard ceilings with alerts', 'Monthly spend report with receipts'], gov: 'Scoped per engagement.' },
       { n: '25', slug: 'hallucination-control-program', name: 'Hallucination-Control Program', outcome: 'Grounded answers only: approved knowledge, confidence gating, source receipts, nightly regression tests.', points: ['Grounded in approved knowledge', 'Confidence gates + human escalation', 'Nightly regression tests on call flows'], gov: 'Scoped per engagement.' },
       { n: '26', slug: 'erp-data-integration', name: 'ERP / Data Integration', outcome: 'Secure, documented integrations into ERP, warehouses and the systems you already run.', points: ['API and middleware integration', 'Field-level mapping documentation', 'Tested failover and rollback'], gov: 'Scoped per engagement.' },
-      { n: '27', slug: 'custom-ai-employee', name: 'Custom AI Employee Deployments', outcome: 'Describe the role; we configure, train and manage a governed AI teammate around your workflows.', points: ['Scoped, built and launched in weeks', 'Trained on your playbooks and data', 'Ongoing management and tuning included'], gov: 'Scoped per engagement; from ' + require('./site.json').addons.find(a => a.id === 'custom-agent').price + ' à-la-carte.' }
-    ]
-  },
-  {
-    id: 'chief-of-staff-suite', num: 'D', name: 'Personal AI Chief-of-Staff Platform',
-    promise: 'Our flagship scoped engagement — a secure, enterprise-grade multi-agent workspace orchestrated by one Chief-of-Staff. Dedicated page: /chief-of-staff.',
-    services: [
+      { n: '27', slug: 'custom-ai-employee', name: 'Custom AI Employee Deployments', outcome: 'Describe the role; we configure, train and manage a governed AI teammate around your workflows.', points: ['Scoped, built and launched in weeks', 'Trained on your playbooks and data', 'Ongoing management and tuning included'], gov: 'Configured around the role you need — custom quote per engagement.' },
       { n: '28', slug: 'cos-practice-operations', name: 'Practice Operations & CFO Specialist', outcome: 'Operations and financial oversight coordinated by a specialist agent with source-linked numbers.', points: ['KPIs, pipelines and cash-view maintained', 'Reports with receipts for every figure', 'Approvals routed before anything moves'], gov: null },
       { n: '29', slug: 'cos-personal-finance', name: 'Personal Finance & Planning Specialist', outcome: 'Budgets, plans and reminders handled inside permission scopes you define.', points: ['Planning cadences and reminders', 'Every number source-linked', 'Sensitive actions need your approval'], gov: null },
       { n: '30', slug: 'cos-family-coordination', name: 'Family & Personal Coordination Specialist', outcome: 'Schedules, logistics and reminders for the household — one less mental tab.', points: ['Shared calendars and conflicts resolved', 'Reminders and prep lists', 'Private by default; isolated workspace'], gov: null },
@@ -61,14 +55,14 @@ module.exports = [
     ]
   },
   {
-    id: 'client-builds', num: 'E', name: 'Client-requirement builds',
+    id: 'client-builds', num: 'D', name: 'Client-requirement builds',
     promise: 'Your requirement, configured to it. Every new client requirement is scoped, priced and acceptance-tested as it arrives — "scoped per engagement", always.',
     services: [
       { n: null, slug: 'scoped-engagement', name: 'Scoped Client Requirement', outcome: 'Bring a requirement; we scope it, price it, define acceptance criteria, then build on the governed substrate.', points: ['Written scope + acceptance criteria up front', 'Governance applies from day one', 'Same receipts and audit trail'], gov: null }
     ]
   },
   {
-    id: 'growth-addons', num: 'F', name: 'Growth add-ons (priced separately)',
+    id: 'growth-addons', num: 'E', name: 'Growth add-ons (priced separately)',
     promise: 'Marketing and growth engineering, handled as separate add-ons and priced separately — same honesty standard.',
     services: [
       { n: '35', slug: 'review-reputation-ai', name: 'Review & Reputation Engine', outcome: 'Ask at the right moment, reply to every review, turn reputation into a ranking asset.', points: ['Smart review requests after each job', 'AI replies in your brand voice', 'Negative feedback intercepted first'], gov: null },

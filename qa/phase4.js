@@ -21,19 +21,27 @@ const sections = [...home.matchAll(/<!-- S(\d+)[ ·]/g)].map(m => m[1]);
 /* S6 (#why), S9 (proof band) and S12 (FAQ) were removed with the 2026-09-18 homepage update, and
    the homepage's ledger moves to the pricing page. Their absence is the expected state now — the
    content gate asserts each removed section stays gone, so a revert cannot pass here either. */
-const expect = ['0','1','2','3','4','5','7','8','10','11','13','14'];
+const expect = ['0','1','2','3','4','5','7','8','10','13','14'];   // S11 price strip removed too
 if (JSON.stringify(sections) === JSON.stringify(expect)) ok('home: S0..S14 minus the three removed sections, markers in order (S6, S9, S12 gone by design)');
 else bad(`home sections: [${sections.join(',')}] expected [${expect.join(',')}]`);
 
-const routes = ['', 'services', 'pricing', 'enterprise', 'chief-of-staff', 'compare',
-  'compare/go-high-level', 'compare/synthflow', 'compare/smith-ai', 'compare/ai-sdr', 'compare/human-receptionist',
-  'case-studies', 'about', 'resources', 'demo', 'privacy', 'terms', '404.html',
-  'industries/hvac', 'industries/dental', 'industries/legal', 'industries/restaurant', 'industries/realestate', 'industries/auto', 'industries/ecommerce', 'industries/proservices',
-  'use-cases/after-hours-rescue', 'use-cases/speed-to-lead', 'use-cases/missed-call-textback', 'use-cases/no-show-reduction', 'use-cases/database-reactivation', 'use-cases/inbound-qualification', 'use-cases/review-engine', 'use-cases/crm-automation', 'use-cases/ai-employee'];
+/* 'pricing' is gone: the page was removed by request and its absence is asserted separately. */
+/* THE REAL ROUTE LIST. It must mirror what build.js emits: a stale entry here does not fail a check,
+   it CRASHES the guard on a read of a page that no longer exists — which is how this list was found
+   still carrying the 9 use-case routes and the 5 deleted compare pages long after both were removed. */
+const routes = ['', 'services', 'chief-of-staff', 'compare',
+  'case-studies', 'about', 'demo', 'privacy', 'terms', '404.html',
+  'industries',
+  'industries/home-field-services', 'industries/healthcare-dental', 'industries/legal',
+  'industries/financial-professional-services', 'industries/real-estate-property',
+  'industries/food-hospitality-events', 'industries/automotive-fleet',
+  'industries/beauty-wellness-personal-care', 'industries/business-services-agencies',
+  'industries/retail-ecommerce-order-taking', 'industries/education-nonprofits-community'];
 routes.forEach(r => { if (!exists(r === '' ? 'index.html' : r + '/index.html') && !exists(r)) bad('missing route: /' + r); });
 if (findings.filter(f => f.startsWith('missing route')).length === 0) ok(`${routes.length} audited routes all present`);
-if (exists('sitemap.xml') && exists('robots.txt') && exists('llms.txt') && exists('favicon.svg')) ok('sitemap.xml + robots.txt + llms.txt + favicon.svg present');
-else bad('missing SEO root files');
+/* /resources, the reading list, llms.txt, robots.txt, sitemap.xml and /ai were removed by request. */
+if (['sitemap.xml','robots.txt','llms.txt','ai/index.html'].every(f => !exists(f)) && exists('favicon.svg')) ok('removed SEO root files are gone; favicon still present');
+else bad('a removed SEO root file is back, or favicon is missing');
 
 /* ---------- 2. Rebrand: zero legacy strings ---------- */
 head('Rebrand');
@@ -53,14 +61,14 @@ else bad('tagline missing on home');
 
 /* ---------- 3. Governance layer ---------- */
 head('Governance layer');
-if (home.includes('Ability is not authority') && home.includes('Continuity is not persona')) ok('home S7: four invariant cards present');
-else bad('home S7 invariants missing');
-/* Home carries the COMPACT governance band (four invariants only) — the full responsibility
-   layers + proof horizons live on /enterprise, so assert them where they actually render. */
-if (!home.includes('data-layers') && !home.includes('data-horizons')) ok('home S7: compact band (layers/horizons moved to /enterprise)');
-else bad('home S7: compact band expected, but the full layer/horizon markup is on the home page');
-if (read('enterprise/index.html').includes('data-layers') && read('enterprise/index.html').includes('data-horizons')) ok('/enterprise: responsibility layers + proof horizons rendered');
-else bad('/enterprise: layer/horizon diagram missing');
+if (home.includes('Ability is not authority') && home.includes('Continuity is not persona')) ok('home S8: four invariant cards present');
+else bad('home S8 invariants missing');
+/* Home carries the COMPACT governance band (four invariants only). The full responsibility layers +
+   proof horizons now render on /chief-of-staff, where /enterprise was merged. */
+if (!home.includes('data-layers') && !home.includes('data-horizons')) ok('home S8: compact band (layers/horizons on /chief-of-staff)');
+else bad('home S8: compact band expected, but the full layer/horizon markup is on the home page');
+if (read('chief-of-staff/index.html').includes('data-layers') && read('chief-of-staff/index.html').includes('data-horizons')) ok('/chief-of-staff: responsibility layers + proof horizons rendered');
+else bad('/chief-of-staff: layer/horizon diagram missing');
 if (homeTxt.includes('HazirMinds Operating Substrate')) ok('Operating Substrate named on home');
 else bad('Operating Substrate missing on home');
 const cos = read('chief-of-staff/index.html');
@@ -69,8 +77,11 @@ const cos = read('chief-of-staff/index.html');
 });
 if (findings.filter(f => f.startsWith('chief-of-staff: specialist')).length === 0) ok('/chief-of-staff: all 7 specialists present');
 if (cos.includes('AWAITING APPROVAL') && cos.includes('ONE payment')) ok('/chief-of-staff: approval-gate receipt + one-payment statement');
-const ent = read('enterprise/index.html');
-if (ent.includes('Ability is not authority')) ok('/enterprise: governance layer present');
+const ent = read('chief-of-staff/index.html');
+/* The invariants were removed from the merged page by request — assert their ABSENCE there (their
+   presence on home is asserted above), so the decision cannot silently reverse. */
+if (!ent.includes('Ability is not authority')) ok('/chief-of-staff: removed invariants absent as requested');
+else bad('/chief-of-staff: the removed invariants are back');
 
 /* ---------- 4. Services A–F ---------- */
 head('Services');
@@ -80,23 +91,28 @@ if (missingN.length === 0) ok('services page: SERVICE 01..39 all present');
 else bad('services missing: ' + missingN.join(','));
 if (svc.includes('YOUR REQUIREMENT')) ok('services page: client-requirement slot present (unnumbered, group E)');
 else bad('services page: client-requirement slot missing');
-['live-today', 'onboarding', 'enterprise-suite', 'chief-of-staff-suite', 'client-builds', 'growth-addons'].forEach(id => {
+/* Groups A–E: the two Chief-of-Staff groups were merged into one unique group by request. */
+['live-today', 'onboarding', 'chief-of-staff-platform', 'client-builds', 'growth-addons'].forEach(id => {
   if (!svc.includes('id="' + id + '"')) bad('services group missing: ' + id);
 });
-if (findings.filter(f => f.startsWith('services group missing')).length === 0) ok('groups A–F all present');
+if (findings.filter(f => f.startsWith('services group missing')).length === 0) ok('groups A–E all present');
 if (svc.includes('Hazir Loop')) ok('Hazir Loop explainer present');
 else bad('Hazir Loop missing');
 
 /* ---------- 5. Compare pages ---------- */
 head('Compare hub');
-for (const slug of ['go-high-level', 'synthflow', 'smith-ai', 'ai-sdr', 'human-receptionist']) {
-  const c = read('compare/' + slug + '/index.html');
-  if (!c.includes('verdict')) bad('compare/' + slug + ': no verdict box');
-  if (!c.includes('Who should NOT buy HazirMinds')) bad('compare/' + slug + ': honesty paragraph missing');
-  if (!/<script type="application\/ld\+json">[\s\S]*FAQPage/.test(c)) bad('compare/' + slug + ': FAQPage schema missing');
+/* The five individual comparison pages were deleted by request. This guard INVERTS: they must not
+   come back, and the hub must not link to them — a silent revert cannot pass. */
+const goneCompare = ['go-high-level', 'synthflow', 'smith-ai', 'ai-sdr', 'human-receptionist'];
+for (const slug of goneCompare) {
+  if (exists('compare/' + slug + '/index.html')) bad('compare/' + slug + ' is back after its removal');
 }
-if (findings.filter(f => f.startsWith('compare/')).length === 0) ok('all 5 compare pages: verdict + table + 5 FAQs + honesty note + FAQPage schema');
-if (read('pricing/index.html').includes('What the alternatives actually cost')) ok('/pricing: competitor cost table present');
+if (!findings.some(f => f.includes('is back after its removal'))) ok('all 5 individual comparison pages stay removed');
+const hub = read('compare/index.html');
+for (const slug of goneCompare) if (hub.includes('/compare/' + slug)) bad('compare hub still links to /compare/' + slug);
+if (!findings.some(f => f.includes('hub still links'))) ok('compare hub links to none of the removed pages');
+if (!exists('pricing/index.html')) ok('/pricing removed by request — the route is no longer built');
+else bad('/pricing is still being built after its removal');
 
 /* ---------- 6. Links & anchors ---------- */
 head('Links & anchors');
@@ -151,11 +167,12 @@ else bad(`canonical problems: ${canonBad}`);
 
 /* ---------- 8. Copy / UTF-8 + sourced stats ---------- */
 head('Copy / evidence');
-const pricingTxt = stripTags(read('pricing/index.html'));
-if (pricingTxt.includes('À-la-carte')) ok('pricing: "À-la-carte" correct UTF-8');
-else bad('pricing: À-la-carte encoding broken');
-if (home.includes('411 LOCALS (2016)') && home.includes('INSIDESALES.COM') && home.includes('INDUSTRY VENDOR ESTIMATES')) ok('home stats carry the corrected, named source footnotes');
-else bad('home stat sources missing or stale (expected the 2016 attribution + the MIT study + the "no primary study" disclaimer)');
+/* /pricing and /ai were both removed by request, and every customer-facing price with them. This
+   block used to prove the published prices stayed IDENTICAL across pages; with no price published it
+   proves the opposite — that no price, fee, rate or cost figure has crept back onto any page. */
+const pricingTxt = stripTags(read('index.html'));
+if (home.includes('411 LOCALS (2016)') && home.includes('INSIDESALES.COM')) ok('home stats carry the corrected, named source footnotes');
+else bad('home stat sources missing or stale (expected the 411 Locals 2016 attribution + the MIT study)');
 let moji = [];
 for (const f of walk(DIST).filter(f => f.endsWith('.html'))) {
   if (/Ã|â€|Â[\s\u00A0]/.test(fs.readFileSync(f, 'utf8'))) moji.push(f.replace(DIST, ''));
@@ -163,32 +180,38 @@ for (const f of walk(DIST).filter(f => f.endsWith('.html'))) {
 if (moji.length === 0) ok('no mojibake patterns anywhere');
 else bad('mojibake in: ' + moji.join(', '));
 
-/* ---------- 9. Price consistency ---------- */
+/* ---------- 9. No published pricing ---------- */
 head('Pricing');
-/* Every page that mentions a tier price must state the same value (site.json is the only source) */
 {
   const allTxt = walk(DIST).filter(f => f.endsWith('.html')).map(f => stripTags(fs.readFileSync(f, 'utf8')));
-  const drift = [];
-  /* '$80–$1,200' is replaced by '$1,200': the RANGE was only ever rendered by the removed #why
-     comparison table, while the Silence Tax stat card renders this same figure as an animated
-     counter, so '$1,200' is the form still published. Re-pointing the token keeps the guard on the
-     same claim instead of deleting the check. */
-  [['$497'], ['$997'], ['$1,997'], ['$7,500'], ['$0.35'], ['62%'], ['$1,200']].forEach(([tok]) => {
+  const leaked = [];
+  /* Customer-facing money: our rates, our tiers, our overage, and the third-party/comparison figures
+     that used to fill the cost rows. The two sourced MARKET statistics (62%, ~5 min) are not prices
+     and are asserted separately. */
+  ['$497', '$997', '$1,997', '$7,500', '$2,500', '$1,500', '$0.35', '$120k', '$80–$1,200', '$35–45k',
+   '$97/mo', '$150/mo', '$300/mo', '$500/mo', '$29/mo', '$199/mo', '$380/mo', '$1–2k'].forEach(tok => {
     const pages = walk(DIST).filter(f => f.endsWith('.html')).filter(f => stripTags(fs.readFileSync(f, 'utf8')).includes(tok));
-    if (pages.length) ok(`${tok} stated on ${pages.length} page(s) — single-source value`);
-    else drift.push(tok);
-    if (pages.length && !allTxt.some(t => t.includes(tok))) drift.push(tok);
+    if (pages.length) leaked.push(tok + ' on ' + pages.length + ' page(s)');
   });
-  if (drift.length === 0) ok('sync grep: all canonical price/stat tokens present and identical');
-  else bad('sync grep — tokens missing everywhere: ' + drift.join(', '));
+  if (leaked.length === 0) ok('no price, fee, rate or cost figure is published anywhere');
+  else bad('customer-facing pricing is still published: ' + leaked.join(', '));
 }
-[['$1,500'], ['from $2,500'], ['from $7,500'], ['from $997'], ['$500 + 10%'], ['$0.35']].forEach(([p]) => {
-  if (!pricingTxt.includes(p)) bad(`pricing missing token ${p}`);
-});
-if (findings.filter(f => f.startsWith('pricing missing')).length === 0) ok('à-la-carte + rate-card tokens present');
+/* Commercial terms went with the prices: lock-in and month-to-month release language is gone too. */
+{
+  const joined = walk(DIST).filter(f => f.endsWith('.html')).map(f => stripTags(fs.readFileSync(f, 'utf8'))).join(' ||| ');
+  const lockIn = ['month-to-month', 'Month-to-month', 'no lock-in', 'after day 60', 'first 60 days'].filter(t => joined.includes(t));
+  if (lockIn.length === 0) ok('no lock-in / month-to-month commercial language anywhere');
+  else bad('lock-in language still published: ' + lockIn.join(', '));
+}
 if (pricingTxt.includes('No unpublished meters') || homeTxt.includes('No unpublished meters') || homeTxt.includes('no unpublished meters')) ok('"no unpublished meters — rate card before go-live" stated');
 else bad('rate-card statement missing');
-if (/414/.test(read('pricing/index.html'))) ok('annual math present (497→414)');
+/* The annual figures are no longer displayed anywhere (that was /pricing copy), so the guard moves
+   to the single source of truth instead of disappearing. */
+{
+  const T4 = require('../src/data/site.json').tiers;
+  if (T4.chronos.annual === 414 && T4['hazir-pro'].annual === 831 && T4.aeon.annual === 1664) ok('annual math holds in the data (497→414, 997→831, 1997→1664)');
+  else bad('annual price math drifted in site.json');
+}
 
 /* ---------- 10. Concealment (self-only) ---------- */
 head('Concealment');

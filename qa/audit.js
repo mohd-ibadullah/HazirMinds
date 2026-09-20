@@ -17,15 +17,16 @@ const VIEWPORTS = [
 ];
 
 const routes = [
-  '/', '/services', '/pricing', '/enterprise', '/chief-of-staff', '/compare', '/masjids', '/compare/masjid-platforms',
-  '/compare/go-high-level', '/compare/synthflow', '/compare/smith-ai', '/compare/ai-sdr', '/compare/human-receptionist',
-  '/case-studies', '/about', '/resources', '/demo',
-  '/privacy', '/terms', '/ai',
-  '/industries/hvac', '/industries/dental', '/industries/legal', '/industries/restaurant',
-  '/industries/realestate', '/industries/auto', '/industries/ecommerce', '/industries/proservices',
-  '/use-cases/after-hours-rescue', '/use-cases/speed-to-lead', '/use-cases/missed-call-textback',
-  '/use-cases/no-show-reduction', '/use-cases/database-reactivation', '/use-cases/inbound-qualification',
-  '/use-cases/review-engine', '/use-cases/crm-automation', '/use-cases/ai-employee',
+  /* The five individual comparison pages and /compare/masjid-platforms were removed by request;
+     the masjid comparison now renders at the end of /masjids. */
+  '/', '/services', '/chief-of-staff', '/compare', '/masjids',   // /enterprise merged into /chief-of-staff
+  '/case-studies', '/about', '/demo', '/privacy', '/terms',
+  /* The 11 umbrella industries replaced the 8 flat trade pages; the hub is new. The old trade URLs
+     now 301 to their umbrella and are asserted in build.js, not crawled here. */
+  '/industries', '/industries/home-field-services', '/industries/healthcare-dental', '/industries/legal',
+  '/industries/financial-professional-services', '/industries/real-estate-property', '/industries/food-hospitality-events',
+  '/industries/automotive-fleet', '/industries/beauty-wellness-personal-care', '/industries/business-services-agencies',
+  '/industries/retail-ecommerce-order-taking', '/industries/education-nonprofits-community',
   '/definitely-missing'
 ];
 
@@ -118,7 +119,7 @@ const log = (s) => console.log(s);
 
       // screenshots for key pages
       const shotName = route === '/' ? 'home' : route.replace(/\//g, '_').replace(/^_/, '');
-      if (['home', 'services', 'pricing', 'enterprise', 'case-studies', 'definitely-missing', 'industries_hvac', 'use-cases_after-hours-rescue', 'demo'].includes(shotName)) {
+      if (['home', 'services', 'chief-of-staff', 'case-studies', 'definitely-missing', 'industries_hub', 'use-cases_after-hours-rescue', 'demo'].includes(shotName)) {
         await page.screenshot({ path: path.join(SHOTS, `${vp.name}-${shotName}.png`) });
       }
     }
@@ -136,62 +137,51 @@ const log = (s) => console.log(s);
       const bubbleCount = await page.evaluate(() => document.querySelectorAll('.demo-body .bubble').length);
       if (bubbleCount < 1) bugs.push(`[${vp.name}] home — transcript did not render bubbles after tab switch`);
 
-      // FAQ accordions
+      // The homepage FAQ section was removed by request, so this guard flips: a FAQ accordion on the
+      // home page now means the removal was reverted. (Its answers live in the assistant KB instead.)
       const faqQ = await page.$('.faq .faq-q');
-      if (faqQ) {
-        await page.evaluate(() => document.querySelector('#faq').scrollIntoView());
-        await new Promise(r => setTimeout(r, 300));
-        await faqQ.click();
-        await new Promise(r => setTimeout(r, 500));
-        const open = await page.evaluate(() => {
-          const it = document.querySelector('.faq-item');
-          return it.classList.contains('open') && it.querySelector('.faq-a').getBoundingClientRect().height > 20;
-        });
-        if (!open) bugs.push(`[${vp.name}] home — FAQ accordion did not open`);
-      } else bugs.push(`[${vp.name}] home — no FAQ found`);
+      if (faqQ) bugs.push(`[${vp.name}] home — FAQ accordion is back after its removal`);
 
       // trade picker + ?trade= param
-      await page.goto(BASE + '/?trade=dental', { waitUntil: 'networkidle0' });
+      await page.goto(BASE + '/?trade=healthcare-dental', { waitUntil: 'networkidle0' });
       await new Promise(r => setTimeout(r, 400));
       const dentalSel = await page.evaluate(() => {
-        const chip = document.querySelector('.trade-chip[data-trade="dental"]');
+        const chip = document.querySelector('.trade-chip[data-trade="healthcare-dental"]');
         return chip && chip.getAttribute('aria-pressed') === 'true';
       });
-      if (!dentalSel) bugs.push(`[${vp.name}] home — ?trade=dental did not preselect dental`);
-      const dentalImg = await page.evaluate(() => document.querySelector('[data-trade-img]').getAttribute('src'));
-      if (!dentalImg.includes('trade-dental')) bugs.push(`[${vp.name}] home — trade image did not switch to dental`);
+      if (!dentalSel) bugs.push(`[${vp.name}] home — ?trade=healthcare-dental did not preselect that industry`);
+      /* Industry pages are image-free by design now, so the trade picker has no image to switch.
+         What must follow the selection is the CTA target and its label. */
+      const dentalCta = await page.evaluate(() => {
+        const a = document.querySelector('[data-trade-cta]');
+        const l = document.querySelector('[data-trade-cta-label]');
+        return { href: a ? a.getAttribute('href') : '', label: l ? l.textContent.trim() : '' };
+      });
+      if (dentalCta.href !== '/industries/healthcare-dental') bugs.push(`[${vp.name}] home — trade CTA href did not follow to healthcare-dental (got ${dentalCta.href})`);
+      if (!/Healthcare & Dental/.test(dentalCta.label)) bugs.push(`[${vp.name}] home — trade CTA label did not follow (got ${dentalCta.label})`);
 
-      // leak calculator
-      const calcVal = await page.evaluate(() => {
+      /* The ROI calculator computes a revenue LEAK from the visitor's own inputs — it is not a price
+         of ours, and it was restored by request. Assert it exists AND that its maths still follows the
+         sliders, which is the thing that silently breaks when the markup is touched. */
+      const calc = await page.evaluate(() => {
         const c = document.querySelector('[data-calc-calls]');
         if (!c) return null;
         const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
         setter.call(c, '100');
         c.dispatchEvent(new Event('input', { bubbles: true }));
-        return document.querySelector('[data-calc-out]').textContent;
+        return { out: document.querySelector('[data-calc-out]').textContent, year: document.querySelector('[data-calc-year]').textContent };
       });
-      if (!calcVal || !/^\$[\d,]+$/.test(calcVal) || calcVal === '$10,000') {
-        if (calcVal !== '$40,000') bugs.push(`[${vp.name}] home — calculator output not updating: ${calcVal}`);
-      }
+      if (!calc) bugs.push(`[${vp.name}] home — ROI calculator is missing`);
+      else if (calc.out === '$10,000' || !/^\$[\d,]+$/.test(calc.out)) bugs.push(`[${vp.name}] home — calculator output not following the sliders (${calc.out})`);
 
       // marquee count
       const marq = await page.evaluate(() => document.querySelectorAll('.marquee-track .pill').length);
       if (marq < 24) bugs.push(`[${vp.name}] home — marquee pills low: ${marq}`);
 
-      // pricing toggle
-      await page.goto(BASE + '/pricing', { waitUntil: 'networkidle0' });
-      const swCount = await page.evaluate(() => document.querySelectorAll('[data-annual]').length);
-      if (!swCount) {
-        bugs.push(`[${vp.name}] pricing — annual toggle not found`);
-      } else {
-        await page.evaluate(() => document.querySelector('[data-annual]').scrollIntoView({ block: 'center' }));
-        await new Promise(r => setTimeout(r, 400));
-        const sw = await page.$('[data-annual]');
-        await sw.click();
-        await new Promise(r => setTimeout(r, 400));
-        const annualPrice = await page.evaluate(() => document.querySelector('[data-price-m]').textContent);
-        if (annualPrice !== '414') bugs.push(`[${vp.name}] pricing — annual toggle did not switch price: ${annualPrice}`);
-      }
+      // annual price math — the /pricing annual toggle was removed with that page, so the guard reads
+      // the single source of truth instead of a control that no longer exists.
+      const annualOk = require('../src/data/site.json').tiers.chronos.annual === 414;
+      if (!annualOk) bugs.push(`[${vp.name}] annual price math drifted in site.json`);
 
       // demo form validation + success
       await page.goto(BASE + '/demo', { waitUntil: 'networkidle0' });
@@ -207,8 +197,20 @@ const log = (s) => console.log(s);
       await page.type('#d-email', 'qa@example.com');
       await page.type('#d-company', 'Test Co');
       await page.type('#d-phone', '+1 555 000 1111');
-      await page.select('#d-industry', 'Dental');
-      await page.select('#d-size', '2–10');
+      /* The industry and size controls are custom listboxes over display:none <select>s, and the
+         industry labels now come from the umbrella taxonomy. Drive them like a visitor does. */
+      for (const [id, want] of [['d-industry', 'Healthcare & Dental'], ['d-size', '2–10']]) {
+        await page.click('#' + id + '-btn');
+        await new Promise(r => setTimeout(r, 250));
+        const picked = await page.evaluate((id, want) => {
+          const opts = [...document.querySelectorAll('#' + id + '-btn ~ .dd-list .dd-opt')];
+          const o = opts.find(x => x.textContent.trim() === want) || opts[1];
+          if (!o) return false;
+          o.click(); return true;
+        }, id, want);
+        if (!picked) bugs.push(`[${vp.name}] demo — could not pick ${want} in ${id}`);
+        await new Promise(r => setTimeout(r, 200));
+      }
       await page.click('#demo-form button[type=submit]');
       await new Promise(r => setTimeout(r, 1200));
       /* This runs against `node server.js`, which serves static files and has NO /api/lead
@@ -255,13 +257,16 @@ const log = (s) => console.log(s);
         if (!megaVisible) bugs.push('[desktop] home — mega menu did not open on hover');
       }
 
-      // UTF-8 copy checks (pricing page must contain proper à-la-carte — check raw DOM, CSS uppercases innerText)
-      await page.goto(BASE + '/pricing', { waitUntil: 'networkidle0' });
-      const hasAlc = await page.evaluate(() => document.documentElement.innerHTML.includes('À-la-carte'));
-      if (!hasAlc) bugs.push(`[${vp.name}] pricing — "À-la-carte" rendered wrong (encoding?)`);
-      // extra-minutes price belongs on pricing
-      const has035 = await page.evaluate(() => document.documentElement.innerHTML.includes('0.35'));
-      if (!has035) bugs.push(`[${vp.name}] pricing — missing $0.35/min extra-minutes price`);
+      /* /resources, the reading list, llms.txt, robots.txt, sitemap.xml and /ai are gone by request.
+         Assert they are ABSENT, so the removal cannot silently reverse. */
+      for (const gone of ['/ai/', '/resources/']) {
+        const rr = await page.goto(BASE + gone, { waitUntil: 'domcontentloaded' });
+        if (rr.status() !== 404) bugs.push(`[${vp.name}] ${gone} still serves after its removal (${rr.status()})`);
+      }
+      // no customer-facing rate may render on the legal pages either
+      await page.goto(BASE + '/terms/', { waitUntil: 'networkidle0' });
+      const hasRate = await page.evaluate(() => /\$\s?\d/.test(document.body.innerText));
+      if (hasRate) bugs.push(`[${vp.name}] /terms — a numeric rate is still published`);
     }
 
     // sticky CTA appears after 600px on mobile
@@ -279,27 +284,37 @@ const log = (s) => console.log(s);
   /* ---------- static content checks ---------- */
   const dist = path.join(__dirname, '..', 'dist');
   const homeHtml = fs.readFileSync(path.join(dist, 'index.html'), 'utf8');
-  // price consistency
-  [['497', 'home'], ['997', 'home'], ['1,997', 'home']].forEach(([p]) => {
-    if (!homeHtml.includes(p)) bugs.push(`home — missing price token ${p}`);
-  });
-  const pricingHtml = fs.readFileSync(path.join(dist, 'pricing/index.html'), 'utf8');
-  [['497'], ['997'], ['1,997'], ['0.35'], ['$1,500'], ['from $2,500'], ['from $7,500'], ['from $997'], ['$500 + 10%']].forEach(([p]) => {
-    if (!pricingHtml.includes(p)) bugs.push(`pricing — missing price token ${p}`);
-  });
+  /* EVERY customer-facing price was removed by request — our tiers, our setup fees, our overage, and
+     the third-party figures that filled the comparison cost rows. The guard INVERTS: nothing may
+     bring a price back, on any page, in text or in structured data. */
+  const htmlFiles = (function walk(dir) { return fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]); })(dist).filter(f => f.endsWith('.html'));
+  for (const f of htmlFiles) {
+    let body = fs.readFileSync(f, 'utf8').replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ');
+    /* The ROI calculator renders figures computed from the VISITOR'S OWN inputs. That is arithmetic,
+       not a price of ours, and it is the one place a dollar sign is allowed to appear — so its own
+       outputs come out before the scan. Everything else on the page is still held to the rule. */
+    body = body.replace(/<output[^>]*data-out-(?:calls|value)[^>]*>[\s\S]*?<\/output>/g, ' ')
+               .replace(/<div class="big" data-calc-out[^>]*>[\s\S]*?<\/div>/g, ' ')
+               .replace(/<b data-calc-year[^>]*>[\s\S]*?<\/b>/g, ' ')
+               .replace(/value="\d+"(\s+data-calc-(?:calls|value))?/g, 'value="" ');
+    const txt = body.replace(/<[^>]+>/g, ' ');
+    const hit = txt.match(/\$\s?\d[\d,.]*|\d+\s?(?:%\s?of|\/\s?min\b)/);
+    if (hit) bugs.push(`price still published on ${path.relative(dist, f).replace(/\\/g, '/')} — "${hit[0].trim()}"`);
+  }
   const servicesHtml = fs.readFileSync(path.join(dist, 'services/index.html'), 'utf8');
-  for (let i = 1; i <= 40; i++) {
+  for (let i = 1; i <= 39; i++) {   // 39 numbered + one unnumbered client slot
     const n = String(i).padStart(2, '0');
     if (!servicesHtml.includes('SERVICE ' + n)) bugs.push(`services — missing service ${n}`);
   }
   if (!servicesHtml.includes('YOUR REQUIREMENT')) bugs.push('services — client-requirement slot (unnumbered) missing');
   // HazirMinds structural checks
   const compareHub = fs.readFileSync(path.join(dist, 'compare/index.html'), 'utf8');
-  if (!compareHub.includes('vs GoHighLevel') || !compareHub.includes('vs Smith.ai')) bugs.push('compare hub — competitor links missing');
+  if (!compareHub.includes('Sources: vendor public pricing pages')) bugs.push('compare hub — source note for the comparison facts missing');
   const cosHtml = fs.readFileSync(path.join(dist, 'chief-of-staff/index.html'), 'utf8');
   if (!cosHtml.includes('ONE payment') && !cosHtml.includes('ONE payment.')) bugs.push('chief-of-staff — commercial shape statement missing');
   if (!homeHtml.includes('GOVERNANCE') && !homeHtml.includes('Governance Layer')) bugs.push('home — S7 governance band missing');
-  ['497', '997', '1,997'].forEach(p => { if (!homeHtml.replace(/<[^>]+>/g, '').includes(p)) bugs.push(`home — missing price token ${p}`); });
+  /* The homepage price strip was removed by request — the home page must NOT quote tiers now. */
+  ['497', '997', '1,997'].forEach(p => { if (homeHtml.replace(/<[^>]+>/g, '').includes(p)) bugs.push(`home — still quotes price token ${p}`); });
   const files = (function walk(dir) { return fs.readdirSync(dir, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(path.join(dir, e.name)) : [path.join(dir, e.name)]); })(dist);
   // concealment rule (HazirMinds brief: never frame OUR offering via vendors/white-label).
   // Competitor facts inside comparison data (e.g. "Synthflow ... white-label $2k/mo") are required by the brief — allowed.
