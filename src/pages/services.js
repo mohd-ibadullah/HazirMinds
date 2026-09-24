@@ -79,6 +79,36 @@ ${nav()}
 
 
 
+        <section class="section section--paper" id="free-website" style="padding-left:0;padding-right:0">
+          <div class="sec-head" data-reveal="children">
+            <span class="eyebrow">Included at no cost</span>
+            <h2>A free static website — built for you, owned by you</h2>
+            <p class="lede" style="max-width:74ch">Every engagement can start with a website, built and handed over at no charge. It is a basic site, and it stays yours.</p>
+          </div>
+          <div class="grid grid-2" style="align-items:stretch;margin-top:24px" data-reveal="children">
+            <div class="card">
+              <h3 style="font-size:18px">What we build, free of charge</h3>
+              <ul style="display:flex;flex-direction:column;gap:9px;margin:14px 0 0;list-style:none;padding:0">
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>A basic static website, built for you</li>
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>Two rounds of revisions included</li>
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>Ready in 1&ndash;7 days</li>
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>The domain is registered in your business's name</li>
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>Ongoing — this is not a launch-only promotion</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3 style="font-size:18px">What stays in your hands</h3>
+              <ul style="display:flex;flex-direction:column;gap:9px;margin:14px 0 0;list-style:none;padding:0">
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>Hosting is yours to arrange, on your own account — we do not hold it for you</li>
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>Your own server environment, including your database, kept private to you</li>
+                <li style="display:flex;gap:9px;font-size:14.5px;line-height:1.55;color:var(--muted)"><span style="color:var(--ok);flex:none">${I('check')}</span>The site is handed over to you, with nothing held back</li>
+              </ul>
+            </div>
+          </div>
+          <p class="stat-note" style="margin-top:16px">The free part is the build. Everything beyond it — agents, automations, the platform — is a paid service, scoped around your workflow and quoted on the call.</p>
+          <div style="margin-top:20px" data-reveal>${L.btnDemo('Start with the free website', 'free_website', 'btn--primary btn--lg', 'services')}</div>
+        </section>
+
         <div id="loop" data-reveal="children">
           <span class="eyebrow">The Hazir Loop</span>
           <h2 >Catch → Train → Launch → Compound</h2>
