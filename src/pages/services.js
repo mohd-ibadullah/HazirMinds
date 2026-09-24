@@ -79,7 +79,9 @@ ${nav()}
 
 
 
-        <section class="section section--paper" id="free-website" style="padding-left:0;padding-right:0">
+        <!-- Not a .section: this sits INSIDE the svc-layout content column, so a section wrapper
+             painted a --paper box inside the column and inset the background from both page edges. -->
+        <div id="free-website" style="margin-top:56px">
           <div class="sec-head" data-reveal="children">
             <span class="eyebrow">Included at no cost</span>
             <h2>A free static website — built for you, owned by you</h2>
@@ -107,7 +109,7 @@ ${nav()}
           </div>
           <p class="stat-note" style="margin-top:16px">The free part is the build. Everything beyond it — agents, automations, the platform — is a paid service, scoped around your workflow and quoted on the call.</p>
           <div style="margin-top:20px" data-reveal>${L.btnDemo('Start with the free website', 'free_website', 'btn--primary btn--lg', 'services')}</div>
-        </section>
+        </div>
 
         <div id="loop" data-reveal="children">
           <span class="eyebrow">The Hazir Loop</span>
