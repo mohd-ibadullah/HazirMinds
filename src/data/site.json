@@ -26,8 +26,6 @@
     {
       "id": "audit",
       "name": "Governance Readiness Audit",
-      "price": "$1,500",
-      "note": "credited in full against any 6-month plan",
       "slug": "readiness-audit-coe"
     },
     {
