@@ -64,8 +64,11 @@
 <div style="display:flex;flex-direction:column;gap:12px">
 <div style="display:flex;flex-wrap:wrap;gap:12px">
 <button type="button" onClick="{{ back }}" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:52px;padding:0 24px;border-radius:999px;border:1.5px solid #0F4C45;background:transparent;color:#0F4C45;font:600 16px Inter,sans-serif;cursor:pointer" style-hover="background:#E3EDE9" style-focus="outline:2px solid #1D6B60;outline-offset:3px"><span class="ms" aria-hidden="true" style="font-size:20px">arrow_back</span>Back</button>
-<button type="submit" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;border:none;font:600 16px Inter,sans-serif;cursor:pointer;transition:background .15s" style-hover="background:#0B3A35" style-active="background:#082C28" style-focus="outline:2px solid #1D6B60;outline-offset:3px">Choose a time<span class="ms" aria-hidden="true" style="font-size:20px">arrow_forward</span></button>
+<button type="submit" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;border:none;font:600 16px Inter,sans-serif;cursor:pointer;transition:background .15s" style-hover="background:#0B3A35" style-active="background:#082C28" style-focus="outline:2px solid #1D6B60;outline-offset:3px" disabled="{{ sending }}">{{ submitLabel }}<span class="ms" aria-hidden="true" style="font-size:20px">arrow_forward</span></button>
 </div>
+<sc-if value="{{ sendErrOn }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display:flex;gap:12px;padding:16px 20px;border-radius:12px;background:#F8E3E0;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:24px">error</span><div><b style="font-size:16px">We could not send that</b><p style="font-size:15px;line-height:1.5;color:#1A211F;margin-top:4px">{{ sendErr }}</p></div></div>
+</sc-if>
 <p style="font-size:14px;line-height:1.5;color:#585E5A">By submitting, you agree to our <a href="/privacy">Privacy Policy</a>. We'll use your details to respond to your request.</p>
 </div>
 </sc-if>
@@ -74,7 +77,7 @@
 
 <sc-if value="{{ isSchedule }}" hint-placeholder-val="{{ false }}">
 <div style="display:flex;flex-direction:column;gap:24px">
-<div role="status" style="display:flex;gap:14px;padding:20px;border-radius:12px;background:#E5F0E8;color:#1E6B3E"><span class="ms" aria-hidden="true" style="font-size:24px">check_circle</span><div><b style="font-size:17px">Thanks, {{ firstName }}. Now pick a time.</b><p style="font-size:15px;line-height:1.5;color:#1A211F;margin-top:4px">We've sent a confirmation to {{ email }}.</p></div></div>
+<div role="status" style="display:flex;gap:14px;padding:20px;border-radius:12px;background:#E5F0E8;color:#1E6B3E"><span class="ms" aria-hidden="true" style="font-size:24px">check_circle</span><div><b style="font-size:17px">Thanks, {{ firstName }}. Your details are with us.</b><p style="font-size:15px;line-height:1.5;color:#1A211F;margin-top:4px">Now pick a time below and we'll confirm the call by email.</p></div></div>
 <div style="display:flex;align-items:center;gap:10px;font-size:15px;color:#2F3633"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">person</span>Booking as <b>{{ name }}</b> · {{ email }}</div>
 <div style="position:relative;min-height:380px;border-radius:12px;border:1px solid #DED5C6;background:repeating-linear-gradient(135deg,#F5F1EA 0 10px,#EFE9DF 10px 20px);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center"><span style="font:13px/1.6 ui-monospace,Menlo,monospace;color:#585E5A;max-width:36ch">Scheduler embed · CRM booking calendar (Calendly or Cal.com if the CRM has none) · name and email prefilled · 15-minute slots</span></div>
 <button onClick="{{ picked }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 24px;border-radius:999px;background:#0F4C45;color:#FAF7F2;border:none;font:600 16px Inter,sans-serif;cursor:pointer" style-hover="background:#0B3A35" style-focus="outline:2px solid #1D6B60;outline-offset:3px">Simulate a booked time</button>

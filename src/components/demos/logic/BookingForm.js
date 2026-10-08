@@ -3,7 +3,7 @@
 import { DCLogic, React } from '../../../lib/dc-runtime.js';
 
 export default class Component extends DCLogic {
-  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, step: 1, tried: false, name: '', email: '', company: '', size: '', industry: '', solve: [], timeline: '', board: '', phone: '', notes: '', heard: '', hp: '', startedAt: Date.now() };
+  state = { w: typeof window !== 'undefined' ? window.innerWidth : 1440, step: 1, tried: false, sending: false, sendErr: '', sent: false, name: '', email: '', company: '', size: '', industry: '', solve: [], timeline: '', board: '', phone: '', notes: '', heard: '', hp: '', startedAt: Date.now() };
   componentDidMount() {
     this.onResize = () => this.setState({ w: window.innerWidth });
     window.addEventListener('resize', this.onResize);
@@ -44,6 +44,55 @@ export default class Component extends DCLogic {
     }
     return e;
   }
+  /* The only path by which this form reaches HazirMinds. POSTs to /api/lead, which
+     fails closed: nothing moves to the next step until the endpoint answers ok. */
+  sendMessage(status, data) {
+    if (status === 400) return 'Check your name and email address, then try again.';
+    if (status === 429) return 'That was a few too many attempts. Please wait a minute and try again.';
+    if (status === 502 || status === 503) return 'We could not send it just now. Email contact@hazirminds.ai and we will pick it up from there.';
+    if (data && data.error === 'not_configured') return 'This form is not connected yet. Email contact@hazirminds.ai and we will pick it up from there.';
+    return 'Something went wrong on our side. Email contact@hazirminds.ai and we will pick it up from there.';
+  }
+  async submit() {
+    const s = this.state;
+    if (s.sending) return;
+    this.setState({ sending: true, sendErr: '' });
+    const bits = [];
+    if (s.solve.length) bits.push('Would like to solve: ' + s.solve.join(', '));
+    if (s.timeline) bits.push('Timeline: ' + s.timeline);
+    if (s.board) bits.push('Board or leadership presentation: ' + s.board);
+    if (s.heard) bits.push('Heard about us via: ' + s.heard);
+    if (s.notes.trim()) bits.push('Notes: ' + s.notes.trim());
+    const page = typeof window !== 'undefined' ? window.location.pathname + (window.location.search || '') : '/book-a-discovery-call';
+    const payload = {
+      form: 'book-a-discovery-call',
+      page: page,
+      name: s.name.trim(),
+      email: s.email.trim(),
+      company: s.company.trim(),
+      phone: s.phone.trim(),
+      industry: s.industry,
+      size: s.size,
+      notes: bits.join(' | ').slice(0, 2000)
+    };
+    try {
+      const r = await fetch('/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+      let data = {};
+      try { data = await r.json(); } catch (x) {}
+      if (r.ok && data && data.ok) {
+        this.setState({
+          sending: false, sent: true, sendErr: '', step: 3, tried: false,
+          consent: { text: 'By submitting, you agree to our Privacy Policy. We\u2019ll use your details to respond to your request.', version: 'v0.1', at: new Date().toISOString(), page: page }
+        });
+        this.focusCard();
+        return;
+      }
+      this.setState({ sending: false, sendErr: this.sendMessage(r.status, data) });
+    } catch (x) {
+      this.setState({ sending: false, sendErr: 'We could not reach the server. Check your connection and try again, or email contact@hazirminds.ai.' });
+    }
+    this.focusCard();
+  }
   renderVals() {
     const s = this.state;
     const set = k => e => this.setState({ [k]: e.target.value });
@@ -61,9 +110,8 @@ export default class Component extends DCLogic {
       if (s.hp) return;
       const e = this.errors(s.step);
       if (Object.keys(e).length) { this.setState({ tried: true }); return; }
-      if (s.step === 1) this.setState({ step: 2, tried: false });
-      else this.setState({ step: 3, tried: false, consent: { text: 'By submitting, you agree to our Privacy Policy. We\u2019ll use your details to respond to your request.', version: 'v0.1', at: new Date().toISOString(), page: window.location.pathname } });
-      this.focusCard();
+      if (s.step === 1) { this.setState({ step: 2, tried: false }); this.focusCard(); return; }
+      this.submit();
     };
     return {
       asidePos: s.w >= 900 ? 'sticky' : 'static',
@@ -72,8 +120,12 @@ export default class Component extends DCLogic {
       onSubmit: e => { e.preventDefault(); advance(); },
       back: () => { this.setState({ step: 1, tried: false }); this.focusCard(); },
       picked: () => { this.setState({ step: 4 }); this.focusCard(); }, cardRef: this.cardRef,
-      restart: () => this.setState({ step: 1, tried: false, name: '', email: '', company: '', size: '', industry: '', solve: [], timeline: '', board: '', phone: '', notes: '', heard: '' }),
+      restart: () => this.setState({ step: 1, tried: false, sending: false, sendErr: '', sent: false, name: '', email: '', company: '', size: '', industry: '', solve: [], timeline: '', board: '', phone: '', notes: '', heard: '' }),
       hasErrors: n > 0,
+      sending: s.sending,
+      submitLabel: s.sending ? 'Sending' : 'Choose a time',
+      sendErr: s.sendErr,
+      sendErrOn: !!s.sendErr,
       errorTitle: n === 1 ? 'One field needs your attention' : n + ' fields need your attention',
       errorList: Object.keys(err).map(k => labels[k]).join(' · '),
       name: s.name, email: s.email, company: s.company, phone: s.phone, notes: s.notes, heard: s.heard, industry: s.industry, hp: s.hp,
