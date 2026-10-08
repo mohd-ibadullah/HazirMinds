@@ -1,0 +1,17 @@
+---
+import Icon from './Icon.astro';
+import type { FaqItem } from '../data/types';
+interface Props { items: FaqItem[]; openFirst?: boolean }
+const { items, openFirst = true } = Astro.props;
+---
+<div class="faq">
+  {items.map((it, i) => (
+    <details open={openFirst && i === 0}>
+      <summary>{it.q}<Icon name="add" /></summary>
+      <div class="answer">
+        <p set:html={it.a} />
+        {it.link && <p style="margin-top:12px"><a class="link-strong" href={it.link.href}>{it.link.label} →</a></p>}
+      </div>
+    </details>
+  ))}
+</div>

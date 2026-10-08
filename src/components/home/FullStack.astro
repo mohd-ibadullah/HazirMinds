@@ -1,0 +1,107 @@
+---
+import Icon from '../Icon.astro';
+const NODES = [
+  { c: 'rec', icon: 'call', short: 'Every call answered', kicker: 'Front door · calls', name: 'AI Receptionist', desc: 'Answers inbound calls on a dedicated business number, handles inquiries, and delivers messages with transcript and callback details. Call activity is visible in the admin dashboard.', pitch: 'Every call answered, every caller helped — even at 2 a.m.', link: 'Explore AI Receptionist →', href: '/ai-receptionist', shot: 'Call answered · 2:14 a.m.', rows: ['Transcript saved', 'Callback details sent to your team'] },
+  { c: 'web', icon: 'language', short: 'Captures and qualifies visitors', kicker: 'Front door · visitors', name: 'AI-Powered Website', desc: 'A custom website we design and build for you, with built-in AI chat and voice that capture and qualify visitors.', pitch: 'Most agencies build you a website. We build you a system that works for your business every day.', link: 'Explore AI-Powered Website →', href: '/ai-powered-website', shot: 'Visitor qualified on your website', rows: ['Asked about your services', 'Left contact details'] },
+  { c: 'com', icon: 'forward_to_inbox', short: 'Follow-up that never forgets', kicker: 'Follow-up', name: 'Automated Communications', desc: 'Confirmations, follow-ups, reminders and notifications by text, email, WhatsApp or phone call, through workflows you approve.', pitch: "Follow-up that never forgets, so leads don't go cold.", link: 'Explore Automated Communications →', href: '/automated-communications', shot: 'Follow-up waiting for approval', rows: ['Drafted from the call', 'Sent only after a person approves'] },
+  { c: 'pipe', icon: 'view_kanban', short: 'Every lead, call and deal', kicker: 'One view', name: 'Client Pipeline & Dashboard', desc: 'A CRM pipeline and one dashboard to track leads, client activity, deals and call history.', pitch: 'See every lead, call and deal in one place.', link: 'Explore Pipeline & Dashboard →', href: '/client-pipeline-dashboard', shot: 'Dana R. moved to Qualified', rows: ['Call history attached', 'Next step: callback'] },
+  { c: 'infra', icon: 'shield_lock', short: 'Isolated, monitored and maintained, underneath everything', kicker: 'Underneath everything', name: 'Secure, Managed Infrastructure', desc: 'An isolated environment for each client, hosted on AWS, with monitoring, maintenance and updates included.', pitch: "Enterprise-grade security, fully managed — so you don't have to think about it.", link: 'Explore Managed Infrastructure →', href: '/managed-infrastructure', shot: 'Your isolated environment', rows: ['Continuous monitoring', 'Backups stored separately'] },
+];
+const btn = (i: number) => NODES[i];
+---
+<section class="section rule-top" aria-labelledby="fs-h" data-fs>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">What we build</p>
+      <h2 id="fs-h" class="h2 h2-lg">One partner for the full stack</h2>
+      <p class="body-lg">Website, AI, integrations, automation, custom software, hosting and ongoing support. Select any part to see what it does.</p>
+    </div>
+    <div class="card" style="padding:clamp(20px,3vw,32px)">
+      <div class="diagram">
+        <div class="col">
+          <span class="col-label">Who reaches you</span>
+          <span class="who"><Icon name="person" size={20} />Callers</span>
+          <span class="who"><Icon name="devices" size={20} />Website visitors</span>
+        </div>
+        <span class="arrow" aria-hidden="true"><Icon name="arrow_forward" size={22} /></span>
+        <div class="col"><span class="col-label">Front door</span>
+          {[0, 1].map((i) => <button type="button" class={'node c-' + btn(i).c} aria-pressed={i === 0 ? 'true' : 'false'} data-node={i}><span class="tile tile-md"><Icon name={btn(i).icon} /></span><span class="nt"><b>{btn(i).name}</b><span class="ns">{btn(i).short}</span></span></button>)}
+        </div>
+        <span class="arrow" aria-hidden="true"><Icon name="arrow_forward" size={22} /></span>
+        <div class="col"><span class="col-label">Follow-up</span>
+          <button type="button" class={'node c-' + btn(2).c} aria-pressed="false" data-node="2"><span class="tile tile-md"><Icon name={btn(2).icon} /></span><span class="nt"><b>{btn(2).name}</b><span class="ns">{btn(2).short}</span></span></button>
+        </div>
+        <span class="arrow" aria-hidden="true"><Icon name="arrow_forward" size={22} /></span>
+        <div class="col"><span class="col-label">One view</span>
+          <button type="button" class={'node c-' + btn(3).c} aria-pressed="false" data-node="3"><span class="tile tile-md"><Icon name={btn(3).icon} /></span><span class="nt"><b>{btn(3).name}</b><span class="ns">{btn(3).short}</span></span></button>
+        </div>
+      </div>
+      <button type="button" class={'node wide c-' + btn(4).c} aria-pressed="false" data-node="4"><span class="tile tile-md"><Icon name={btn(4).icon} /></span><b>{btn(4).name}</b><span class="grow"></span><span class="ns">{btn(4).short}</span></button>
+      {NODES.map((n, i) => (
+        <div class={'detail c-' + n.c} aria-live="polite" hidden={i !== 0} data-detail={i}>
+          <div class="stack" style="--gap:12px">
+            <p class="eyebrow" style="font-size:12px;color:var(--tint)">{n.kicker}</p>
+            <h3 style="font-weight:700;font-size:clamp(24px,2.2vw,28px);line-height:1.25;letter-spacing:-.02em">{n.name}</h3>
+            <p class="body">{n.desc}</p>
+            <p class="body" style="color:var(--ink);font-weight:600">“{n.pitch}”</p>
+            <a class="link-strong" href={n.href}>{n.link}</a>
+          </div>
+          <div class="shot">
+            <div class="row"><span class="tile"><Icon name={n.icon} /></span><b style="font-size:16px;flex:1">{n.shot}</b><span class="chip chip-sample">Sample data</span></div>
+            {n.rows.map((r) => <div class="shot-row"><Icon name="check_circle" size={20} class="ok" />{r}</div>)}
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="custom bg-dark">
+      <div class="stack" style="--gap:12px"><p class="eyebrow">Custom work · quoted separately</p><h3 style="font-weight:700;font-size:clamp(24px,2.4vw,30px);line-height:1.25;letter-spacing:-.02em;text-wrap:balance">Custom websites and mobile apps, designed around how your business works.</h3></div>
+      <div><a class="btn btn-light" href="/custom-websites-mobile-apps" style="min-height:48px;padding:0 24px">Custom websites &amp; mobile apps</a></div>
+    </div>
+    <a class="card card-link integ c-infra" href="/custom-integrations-software">
+      <span class="tile tile-lg"><Icon name="hub" /></span>
+      <span class="stack" style="--gap:4px;flex:1"><b style="font-size:18px">Custom Integrations &amp; Software</b><span style="font-size:16px;line-height:1.5;color:var(--ink-2)">Integrations, automation and custom software — quoted as a fixed price.</span></span>
+      <span style="color:var(--green);display:flex"><Icon name="arrow_forward" /></span>
+    </a>
+  </div>
+</section>
+<style>
+  .diagram { display: flex; flex-direction: column; gap: 10px; }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+  .col-label { font-weight: 600; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .who { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 15px; }
+  .who :global(.ms) { color: var(--green); }
+  .arrow { width: 40px; height: 40px; border-radius: 50%; background: var(--mint); color: var(--green); display: flex; align-items: center; justify-content: center; align-self: center; transform: rotate(90deg); }
+  .node { display: flex; align-items: center; gap: 12px; width: 100%; padding: 14px; border-radius: 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); text-align: left; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .node b { font-size: 16px; }
+  .nt { display: flex; flex-direction: column; gap: 2px; }
+  .ns { font-size: 13px; color: var(--muted); }
+  .node.wide { margin-top: 16px; padding: 14px 16px; }
+  .node.wide .ns { font-size: 14px; }
+  .node[aria-pressed='true'] { background: var(--tint); border-color: var(--tint); color: #fff; }
+  .node[aria-pressed='true'] .tile { background: rgba(255, 255, 255, .16); color: #fff; }
+  .node[aria-pressed='true'] .ns { color: rgba(255, 255, 255, .88); }
+  .grow { flex: 1; }
+  @media (max-width: 979px) { .node.wide .grow, .node.wide .ns { display: none; } }
+  @media (min-width: 980px) {
+    .diagram { display: grid; grid-template-columns: minmax(0, .75fr) 40px minmax(0, 1fr) 40px minmax(0, 1fr) 40px minmax(0, 1fr); gap: 16px; align-items: center; }
+    .arrow { transform: none; margin-top: 24px; }
+  }
+  .detail { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: clamp(24px, 4vw, 48px); margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--line); align-items: center; }
+  .shot { background: var(--cream); border: 1px solid var(--line-2); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+  .shot-row { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 10px; background: #fff; font-size: 15px; }
+  .shot-row :global(.ok) { color: var(--ok); }
+  .custom { margin-top: 24px; border-radius: 16px; padding: clamp(28px, 4vw, 48px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px; align-items: center; }
+  .integ { margin-top: 16px; align-items: center; gap: 20px; padding: 24px 28px; }
+</style>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-fs]');
+  if (root) {
+    const nodes = root.querySelectorAll<HTMLButtonElement>('[data-node]');
+    const details = root.querySelectorAll<HTMLElement>('[data-detail]');
+    nodes.forEach((n) => n.addEventListener('click', () => {
+      const i = n.dataset.node;
+      nodes.forEach((m) => m.setAttribute('aria-pressed', String(m.dataset.node === i)));
+      details.forEach((d) => (d.hidden = d.dataset.detail !== i));
+    }));
+  }
+</script>

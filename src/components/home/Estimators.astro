@@ -1,0 +1,95 @@
+---
+import Icon from '../Icon.astro';
+---
+<section id="try" class="section" aria-labelledby="try-h" data-est>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">See it in action</p>
+      <h2 id="try-h" class="h2 h2-lg">Try it before we talk</h2>
+      <p class="body-lg">See how it works for yourself. Every demo uses sample data.</p>
+    </div>
+    <div class="try-grid">
+      <div class="card card-pad stack est" style="--gap:24px">
+        <div role="tablist" aria-label="Estimator" class="seg">
+          <button type="button" role="tab" aria-selected="true" aria-controls="est-calls" data-tab="calls">Missed calls</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="est-time" data-tab="time">Time back</button>
+        </div>
+        <div id="est-calls" role="tabpanel" class="stack" style="--gap:24px" data-pane="calls">
+          <h3 class="h3">Estimate what missed calls cost you</h3>
+          <div class="inputs" style="--min:150px">
+            <label class="stack" style="--gap:8px"><span class="label">Calls per week</span><input class="field" inputmode="decimal" placeholder="e.g. 40" data-k="c" /></label>
+            <label class="stack" style="--gap:8px"><span class="label">% missed or sent to voicemail</span><input class="field" inputmode="decimal" placeholder="e.g. 20" data-k="m" /></label>
+            <label class="stack" style="--gap:8px"><span class="label">% who'd have become customers</span><input class="field" inputmode="decimal" placeholder="e.g. 25" data-k="v" /></label>
+            <label class="stack" style="--gap:8px"><span class="label">Value of a new customer ($)</span><input class="field" inputmode="decimal" placeholder="e.g. 300" data-k="a" /></label>
+          </div>
+          <div class="out" aria-live="polite">
+            <div><span class="ol">Missed calls per month</span><b data-out="missed">—</b></div>
+            <div><span class="ol">Estimated value of missed opportunities per month</span><b data-out="value">—</b></div>
+          </div>
+          <p class="formula">Calls per week × 4.33 × (% missed ÷ 100) × (% who'd become customers ÷ 100) × value of a new customer</p>
+        </div>
+        <div id="est-time" role="tabpanel" class="stack" style="--gap:24px" data-pane="time" hidden>
+          <h3 class="h3">Time currently spent on tasks AI could help with</h3>
+          <div class="inputs" style="--min:220px">
+            <label class="stack" style="--gap:8px"><span class="label">Hours per week on routine questions, scheduling, follow-ups and data entry</span><input class="field" inputmode="decimal" placeholder="e.g. 10" data-k="h" /></label>
+            <label class="stack" style="--gap:8px"><span class="label">Value of one hour of that time ($)</span><input class="field" inputmode="decimal" placeholder="e.g. 50" data-k="r" /></label>
+          </div>
+          <div class="out" aria-live="polite">
+            <div><span class="ol">Hours per month</span><b data-out="hrs">—</b></div>
+            <div><span class="ol">Value per month</span><b data-out="tv">—</b></div>
+          </div>
+          <p class="formula">Hours per week × 4.33 × value of one hour</p>
+        </div>
+        <p class="small">An estimate based only on the numbers you entered. It is not a prediction or a guarantee of results.</p>
+        <a class="btn btn-primary" href="/book-a-discovery-call" style="align-self:flex-start;min-height:48px;padding:0 24px">Talk through your numbers on a discovery call</a>
+      </div>
+      <div class="links">
+        <a class="card card-link tlink c-web" href="/see-it-in-action#opportunity-finder"><span class="tile tile-lg"><Icon name="travel_explore" /></span><b style="font-size:20px;line-height:1.3">See where AI could help</b><span style="font-size:16px;line-height:1.5;color:var(--ink-2)">Answer three quick questions and get one suggested starting point.</span><span class="tl-cta">Find your starting point →</span></a>
+        <a class="card card-link tlink c-pipe" href="/see-it-in-action#tour"><span class="tile tile-lg"><Icon name="ads_click" /></span><b style="font-size:20px;line-height:1.3">Tour the dashboard</b><span style="font-size:16px;line-height:1.5;color:var(--ink-2)">Follow one call from the first ring to an approved follow-up.</span><span class="tl-cta">Start the tour →</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  .try-grid { display: grid; gap: 24px; align-items: start; }
+  @media (min-width: 1100px) { .try-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } .est { grid-column: span 2; } }
+  .seg { display: inline-flex; align-self: flex-start; padding: 4px; border-radius: 999px; background: var(--sand); gap: 4px; }
+  .seg button { height: 40px; padding: 0 18px; border-radius: 999px; border: none; background: transparent; color: var(--muted); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .seg button[aria-selected='true'] { background: #fff; color: var(--green); box-shadow: 0 1px 3px rgba(26, 33, 31, .12); }
+  .inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr)); gap: 16px; align-items: end; }
+  .out { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; padding: 24px; border-radius: 12px; background: var(--cream); }
+  .out > div { display: flex; flex-direction: column; gap: 4px; }
+  .ol { font-size: 15px; color: var(--muted); }
+  .out b { font-weight: 700; font-size: clamp(36px, 4vw, 48px); line-height: 1.1; letter-spacing: -.02em; color: var(--green); }
+  .formula { font: 13px/1.6 ui-monospace, Menlo, monospace; color: var(--muted); }
+  .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+  .tlink { flex-direction: column; gap: 12px; padding: 32px; }
+  .tl-cta { font-weight: 600; color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+</style>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-est]');
+  if (root) {
+    const tabs = root.querySelectorAll<HTMLButtonElement>('[data-tab]');
+    const panes = root.querySelectorAll<HTMLElement>('[data-pane]');
+    tabs.forEach((t) => t.addEventListener('click', () => {
+      tabs.forEach((x) => x.setAttribute('aria-selected', String(x === t)));
+      panes.forEach((p) => (p.hidden = p.dataset.pane !== t.dataset.tab));
+    }));
+    const v: Record<string, number | null> = {};
+    const num = (s: string) => { const n = parseFloat(s.replace(/[^0-9.]/g, '')); return isNaN(n) ? null : n; };
+    const money = (n: number) => '$' + Math.round(n).toLocaleString('en-US');
+    const one = (n: number) => (Math.round(n * 10) / 10).toLocaleString('en-US');
+    const out = (k: string, s: string) => { root.querySelector<HTMLElement>(`[data-out="${k}"]`)!.textContent = s; };
+    const calc = () => {
+      const missed = v.c != null && v.m != null ? v.c * 4.33 * v.m / 100 : null;
+      const value = missed != null && v.v != null && v.a != null ? missed * (v.v / 100) * v.a : null;
+      const hrs = v.h != null ? v.h * 4.33 : null;
+      const tv = hrs != null && v.r != null ? hrs * v.r : null;
+      out('missed', missed == null ? '—' : one(missed)); out('value', value == null ? '—' : money(value));
+      out('hrs', hrs == null ? '—' : one(hrs)); out('tv', tv == null ? '—' : money(tv));
+    };
+    root.querySelectorAll<HTMLInputElement>('[data-k]').forEach((inp) => inp.addEventListener('input', () => {
+      inp.value = inp.value.replace(/[^0-9.]/g, ''); v[inp.dataset.k!] = num(inp.value); calc();
+    }));
+  }
+</script>

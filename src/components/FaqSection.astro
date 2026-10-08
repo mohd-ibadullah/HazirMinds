@@ -1,0 +1,21 @@
+---
+import FaqList from './FaqList.astro';
+import type { FaqItem } from '../data/types';
+interface Props { title: string; items: FaqItem[]; allHref?: string; eyebrow?: string; tone?: 'sand' | 'wash' | 'plain' }
+const { title, items, allHref = '/faq', eyebrow, tone = 'sand' } = Astro.props;
+const bg = tone === 'sand' ? 'bg-sand' : tone === 'wash' ? 'bg-wash' : '';
+---
+<section class={'section ' + bg} aria-labelledby="faq-h">
+  <div class="container faq-grid">
+    <div class="stack">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h2 id="faq-h" class="h2">{title}</h2>
+      <a class="link-strong" href={allHref}>See all questions →</a>
+    </div>
+    <FaqList items={items} />
+  </div>
+</section>
+<style>
+  .faq-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+  @media (min-width: 1000px) { .faq-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); } }
+</style>

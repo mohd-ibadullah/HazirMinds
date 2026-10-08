@@ -1,658 +1,106 @@
-<div align="center">
+# hazirminds.ai
 
-# HazirMinds
+Marketing website for Hazirminds, built with [Astro](https://astro.build). Pages ship as static HTML; small vanilla TypeScript scripts power the interactive parts (hero flow, problem tabs, estimators, FAQ search, booking form).
 
-**Always present. Never missed.**
+## Requirements
 
-The production website for HazirMinds — a governed, done-for-you AI operations firm
-serving US businesses, with a dedicated operating system for masjids and Islamic centers.
+- Node.js 18.20+ or 20+
+- npm (or pnpm / yarn)
 
-[**hazirminds.ai**](https://hazirminds.ai) · 43 pages · zero build dependencies · zero external runtime requests
+## Run it locally
 
-</div>
-
----
-
-## Contents
-
-- [What this repository is](#what-this-repository-is)
-- [Architecture](#architecture)
-- [Project structure](#project-structure)
-- [The product](#the-product)
-  - [Services — groups A–F](#services--groups-af)
-  - [Pricing](#pricing)
-  - [Industries](#industries)
-  - [Compare](#compare)
-- [Masjid AI OS](#masjid-ai-os)
-- [Chief-of-Staff Platform](#chief-of-staff-platform)
-- [Enterprise governance](#enterprise-governance)
-- [Design system](#design-system)
-- [Local setup](#local-setup)
-- [Building](#building)
-- [Deploying to SpaceShip (cPanel)](#deploying-to-spaceship-cpanel)
-- [Connecting hazirminds.ai and SSL](#connecting-hazirmindsai-and-ssl)
-- [Form handling](#form-handling)
-- [SEO and AI discoverability](#seo-and-ai-discoverability)
-- [Quality gates](#quality-gates)
-- [Content rules](#content-rules)
-- [Day-to-day maintenance](#day-to-day-maintenance)
-- [License](#license)
-
----
-
-## What this repository is
-
-A **static site generator and its output**, in one repository.
-
-`src/` holds the pages, the layout library and the content as data. `build.js` renders them to
-plain HTML in `dist/`. `dist/` is committed, because deployment is a file upload — there is no
-Node runtime on the hosting plan and nothing needs to be compiled on the server.
-
-**The build has no npm dependencies.** `build.js` uses only Node built-ins (`fs`, `path`,
-`crypto`). `npm install` is needed only to run the QA harness or to refresh the vendored fonts
-and animation libraries.
-
-| | |
-|---|---|
-| **Live** | https://hazirminds.ai |
-| **Hosting** | Vercel (Git-connected — pushing to `main` deploys) |
-| **Pages** | 43 |
-| **Build output** | `dist/` — 6.3 MB total, of which ~4 MB is photography |
-| **Runtime dependencies** | none — no CDN, no analytics script, no third-party request |
-| **Form backend** | `api/lead.js` (Vercel function) → Resend, with `api/lead.php` for cPanel-style hosting |
-| **Node required for build** | yes, locally only |
-
----
-
-## Architecture
-
-```
-src/data/          content as data — prices, plans, competitors, FAQs, use cases
-      │
-src/lib.js         layout library — <head>, SEO, nav, footer, shared components, design tokens
-      │
-src/pages/*.js     one module per route group; each exports { file, html }
-      │
-build.js           renders every page, copies assets, writes sitemap/robots/llms.txt, /ai
-      │
-dist/              the deployable website — upload the CONTENTS of this folder
+```bash
+npm install
+npm run dev        # http://localhost:4321
+npm run build      # static output in ./dist
+npm run preview    # serve ./dist locally
 ```
 
-**Why data-driven.** Every price, every plan, every competitor row and every FAQ answer lives in
-`src/data/` and is referenced by key. A price change is one edit in `src/data/site.json` and it
-propagates to the pricing table, the comparison matrix, the llms.txt summary and the machine-
-readable `/ai` page together. The build also **fails** if a price literal appears anywhere
-outside `site.json`, which is what keeps that single source of truth from drifting.
+## Put it in Git
 
-**Three outputs beyond the pages.** `build.js` also emits `sitemap.xml`, `robots.txt`, `llms.txt`
-and a human-and-machine readable `/ai/` summary — see [SEO and AI discoverability](#seo-and-ai-discoverability).
-
----
+```bash
+git init
+git add .
+git commit -m "Initial Hazirminds site"
+git branch -M main
+git remote add origin git@github.com:<your-org>/hazirminds-site.git
+git push -u origin main
+```
 
 ## Project structure
 
 ```
-.
-├── build.js                 the entire build — no dependencies
-├── server.js                static preview server for local QA
-├── package.json             scripts + QA-only devDependencies
-│
-├── src/
-│   ├── lib.js               layout library: head/SEO, nav, footer, icons, components, ASSET_VER
-│   ├── data/
-│   │   ├── site.js          brand, canonical URL, nav structure, personas, meta
-│   │   ├── site.json        SINGLE SOURCE: tiers, add-ons, stats, competitor matrix, masjid set
-│   │   ├── services.js      the 41 services across groups A–F
-│   │   ├── pricing.js       plan feature matrix + pricing FAQs
-│   │   ├── compare.js       comparison doctrine, invariants, governance copy
-│   │   ├── industries.js    the 8 verticals
-│   │   ├── usecases.js      the 9 use-case pages
-│   │   └── articles.js      the /resources/<slug> article bodies (figures bound to site.json)
-│   └── pages/
-│       ├── home.js          /
-│       ├── services.js      /services
-│       ├── pricing.js       /pricing
-│       ├── chief-of-staff.js /chief-of-staff
-│       ├── masjids.js       /masjids
-│       ├── enterprise.js    /enterprise
-│       ├── compare.js       /compare + 5 competitor pages + /compare/masjid-platforms
-│       ├── listings.js      /industries/* and /use-cases/*
-│       ├── articles.js      /resources/<slug> — renders the six playbooks
-│       └── misc.js          /about /demo /resources /case-studies /privacy /terms
-│
-├── assets/
-│   ├── css/main.css         one stylesheet, design tokens at the top
-│   └── js/main.js           reveal/motion, nav, calculators, form handling
-│
-├── api/
-│   ├── lead.php             form endpoint for cPanel hosting
-│   ├── config.sample.php    copy to config.php and fill in (gitignored)
-│   ├── .htaccess            denies direct access to config.php and leads.log
-│   └── lead.js              the same contract for a serverless host (optional)
-│
-├── deploy/
-│   └── htaccess.conf        copied to dist/.htaccess by the build
-│
-├── img/                     optimised WebP set + og-card.jpg + icons
-├── vendor/                  self-hosted fonts (8 woff2) + gsap, ScrollTrigger, lenis
-├── qa/                      the regression harness
-└── dist/                    the deployable site (committed)
+src/
+  layouts/Base.astro        <html>, <head>, header, footer
+  components/               Shared UI: Header, Footer, Logo, Icon, Tile, FaqList, FaqSection, CtaBand, Breadcrumb
+  components/home/          Home page sections with their own scripts
+  data/site.ts              Navigation, services, contact details, legal links
+  data/types.ts             Shared types
+  styles/global.css         Design tokens, service colors and base styles
+  pages/                    One file per route (index.astro = /)
+public/                     favicon, robots.txt
 ```
 
----
+## Design tokens
 
-## The product
+All colors, spacing and type sizes live in `src/styles/global.css` and match the Hazirminds Design System.
 
-HazirMinds deploys and operates AI teams — receptionists, sales agents and automations — inside a
-governance layer: bounded authority, source-linked answers, approval gates and evidence receipts.
+**Service colors (Vivid).** Each service owns one color. Add the class to any element and its children pick up `--tile`, `--tint` and `--wash`:
 
-### Services — groups A–F
+| Class | Service | Tile | Tint | Wash |
+|---|---|---|---|---|
+| `.c-rec` | AI Receptionist | #D5EDE3 | #0F6B57 | #E8F2EE |
+| `.c-web` | AI-Powered Website, Custom Websites | #DBE8F7 | #2B5C8F | #EAF0F8 |
+| `.c-com` | Automated Communications | #FBE0D6 | #A23E1E | #FBEEE7 |
+| `.c-pipe` | Client Pipeline & Dashboard | #F8EACB | #8A5A00 | #FAF3E1 |
+| `.c-infra` | Managed Infrastructure, Custom Integrations | #E6E0F5 | #5B3E9A | #F0ECF8 |
 
-41 services, each labeled with what it honestly is:
+Brand green (`--green`) stays for buttons, links, focus rings and selected states.
 
-| Group | Label | Count | Meaning |
-|---|---|---|---|
-| **A** | Available — scoped to your requirement | 9 | AI Receptionist 24/7, Missed-Call Text-Back, Speed-to-Lead, Pipeline & Deal Automation, Workflow Automation, AI Support Agent, KPI Dashboards, Done-For-You Snapshots, Managed Hosting |
-| **B** | Configured at onboarding | 10 | Appointment Setter, Smart Routing/IVR, Website Chat, SMS Agent, Lead Scoring, CRM Setup, No-Show Reduction, Call Analytics, Governance configuration, Readiness Audit |
-| **C** | Scoped per engagement | 8 | Chief-of-Staff agent team, multi-agent orchestration, permission & approval framework, audit trail, cost governance, hallucination-control program, ERP/data integration, custom AI employees |
-| **D** | Flagship, scoped per engagement | 7 | The Personal AI Chief-of-Staff Platform |
-| **E** | Client-requirement builds | 1 | Anything specified and acceptance-tested per engagement |
-| **F** | Growth add-ons | 6 | AEO/GEO AI-search visibility, review & reputation, database reactivation, consent & TCPA proof trail, compliance scoring, vertical agents |
+## Routes
 
-The labeling is the point. Nothing is presented as shipping when it is configured on onboarding
-or planned.
-
-### Pricing
-
-| Plan | Monthly | Annual | Highlights |
-|---|---|---|---|
-| **Chronos** | $497 | $414/mo | AI voice receptionist, 300 minutes, missed-call text-back, SMS reminders |
-| **Hazir Pro** | $997 | $831/mo | Adds website chat, appointment setter, speed-to-lead, review AI, CRM management, 800 minutes |
-| **Aeon** | $1,997 | $1,664/mo | Adds AI SDR, outbound campaigns, database reactivation, custom AI employee, call analytics, 2,000 minutes |
-| **Archon** | Custom | — | Enterprise governance + Chief-of-Staff programs |
-
-Annual billing is twelve months for the price of ten. Usage (extra minutes, SMS) is metered and
-published in a rate card **before** go-live — the site's promise is *no unpublished meters*.
-À-la-carte: Governance Readiness Audit $1,500 · custom agents from $2,500 · extra minutes
-$0.35/min.
-
-### Industries
-
-Eight verticals, each with its own page: **HVAC · Dental · Legal · Restaurants · Real Estate ·
-Auto Services · E-commerce · Professional Services.**
-
-### Compare
-
-`/compare` is the hub. Five head-to-head pages — **GoHighLevel · Synthflow · Smith.ai ·
-Artisan / 11x · Human receptionist** — plus a masjid-platform comparison across ten vendors.
-
-Every row carries the source and the date it was read. Where a vendor publishes no pricing
-(Artisan, 11x) the table says so rather than guessing; where a claim could not be evidenced the
-cell reads *not evidenced* instead of *not offered*.
-
----
-
-## Masjid AI OS
-
-`/masjids` — an operating system for masjid and Islamic-center work, built around one principle:
-**one record, every channel, humans deciding.**
-
-**The lifecycle.** Thirteen defined states, from Draft through Validation, Team Approval,
-Communications Review, Content, Flyer, Approved, Published, Registration Open, Upcoming,
-Completed and Archived. Requests route to the owning committee — communications, education,
-facility, imam, women's, youth, volunteer — and each owner's approval is recorded before anything
-is prepared for publishing.
-
-**One record → many channels.** The volunteer enters the event once. Website, mobile app,
-newsletter, WhatsApp, social, lobby screens and registration all read from that record, so a date
-cannot end up different on the flyer than on the site.
-
-**Integrations, with honest status.** WordPress (publish + verify loop) · Constant Contact
-(newsletter assembly) · Cognito Forms (registration, capacity, waitlists) · Google Workspace ·
-Stripe or your own processor · CRM platforms · Madina Apps and hall screens · Canva template
-library · WhatsApp Business API. Branded mobile app is custom-scoped. Facility deposits,
-payments and e-signatures are marked **Planned** — not shipped.
-
-**Assistants.** An AI phone assistant on the masjid's dedicated number and a website assistant,
-both answering only from one approved knowledge base. Every answer carries its source receipt.
-Religious questions route to a named scholar or imam, and the routing is logged. The assistants
-do not issue rulings and do not replace imams or scholars.
-
-**Roles and audit.** Eight roles with explicit authority, from system administrator to read-only.
-The audit trail records who acted, when, what action, the previous value, the new value and the
-approval history behind it.
-
-**Governance pack.** A periodic, exportable document for the committee: what the AI was asked,
-what it answered, what it escalated, who approved what, and what was corrected.
-
-**Six-phase rollout.** Foundation → Communications → Registration & operations → Publishing
-automation → Community assistants → Intelligence. Each phase stands alone; the next starts when
-the last is working.
-
----
-
-## Chief-of-Staff Platform
-
-`/chief-of-staff` — one central agent coordinating seven specialists behind a single interface.
-
-| Specialist | Owns |
+| Route | Page |
 |---|---|
-| **Practice Operations & CFO** | KPIs, pipelines, the cash view — source-linked, reported with receipts |
-| **Personal Finance & Planning** | Budgets, plans and reminders inside permission scopes you define |
-| **Family & Personal Coordination** | Schedules, logistics and preparation, private by default |
-| **Research & Knowledge** | Your documents indexed and searchable — answers with citations |
-| **Website & Content Operations** | Content calendar and drafts; publishing always gated by your approval |
-| **Asset & Vehicle Management** | Maintenance cadences, logs and reminders |
-| **Personal Technology & Google Workspace** | Workspace administered inside your delegated scope |
+| / | Home |
+| /services | Services overview |
+| /ai-receptionist, /ai-powered-website, /automated-communications, /client-pipeline-dashboard, /managed-infrastructure | AI service pages |
+| /custom-websites-mobile-apps, /custom-integrations-software | Custom work |
+| /industries, /security, /pricing, /about, /see-it-in-action, /faq | Company and resources |
+| /book-a-discovery-call | Booking form |
+| /masjids, /masjids/faq | Masjids and Islamic centers |
+| /privacy, /terms, /ai-disclosure, /accessibility, /free-website-terms | Legal |
 
-The Chief-of-Staff holds context, routes tasks to the correct agent, combines results, manages
-approvals and produces decision-ready output. Each specialist is a bounded role with its own
-permissions and knowledge — coordinated, never autonomous. Every consequential action requires
-explicit human approval.
+## Deploy to AWS (S3 + CloudFront)
 
----
+1. `npm run build`
+2. `aws s3 sync dist/ s3://<bucket> --delete`
+3. `aws cloudfront create-invalidation --distribution-id <id> --paths "/*"`
+4. In CloudFront, set the custom error response for 403/404 to `/404.html` with status 404.
+5. Because pages build as `/route/index.html`, add a CloudFront Function that appends `index.html` to directory requests.
 
-## Enterprise governance
+## Before launch
 
-`/enterprise` is where the governance model is documented in full.
+- [ ] Connect the discovery call form to its destination (email, CRM or scheduler) — see `src/pages/book-a-discovery-call.astro`
+- [ ] Add the analytics tools, then list them in the Privacy Policy (section 4)
+- [ ] Run the accessibility checklist and add any known limitations to /accessibility
+- [ ] Optionally self-host Inter, Fraunces and Material Symbols instead of Google Fonts
+- [ ] Add an Open Graph image at `public/og.png`
 
-**Four invariants.** *Capability ≠ Authority* (an AI that can is not an AI that may — least
-privilege per role). *Execution ≠ Liability* (your business stays accountable inside delegated
-scope). *Deployment ≠ Adoption* (outcomes are proven against acceptance criteria you sign).
-*Continuity ≠ Persona* (your memory, rules and evidence survive any model or vendor change).
+## Interactive demos
 
-**Responsibility layers, proof horizons, receipts.** Every public claim carries a horizon —
-Built → Deployed → Operated → Verified outcome → Accepted by client — and a lower horizon is
-never promoted into a stronger claim. That rule is applied to the site itself: the case studies
-are labeled composite personas, not clients.
+The sample demos (assistant chat, workflow preview, pipeline, call walkthrough, tool map, industry finder, service planner, product tour, estimators, opportunity finder, FAQ search, booking form) live in `src/components/demos/`:
 
-**Published as controls, not promises.** Permission scopes, approval gates, consent and TCPA
-proof trail, per-client data isolation, dedicated numbers, cost governance, audit export and a
-72-hour incident notice.
+- `templates/<Name>.html` — markup with `{{ path }}` holes, `<sc-if value="{{ x }}">` and `<sc-for list="{{ xs }}" as="x">`
+- `logic/<Name>.js` — a small class with `state`, `setState()` and `renderVals()`, ported from the approved design files
+- `<Name>.astro` — the mount point; `src/lib/dc-runtime.js` renders the template in the browser
 
----
+To change a demo's copy, edit its template or the data arrays in its logic file.
 
-## Design system
+## Pages
 
-Tokens live at the top of `assets/css/main.css`.
+All 25 pages from the approved designs are built: Home, Services, 5 AI service pages, 2 custom work pages, Industries, Security, Pricing, About, See it in action, FAQ, Book a Discovery Call, Masjids, Masjid FAQ, 5 legal pages and 404.
 
-| Token | Value | Use |
-|---|---|---|
-| `--cream` | `#FAF7F2` | default page surface |
-| `--paper` | `#FFFDF9` | alternating band surface |
-| `--ink` | dark | primary text |
-| `--muted` | `#5C554E` | secondary text |
-| `--rust` | `#C64110` | primary action |
-| `--rust-text` | `#A0340D` | rust as text, contrast-safe |
-| `--brass` / `--brass-band` | `#B98A2E` / `#D9A93F` | accent, on-dark accent |
-| dark bands | `rgb(20,17,14)` / `rgb(27,23,18)` | governance sections |
+## Known follow-ups
 
-**Type.** Plus Jakarta Sans 700/800 (display) · Inter 400/500 (body) · JetBrains Mono 400/500
-(eyebrows, numerals) · Fraunces 400 italic (accents) — all self-hosted, all preloaded in the
-weights actually used above the fold.
-
-**Motion.** GSAP + ScrollTrigger + Lenis, all self-hosted. Reveals are opacity and translate only;
-no layout-affecting animation.
-
-**Motion runs for every visitor.** The site deliberately does not read
-`prefers-reduced-motion` and carries no motion switch, so there is no reduced-motion branch in
-either the CSS or `assets/js/main.js` — this is a product decision, and both QA suites assert the
-absence of those branches so they cannot creep back in. Content visibility is guaranteed
-separately, by the self-heal fail-safe: nothing stays hidden if the motion engines fail to load.
-
-**Page transitions.** Navigation between pages is a real document load, so the site uses the
-**cross-document View Transitions API**: `@view-transition { navigation: auto }` opts in, and
-`::view-transition-old/new(root)` carry a 200ms fade-out and a 340ms rise. The header and footer
-are given `view-transition-name` so they hold their place instead of dissolving with the content —
-that continuity is what makes the change feel like one site rather than two documents loading in
-sequence. Browsers without support (Firefox today, as well as anything older) ignore the at-rule
-and navigate exactly as before; nothing breaks.
-
-The measurements that matter when touching this: the header's `view-transition-name` must not
-disturb the sticky bar or the mega menu, and it does not — `contain` stays `none` and the mega
-panel's geometry at 1440/1024/390 is byte-identical with the name present and forced to `none`.
-
----
-
-## Local setup
-
-```bash
-git clone https://github.com/mohd-ibadullah/HazirMinds.git
-cd HazirMinds
-npm install          # only needed for the QA harness
-npm run build        # → dist/
-npm run serve        # → http://localhost:4173
-```
-
-`npm install` is optional for building. If you only want to change content and rebuild, clone and
-run `npm run build` — the build itself pulls in nothing.
-
----
-
-## Building
-
-```bash
-node build.js
-```
-
-Emits `dist/` from scratch (the folder is deleted first, so nothing stale survives), then:
-
-- copies `img/`, `vendor/`, `assets/`
-- copies `deploy/htaccess.conf` → `dist/.htaccess`
-- copies `api/lead.php`, `api/config.sample.php`, `api/.htaccess` → `dist/api/`
-- writes `sitemap.xml`, `robots.txt`, `llms.txt` and `/ai/index.html`
-- **fails the build** if a price literal appears outside `src/data/site.json`
-
-Asset cache-busting is automatic: `main.css` and `main.js` are requested with a
-content-derived `?v=<hash>`, so they can be cached for a year while a deploy still takes effect
-immediately.
-
-> `api/config.php` and `api/leads.log` are deliberately **not** copied by the build. They hold
-> per-deployment values, and a rebuild must never overwrite a live configuration.
-
----
-
-## Deploying
-
-Two supported routes. **Vercel is what the live site uses**; the cPanel route below is kept
-because the site is plain HTML and a shared host works equally well if you ever prefer one.
-
-### Vercel — the live route
-
-The project is connected to `github.com/mohd-ibadullah/HazirMinds`, so deployment is a push:
-
-```bash
-git push            # Vercel builds and deploys main automatically
-```
-
-Vercel runs `node build.js` (set in `vercel.json`), serves `dist/`, and mounts `api/lead.js` as a
-serverless function. Nothing else is required — no CLI, no upload step.
-
-**Notes that matter:**
-
-- `.vercelignore` excludes the PHP endpoint. Vercel cannot run PHP, and shipping both would fail
-  the build with a conflicting-paths error, because `api/lead.php` and `api/lead.js` claim the
-  same route. `build.js` checks for `process.env.VERCEL` and skips copying the PHP for the same
-  reason.
-- Only the build output is public. `src/`, `qa/`, `deploy/`, `build.js` and the repo files return
-  404 on the live domain — verified, not assumed.
-- Custom domain `hazirminds.ai` plus `www.hazirminds.ai` (308 → apex) live in the project's
-  Domains tab, with certificates issued and renewed automatically.
-
-### SpaceShip / cPanel — the file-upload route
-
-The site is plain HTML, so deployment is a file upload — no Node, no build step, no pipeline.
-
-#### One-time: confirm your document root
-
-In cPanel, the domain's document root is normally `public_html`. If you added `hazirminds.ai` as
-an addon or primary domain, confirm the path under **Domains** before uploading.
-
-#### Option 1 — File Manager (no tools needed)
-
-1. `node build.js` locally.
-2. Zip the **contents** of `dist/` (not the folder itself — you want `index.html` at the top level
-   of the archive, not `dist/index.html`):
-   ```bash
-   cd dist && zip -r ../hazirminds-site.zip . -x '.*' && cd ..
-   ```
-   then add the hidden files back — the archive must include `.htaccess`.
-3. cPanel → **File Manager** → open the document root → **Upload** → select the zip.
-4. Back in File Manager, right-click the uploaded zip → **Extract**.
-5. Enable **Settings → Show Hidden Files (dotfiles)** and confirm `.htaccess` and `api/` are present.
-6. Delete the zip.
-
-### Option 2 — FTP / SFTP
-
-Upload the entire **contents** of `dist/` into the document root, preserving the folder structure
-and including `.htaccess`. FileZilla: enable *Server → Force showing hidden files* so the
-dotfile is transferred.
-
-### Option 3 — rsync over SSH (if your plan includes shell)
-
-```bash
-rsync -avz --delete dist/ user@server:~/public_html/
-```
-
-Note the trailing slashes: `dist/` → `public_html/` copies the contents, which is what you want.
-`--delete` removes files you have retired, but it will also remove `api/config.php` if it is not
-in `dist/` — exclude it:
-
-```bash
-rsync -avz --delete --exclude 'api/config.php' --exclude 'api/leads.log' dist/ user@server:~/public_html/
-```
-
-### What `.htaccess` does once it lands
-
-| Behaviour | Detail |
-|---|---|
-| HTTPS | Forces `https://` and redirects `www.hazirminds.ai` → `hazirminds.ai`, one hop |
-| Canonical paths | `/about/` → 301 → `/about`, so one page never answers on two URLs |
-| Clean URLs | `/about` is served from `/about/index.html` internally — no redirect, no trailing slash |
-| 404 | Serves the branded `/404.html` |
-| Compression | gzip/deflate on HTML, CSS, JS, JSON, SVG, XML |
-| Caching | CSS/JS one year (they are `?v=` versioned) · images one month · fonts one year · HTML always revalidates |
-| Security | `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy`, HSTS |
-| Locked down | `api/config.php`, `api/leads.log`, repo folders, and directory listing are all denied |
-
-No `Content-Security-Policy` is set on purpose: the pages use inline `<style>` blocks, so a policy
-strict enough to be worth having would break the layout. Add one together with nonce plumbing in
-the build if you want it.
-
-### Redeploying
-
-Rebuild, then re-upload. Uploading only changed files is enough, except when `main.css` or
-`main.js` changed — the version hash in every page's HTML changes with them, so upload the HTML
-along with the asset.
-
----
-
-## Connecting hazirminds.ai and SSL
-
-1. **Point the domain at the hosting.** In SpaceShip, if the domain and the hosting are in the
-   same account, attach it in cPanel → **Domains**. Otherwise set the nameservers to the ones
-   SpaceShip gives you for the hosting plan, or point an `A` record at the server IP.
-2. **Create the mailbox** cPanel → **Email Accounts** → `hello@hazirminds.ai`. The lead form sends
-   from this address, and the site's contact links resolve to it.
-3. **SSL.** SpaceShip includes a free certificate. cPanel → **SSL/TLS Status** → *Run AutoSSL* —
-   it issues via Let's Encrypt once DNS resolves to the server. Give DNS up to an hour to settle
-   after the nameserver change; AutoSSL fails while the domain still points elsewhere.
-4. **Force HTTPS.** The `.htaccess` already redirects; verify it after the certificate is active.
-5. **Verify.** `https://hazirminds.ai` should load, `http://` and `https://www.` should both
-   redirect in one hop, and `/about` should render without gaining a trailing slash.
-
-The canonical origin is set in one place — `src/data/site.js` → `url` and `ogBase`. Both are
-already `https://hazirminds.ai`, and `ogBase` must match the origin that actually serves, because
-`og:image` is fetched from it by every link preview.
-
----
-
-## Form handling
-
-Two forms — the demo booking form on `/demo` and the Governance Report Card form in the
-site-wide modal. Both POST JSON to the endpoint declared on the form
-(`data-endpoint`, set from `site.leadEndpoint`).
-
-**The success panel is never shown optimistically.** The form renders success only when the
-endpoint answers `{"ok":true}`. Anything else — 4xx, 5xx, network failure, no configuration —
-shows a plain failure message and a prefilled `mailto:`, so a lead always has somewhere to go.
-
-### On SpaceShip (PHP)
-
-```bash
-cp api/config.sample.php api/config.php
-```
-
-Edit `api/config.php`:
-
-```php
-return [
-    'to'   => 'hello@hazirminds.ai',   // where leads arrive
-    'from' => 'hello@hazirminds.ai',   // must be a mailbox on your own domain
-];
-```
-
-Upload `api/config.php` to `public_html/api/config.php`. Until it exists, `POST /api/lead.php`
-answers `503 not_configured` and the form fails closed.
-
-Responses:
-
-| Status | Body | Meaning |
-|---|---|---|
-| `200` | `{"ok":true}` | accepted and delivered |
-| `400` | `{"ok":false,"error":"invalid_input",...}` | missing or invalid fields |
-| `405` | `{"ok":false,"error":"method_not_allowed"}` | not a POST |
-| `429` | `{"ok":false,"error":"too_many_requests"}` | same IP within 20 seconds |
-| `502` | `{"ok":false,"error":"delivery_failed"}` | mail transport refused it |
-| `503` | `{"ok":false,"error":"not_configured"}` | `api/config.php` missing or incomplete |
-
-Every submission is also appended to `api/leads.log` — a lead that exists only in a mail queue is
-a lead that can be lost, and `api/.htaccess` denies direct access to the file.
-
-**Deliverability.** Use a mailbox on your own domain for `from`. A Gmail or Yahoo address in the
-From line fails SPF/DKIM alignment and gets foldered as spam. If you route through a provider,
-`api/lead.php` is the one file to swap.
-
-### On a serverless host instead
-
-`api/lead.js` speaks the same contract for Vercel-style functions — set `site.leadEndpoint` to
-`/api/lead` in `src/data/site.js` and configure `RESEND_API_KEY`, `LEAD_TO_EMAIL` and
-`LEAD_FROM_EMAIL` in the host's environment. The PHP path is what ships configured for SpaceShip.
-
----
-
-## SEO and AI discoverability
-
-| Artifact | Purpose |
-|---|---|
-| `sitemap.xml` | all 43 routes, slashless, matching every canonical tag |
-| `robots.txt` | crawl rules + sitemap pointer |
-| `llms.txt` | a concise, structured summary for AI answer engines — services, pricing, positioning |
-| `/ai/` | a machine-readable summary page (`noindex`, for retrieval rather than ranking) |
-| Per-page | absolute canonical, `og:` and `twitter:` tags, `og:image` with alt text |
-| JSON-LD | `Organization`, `WebSite`, `Service`, `FAQPage` where a page genuinely is one |
-
-**The `/404` page is built but excluded from the sitemap** — advertising an error page invites it
-into the index.
-
----
-
-## Quality gates
-
-The harness in `qa/` is the reason the claim set is trustworthy. All of it runs against a local
-preview server.
-
-```bash
-npm run serve &            # http://localhost:4173
-
-npm run qa                 # DoD: 49 assertion checks over the built output
-npm run qa:e2e             # 44 routes × 3 widths = 132 loads: console errors, overflow, images
-npm run qa:contrast        # WCAG contrast on every text node of every route
-npm run qa:axe             # axe-core accessibility sweep across 23 pages
-npm run qa:a11y            # keyboard, focus visibility, reflow@320, 200% zoom
-npm run qa:nav             # nav parity: mobile menu must offer every desktop nav link
-npm run qa:interactions    # FX guards: menu outside-click/Escape, trade CTA label, no hover jump
-npm run qa:crossbrowser    # WebKit (Safari) and Firefox, not just Chromium
-npm run qa:cls             # cumulative layout shift, 16 routes × 4 widths
-npm run qa:structure       # links, anchors, duplicate IDs, image dims/alt, headings, meta
-npm run qa:content         # prices vs the single source, arithmetic, removed-claim sweep
-```
-
-A few gates worth knowing about, because they encode decisions rather than mechanics:
-
-- **`qa/finalpass-content.js`** re-derives tier prices and the annual discount arithmetic from
-  `src/data/site.json`, and reads `llms.txt` explicitly — a retired market claim survived one whole
-  sweep by hiding in that file while the walker only ever opened `index.html`.
-- **`qa/dod.js`** asserts the *absence* of retired claims (a compliance term the contract does not
-  support, a refund guarantee that is no longer offered) — so the gate protects the current
-  decision instead of the old one.
-- **`qa/finalpass-struct.js`** walks all 43 pages for dead links, dead anchors, duplicate IDs,
-  images without dimensions or alt text, heading-order breaks and duplicate meta.
-- **`qa/a11y.mjs`** covers what axe cannot: it tabs through each page, proves every focusable has a
-  *visible* focus change (a rule that clears the outline and substitutes a 12%-alpha ring passes
-  axe and fails a keyboard user), then re-lays-out the page at 320px — the WCAG 1.4.10 reflow width
-  — and at 720px, which is 200% zoom on a 1440px window. Safari's default keyboard behaviour does
-  not Tab to links, so the skip-link check asserts the link becomes visible when focused rather
-  than assuming a Chromium tab order.
-- **`qa/crossbrowser.mjs`** runs the same checks as `qa/e2e.js` on WebKit and Firefox. Every engine
-  spells a cancelled request differently and every one of them is the same harness artifact, so
-  cancellations are ignored outright rather than pattern-matched.
-
-Latest full run: **DoD 49/49 · E2E clean 132 loads · contrast 0 failures · axe 0 violations across
-23 pages · a11y clean across 43 routes · nav parity PASS (3 pages × 4 widths) · WebKit clean 132
-loads · Firefox clean 132 loads · structure 0 issues · content 0 failures / 153 guards.**
-
-The homepage runs a tightened spacing rhythm (the scale is **10 · 12 · 15 · 18 · 20 · 25 · 35 · 50 px**).
-Where the spec touched a class shared by every page — `.eyebrow`, `.lede`, `.sec-head`, `.card`,
-`.num`, `.grid`, `.form-note` — the homepage value is scoped by section id instead of changed
-globally, so `/pricing`, `/services`, `/enterprise` and `/chief-of-staff` keep their own rhythm.
-
-The mobile nav is an accordion built from native `<details>`/`<summary>` — no JS, keyboard-operable,
-and the group containing the current page opens by itself. `qa/nav-parity.mjs` asserts the part that
-regresses silently: **every href the desktop nav offers must also be reachable from the mobile
-panel**, at every breakpoint. It asks the page which mode it is in rather than hardcoding the
-`max-width:900px` switch, and it reads child visibility with `checkVisibility()` because
-`getBoundingClientRect()` reports non-zero for the children of a closed `<details>`.
-
-Two things the cross-browser pass settled:
-
-- **Cross-document view transitions are Chromium and WebKit only.** Firefox has no support, so
-  navigation there stays an instant swap — a deliberate degradation, not a bug. The capability is
-  tested, not assumed: an earlier probe used `CSS.supports('contain','paint')` as a fallback and
-  therefore reported "supported" everywhere, including Firefox.
-
----
-
-## Content rules
-
-These are enforced, not aspirational.
-
-1. **No claim without a source, or a label saying there isn't one.** A statistic without a
-   traceable origin is either removed or explicitly marked *vendor estimates — no primary study*.
-2. **No proof horizon promoted.** Built ≠ Deployed ≠ Operated ≠ Verified ≠ Accepted. Case studies
-   are labeled composite personas; nothing implies a client that does not exist.
-3. **No fabricated anything.** No fake clients, logos, testimonials, statistics, certifications,
-   names, emails or dashboards.
-4. **Hedges stay hedges.** *HIPAA-eligible*, *PCI-aware*, *GDPR-ready* are capability words; none is
-   upgraded to a certification word.
-5. **Prices live in one file.** `src/data/site.json`. The build enforces it.
-6. **Every capability carries a status.** Available, configured at onboarding, planned or custom —
-   never left ambiguous.
-7. **No partner or backend disclosure.** The site presents one company and one platform.
-8. **No text, logos or numbers baked into a raster.** Anything readable in an image is invisible to a
-   screen reader, unsearchable, and unmaintainable — and the explainer bitmaps that shipped here also
-   carried a fabricated client's van livery, a fake person with a fake work email, and a stale date.
-   Explainer figures are now **markup** (`.flow-figure`) drawn from the same data as the copy beside
-   them, photographic panels carry no branding, and the two persona cards show a monogram instead of
-   a stock portrait implying a customer. `img/dashboard-mock.webp` and `img/office-dusk.webp` were
-   orphaned files still being uploaded — check for unreferenced images before every deploy, because
-   nothing in the build warns you.
-
----
-
-## Day-to-day maintenance
-
-**Change a price.** Edit `src/data/site.json`, run `node build.js`, upload the changed HTML.
-
-**Add or edit copy.** The page modules in `src/pages/` are template strings; content that repeats
-lives in `src/data/`.
-
-**Add a page.** Create a module exporting `{ file, html }`, register it in `build.js`, rebuild —
-the sitemap, nav and internal link checks pick it up.
-
-**Add a service.** Append to the right group in `src/data/services.js`; the group's label in the
-same file sets its honesty status.
-
-**Refresh a competitor row.** Update `src/data/site.json` and the row's `source` string with the
-date you read it, then rebuild. The comparison pages render the source line from that field.
-
-**Refresh a vendored library.** `npm install`, copy from `node_modules` into `vendor/`, rebuild.
-
----
-
-## License
-
-Proprietary and confidential. © 2026 HazirMinds. All rights reserved.
-
-This repository is public for reference only. No license is granted to copy, modify, distribute
-or deploy this code, its content, its copy or its design system.
+- The booking form validates and walks through every step in the browser, but doesn't send anything yet. Wire the final submit in `src/components/demos/logic/BookingForm.js` to your email, CRM or scheduler (an AWS Lambda or a form service both work).
+- Pages converted from the designs keep their inline styles. Over time, move repeated patterns into the shared components in `src/components`.

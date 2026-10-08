@@ -1,0 +1,20 @@
+---
+interface Props { tone?: 'dark' | 'light'; size?: number; wordmark?: boolean; class?: string }
+const { tone = 'dark', size = 22, wordmark = true, class: cls = '' } = Astro.props;
+const bar = tone === 'light' ? '#FAF7F2' : '#0F4C45';
+const accent = tone === 'light' ? '#D6A552' : '#B9852F';
+---
+<span class={'logo ' + cls} style={`--logo-size:${size}px;color:${bar}`}>
+  <svg viewBox="14 18 92 84" width={Math.round(size * 1.1)} height={size} aria-hidden="true">
+    <rect x="14" y="18" width="14" height="84" rx="7" fill={bar} /><rect x="33.5" y="49" width="14" height="22" rx="7" fill={bar} />
+    <rect x="53" y="38" width="14" height="44" rx="7" fill={accent} /><rect x="72.5" y="49" width="14" height="22" rx="7" fill={bar} />
+    <rect x="92" y="18" width="14" height="84" rx="7" fill={bar} />
+  </svg>
+  {wordmark && <span class="wordmark"><span class="w1">Hazir</span><span class="w2">Minds</span></span>}
+</span>
+<style>
+  .logo { display: inline-flex; align-items: center; gap: 6px; }
+  .wordmark { font-size: var(--logo-size); line-height: 1; }
+  .w1 { font-weight: 700; letter-spacing: -.045em; }
+  .w2 { font-family: Fraunces, Georgia, serif; font-style: italic; font-weight: 500; letter-spacing: -.01em; }
+</style>

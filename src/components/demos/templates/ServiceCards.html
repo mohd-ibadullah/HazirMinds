@@ -1,0 +1,34 @@
+<section aria-labelledby="ai-h" style="border-top:1px solid #DED5C6;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:720px;margin-bottom:48px">
+<p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">AI services</p>
+<h2 id="ai-h" style="font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.02em">Five standard services</h2>
+<p style="font-size:18px;line-height:1.6;color:#2F3633">Each one works on its own and connects to the others. No setup fee for standard services.</p>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,460px),1fr));gap:24px">
+<sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+<article id="{{ c.id }}" style="scroll-margin-top:96px;background:#fff;border:1px solid #DED5C6;border-radius:16px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:16px;transition:box-shadow .15s" style-hover="box-shadow:0 12px 32px rgba(15,76,69,.10)">
+<div style="display:flex;align-items:center;gap:14px"><span style="width:48px;height:48px;border-radius:12px;background:{{ c.tBg }};color:{{ c.tFg }};display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:26px">{{ c.icon }}</span></span><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">{{ c.kicker }}</p></div>
+<h3 style="font-weight:700;font-size:clamp(22px,2vw,26px);line-height:1.25;letter-spacing:-0.015em">{{ c.name }}</h3>
+<p style="font-weight:600;font-size:18px;line-height:1.45;color:#0F4C45;text-wrap:pretty">“{{ c.pitch }}”</p>
+<p style="font-size:16px;line-height:1.6;color:#2F3633">{{ c.desc }}</p>
+<a href="{{ c.href }}" style="font-weight:600;font-size:16px;margin-top:auto;padding-top:8px">{{ c.link }}</a>
+</article>
+</sc-for>
+</div>
+
+<article id="svc-infra" style="scroll-margin-top:96px;margin-top:24px;background:#fff;border:1.5px solid #0F4C45;border-radius:16px;padding:clamp(24px,3vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(24px,4vw,48px);align-items:center">
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:14px"><span style="width:48px;height:48px;border-radius:12px;background:#0F4C45;color:#D6A552;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:26px">shield_lock</span></span><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">Underneath everything</p></div>
+<h3 style="font-weight:700;font-size:clamp(22px,2vw,26px);line-height:1.25;letter-spacing:-0.015em">Secure, Managed Infrastructure</h3>
+<p style="font-weight:600;font-size:18px;line-height:1.45;color:#0F4C45;text-wrap:pretty">“Enterprise-grade security, fully managed — so you don't have to think about it.”</p>
+<a href="/managed-infrastructure" style="font-weight:600;font-size:16px">Explore Managed Infrastructure →</a>
+</div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column">
+<li style="display:flex;gap:14px;padding:16px 0;border-top:1px solid #DED5C6"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">deployed_code</span><p style="font-size:17px;line-height:1.5">An isolated environment for each client</p></li>
+<li style="display:flex;gap:14px;padding:16px 0;border-top:1px solid #DED5C6"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">cloud</span><p style="font-size:17px;line-height:1.5">Hosted on AWS in the United States</p></li>
+<li style="display:flex;gap:14px;padding:16px 0;border-top:1px solid #DED5C6;border-bottom:1px solid #DED5C6"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">monitor_heart</span><p style="font-size:17px;line-height:1.5">Monitoring, maintenance and updates included</p></li>
+</ul>
+</article>
+</div>
+</section>

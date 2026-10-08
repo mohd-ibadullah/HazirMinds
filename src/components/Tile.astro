@@ -1,0 +1,7 @@
+---
+import Icon from './Icon.astro';
+interface Props { icon: string; color?: string; size?: 'sm' | 'md' | 'base' | 'lg' | 'xl'; round?: boolean }
+const { icon, color = '', size = 'base', round = false } = Astro.props;
+const sizeCls = size === 'base' ? '' : 'tile-' + size;
+---
+<span class={['tile', sizeCls, color ? 'c-' + color : ''].join(' ')} style={round ? 'border-radius:50%' : undefined}><Icon name={icon} /></span>

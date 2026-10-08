@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import PipelineDemo from '../components/demos/PipelineDemo.astro';
+---
+<Base title="Client Pipeline & Dashboard" description="The Hazirminds Client Pipeline & Dashboard: a CRM pipeline and one dashboard to track leads, client activity, deals and call history." current="services">
+<section aria-labelledby="h1" style="padding:clamp(32px,4vw,48px) 0 clamp(48px,5.5vw,80px)">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;margin-bottom:clamp(32px,5vw,64px)"><a href="/">Home</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><a href="/services">Services</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><span aria-current="page" style="color:#585E5A">Client Pipeline &amp; Dashboard</span></nav>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,80px);align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<p style="display:flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60"><span style="width:32px;height:32px;border-radius:8px;background:#F8EACB;color:#8A5A00;display:flex;align-items:center;justify-content:center"><span class="ms" aria-hidden="true" style="font-size:20px;color:#8A5A00">view_kanban</span></span>AI service</p>
+<h1 id="h1" style="font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1.15;letter-spacing:-0.025em;text-wrap:balance">Client Pipeline &amp; Dashboard</h1>
+<p style="font-weight:600;font-size:clamp(20px,2vw,24px);line-height:1.35;letter-spacing:-0.01em;color:#0F4C45;text-wrap:balance">See every lead, call and deal in one place.</p>
+<p style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#2F3633;max-width:58ch">The Hazirminds Client Pipeline &amp; Dashboard gives you a CRM pipeline and one dashboard to track leads, client activity, deals and call history. What your other services capture lands in the same place.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a class="x1" href="/book-a-discovery-call?solve=Too%20much%20manual%20busywork" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;font-weight:600;font-size:16px;text-decoration:none;transition:background .15s,box-shadow .15s">Book a Discovery Call</a><a class="x2" href="#demo" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #0F4C45;color:#0F4C45;font-weight:600;font-size:16px;text-decoration:none;transition:background .15s">Try the sample pipeline</a></div>
+</div>
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:16px;box-shadow:0 24px 64px rgba(15,76,69,.10),0 2px 6px rgba(26,33,31,.05);overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #DED5C6;background:#F5F1EA"><span style="width:10px;height:10px;border-radius:50%;background:#DED5C6"></span><span style="width:10px;height:10px;border-radius:50%;background:#DED5C6"></span><span style="width:10px;height:10px;border-radius:50%;background:#DED5C6"></span><span style="font-size:13px;color:#585E5A;margin-left:12px">Pipeline</span><span style="flex:1"></span><span style="display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:#F7ECD6;color:#7A4E00;font-weight:600;font-size:12px">Sample data</span></div>
+<div style="padding:24px;display:flex;flex-direction:column;gap:20px"><div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+<div style="display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:12px;background:#F5F1EA;min-width:0"><p style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;color:#2F3633"><span>New</span><span>2</span></p><div style="padding:10px;border-radius:10px;background:#fff;border:1px solid #DED5C6;display:flex;flex-direction:column;gap:2px;min-width:0"><b style="font-size:14px">Dana R.</b><span style="font-size:12px;color:#585E5A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Water heater repair</span><span class="ms" aria-hidden="true" style="font-size:16px;color:#0F4C45;margin-top:4px">call</span></div><div style="padding:10px;border-radius:10px;background:#fff;border:1px solid #DED5C6;display:flex;flex-direction:column;gap:2px;min-width:0"><b style="font-size:14px">Owen T.</b><span style="font-size:12px;color:#585E5A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Panel upgrade</span><span class="ms" aria-hidden="true" style="font-size:16px;color:#0F4C45;margin-top:4px">language</span></div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:12px;background:#F5F1EA;min-width:0"><p style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;color:#2F3633"><span>Qualified</span><span>1</span></p><div style="padding:10px;border-radius:10px;background:#fff;border:1px solid #DED5C6;display:flex;flex-direction:column;gap:2px;min-width:0"><b style="font-size:14px">Marcus L.</b><span style="font-size:12px;color:#585E5A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Kitchen remodel</span><span class="ms" aria-hidden="true" style="font-size:16px;color:#0F4C45;margin-top:4px">chat</span></div></div>
+<div style="display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:12px;background:#F5F1EA;min-width:0"><p style="display:flex;justify-content:space-between;font-weight:600;font-size:13px;color:#2F3633"><span>Won</span><span>1</span></p><div style="padding:10px;border-radius:10px;background:#fff;border:1px solid #DED5C6;display:flex;flex-direction:column;gap:2px;min-width:0"><b style="font-size:14px">Grace K.</b><span style="font-size:12px;color:#585E5A;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">Maintenance plan</span><span class="ms" aria-hidden="true" style="font-size:16px;color:#0F4C45;margin-top:4px">call</span></div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;padding-top:16px;border-top:1px solid #EEE8DE">
+<div style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">history</span><div><b style="font-size:14px">Call history</b><p style="font-size:13px;color:#585E5A">On every contact</p></div></div>
+<div style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">space_dashboard</span><div><b style="font-size:14px">One dashboard</b><p style="font-size:13px;color:#585E5A">Leads, activity, deals</p></div></div>
+</div></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="ps-h" style="background:#FAF3E1;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:720px;margin-bottom:48px"><h2 id="ps-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">Problems it solves</h2><p style="font-size:18px;line-height:1.6;color:#2F3633">Three everyday problems the Client Pipeline &amp; Dashboard takes off your plate.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">The problem</p><h3 style="font-weight:600;font-size:24px;line-height:1.3;letter-spacing:-0.01em">Leads scattered across inboxes and notebooks</h3><div style="height:1px;background:#DED5C6"></div><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">What changes</p><p style="font-size:18px;line-height:1.6;color:#2F3633">One pipeline for every lead and deal.</p></div>
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">The problem</p><h3 style="font-weight:600;font-size:24px;line-height:1.3;letter-spacing:-0.01em">Nobody knows what happened on the last call</h3><div style="height:1px;background:#DED5C6"></div><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">What changes</p><p style="font-size:18px;line-height:1.6;color:#2F3633">Call history sits next to each contact.</p></div>
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">The problem</p><h3 style="font-weight:600;font-size:24px;line-height:1.3;letter-spacing:-0.01em">You can't see what's working</h3><div style="height:1px;background:#DED5C6"></div><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">What changes</p><p style="font-size:18px;line-height:1.6;color:#2F3633">One dashboard for leads, client activity and deals.</p></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="get-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px"><h2 id="get-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">What you get</h2><p style="font-size:18px;line-height:1.6;color:#2F3633;max-width:44ch">Everything in the standard Client Pipeline &amp; Dashboard service.</p></div>
+<ul style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#F8EACB;color:#8A5A00;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#8A5A00">view_kanban</span></span><div><b style="font-size:17px">A CRM pipeline</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Every lead and deal, stage by stage.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#F8EACB;color:#8A5A00;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#8A5A00">space_dashboard</span></span><div><b style="font-size:17px">One dashboard</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Leads, client activity, deals and call history together.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#F8EACB;color:#8A5A00;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#8A5A00">history</span></span><div><b style="font-size:17px">Call history</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Every call, next to the contact it belongs to.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#F8EACB;color:#8A5A00;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#8A5A00">badge</span></span><div><b style="font-size:17px">Role-based access</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Each person sees what their role allows.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#F8EACB;color:#8A5A00;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#8A5A00">download</span></span><div><b style="font-size:17px">Your data, exportable</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">A full export in a standard format if you leave.</p></div></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="how-h" style="border-top:1px solid #DED5C6;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<h2 id="how-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em;margin-bottom:48px">How it works</h2>
+<ol style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px">
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #2B5C8F"><span style="font-weight:700;font-size:15px;color:#2B5C8F">Step 1</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">We learn how you track leads today</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">Your stages, your team, and what counts as a won deal.</p></li>
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #8A5A00"><span style="font-weight:700;font-size:15px;color:#8A5A00">Step 2</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">We set up your pipeline and dashboard</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">Your stages and your access rules, in your isolated environment.</p></li>
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #A23E1E"><span style="font-weight:700;font-size:15px;color:#A23E1E">Step 3</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">Leads and calls flow in</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">Calls, conversations and follow-ups show up next to each contact.</p></li>
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #0F6B57"><span style="font-weight:700;font-size:15px;color:#0F6B57">Step 4</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">You review, we refine</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">We look at what's working with you and adjust as you grow.</p></li>
+</ol>
+</div>
+</section>
+<section aria-labelledby="lane-h" style="background:#0F4C45;color:#FAF7F2;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#DCE7E4">Your data</p><h2 id="lane-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em;text-wrap:balance">Your pipeline belongs to you</h2><p style="font-size:18px;line-height:1.6;color:#DCE7E4;max-width:44ch">Your contacts and relationships stay yours, whatever happens.</p><a href="/security" style="color:#FAF7F2;font-weight:600;font-size:16px;margin-top:8px">Security &amp; data protection →</a></div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column">
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">database</span><p style="font-size:17px;line-height:1.55">You own your data and your client relationships.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">download</span><p style="font-size:17px;line-height:1.55">Full export in a standard format within 90 days if you leave.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">badge</span><p style="font-size:17px;line-height:1.55">Access is role-based, so each person sees what their role allows.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">history</span><p style="font-size:17px;line-height:1.55">Every consequential action is logged in an audit trail.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">deployed_code</span><p style="font-size:17px;line-height:1.55">Your pipeline lives in your own isolated environment.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2);border-bottom:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">block</span><p style="font-size:17px;line-height:1.55">Your data isn't used to train models for others without your written opt-in.</p></li>
+</ul>
+</div>
+</section>
+<PipelineDemo />
+<section aria-labelledby="inc-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<h2 id="inc-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em;margin-bottom:48px">Included vs. scoped separately</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px">
+<div style="background:#fff;border:1.5px solid #0F4C45;border-radius:16px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:20px"><div style="display:flex;align-items:center;gap:12px"><span class="ms" aria-hidden="true" style="font-size:28px;color:#0F4C45">check_circle</span><h3 style="font-weight:600;font-size:24px;line-height:1.3">Included in the standard service</h3></div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5">
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>A CRM pipeline for every lead and deal</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>One dashboard for client activity</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Call history next to each contact</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Role-based access for your team</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Full data export if you leave</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Managed hosting with monitoring, maintenance and updates</li>
+</ul>
+<p style="font-size:15px;line-height:1.5;color:#585E5A;padding-top:16px;border-top:1px solid #DED5C6">No setup fee for standard services.</p>
+</div>
+<div style="background:#F0EAE0;border-radius:16px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:20px"><div style="display:flex;align-items:center;gap:12px"><span class="ms" aria-hidden="true" style="font-size:28px;color:#585E5A">tune</span><h3 style="font-weight:600;font-size:24px;line-height:1.3">Scoped and quoted separately</h3></div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5">
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#585E5A">add</span>Custom integrations with your existing business systems</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#585E5A">add</span>Advanced automation and workflow redesign</li>
+</ul>
+<p style="font-size:15px;line-height:1.5;color:#585E5A;padding-top:16px;border-top:1px solid #DED5C6;margin-top:auto">A setup fee applies only when customization is required. <a href="/pricing">How pricing works</a></p>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="faq-h" style="background:#FAF3E1;padding:clamp(48px,5.5vw,80px) 0">
+<div class="faq-cols" style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px"><h2 id="faq-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">Pipeline &amp; Dashboard questions</h2><a href="/faq?topic=pipe" style="font-weight:600;font-size:16px">See all questions →</a></div>
+<div style="min-width:0;border-bottom:1px solid #DED5C6">
+<details open="" style="border-top:1px solid #DED5C6"><summary class="x3" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Can I export my data?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Yes. You own your data, and you get a full export in a standard format within 90 days if you leave.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x4" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Who on my team can see what?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Access is role-based and enforced by the system, so each person sees only what their role allows.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x5" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Does it show calls from the AI Receptionist?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Yes. Call activity is visible in your dashboard, and call history appears next to each contact.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x6" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Can it connect to the tools we already use?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Custom integrations with your existing business systems are scoped and quoted separately.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x7" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">How is the Pipeline &amp; Dashboard priced?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Pricing is custom, based on your use case and complexity. It's month-to-month with no setup fee for the standard service.</p></details>
+</div>
+</div>
+</section>
+<section aria-labelledby="cta-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<div style="background:#0F4C45;color:#FAF7F2;border-radius:24px;padding:clamp(40px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:32px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:16px"><h2 id="cta-h" style="font-weight:700;font-size:clamp(30px,3.6vw,44px);line-height:1.12;letter-spacing:-0.025em;text-wrap:balance">Not sure where AI fits into your business yet?</h2><p style="font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:#DCE7E4;max-width:48ch">That's exactly what the first conversation is for. No pressure, no pitch — just a look at what's possible for you.</p></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:fit-content"><a class="x8" href="/book-a-discovery-call" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 32px;border-radius:999px;background:#FAF7F2;color:#0F4C45;font-weight:600;font-size:17px;text-decoration:none;transition:background .15s">Book a Discovery Call<span class="ms" aria-hidden="true" style="font-size:20px;color:inherit">arrow_forward</span></a><span style="display:inline-flex;align-items:center;gap:6px;font-size:15px;color:#DCE7E4"><span class="ms" aria-hidden="true" style="font-size:18px;color:#DCE7E4">schedule</span>A 15-minute call</span></div>
+</div>
+</div>
+</section>
+
+</Base>
+
+<style>
+.x1:hover{background:#0B3A35 !important;color:#FAF7F2 !important;box-shadow:0 12px 32px rgba(15,76,69,.18) !important}
+.x2:hover{background:#E3EDE9 !important;color:#0B3A35 !important}
+.x3:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x4:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x5:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x6:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x7:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x8:hover{background:#E3EDE9 !important;color:#0B3A35 !important}
+</style>

@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+
+---
+<Base title="Masjid FAQ" description="Answers for masjid boards and administrators: data safety, isolation, recordings, AI governance, religious questions, leaving, incidents and hosting." primaryLabel="Book a conversation" mobilePrimary="Book a conversation" secondaryLabel="Request a board presentation" secondaryHref="/book-a-discovery-call?board=yes">
+<div style="padding:clamp(32px,4vw,48px) 0 clamp(48px,5.5vw,80px)"><div style="max-width:816px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;margin-bottom:clamp(32px,5vw,64px)"><a href="/">Home</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><a href="/masjids">Masjids &amp; Islamic centers</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><span aria-current="page" style="color:#585E5A">FAQ</span></nav>
+<div style="display:flex;flex-direction:column;gap:20px;margin-bottom:48px">
+<h1 style="font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1.15;letter-spacing:-0.025em">Questions masjid boards ask</h1>
+<p style="font-size:clamp(18px,1.6vw,20px);line-height:1.6;color:#2F3633">Straight answers about your community's data, how the AI behaves, and what happens if you leave.</p>
+<p style="font-size:14px;color:#585E5A">Last updated October 2026</p>
+</div>
+
+<h2 style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60;margin:0 0 8px">Your data</h2>
+<div style="border-bottom:1px solid #DED5C6;margin-bottom:48px">
+<details style="border-top:1px solid #DED5C6"><summary class="x1" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Is our data safe?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">Yes. It's encrypted in transit and at rest, stored on US cloud infrastructure (AWS), and isolated in your own environment that no other organization can access. Access is role-based and enforced by the system.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x2" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Who can see our data?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">Only authorized users in your organization. Our platform team has access only for technical support, and only with your prior consent.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x3" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Can another masjid see our information?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">No. Every organization has its own isolated environment, enforced at the database level.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x4" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Where is our data stored?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">With our managed hosting, on secure US cloud infrastructure (AWS), and it doesn't leave US servers. If you choose to host on your own server, it stays there.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x5" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Why not keep our data on our own server?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">You can. If you'd prefer to keep your data on your own server, we can scope a self-hosted setup with you, and your team or IT provider looks after that server. Many organizations choose our managed cloud instead, because it includes automatic updates, continuous monitoring and redundant backups without needing IT staff.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x6" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Is our data used to train AI for other customers?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">No, not without your written opt-in. This is a contractual prohibition.</p></details>
+</div>
+
+<h2 style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60;margin:0 0 8px">How the AI behaves</h2>
+<div style="border-bottom:1px solid #DED5C6;margin-bottom:48px">
+<details style="border-top:1px solid #DED5C6"><summary class="x7" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Does the AI make decisions without our permission?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">No. The AI prepares and recommends. Any consequential action needs explicit human approval. If it's unsure, it says so and routes the question to a person.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x8" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Does the AI answer religious questions?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">If you'd prefer that the AI not answer religious questions, we can set it up that way. Those questions then go to a scholar or imam your masjid designates, and every routing is logged.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x9" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Does the AI receptionist call or text people on its own?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">No. It answers inbound calls. All automated messages follow workflows your masjid approves.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x10" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Are phone calls recorded? Who can hear them?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">Recordings and transcripts stay in your isolated environment. Only authorized users in your organization can access them.</p></details>
+</div>
+
+<h2 style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60;margin:0 0 8px">If something changes</h2>
+<div style="border-bottom:1px solid #DED5C6;margin-bottom:48px">
+<details style="border-top:1px solid #DED5C6"><summary class="x11" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">What happens if we decide to leave?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">You own your data. You get a full export in a standard format within a 90-day window. Your data is never held hostage.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x12" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">What if there's a security incident?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">We notify you without undue delay, and no later than 72 hours after we're notified, with what happened, what was affected and what we're doing about it.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x13" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">What if the system goes down?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">Data is backed up regularly and stored separately. The platform is monitored continuously, and maintenance is included.</p></details>
+</div>
+
+<h2 style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60;margin:0 0 8px">Providers and certifications</h2>
+<div style="border-bottom:1px solid #DED5C6;margin-bottom:64px">
+<details style="border-top:1px solid #DED5C6"><summary class="x14" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Do you have SOC 2 or ISO 27001?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">Not yet. We enforce the controls (encryption, tenant isolation, role-based access, audit logging, contractual breach notification). We'll pursue formal certification when client requirements call for it, and we will never claim a certification we don't hold.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x15" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;font-weight:600;font-size:18px;line-height:1.4">Who are the technology providers?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 22px">Our core providers include AWS (hosting), Twilio (voice and messaging) and Anthropic (AI models). The full subprocessor list is in our Data Processing Agreement. No data is sold or shared for marketing.</p></details>
+</div>
+
+<div style="background:#0F4C45;color:#FAF7F2;border-radius:24px;padding:clamp(32px,5vw,56px);display:flex;flex-direction:column;gap:20px;align-items:flex-start">
+<h2 style="font-weight:700;font-size:clamp(26px,3vw,36px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">Let's talk about what your community needs.</h2>
+<div style="display:flex;flex-wrap:wrap;gap:12px"><a class="x16" href="/book-a-discovery-call" style="display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 28px;border-radius:999px;background:#FAF7F2;color:#0F4C45;font-weight:600;font-size:16px;text-decoration:none">Book a conversation</a><a class="x17" href="/book-a-discovery-call?board=yes" style="display:inline-flex;align-items:center;gap:8px;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #FAF7F2;color:#FAF7F2;font-weight:600;font-size:16px;text-decoration:none">Request a board presentation</a></div>
+</div>
+</div>
+</div>
+</Base>
+
+<style>
+.x1:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x2:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x3:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x4:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x5:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x6:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x7:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x8:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x9:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x10:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x11:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x12:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x13:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x14:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x15:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x16:hover{background:#E3EDE9 !important;color:#0B3A35 !important}
+.x17:hover{background:rgba(250,247,242,.1) !important;color:#FAF7F2 !important}
+</style>

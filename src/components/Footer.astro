@@ -1,0 +1,51 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { services, contact, legal, bookHref } from '../data/site';
+const short: Record<string, string> = { infra: 'Managed Infrastructure' };
+---
+<footer class="site-footer bg-dark">
+  <div class="container">
+    <div class="cols">
+      <div class="brand stack">
+        <Logo tone="light" />
+        <p style="font-size:18px;line-height:1.5;max-width:28ch">Your AI solutions partner — starting small, growing with you.</p>
+        <p class="note"><Icon name="verified" size={18} />Registered North Carolina business</p>
+      </div>
+      <nav aria-label="Services" class="col">
+        <b>Services</b>
+        {services.map((s) => <a href={s.href}>{short[s.key] ?? s.name}</a>)}
+        <a href="/custom-websites-mobile-apps">Custom Websites &amp; Apps</a>
+        <a href="/custom-integrations-software">Custom Integrations</a>
+      </nav>
+      <nav aria-label="Company" class="col">
+        <b>Company</b>
+        <a href="/about">About</a><a href="/security">Security &amp; Trust</a><a href="/pricing">Pricing</a><a href="/faq">FAQ</a><a href="/see-it-in-action">See it in action</a>
+      </nav>
+      <div class="col">
+        <b>Contact</b>
+        <a href={'mailto:' + contact.email}>{contact.email}</a>
+        <a href={contact.phoneHref}>{contact.phone}</a>
+        <a class="strong" href={bookHref()}>Book a Discovery Call</a>
+      </div>
+    </div>
+    <div class="legal">
+      {legal.map((l) => <a href={l.href}>{l.label}</a>)}
+      <span class="grow"></span>
+      <span>© {new Date().getFullYear()} Hazir Minds, LLC</span>
+    </div>
+  </div>
+</footer>
+<style>
+  .site-footer { padding: clamp(48px, 6vw, 80px) 0 32px; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 40px; }
+  @media (min-width: 1100px) { .brand { grid-column: span 2; } }
+  .col { display: flex; flex-direction: column; gap: 12px; font-size: 15px; }
+  .col a, .legal a { color: var(--on-dark); text-decoration: none; }
+  .col a:hover, .legal a:hover { color: var(--cream); text-decoration: underline; }
+  .col a.strong { color: var(--cream); font-weight: 600; text-decoration: underline; }
+  .note { font-size: 14px; color: var(--on-dark); display: flex; align-items: center; gap: 6px; }
+  .legal { display: flex; flex-wrap: wrap; gap: 12px 24px; margin-top: 56px; padding-top: 24px; border-top: 1px solid rgba(250, 247, 242, .2); font-size: 14px; color: var(--on-dark); }
+  .grow { flex: 1; }
+  @media (max-width: 1099px) { .site-footer { padding-bottom: 104px; } }
+</style>

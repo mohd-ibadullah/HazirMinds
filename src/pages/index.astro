@@ -1,0 +1,198 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import HeroFlow from '../components/home/HeroFlow.astro';
+import HeroDashboard from '../components/home/HeroDashboard.astro';
+import Problems from '../components/home/Problems.astro';
+import HowWeWork from '../components/home/HowWeWork.astro';
+import FullStack from '../components/home/FullStack.astro';
+import Estimators from '../components/home/Estimators.astro';
+import FaqSection from '../components/FaqSection.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Logo from '../components/Logo.astro';
+import type { FaqItem } from '../data/types';
+
+const guardrails = [
+  ['menu_book', 'AI answers only from your approved knowledge — it does not invent answers.'],
+  ['rule', 'AI acts only within defined permissions and workflows.'],
+  ['how_to_reg', 'Sensitive or consequential actions require human approval.'],
+  ['support_agent', 'When unsure, AI says so and routes to a person.'],
+  ['database', 'Your data stays yours, under your control.'],
+];
+const terms = [
+  ['event_repeat', 'Contract', "Month-to-month, with 30 days' written notice to leave"],
+  ['build', 'Setup fee', 'None for standard services. A setup fee applies only when customization is required'],
+  ['receipt_long', 'Usage', 'Voice minutes, text and WhatsApp messages, and AI processing billed at actual provider cost, no markup'],
+  ['web', 'Website', 'A free static website with any AI service — up to 5 pages. <a href="/free-website-terms">Terms apply</a>'],
+  ['key', 'Ownership', 'You own your domain, website content and data'],
+  ['download', 'Leaving', 'A full data export within 90 days after you leave'],
+];
+const security = [
+  ['lock', 'Encrypted in transit and at rest'],
+  ['cloud_done', 'Hosted on our managed AWS in the US, or bring your own server'],
+  ['deployed_code', 'An isolated environment for every client'],
+  ['badge', 'Role-based access'],
+  ['how_to_reg', 'Human approval for consequential actions'],
+  ['notifications_active', 'Incident notice within 72 hours'],
+];
+const trust = [
+  ['web', 'account_tree', 'Structured Process', 'We follow a structured process for every client — nothing is built ad-hoc or rushed.'],
+  ['pipe', 'verified_user', 'Data Protection', "Client data is handled under clear data protection agreements — we don't cut corners on privacy or security."],
+  ['com', 'fact_check', 'Reviewed Before Delivery', "Every project goes through review before it's handed to the client."],
+  ['rec', 'verified', 'Registered Business', "We're a registered North Carolina business — not a freelancer working out of a garage."],
+];
+const faq: FaqItem[] = [
+  { q: 'What does Hazirminds do?', a: 'Hazirminds is your AI solutions partner. We identify where AI can solve real business problems and implement the right solution — starting small, growing as you do.' },
+  { q: 'Do I need to understand AI to work with you?', a: "No. You don't need to understand AI — that's our job. You just need to know what results you want." },
+  { q: 'How does pricing work?', a: 'Pricing is built around your use case and its complexity. Plans are month-to-month, standard services have no setup fee, and usage is billed at actual provider cost.' },
+  { q: 'Is my data safe?', a: 'Your data is encrypted in transit and at rest, kept in your own isolated environment, and hosted on our managed AWS in the US — or on your own server if you prefer.' },
+  { q: 'Does the AI make decisions without our permission?', a: "No. The AI prepares and recommends. Any consequential action needs explicit human approval. If it's unsure, it says so and routes the question to a person." },
+  { q: 'What happens if we leave?', a: "You own your data. Give 30 days' written notice, and you get a full export in a standard format within a 90-day window." },
+];
+---
+<Base title="Hazirminds — your AI solutions partner" description="Hazirminds helps small and mid-size businesses identify and solve real challenges with the right AI solutions: AI receptionist, AI-powered websites, automated follow-up and one connected dashboard.">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="container">
+      <div class="hero-text">
+        <p class="eyebrow">AI solutions partner for small and mid-size businesses</p>
+        <h1 id="hero-h" class="h1 h1-xl">Hazirminds is your AI solutions partner</h1>
+        <p class="lead" style="font-size:clamp(18px,1.6vw,20px)">We help you identify and solve real business challenges with the right AI solutions — starting small and growing as your needs evolve.</p>
+        <div class="btn-row" style="justify-content:center;margin-top:8px">
+          <a class="btn btn-primary" href="/book-a-discovery-call">Book a Discovery Call</a>
+          <a class="btn btn-outline" href="#try">See it in action</a>
+        </div>
+        <ul class="list-reset checks">
+          <li><Icon name="check" size={18} />Month-to-month</li>
+          <li><Icon name="check" size={18} />No setup fee for standard services</li>
+          <li><Icon name="check" size={18} />Your data stays yours</li>
+        </ul>
+      </div>
+      <HeroFlow />
+      <HeroDashboard />
+    </div>
+  </section>
+
+  <Problems />
+  <HowWeWork />
+  <FullStack />
+
+  <section class="section bg-wash c-web" aria-labelledby="gv-h">
+    <div class="container split split-center">
+      <div class="stack">
+        <p class="eyebrow">AI governance</p>
+        <h2 id="gv-h" class="h2 h2-lg">AI that's controlled, secure and connected</h2>
+        <p class="body-lg" style="max-width:46ch">AI should be useful, controlled, secure, and connected to your actual business systems. These rules apply to every call, chat and message.</p>
+        <a class="link-strong" href="/security" style="margin-top:8px">How we protect your data →</a>
+      </div>
+      <div class="card guard">
+        <div class="guard-h"><b style="font-size:15px">AI guardrails</b><span class="small" style="font-size:13px">Built in for every client</span></div>
+        {guardrails.map(([icon, text]) => (
+          <div class="guard-row"><Icon name={icon} class="gi" /><p>{text}</p><span class="chip chip-mint" style="font-size:12px"><Icon name="lock" />Always on</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Estimators />
+
+  <section class="section bg-sand" aria-labelledby="why-h">
+    <div class="container split">
+      <div class="stack">
+        <p class="eyebrow">Why Hazirminds</p>
+        <h2 id="why-h" class="h2 h2-lg">We're an AI solutions partner — not an AI agency</h2>
+        <p class="body-lg" style="max-width:52ch">We focus first on understanding your business and your actual challenges — then we identify where AI can genuinely help, and implement the right-sized solution at the right time. We're not here to sell you a collection of tools. We're here to solve real problems.</p>
+      </div>
+      <div class="card" style="padding:8px 24px;overflow-x:auto">
+        <table class="cmp">
+          <thead><tr><th scope="col"><span class="sr-only">Compared on</span></th><th scope="col" class="them">Tool-first approach</th><th scope="col" class="us">Hazirminds</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Starts with</th><td class="them">The product being sold</td><td class="us">Your business problem</td></tr>
+            <tr><th scope="row">Scope</th><td class="them">A collection of tools</td><td class="us">One right-sized solution, then growth based on results</td></tr>
+            <tr><th scope="row">After launch</th><td class="them">Moves on</td><td class="us">Keeps finding and implementing improvements</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="terms-h">
+    <div class="container split">
+      <div class="stack">
+        <p class="eyebrow">Terms</p>
+        <h2 id="terms-h" class="h2 h2-lg">Straightforward terms</h2>
+        <p class="body-lg" style="max-width:44ch">Pricing is custom, based on your use case and complexity. The terms around it stay simple.</p>
+        <a class="link-strong" href="/pricing" style="margin-top:8px">How pricing works →</a>
+      </div>
+      <dl class="card terms">
+        {terms.map(([icon, k, v]) => (
+          <div><dt><Icon name={icon} size={22} />{k}</dt><dd set:html={v} /></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section bg-dark" aria-labelledby="sec-h">
+    <div class="container">
+      <div class="sec-head">
+        <div class="stack" style="max-width:640px"><p class="eyebrow">Security</p><h2 id="sec-h" class="h2 h2-lg">Enterprise-grade security, fully managed</h2></div>
+        <a href="/security" class="link-strong" style="color:var(--cream)">Security &amp; data protection →</a>
+      </div>
+      <ul class="list-reset grid-auto" style="--min:300px">
+        {security.map(([icon, text]) => <li class="sec-item"><Icon name={icon} size={28} /><p>{text}</p></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-label="Our commitment">
+    <div class="container stack" style="max-width:1096px;--gap:32px">
+      <Logo wordmark={false} size={51} />
+      <blockquote class="quote">This isn't a one-time project. We're not a vendor that delivers a system and disappears. We continue identifying opportunities and implementing new solutions as your business grows — a long-term technology and AI partner, not a one-off project.</blockquote>
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Why you can trust us">
+    <ul class="list-reset container grid-auto" style="--min:240px;--gap:32px">
+      {trust.map(([c, icon, t, d]) => (
+        <li class={'row c-' + c} style="align-items:flex-start;flex-wrap:nowrap;--gap:16px"><span class="tile" style="border-radius:50%"><Icon name={icon} /></span><div><b style="font-size:16px">{t}</b><p class="small" style="margin-top:4px">{d}</p></div></li>
+      ))}
+    </ul>
+  </section>
+
+  <FaqSection title="Common questions" eyebrow="FAQ" items={faq} tone="plain" />
+  <CtaBand padTop={false} />
+</Base>
+
+<style>
+  .hero { padding: clamp(48px, 6vw, 80px) 0 0; }
+  .hero-text { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 24px; max-width: 860px; margin: 0 auto; }
+  .hero-text .lead { max-width: 58ch; }
+  .checks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; font-size: 15px; color: var(--muted); }
+  .checks li { display: flex; align-items: center; gap: 6px; }
+  .checks :global(.ms) { color: var(--green); }
+  .guard { overflow: hidden; box-shadow: 0 12px 32px rgba(15, 76, 69, .08); }
+  .guard-h { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; border-bottom: 1px solid var(--line); background: var(--sand-2); }
+  .guard-row { display: flex; align-items: center; gap: 16px; padding: 18px 24px; border-bottom: 1px solid var(--line-2); }
+  .guard-row:last-child { border-bottom: none; }
+  .guard-row p { flex: 1; font-size: 16px; line-height: 1.5; }
+  .guard-row :global(.gi) { color: var(--green); }
+  .cmp { border-collapse: collapse; width: 100%; min-width: 320px; font-size: 16px; line-height: 1.5; }
+  .cmp th, .cmp td { text-align: left; padding: 20px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .cmp thead th { padding: 16px 12px; border-bottom-color: var(--ink); }
+  .cmp tbody tr:last-child > * { border-bottom: none; }
+  .cmp th[scope='row'] { padding-left: 0; font-weight: 600; width: 28%; }
+  .cmp .them { color: var(--muted); font-weight: 400; }
+  .cmp thead .them { font-weight: 600; }
+  .cmp .us { font-weight: 600; }
+  .cmp thead .us { font-weight: 700; color: var(--green); }
+  .terms { padding: 8px 28px; }
+  .terms > div { display: grid; grid-template-columns: minmax(120px, .6fr) minmax(0, 1.4fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+  .terms > div:last-child { border-bottom: none; }
+  .terms dt { font-weight: 600; display: flex; gap: 10px; align-items: flex-start; }
+  .terms dt :global(.ms) { color: var(--green); }
+  .terms dd { color: var(--ink-2); line-height: 1.5; }
+  .sec-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px; }
+  .sec-item { display: flex; flex-direction: column; gap: 16px; padding: 28px; border-radius: 12px; border: 1px solid rgba(250, 247, 242, .18); background: rgba(250, 247, 242, .04); font-size: 18px; line-height: 1.5; }
+  .sec-item :global(.ms) { color: var(--gold-l); }
+  .quote { font-weight: 600; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.35; letter-spacing: -.015em; text-wrap: pretty; }
+  .trust { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: clamp(48px, 6vw, 64px) 0; }
+</style>

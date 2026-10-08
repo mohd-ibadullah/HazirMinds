@@ -1,0 +1,110 @@
+---
+import Icon from '../Icon.astro';
+const beats = [
+  { label: 'Call answered with transcript', c: 'rec', detail: 'The AI answers on your dedicated business number, even at 2 a.m., and saves the transcript and callback details.' },
+  { label: 'Lead lands in the pipeline', c: 'pipe', detail: 'The caller shows up in your pipeline as a new lead, next to every other call and deal.' },
+  { label: 'Follow-up waits for your approval', c: 'com', detail: 'A follow-up is drafted for you. Nothing goes out until a person on your team approves it.' },
+];
+---
+<div class="dash-wrap" data-dash>
+  <div class="window dash">
+    <div class="window-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span style="margin-left:12px">Your dashboard</span><span class="grow"></span><span class="chip chip-sample">Sample data</span></div>
+    <div class="dash-body">
+      <div class="side" aria-hidden="true">
+        <span class="on"><Icon name="space_dashboard" size={20} />Overview</span>
+        <span><Icon name="call" size={20} />Calls</span>
+        <span><Icon name="view_kanban" size={20} />Pipeline</span>
+        <span><Icon name="forward_to_inbox" size={20} />Messages</span>
+        <span><Icon name="task_alt" size={20} />Approvals</span>
+      </div>
+      <div class="panels">
+        <div class="panel c-rec is-on tall" data-beat="0">
+          <div class="ph"><span class="pin">1</span><b>Calls</b><span class="grow"></span><span class="small" style="font-size:13px">Today</span></div>
+          <div class="call-row"><span class="tile tile-sm" style="border-radius:50%;--s:36px"><Icon name="call" /></span><div class="grow"><b style="font-size:15px">Dana R.</b><p class="small" style="font-size:13px">2:14 a.m. · after hours</p></div><span class="chip chip-ok"><Icon name="check" />Answered</span></div>
+          <div class="transcript">
+            <p class="eyebrow" style="font-size:12px;color:var(--muted)">Transcript</p>
+            <p><b>Caller:</b> Hi, do you have anything open Thursday morning?</p>
+            <p><b>AI:</b> I can take your details and have the team call you back first thing Thursday.</p>
+            <p class="muted"><b style="color:var(--ink)">Callback:</b> Thursday morning · prefers a call</p>
+          </div>
+          <div class="call-row plain" style="border-top:1px solid var(--line-2)"><span class="avatar"><Icon name="call" size={20} /></span><div><b style="font-size:15px">Marcus T.</b><p class="small" style="font-size:13px">Booked an appointment</p></div></div>
+          <div class="call-row plain"><span class="avatar"><Icon name="call" size={20} /></span><div><b style="font-size:15px">Priya S.</b><p class="small" style="font-size:13px">Question answered</p></div></div>
+        </div>
+        <div class="panel c-pipe" data-beat="1">
+          <div class="ph"><span class="pin">2</span><b>Pipeline</b></div>
+          <div class="kanban">
+            <div><span class="kh">New</span><div class="kc hl"><b>Dana R.</b><p>Callback requested</p></div></div>
+            <div><span class="kh">Qualified</span><div class="kc"><b>Marcus T.</b><p>Consultation</p></div></div>
+            <div><span class="kh">Booked</span><div class="kc"><b>Priya S.</b><p>Thursday</p></div></div>
+          </div>
+        </div>
+        <div class="panel c-com" data-beat="2">
+          <div class="ph"><span class="pin">3</span><b>Waiting for your approval</b></div>
+          <p class="quote">“Hi Dana, thanks for calling last night. We can call you Thursday morning. Does that still work for you?”</p>
+          <div class="row" data-approve-ui style="--gap:8px"><button type="button" class="btn btn-primary btn-sm" data-approve style="min-height:40px;padding:0 16px;font-size:14px"><Icon name="check" size={18} />Approve</button><span class="btn btn-outline btn-sm" style="min-height:40px;padding:0 16px;font-size:14px;cursor:default">Edit</span></div>
+          <div class="row" data-approved hidden><span class="chip chip-ok" style="height:32px;font-size:14px"><Icon name="check_circle" size={18} />Approved and sent</span><button type="button" class="reset" data-reset>Reset</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="beats">
+    <div role="tablist" aria-label="How a call flows" class="beat-tabs">
+      {beats.map((b, i) => (
+        <button type="button" role="tab" class={'beat c-' + b.c} aria-selected={i === 0 ? 'true' : 'false'} data-beat-tab={i} data-detail={b.detail}><span class="bpin">{i + 1}</span>{b.label}</button>
+      ))}
+    </div>
+    <p aria-live="polite" class="beat-detail" data-beat-detail>{beats[0].detail}</p>
+  </div>
+</div>
+<style>
+  .dash-wrap { margin-top: clamp(48px, 6vw, 72px); }
+  .dash-body { display: flex; }
+  .side { display: none; width: 200px; flex: none; border-right: 1px solid var(--line); padding: 20px 12px; flex-direction: column; gap: 4px; font-size: 14px; color: var(--ink-2); }
+  .side span { display: flex; align-items: center; gap: 10px; padding: 10px 12px; }
+  .side .on { border-radius: 10px; background: var(--mint); color: var(--green); font-weight: 600; }
+  @media (min-width: 1000px) { .side { display: flex; } }
+  .panels { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; padding: 20px; background: #FCFBF8; }
+  .panel { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 16px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+  .panel.tall { grid-row: span 2; }
+  .panel:global(.is-on) { border-color: var(--tint); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tint) 14%, transparent); }
+  .ph { display: flex; align-items: center; gap: 10px; font-size: 16px; }
+  .pin { width: 24px; height: 24px; border-radius: 50%; background: var(--tint); color: #fff; font-weight: 700; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; }
+  .grow { flex: 1; min-width: 0; }
+  .call-row { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 10px; background: var(--sand-2); }
+  .call-row.plain { background: none; padding: 12px 12px 0; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--sand); color: var(--muted); display: flex; align-items: center; justify-content: center; flex: none; }
+  .transcript { display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.5; padding: 0 4px; }
+  .kanban { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .kanban > div { display: flex; flex-direction: column; gap: 8px; }
+  .kh { font-size: 12px; font-weight: 600; color: var(--muted); }
+  .kc { padding: 10px; border-radius: 8px; border: 1px solid var(--line); font-size: 13px; }
+  .kc p { font-size: 12px; color: var(--muted); }
+  .kc.hl { border: 1.5px solid var(--tint); background: color-mix(in srgb, var(--tile) 45%, #fff); }
+  .quote { font-size: 14px; line-height: 1.5; color: var(--ink-2); padding: 12px; border-radius: 10px; background: var(--sand-2); }
+  .reset { background: none; border: none; font-weight: 600; font-size: 14px; color: var(--green); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+  .beats { display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 32px; }
+  .beat-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+  .beat { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 20px 0 12px; border-radius: 999px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-weight: 600; font-size: 15px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .bpin { width: 26px; height: 26px; border-radius: 50%; background: var(--tile); color: var(--tint); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .beat[aria-selected='true'] { background: var(--tint); border-color: var(--tint); color: #fff; }
+  .beat[aria-selected='true'] .bpin { background: #fff; }
+  .beat-detail { font-size: 16px; line-height: 1.6; color: var(--ink-2); text-align: center; max-width: 56ch; min-height: 52px; }
+</style>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-dash]');
+  if (root) {
+    const panels = root.querySelectorAll<HTMLElement>('[data-beat]');
+    const tabs = root.querySelectorAll<HTMLButtonElement>('[data-beat-tab]');
+    const detail = root.querySelector<HTMLElement>('[data-beat-detail]')!;
+    const show = (i: number) => {
+      panels.forEach((p, j) => p.classList.toggle('is-on', j === i));
+      tabs.forEach((t, j) => t.setAttribute('aria-selected', String(j === i)));
+      detail.textContent = tabs[i].dataset.detail ?? '';
+    };
+    panels.forEach((p, i) => p.addEventListener('click', () => show(i)));
+    tabs.forEach((t, i) => t.addEventListener('click', () => show(i)));
+    const ui = root.querySelector<HTMLElement>('[data-approve-ui]')!, done = root.querySelector<HTMLElement>('[data-approved]')!;
+    root.querySelector('[data-approve]')!.addEventListener('click', (e) => { e.stopPropagation(); ui.hidden = true; done.hidden = false; show(2); });
+    root.querySelector('[data-reset]')!.addEventListener('click', (e) => { e.stopPropagation(); ui.hidden = false; done.hidden = true; });
+  }
+</script>

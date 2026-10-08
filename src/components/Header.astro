@@ -1,0 +1,157 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { services, customWork, mainNav, contact, bookHref } from '../data/site';
+interface Props { current?: string; primaryLabel?: string; primaryHref?: string; secondaryLabel?: string; secondaryHref?: string; mobilePrimary?: string }
+const { current = '', primaryLabel = 'Book a Discovery Call', primaryHref = bookHref(), secondaryLabel = 'See it in action', secondaryHref = '/see-it-in-action', mobilePrimary = 'Book a call' } = Astro.props;
+const book = primaryHref;
+---
+<header class="site-header" data-header>
+  <div class="container bar">
+    <a href="/" aria-label="Hazirminds home" class="home"><Logo /></a>
+
+    <nav aria-label="Main" class="nav-wide">
+      <button type="button" class="nav-link svc-btn" aria-expanded="false" aria-controls="mega" data-mega-toggle aria-current={current === 'services' ? 'true' : undefined}>
+        <span class="lbl">Services</span><Icon name="expand_more" size={20} class="chev" />
+      </button>
+      {mainNav.map((n) => (
+        <a class="nav-link" href={n.href} aria-current={current === n.key ? 'page' : undefined}>{n.label}</a>
+      ))}
+    </nav>
+    <span class="grow"></span>
+    <a class="btn btn-outline btn-sm only-wide" href={secondaryHref}>{secondaryLabel}</a>
+    <a class="btn btn-primary btn-sm only-wide" href={book}>{primaryLabel}</a>
+    <a class="btn btn-primary btn-sm only-compact" href={book} style="padding:0 16px;font-size:14px">{mobilePrimary}</a>
+    <button type="button" class="menu-btn only-compact" aria-label="Open menu" aria-haspopup="dialog" data-mobile-open><Icon name="menu" size={22} /></button>
+  </div>
+
+  <div id="mega" class="mega" hidden data-mega>
+    <div class="container mega-grid">
+      <div class="stack" style="--gap:12px">
+        <p class="mega-label">AI services</p>
+        <div class="mega-svcs">
+          {services.map((s) => (
+            <a class="mega-item" href={s.href}>
+              <span class={'tile tile-md c-' + s.key}><Icon name={s.icon} /></span>
+              <span><b>{s.name}</b><br /><span class="mega-sub">{s.line}</span></span>
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="mega-custom stack" style="--gap:12px">
+        <div class="row" style="justify-content:space-between">
+          <p class="mega-label">Custom work</p>
+          <button type="button" class="mega-close" aria-label="Close menu" data-mega-close><Icon name="close" size={20} /></button>
+        </div>
+        {customWork.map((c) => (
+          <a class="mega-item" href={c.href}><span><b>{c.name}</b><br /><span class="mega-sub">{c.line}</span></span></a>
+        ))}
+        <a class="link-strong" href="/services" style="margin:auto 12px 0">All services →</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu" hidden data-mobile>
+  <div class="mm-top"><Logo size={20} /><span class="grow"></span><button type="button" class="menu-btn" aria-label="Close menu" data-mobile-close><Icon name="close" size={22} /></button></div>
+  <nav aria-label="Main" class="mm-nav">
+    <p class="mega-label" style="padding:20px 0 8px">Services</p>
+    {services.map((s) => <a class="mm-sub" href={s.href}>{s.name}</a>)}
+    {customWork.map((c) => <a class="mm-sub" href={c.href}>{c.name}</a>)}
+    <a class="mm-sub" href="/services" style="font-weight:600;color:var(--green);padding-bottom:20px">All services →</a>
+    {mainNav.map((n, i) => <a class="mm-main" href={n.href} style={i === mainNav.length - 1 ? 'border-bottom:1px solid var(--line)' : undefined}>{n.label}</a>)}
+    <div class="stack" style="--gap:12px;margin-top:24px">
+      <a class="btn btn-outline" href={secondaryHref}>{secondaryLabel}</a>
+      <a class="btn btn-primary" href={book}>{primaryLabel}</a>
+    </div>
+    <p class="small" style="text-align:center;margin-top:24px">{contact.email} · {contact.phone}</p>
+  </nav>
+</div>
+
+<div class="mbar" data-mbar hidden><a class="btn btn-primary" href={book} style="width:100%">Book a Discovery Call</a></div>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(250, 247, 242, 0); border-bottom: 1px solid transparent; transition: background .2s, border-color .2s, box-shadow .2s; }
+  .site-header.is-solid { background: rgba(250, 247, 242, .97); border-bottom-color: var(--line); }
+  .site-header.is-scrolled { box-shadow: 0 8px 24px rgba(15, 76, 69, .06); }
+  .bar { height: 80px; display: flex; align-items: center; gap: 12px; transition: height .2s; }
+  .is-scrolled .bar { height: 64px; }
+  .home { display: flex; text-decoration: none; flex: none; }
+  .grow { flex: 1; }
+  .nav-wide, .only-wide { display: none; }
+  .nav-wide { align-items: center; gap: 28px; margin-left: 20px; }
+  .nav-link { display: inline-flex; align-items: center; gap: 2px; background: none; border: none; padding: 8px 0; font-weight: 600; font-size: 15px; color: var(--ink); text-decoration: none; text-underline-offset: 8px; text-decoration-thickness: 2px; cursor: pointer; }
+  .nav-link:hover, .nav-link[aria-expanded='true'] { color: var(--green); }
+  .nav-link[aria-current] { color: var(--green); }
+  a.nav-link[aria-current], .nav-link[aria-current] .lbl { text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 2px; }
+  .svc-btn { text-decoration: none !important; }
+  .svc-btn :global(.chev) { transition: transform .15s; }
+  .svc-btn[aria-expanded='true'] :global(.chev) { transform: rotate(180deg); }
+  .menu-btn { width: 44px; height: 44px; border-radius: 999px; border: 1.5px solid var(--green); background: transparent; color: var(--green); display: flex; align-items: center; justify-content: center; cursor: pointer; flex: none; }
+  @media (min-width: 1100px) {
+    .bar { gap: 32px; }
+    .nav-wide { display: flex; }
+    .only-wide { display: inline-flex; }
+    .only-compact { display: none; }
+  }
+  @media (max-width: 439px) { .home :global(.wordmark) { display: none; } }
+
+  .mega { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); box-shadow: 0 24px 48px rgba(15, 76, 69, .12); }
+  .mega-grid { padding-top: 32px; padding-bottom: 40px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 48px; }
+  .mega-label { font-weight: 600; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .mega-svcs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .mega-item { display: flex; gap: 16px; padding: 12px; border-radius: 12px; text-decoration: none; color: var(--ink); font-size: 16px; }
+  .mega-item:hover { background: var(--sand-2); color: var(--ink); }
+  .mega-sub { font-size: 14px; line-height: 1.5; color: var(--muted); }
+  .mega-custom { padding-left: 32px; border-left: 1px solid var(--line); }
+  .mega-close { width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--line); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+
+  .mobile-menu { position: fixed; inset: 0; z-index: 80; background: var(--cream); overflow-y: auto; }
+  .mm-top { height: 64px; display: flex; align-items: center; padding: 0 24px; border-bottom: 1px solid var(--line); }
+  .mm-nav { padding: 8px 24px 32px; display: flex; flex-direction: column; }
+  .mm-sub { padding: 12px 0; font-size: 17px; color: var(--ink); text-decoration: none; }
+  .mm-main { display: flex; align-items: center; min-height: 60px; border-top: 1px solid var(--line); font-weight: 700; font-size: 22px; color: var(--ink); text-decoration: none; }
+
+  .mbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: rgba(250, 247, 242, .97); border-top: 1px solid var(--line); box-shadow: 0 -12px 32px rgba(15, 76, 69, .08); }
+  @media (min-width: 1100px) { .mbar { display: none !important; } }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const mega = document.querySelector<HTMLElement>('[data-mega]')!;
+  const megaBtn = document.querySelector<HTMLButtonElement>('[data-mega-toggle]')!;
+  const mobile = document.querySelector<HTMLElement>('[data-mobile]')!;
+  const openBtn = document.querySelector<HTMLButtonElement>('[data-mobile-open]')!;
+  const closeBtn = document.querySelector<HTMLButtonElement>('[data-mobile-close]')!;
+  const mbar = document.querySelector<HTMLElement>('[data-mbar]')!;
+  let fieldFocused = false;
+
+  const sync = () => {
+    const y = window.scrollY;
+    const megaOpen = !mega.hidden;
+    header.classList.toggle('is-scrolled', y > 24);
+    header.classList.toggle('is-solid', y > 24 || megaOpen);
+    mbar.hidden = !(y > 640 && mobile.hidden && !fieldFocused);
+  };
+  const setMega = (open: boolean) => { mega.hidden = !open; megaBtn.setAttribute('aria-expanded', String(open)); sync(); };
+  const setMobile = (open: boolean) => {
+    mobile.hidden = !open;
+    document.body.style.overflow = open ? 'hidden' : '';
+    (open ? closeBtn : openBtn).focus();
+    sync();
+  };
+
+  megaBtn.addEventListener('click', () => setMega(mega.hidden));
+  document.querySelector('[data-mega-close]')!.addEventListener('click', () => { setMega(false); megaBtn.focus(); });
+  document.addEventListener('click', (e) => { if (!mega.hidden && !header.contains(e.target as Node)) setMega(false); });
+  openBtn.addEventListener('click', () => setMobile(true));
+  closeBtn.addEventListener('click', () => setMobile(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    if (!mega.hidden) { setMega(false); megaBtn.focus(); }
+    if (!mobile.hidden) setMobile(false);
+  });
+  document.addEventListener('focusin', (e) => { fieldFocused = (e.target as Element).matches?.('input,textarea,select') ?? false; sync(); });
+  window.addEventListener('scroll', sync, { passive: true });
+  sync();
+</script>

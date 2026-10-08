@@ -1,0 +1,41 @@
+---
+import Icon from '../Icon.astro';
+const flow = [
+  { icon: 'ring_volume', label: 'Call or chat comes in', sub: 'Any hour, any day', c: 'com' },
+  { icon: 'smart_toy', label: 'AI answers', sub: 'From your approved knowledge', c: 'rec' },
+  { icon: 'person_check', label: 'Lead qualified', sub: 'Added to your pipeline', c: 'web' },
+  { icon: 'event_available', label: 'Appointment booked', sub: 'On your real calendar', c: 'pipe' },
+  { icon: 'how_to_reg', label: 'Team follows up', sub: 'After a person approves', c: 'infra' },
+];
+---
+<ol class="flow" aria-label="How a lead moves through Hazirminds" data-flow>
+  {flow.map((s, i) => (
+    <li class={'c-' + s.c}>
+      {i < flow.length - 1 && <span class={'track c-' + flow[i + 1].c} aria-hidden="true"><span class="pulse" style={`animation-delay:${(i * 0.32).toFixed(2)}s`}></span></span>}
+      <span class="node"><Icon name={s.icon} size={30} /></span>
+      <b>{s.label}</b>
+      <span class="sub">{s.sub}</span>
+    </li>
+  ))}
+</ol>
+<style>
+  .flow { list-style: none; padding: 0; margin: clamp(40px, 5vw, 56px) auto 0; max-width: 1080px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 24px; }
+  li { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 0 8px; }
+  .node { width: 64px; height: 64px; border-radius: 20px; background: var(--tile); color: var(--tint); display: flex; align-items: center; justify-content: center; transition: transform .45s, box-shadow .45s, background .45s, color .45s; }
+  li:global(.is-on) .node { background: var(--tint); color: #fff; transform: scale(1.08); box-shadow: 0 14px 30px color-mix(in srgb, var(--tint) 25%, transparent); }
+  b { font-size: 15px; line-height: 1.3; }
+  .sub { display: none; font-size: 13px; line-height: 1.4; color: var(--muted); max-width: 18ch; }
+  .track { display: none; position: absolute; top: 31px; left: calc(50% + 42px); width: calc(100% - 84px); height: 3px; border-radius: 2px; background: var(--tile); }
+  .pulse { position: absolute; top: -3px; width: 9px; height: 9px; border-radius: 50%; background: var(--tint); animation: flow 1.6s linear infinite; }
+  @keyframes flow { 0% { left: -6px; opacity: 0; } 12% { opacity: 1; } 88% { opacity: 1; } 100% { left: calc(100% - 3px); opacity: 0; } }
+  @media (min-width: 760px) { .flow { grid-template-columns: repeat(5, minmax(0, 1fr)); } .sub, .track { display: block; } }
+</style>
+<script>
+  const root = document.querySelector('[data-flow]');
+  const items = root ? Array.from(root.children) : [];
+  if (items.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let i = 0;
+    const tick = () => { items.forEach((el, j) => el.classList.toggle('is-on', j === i)); i = (i + 1) % items.length; };
+    tick(); setInterval(tick, 1600);
+  }
+</script>

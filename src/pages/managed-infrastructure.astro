@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import CallWalkthrough from '../components/demos/CallWalkthrough.astro';
+---
+<Base title="Secure, Managed Infrastructure" description="Secure, Managed Infrastructure from Hazirminds: an isolated environment for each client on AWS in the United States, with monitoring, maintenance and updates included." current="services">
+<section aria-labelledby="h1" style="padding:clamp(32px,4vw,48px) 0 clamp(48px,5.5vw,80px)">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;margin-bottom:clamp(32px,5vw,64px)"><a href="/">Home</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><a href="/services">Services</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><span aria-current="page" style="color:#585E5A">Secure, Managed Infrastructure</span></nav>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(40px,6vw,80px);align-items:center">
+<div style="display:flex;flex-direction:column;gap:24px">
+<p style="display:flex;align-items:center;gap:10px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60"><span style="width:32px;height:32px;border-radius:8px;background:#E6E0F5;color:#5B3E9A;display:flex;align-items:center;justify-content:center"><span class="ms" aria-hidden="true" style="font-size:20px;color:#5B3E9A">shield_lock</span></span>Underneath everything</p>
+<h1 id="h1" style="font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1.15;letter-spacing:-0.025em;text-wrap:balance">Secure, Managed Infrastructure</h1>
+<p style="font-weight:600;font-size:clamp(20px,2vw,24px);line-height:1.35;letter-spacing:-0.01em;color:#0F4C45;text-wrap:balance">Enterprise-grade security, fully managed — so you don't have to think about it.</p>
+<p style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#2F3633;max-width:58ch">Every Hazirminds client gets an isolated environment, hosted on AWS in the United States, with monitoring, maintenance and updates included. It runs underneath every service we provide, and we manage it for you.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px"><a class="x1" href="/book-a-discovery-call?solve=Security%20review" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;font-weight:600;font-size:16px;text-decoration:none;transition:background .15s,box-shadow .15s">Book a Discovery Call</a><a class="x2" href="#demo" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #0F4C45;color:#0F4C45;font-weight:600;font-size:16px;text-decoration:none;transition:background .15s">Follow a call</a></div>
+</div>
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:16px;box-shadow:0 24px 64px rgba(15,76,69,.10),0 2px 6px rgba(26,33,31,.05);overflow:hidden">
+<div style="display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #DED5C6;background:#F5F1EA"><span style="width:10px;height:10px;border-radius:50%;background:#DED5C6"></span><span style="width:10px;height:10px;border-radius:50%;background:#DED5C6"></span><span style="width:10px;height:10px;border-radius:50%;background:#DED5C6"></span><span style="font-size:13px;color:#585E5A;margin-left:12px">Your environment</span><span style="flex:1"></span><span style="display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:#F7ECD6;color:#7A4E00;font-weight:600;font-size:12px">Sample data</span></div>
+<div style="padding:24px;display:flex;flex-direction:column;gap:20px"><div style="display:flex;align-items:center;gap:14px"><span style="width:48px;height:48px;border-radius:12px;background:#0F4C45;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">deployed_code</span></span><div style="flex:1;min-width:0"><b style="font-size:17px">Oakline Home Services</b><p style="font-size:14px;color:#585E5A">Isolated environment</p></div><span style="display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 10px;border-radius:999px;background:#E5F0E8;color:#1E6B3E;font-weight:600;font-size:13px;white-space:nowrap"><span class="ms" aria-hidden="true" style="font-size:16px;color:#1E6B3E">check</span>Healthy</span></div>
+<dl style="display:flex;flex-direction:column">
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">cloud</span><dt style="font-size:14px;color:#585E5A;flex:1">Hosting</dt><dd style="font-weight:600;font-size:14px">AWS · United States</dd></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">lock</span><dt style="font-size:14px;color:#585E5A;flex:1">In transit</dt><dd style="font-weight:600;font-size:14px">TLS encryption</dd></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">database</span><dt style="font-size:14px;color:#585E5A;flex:1">At rest</dt><dd style="font-weight:600;font-size:14px">AES-256 encryption</dd></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">badge</span><dt style="font-size:14px;color:#585E5A;flex:1">Access</dt><dd style="font-weight:600;font-size:14px">Role-based</dd></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">monitor_heart</span><dt style="font-size:14px;color:#585E5A;flex:1">Monitoring</dt><dd style="font-weight:600;font-size:14px">Continuous</dd></div>
+<div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">backup</span><dt style="font-size:14px;color:#585E5A;flex:1">Backups</dt><dd style="font-weight:600;font-size:14px">Stored separately</dd></div>
+</dl></div>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="ps-h" style="background:#F0ECF8;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:720px;margin-bottom:48px"><h2 id="ps-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">Problems it solves</h2><p style="font-size:18px;line-height:1.6;color:#2F3633">Three everyday problems Secure, Managed Infrastructure takes off your plate.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:24px">
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">The problem</p><h3 style="font-weight:600;font-size:24px;line-height:1.3;letter-spacing:-0.01em">Nobody owns the technology</h3><div style="height:1px;background:#DED5C6"></div><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">What changes</p><p style="font-size:18px;line-height:1.6;color:#2F3633">We manage hosting, monitoring, maintenance and updates.</p></div>
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">The problem</p><h3 style="font-weight:600;font-size:24px;line-height:1.3;letter-spacing:-0.01em">You're not sure where your data lives</h3><div style="height:1px;background:#DED5C6"></div><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">What changes</p><p style="font-size:18px;line-height:1.6;color:#2F3633">In your own isolated environment on AWS in the United States.</p></div>
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:12px;padding:32px;display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">The problem</p><h3 style="font-weight:600;font-size:24px;line-height:1.3;letter-spacing:-0.01em">Security feels like a full-time job</h3><div style="height:1px;background:#DED5C6"></div><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">What changes</p><p style="font-size:18px;line-height:1.6;color:#2F3633">Encryption, role-based access and audit logs are built in.</p></div>
+</div>
+</div>
+</section>
+<section aria-labelledby="get-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px"><h2 id="get-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">What you get</h2><p style="font-size:18px;line-height:1.6;color:#2F3633;max-width:44ch">Everything in the standard Secure, Managed Infrastructure service.</p></div>
+<ul style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px">
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#E6E0F5;color:#5B3E9A;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#5B3E9A">deployed_code</span></span><div><b style="font-size:17px">An isolated environment</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Yours alone, enforced at the database level.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#E6E0F5;color:#5B3E9A;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#5B3E9A">cloud</span></span><div><b style="font-size:17px">AWS hosting in the US</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Your data stays on US servers.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#E6E0F5;color:#5B3E9A;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#5B3E9A">lock</span></span><div><b style="font-size:17px">Encryption</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">TLS in transit, AES-256 at rest.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#E6E0F5;color:#5B3E9A;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#5B3E9A">badge</span></span><div><b style="font-size:17px">Role-based access and audit trail</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Every consequential action is logged.</p></div></li>
+<li style="display:flex;gap:16px;padding:24px;background:#fff;border:1px solid #DED5C6;border-radius:12px"><span style="width:44px;height:44px;border-radius:12px;background:#E6E0F5;color:#5B3E9A;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:24px;color:#5B3E9A">monitor_heart</span></span><div><b style="font-size:17px">Monitoring, backups and maintenance</b><p style="font-size:15px;line-height:1.5;color:#585E5A;margin-top:4px">Plus updates. All managed for you.</p></div></li>
+</ul>
+</div>
+</section>
+<section aria-labelledby="how-h" style="border-top:1px solid #DED5C6;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<h2 id="how-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em;margin-bottom:48px">How it works</h2>
+<ol style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px">
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #2B5C8F"><span style="font-weight:700;font-size:15px;color:#2B5C8F">Step 1</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">We set up your isolated environment</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">On AWS in the United States, separate from every other client.</p></li>
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #8A5A00"><span style="font-weight:700;font-size:15px;color:#8A5A00">Step 2</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">We connect your services</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">Each Hazirminds service you use runs inside it.</p></li>
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #A23E1E"><span style="font-weight:700;font-size:15px;color:#A23E1E">Step 3</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">We monitor and maintain it</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">Monitoring, backups, maintenance and updates are on us.</p></li>
+<li style="display:flex;flex-direction:column;gap:16px;padding-top:24px;border-top:2px solid #0F6B57"><span style="font-weight:700;font-size:15px;color:#0F6B57">Step 4</span><h3 style="font-weight:600;font-size:20px;line-height:1.3">We keep you informed</h3><p style="font-size:16px;line-height:1.6;color:#2F3633">If something goes wrong, you hear from us within 72 hours of a confirmed incident.</p></li>
+</ol>
+</div>
+</section>
+<section aria-labelledby="lane-h" style="background:#0F4C45;color:#FAF7F2;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#DCE7E4">Straight answers</p><h2 id="lane-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em;text-wrap:balance">What's in place, and what isn't yet</h2><p style="font-size:18px;line-height:1.6;color:#DCE7E4;max-width:44ch">We'll never claim a certification we don't hold.</p><a href="/security" style="color:#FAF7F2;font-weight:600;font-size:16px;margin-top:8px">Security &amp; data protection →</a></div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column">
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">verified</span><p style="font-size:17px;line-height:1.55">Registered North Carolina business.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">lock</span><p style="font-size:17px;line-height:1.55">Encryption in transit (TLS) and at rest (AES-256).</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">deployed_code</span><p style="font-size:17px;line-height:1.55">An isolated environment for each client, enforced at the database level.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">notifications</span><p style="font-size:17px;line-height:1.55">Incident notice without undue delay, and no later than 72 hours after we're notified of a confirmed incident.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">pending</span><p style="font-size:17px;line-height:1.55">We don't hold SOC 2 or ISO 27001 today. We'll pursue formal certification when client requirements call for it.</p></li>
+<li style="display:flex;gap:16px;padding:20px 0;border-top:1px solid rgba(250,247,242,.2);border-bottom:1px solid rgba(250,247,242,.2)"><span class="ms" aria-hidden="true" style="font-size:24px;color:#D6A552">medical_information</span><p style="font-size:17px;line-height:1.55">Work involving health information is scoped separately before any health data is processed.</p></li>
+</ul>
+</div>
+</section>
+<CallWalkthrough />
+<section aria-labelledby="inc-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<h2 id="inc-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em;margin-bottom:48px">Included vs. scoped separately</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:24px">
+<div style="background:#fff;border:1.5px solid #0F4C45;border-radius:16px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:20px"><div style="display:flex;align-items:center;gap:12px"><span class="ms" aria-hidden="true" style="font-size:28px;color:#0F4C45">check_circle</span><h3 style="font-weight:600;font-size:24px;line-height:1.3">Included in the standard service</h3></div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5">
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Your own isolated environment</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Managed AWS hosting in the United States</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Monitoring, backups and maintenance</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Updates</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Encryption in transit and at rest</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">check</span>Incident notification within 72 hours</li>
+</ul>
+<p style="font-size:15px;line-height:1.5;color:#585E5A;padding-top:16px;border-top:1px solid #DED5C6">Part of every standard Hazirminds service.</p>
+</div>
+<div style="background:#F0EAE0;border-radius:16px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:20px"><div style="display:flex;align-items:center;gap:12px"><span class="ms" aria-hidden="true" style="font-size:28px;color:#585E5A">tune</span><h3 style="font-weight:600;font-size:24px;line-height:1.3">Scoped and quoted separately</h3></div>
+<ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5">
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#585E5A">add</span>Bring your own server, with responsibilities agreed in writing</li>
+<li style="display:flex;gap:10px"><span class="ms" aria-hidden="true" style="font-size:20px;color:#585E5A">add</span>Work involving health information</li>
+</ul>
+<p style="font-size:15px;line-height:1.5;color:#585E5A;padding-top:16px;border-top:1px solid #DED5C6;margin-top:auto">A setup fee applies only when customization is required. <a href="/pricing">How pricing works</a></p>
+</div>
+</div>
+</div>
+</section>
+<section aria-labelledby="faq-h" style="background:#F0ECF8;padding:clamp(48px,5.5vw,80px) 0">
+<div class="faq-cols" style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px"><h2 id="faq-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">Infrastructure questions</h2><a href="/faq?topic=infra" style="font-weight:600;font-size:16px">See all questions →</a></div>
+<div style="min-width:0;border-bottom:1px solid #DED5C6">
+<details open="" style="border-top:1px solid #DED5C6"><summary class="x3" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Where is my data stored?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">On AWS in the United States, in your own isolated environment.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x4" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Is my data kept separate from other clients?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Yes. Each client gets an isolated environment, enforced at the database level.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x5" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Can we host on our own server?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Yes, as a separately scoped option. Responsibilities for that server are agreed in writing. The monitoring, backups and maintenance described here apply to managed hosting.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x6" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">Do you hold SOC 2, ISO 27001 or HIPAA certification?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">Not today. We'll pursue formal certification when client requirements call for it, and we will never claim a certification we don't hold. Work involving health information is scoped separately before any health data is processed.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x7" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">What happens if there's a security incident?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">We notify you without undue delay, and no later than 72 hours after we're notified of a confirmed incident, with what happened, what data was affected and the steps we're taking.</p></details>
+<details style="border-top:1px solid #DED5C6"><summary class="x8" style="display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 0;font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">What happens to my data if I leave?<span class="hm-plus ms" aria-hidden="true" style="font-size:26px;color:#0F4C45;transition:transform .15s">add</span></summary><p style="font-size:17px;line-height:1.6;color:#2F3633;padding:0 0 24px;max-width:64ch">You get a full export in a standard format within 90 days.</p></details>
+</div>
+</div>
+</section>
+<section aria-labelledby="cta-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<div style="background:#0F4C45;color:#FAF7F2;border-radius:24px;padding:clamp(40px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:32px;align-items:center">
+<div style="display:flex;flex-direction:column;gap:16px"><h2 id="cta-h" style="font-weight:700;font-size:clamp(30px,3.6vw,44px);line-height:1.12;letter-spacing:-0.025em;text-wrap:balance">Not sure where AI fits into your business yet?</h2><p style="font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:#DCE7E4;max-width:48ch">That's exactly what the first conversation is for. No pressure, no pitch — just a look at what's possible for you.</p></div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;width:fit-content"><a class="x9" href="/book-a-discovery-call" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:56px;padding:0 32px;border-radius:999px;background:#FAF7F2;color:#0F4C45;font-weight:600;font-size:17px;text-decoration:none;transition:background .15s">Book a Discovery Call<span class="ms" aria-hidden="true" style="font-size:20px;color:inherit">arrow_forward</span></a><span style="display:inline-flex;align-items:center;gap:6px;font-size:15px;color:#DCE7E4"><span class="ms" aria-hidden="true" style="font-size:18px;color:#DCE7E4">schedule</span>A 15-minute call</span></div>
+</div>
+</div>
+</section>
+
+</Base>
+
+<style>
+.x1:hover{background:#0B3A35 !important;color:#FAF7F2 !important;box-shadow:0 12px 32px rgba(15,76,69,.18) !important}
+.x2:hover{background:#E3EDE9 !important;color:#0B3A35 !important}
+.x3:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x4:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x5:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x6:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x7:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x8:focus-visible{outline:2px solid #1D6B60 !important;outline-offset:2px !important}
+.x9:hover{background:#E3EDE9 !important;color:#0B3A35 !important}
+</style>

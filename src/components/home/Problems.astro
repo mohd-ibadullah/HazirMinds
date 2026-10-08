@@ -1,0 +1,91 @@
+---
+import Icon from '../Icon.astro';
+const SV = {
+  rec: { c: 'rec', name: 'AI Receptionist', icon: 'call', line: 'Answers inbound calls, handles inquiries, and delivers messages with transcript and callback details.', cta: 'Explore AI Receptionist →', href: '/ai-receptionist' },
+  recBook: { c: 'rec', name: 'AI Receptionist', icon: 'call', line: 'Answers calls and books appointments directly. Booking is standard.', cta: 'Explore AI Receptionist →', href: '/ai-receptionist' },
+  web: { c: 'web', name: 'AI-Powered Website', icon: 'language', line: 'Built-in AI chat and voice that capture and qualify visitors.', cta: 'Explore AI-Powered Website →', href: '/ai-powered-website' },
+  com: { c: 'com', name: 'Automated Communications', icon: 'forward_to_inbox', line: 'Confirmations, follow-ups and reminders through workflows you approve.', cta: 'Explore Automated Communications →', href: '/automated-communications' },
+  pipe: { c: 'pipe', name: 'Client Pipeline & Dashboard', icon: 'view_kanban', line: 'One place to track leads, client activity, deals and call history.', cta: 'Explore Pipeline & Dashboard →', href: '/client-pipeline-dashboard' },
+} as const;
+type K = keyof typeof SV;
+const PROBS: { label: string; solution: string; ps: [string, string, string, string]; services: K[] }[] = [
+  { label: 'Missed calls or slow replies', solution: 'AI Receptionist answers instantly, 24/7', ps: ['call', 'Call answered · 2:14 a.m.', 'Transcript and callback details saved', 'Answered'], services: ['rec'] },
+  { label: 'Manual scheduling back-and-forth', solution: 'AI books appointments directly', ps: ['event_available', 'Appointment booked', 'Thursday morning · confirmation sent', 'Booked'], services: ['recBook'] },
+  { label: 'Leads go cold before follow-up', solution: 'Automated follow-up sequences', ps: ['forward_to_inbox', 'Follow-up ready to send', 'Dana R. · waiting for your approval', 'Waiting'], services: ['com', 'pipe'] },
+  { label: 'Website just sits there, no leads', solution: 'AI-driven site actively captures and qualifies visitors', ps: ['chat', 'New visitor qualified', 'Asked about services · left contact details', 'New lead'], services: ['web'] },
+  { label: 'Owner is doing everything', solution: "AI handles repetitive front-line tasks, freeing the owner's time", ps: ['task_alt', 'Front-line tasks handled', 'Calls answered · follow-ups queued for approval', 'Today'], services: ['rec', 'com'] },
+];
+---
+<section class="section c-rec bg-wash" aria-labelledby="sf-h" data-probs style="margin-top:clamp(40px,5vw,64px)">
+  <div class="container split">
+    <div class="stack">
+      <p class="eyebrow">The problems we solve</p>
+      <h2 id="sf-h" class="h2 h2-lg">Sound familiar?</h2>
+      <p class="body-lg" style="max-width:44ch">Pick the one that sounds most like your week. We'll show you where we'd start.</p>
+      <div role="tablist" aria-orientation="vertical" aria-label="Common problems" class="ptabs">
+        {PROBS.map((p, i) => (
+          <button type="button" role="tab" id={'pt-' + i} aria-controls={'pp-' + i} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} class="ptab">{p.label}<Icon name="arrow_forward" size={22} /></button>
+        ))}
+      </div>
+    </div>
+    {PROBS.map((p, i) => {
+      const lead = SV[p.services[0]];
+      return (
+        <div role="tabpanel" id={'pp-' + i} aria-labelledby={'pt-' + i} class="card card-pad stack ppanel" style="--gap:24px" hidden={i !== 0}>
+          <p class="eyebrow" style="color:var(--muted)">What we do about it</p>
+          <h3 class="ptitle">{p.solution}</h3>
+          <div class="stack" style="--gap:8px">
+            <div class={'psrow c-' + lead.c}>
+              <span class="tile"><Icon name={p.ps[0]} /></span>
+              <div style="flex:1;min-width:0"><b style="font-size:16px">{p.ps[1]}</b><p class="small" style="font-size:14px">{p.ps[2]}</p></div>
+              <span class="chip chip-tint">{p.ps[3]}</span>
+            </div>
+            <span class="small" style="font-size:13px;align-self:flex-end">Sample data</span>
+          </div>
+          <div class="grid-auto" style="--min:220px;--gap:16px">
+            {p.services.map((k, j) => {
+              const s = SV[k];
+              return (
+                <a href={s.href} class={'card card-link svc c-' + s.c}>
+                  <span class="eyebrow" style="font-size:12px">{j === 0 ? 'Start here' : 'Then, if needed'}</span>
+                  <span class="row"><span class="tile tile-md"><Icon name={s.icon} /></span><b style="font-size:18px;line-height:1.3">{s.name}</b></span>
+                  <span style="font-size:15px;line-height:1.5;color:var(--ink-2)">{s.line}</span>
+                  <span class="svc-cta">{s.cta}</span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>
+<style>
+  .ptabs { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .ptab { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; padding: 12px 20px; border-radius: 12px; border: 1px solid var(--line); background: #fff; color: var(--ink); font-weight: 600; font-size: 17px; line-height: 1.4; text-align: left; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+  .ptab[aria-selected='true'] { background: var(--green); border-color: var(--green); color: var(--cream); }
+  .ptitle { font-weight: 700; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.2; letter-spacing: -.02em; text-wrap: balance; }
+  .psrow { display: flex; align-items: center; gap: 16px; padding: 20px; border-radius: 12px; background: var(--cream); border: 1px solid var(--line-2); }
+  .svc { flex-direction: column; gap: 12px; padding: 24px; border-radius: 12px; }
+  .svc .eyebrow { color: var(--tint); }
+  .svc-cta { margin-top: auto; font-weight: 600; font-size: 15px; color: var(--green); text-decoration: underline; text-underline-offset: 4px; }
+</style>
+<script>
+  const root = document.querySelector<HTMLElement>('[data-probs]');
+  if (root) {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role=tab]'));
+    const panels = root.querySelectorAll<HTMLElement>('[role=tabpanel]');
+    const pick = (i: number, focus = false) => {
+      tabs.forEach((t, j) => { const on = j === i; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
+      panels.forEach((p, j) => (p.hidden = j !== i));
+      if (focus) tabs[i].focus();
+    };
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => pick(i));
+      t.addEventListener('keydown', (e) => {
+        const d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (d) { e.preventDefault(); pick((i + d + tabs.length) % tabs.length, true); }
+      });
+    });
+  }
+</script>

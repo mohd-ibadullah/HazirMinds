@@ -1,0 +1,99 @@
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,400px),1fr));gap:clamp(40px,6vw,96px);align-items:start">
+
+<div style="display:flex;flex-direction:column;gap:24px;position:{{ asidePos }};top:112px">
+<h1 style="font-weight:700;font-size:clamp(34px,4vw,48px);line-height:1.15;letter-spacing:-0.025em">Book a Discovery Call</h1>
+<p style="font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:#2F3633;max-width:48ch">Not sure where AI fits into your business yet? That's exactly what the first conversation is for. No pressure, no pitch — just a look at what's possible for you.</p>
+<div style="display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">schedule</span>A 15-minute call</div>
+<div style="display:flex;flex-direction:column;gap:20px;padding:28px;border-radius:16px;background:#F0EAE0;margin-top:8px">
+<h2 style="font-weight:600;font-size:20px;line-height:1.3">What to expect</h2>
+<ol style="list-style:none;padding:0;display:flex;flex-direction:column;gap:16px">
+<li style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:#0F4C45;color:#FAF7F2;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none">1</span><p style="font-size:16px;line-height:1.55">We learn about your business and the challenge on your mind.</p></li>
+<li style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:#0F4C45;color:#FAF7F2;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none">2</span><p style="font-size:16px;line-height:1.55">We share where AI could help, and where it may not be needed.</p></li>
+<li style="display:flex;gap:14px"><span style="width:28px;height:28px;border-radius:50%;background:#0F4C45;color:#FAF7F2;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none">3</span><p style="font-size:16px;line-height:1.55">You leave with a clear next step and no obligation.</p></li>
+</ol>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:15px;color:#585E5A"><span>Prefer email or phone?</span><span><a href="mailto:contact@hazirminds.ai">contact@hazirminds.ai</a> · <a href="tel:+19199247608">919-924-7608</a></span></div>
+</div>
+
+<div ref="{{ cardRef }}" tabIndex="-1" style="background:#fff;border:1px solid #DED5C6;border-radius:16px;padding:clamp(24px,3.5vw,48px);box-shadow:0 24px 64px rgba(15,76,69,.08);scroll-margin-top:88px;outline:none">
+<sc-if value="{{ isForm }}" hint-placeholder-val="{{ true }}">
+<form noValidate="" onSubmit="{{ onSubmit }}" style="display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><b style="font-size:16px">Step {{ stepNum }} of 2</b><span style="font-size:15px;color:#585E5A">{{ stepName }}</span></div>
+<div aria-hidden="true" style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><span style="height:6px;border-radius:3px;background:#0F4C45"></span><span style="height:6px;border-radius:3px;background:{{ seg2 }};transition:background .3s"></span></div>
+</div>
+
+<sc-if value="{{ hasErrors }}" hint-placeholder-val="{{ false }}">
+<div role="alert" style="display:flex;gap:12px;padding:16px 20px;border-radius:12px;background:#F8E3E0;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:24px">error</span><div><b style="font-size:16px">{{ errorTitle }}</b><p style="font-size:15px;line-height:1.5;color:#1A211F;margin-top:4px">{{ errorList }}</p></div></div>
+</sc-if>
+
+<input type="text" name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" value="{{ hp }}" onChange="{{ setHp }}" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);border:0;opacity:0">
+
+<sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-name" style="font-weight:600;font-size:15px">Full name</label><input id="f-name" type="text" autoComplete="name" value="{{ name }}" onChange="{{ setName }}" aria-invalid="{{ eNameOn }}" aria-describedby="f-name-err" style="height:52px;width:100%;border:{{ bName }};border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"><sc-if value="{{ eNameOn }}" hint-placeholder-val="{{ false }}"><span id="f-name-err" style="display:flex;align-items:center;gap:6px;font-size:14px;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:18px">error</span>{{ eName }}</span></sc-if></div>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-email" style="font-weight:600;font-size:15px">Email</label><input id="f-email" type="email" autoComplete="email" inputMode="email" value="{{ email }}" onChange="{{ setEmail }}" aria-invalid="{{ eEmailOn }}" aria-describedby="f-email-hint f-email-err" style="height:52px;width:100%;border:{{ bEmail }};border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"><span id="f-email-hint" style="font-size:14px;color:#585E5A">A personal email is fine.</span><sc-if value="{{ eEmailOn }}" hint-placeholder-val="{{ false }}"><span id="f-email-err" style="display:flex;align-items:center;gap:6px;font-size:14px;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:18px">error</span>{{ eEmail }}</span></sc-if></div>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-co" style="font-weight:600;font-size:15px">Company or organization name</label><input id="f-co" type="text" autoComplete="organization" value="{{ company }}" onChange="{{ setCompany }}" aria-invalid="{{ eCompanyOn }}" aria-describedby="f-co-err" style="height:52px;width:100%;border:{{ bCompany }};border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"><sc-if value="{{ eCompanyOn }}" hint-placeholder-val="{{ false }}"><span id="f-co-err" style="display:flex;align-items:center;gap:6px;font-size:14px;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:18px">error</span>{{ eCompany }}</span></sc-if></div>
+<button type="submit" style="align-self:stretch;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;border:none;font:600 16px Inter,sans-serif;cursor:pointer;transition:background .15s" style-hover="background:#0B3A35" style-active="background:#082C28" style-focus="outline:2px solid #1D6B60;outline-offset:3px">Continue<span class="ms" aria-hidden="true" style="font-size:20px">arrow_forward</span></button>
+</sc-if>
+
+<sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+<fieldset style="display:flex;flex-direction:column;gap:12px" aria-describedby="f-size-err"><legend style="font-weight:600;font-size:15px;margin-bottom:12px">Company size</legend>
+<div role="radiogroup" style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ sizes }}" as="o" hint-placeholder-count="6"><button type="button" role="radio" aria-checked="{{ o.sel }}" onClick="{{ o.go }}" style="display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px;border-radius:999px;border:{{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:{{ o.fw }} 15px Inter,sans-serif;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px">{{ o.label }}</button></sc-for></div>
+<sc-if value="{{ eSizeOn }}" hint-placeholder-val="{{ false }}"><span id="f-size-err" style="display:flex;align-items:center;gap:6px;font-size:14px;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:18px">error</span>{{ eSize }}</span></sc-if>
+</fieldset>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-ind" style="font-weight:600;font-size:15px">Industry</label>
+<select id="f-ind" value="{{ industry }}" onChange="{{ setIndustry }}" aria-invalid="{{ eIndustryOn }}" aria-describedby="f-ind-err" style="height:52px;width:100%;border:{{ bIndustry }};border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45">
+<option value="">Choose one</option><option>Home &amp; field services</option><option>Professional services</option><option>Real estate &amp; property</option><option>Healthcare &amp; wellness</option><option>Retail &amp; e-commerce</option><option>Hospitality, restaurants &amp; events</option><option>Schools &amp; education</option><option>Nonprofit, faith or community organization</option><option>Other</option>
+</select>
+<sc-if value="{{ eIndustryOn }}" hint-placeholder-val="{{ false }}"><span id="f-ind-err" style="display:flex;align-items:center;gap:6px;font-size:14px;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:18px">error</span>{{ eIndustry }}</span></sc-if></div>
+<fieldset style="display:flex;flex-direction:column;gap:12px" aria-describedby="f-solve-err"><legend style="font-weight:600;font-size:15px;margin-bottom:4px">What would you like to solve?</legend><span style="font-size:14px;color:#585E5A;margin-top:-4px">Pick all that apply.</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ solve }}" as="o" hint-placeholder-count="8"><button type="button" aria-pressed="{{ o.sel }}" onClick="{{ o.go }}" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 16px;border-radius:999px;border:{{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:{{ o.fw }} 15px/1.3 Inter,sans-serif;text-align:left;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px"><span class="ms" aria-hidden="true" style="font-size:18px;display:{{ o.chk }}">check</span>{{ o.label }}</button></sc-for></div>
+<sc-if value="{{ eSolveOn }}" hint-placeholder-val="{{ false }}"><span id="f-solve-err" style="display:flex;align-items:center;gap:6px;font-size:14px;color:#A4241B"><span class="ms" aria-hidden="true" style="font-size:18px">error</span>{{ eSolve }}</span></sc-if>
+</fieldset>
+<fieldset style="display:flex;flex-direction:column;gap:12px"><legend style="font-weight:600;font-size:15px;margin-bottom:12px">Timeline <span style="font-weight:400;color:#585E5A">(optional)</span></legend>
+<div role="radiogroup" style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ timeline }}" as="o" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ o.sel }}" onClick="{{ o.go }}" style="height:44px;padding:0 16px;border-radius:999px;border:{{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:{{ o.fw }} 15px Inter,sans-serif;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px">{{ o.label }}</button></sc-for></div>
+</fieldset>
+<fieldset style="display:flex;flex-direction:column;gap:12px"><legend style="font-weight:600;font-size:15px;line-height:1.4;margin-bottom:12px">Would a presentation to your board or leadership team help? <span style="font-weight:400;color:#585E5A">(optional)</span></legend>
+<div role="radiogroup" style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ board }}" as="o" hint-placeholder-count="2"><button type="button" role="radio" aria-checked="{{ o.sel }}" onClick="{{ o.go }}" style="height:44px;padding:0 16px;border-radius:999px;border:{{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:{{ o.fw }} 15px Inter,sans-serif;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px">{{ o.label }}</button></sc-for></div>
+</fieldset>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px">
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-tel" style="font-weight:600;font-size:15px">Phone <span style="font-weight:400;color:#585E5A">(optional)</span></label><input id="f-tel" type="tel" autoComplete="tel" value="{{ phone }}" onChange="{{ setPhone }}" style="height:52px;width:100%;border:1px solid #8A8F8B;border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"></div>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-heard" style="font-weight:600;font-size:15px">How did you hear about us? <span style="font-weight:400;color:#585E5A">(optional)</span></label><select id="f-heard" value="{{ heard }}" onChange="{{ setHeard }}" style="height:52px;width:100%;border:1px solid #8A8F8B;border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"><option value="">Choose one</option><option>Search engine</option><option>AI assistant (ChatGPT, Claude, Gemini, Perplexity, Copilot)</option><option>LinkedIn</option><option>Referral</option><option>Event or conference</option><option>Other</option></select></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px"><label for="f-notes" style="font-weight:600;font-size:15px">Anything else? <span style="font-weight:400;color:#585E5A">(optional)</span></label><textarea id="f-notes" rows="4" maxLength="500" value="{{ notes }}" onChange="{{ setNotes }}" aria-describedby="f-notes-count" style="width:100%;border:1px solid #8A8F8B;border-radius:12px;padding:14px 16px;font:16px/1.5 Inter,sans-serif;background:#fff;color:#1A211F;resize:vertical" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"></textarea><span id="f-notes-count" style="font-size:13px;color:#585E5A;align-self:flex-end">{{ notesCount }} / 500</span></div>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<button type="button" onClick="{{ back }}" style="display:inline-flex;align-items:center;justify-content:center;gap:6px;height:52px;padding:0 24px;border-radius:999px;border:1.5px solid #0F4C45;background:transparent;color:#0F4C45;font:600 16px Inter,sans-serif;cursor:pointer" style-hover="background:#E3EDE9" style-focus="outline:2px solid #1D6B60;outline-offset:3px"><span class="ms" aria-hidden="true" style="font-size:20px">arrow_back</span>Back</button>
+<button type="submit" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;border:none;font:600 16px Inter,sans-serif;cursor:pointer;transition:background .15s" style-hover="background:#0B3A35" style-active="background:#082C28" style-focus="outline:2px solid #1D6B60;outline-offset:3px">Choose a time<span class="ms" aria-hidden="true" style="font-size:20px">arrow_forward</span></button>
+</div>
+<p style="font-size:14px;line-height:1.5;color:#585E5A">By submitting, you agree to our <a href="/privacy">Privacy Policy</a>. We'll use your details to respond to your request.</p>
+</div>
+</sc-if>
+</form>
+</sc-if>
+
+<sc-if value="{{ isSchedule }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:24px">
+<div role="status" style="display:flex;gap:14px;padding:20px;border-radius:12px;background:#E5F0E8;color:#1E6B3E"><span class="ms" aria-hidden="true" style="font-size:24px">check_circle</span><div><b style="font-size:17px">Thanks, {{ firstName }}. Now pick a time.</b><p style="font-size:15px;line-height:1.5;color:#1A211F;margin-top:4px">We've sent a confirmation to {{ email }}.</p></div></div>
+<div style="display:flex;align-items:center;gap:10px;font-size:15px;color:#2F3633"><span class="ms" aria-hidden="true" style="font-size:20px;color:#0F4C45">person</span>Booking as <b>{{ name }}</b> · {{ email }}</div>
+<div style="position:relative;min-height:380px;border-radius:12px;border:1px solid #DED5C6;background:repeating-linear-gradient(135deg,#F5F1EA 0 10px,#EFE9DF 10px 20px);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center"><span style="font:13px/1.6 ui-monospace,Menlo,monospace;color:#585E5A;max-width:36ch">Scheduler embed · CRM booking calendar (Calendly or Cal.com if the CRM has none) · name and email prefilled · 15-minute slots</span></div>
+<button onClick="{{ picked }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 24px;border-radius:999px;background:#0F4C45;color:#FAF7F2;border:none;font:600 16px Inter,sans-serif;cursor:pointer" style-hover="background:#0B3A35" style-focus="outline:2px solid #1D6B60;outline-offset:3px">Simulate a booked time</button>
+</div>
+</sc-if>
+
+<sc-if value="{{ isThanks }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:24px">
+<span style="width:56px;height:56px;border-radius:50%;background:#E3EDE9;color:#0F4C45;display:flex;align-items:center;justify-content:center"><span class="ms" aria-hidden="true" style="font-size:30px">event_available</span></span>
+<h2 style="font-weight:700;font-size:clamp(26px,2.6vw,32px);line-height:1.2;letter-spacing:-0.02em">You're booked, {{ firstName }}</h2>
+<p style="font-size:17px;line-height:1.6;color:#2F3633">Here's what happens next.</p>
+<ol style="list-style:none;padding:0;display:flex;flex-direction:column;gap:16px">
+<li style="display:flex;gap:14px"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">mail</span><p style="font-size:16px;line-height:1.55">A confirmation email with your call time is on its way to {{ email }}.</p></li>
+<li style="display:flex;gap:14px"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">forum</span><p style="font-size:16px;line-height:1.55">On the call, we learn about your business and share where AI could help, and where it may not be needed.</p></li>
+<li style="display:flex;gap:14px"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">flag</span><p style="font-size:16px;line-height:1.55">You leave with a clear next step and no obligation.</p></li>
+</ol>
+<p style="font-size:14px;line-height:1.5;color:#585E5A;padding-top:16px;border-top:1px solid #DED5C6">In the live build this is /book/thank-you (noindex). The explainer video link is added in Round 2.</p>
+<button onClick="{{ restart }}" style="align-self:flex-start;background:none;border:none;padding:0;font:600 15px Inter,sans-serif;color:#0F4C45;text-decoration:underline;text-underline-offset:4px;cursor:pointer">Start the form again</button>
+</div>
+</sc-if>
+</div>
+</div>

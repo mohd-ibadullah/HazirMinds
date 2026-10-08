@@ -1,0 +1,33 @@
+<section id="opportunity-finder" aria-labelledby="of-h" style="padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<div style="display:flex;flex-direction:column;gap:16px;max-width:720px;margin-bottom:48px"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">Opportunity finder</p><h2 id="of-h" style="font-weight:700;font-size:clamp(28px,3vw,36px);line-height:1.2;letter-spacing:-0.02em">Where could AI help?</h2><p style="font-size:18px;line-height:1.6;color:#2F3633">Answer three quick questions and get one suggested starting point.</p></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;align-items:start">
+<div style="background:#fff;border:1px solid #DED5C6;border-radius:16px;padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:32px">
+<div style="display:flex;flex-direction:column;gap:10px"><label for="of-ind" style="font-weight:600;font-size:16px"><span style="color:#1D6B60">1.</span> Your industry</label>
+<select id="of-ind" value="{{ fInd }}" onChange="{{ setInd }}" style="height:52px;width:100%;border:1px solid #8A8F8B;border-radius:12px;padding:0 16px;font:16px Inter,sans-serif;background:#fff;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45"><option value="">Choose one</option><option>Home &amp; field services</option><option>Professional services</option><option>Real estate &amp; property</option><option>Healthcare &amp; wellness</option><option>Retail &amp; e-commerce</option><option>Hospitality, restaurants &amp; events</option><option>Schools &amp; education</option><option>Nonprofit, faith or community organization</option><option>Other</option></select></div>
+<fieldset style="display:flex;flex-direction:column;gap:12px"><legend style="font-weight:600;font-size:16px;margin-bottom:4px"><span style="color:#1D6B60">2.</span> Which of these sound familiar?</legend><span style="font-size:14px;color:#585E5A;margin-top:-4px">Pick all that apply. The first one you pick becomes your starting point.</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ fProbs }}" as="o" hint-placeholder-count="6"><button type="button" aria-pressed="{{ o.sel }}" onClick="{{ o.go }}" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:8px 16px;border-radius:999px;border:{{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:{{ o.fw }} 15px/1.3 Inter,sans-serif;text-align:left;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px"><span style="display:{{ o.chk }};min-width:20px;height:20px;border-radius:50%;background:#0F4C45;color:#FAF7F2;font-size:12px;font-weight:700;align-items:center;justify-content:center">{{ o.order }}</span>{{ o.label }}</button></sc-for></div>
+</fieldset>
+<fieldset style="display:flex;flex-direction:column;gap:12px"><legend style="font-weight:600;font-size:16px;margin-bottom:12px"><span style="color:#1D6B60">3.</span> What matters most right now?</legend>
+<div role="radiogroup" style="display:flex;flex-wrap:wrap;gap:8px"><sc-for list="{{ fPris }}" as="o" hint-placeholder-count="3"><button type="button" role="radio" aria-checked="{{ o.sel }}" onClick="{{ o.go }}" style="height:44px;padding:0 18px;border-radius:999px;border:{{ o.bd }};background:{{ o.bg }};color:{{ o.fg }};font:{{ o.fw }} 15px Inter,sans-serif;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px">{{ o.label }}</button></sc-for></div>
+</fieldset>
+</div>
+<div aria-live="polite" style="position:{{ resPos }};top:96px">
+<sc-if value="{{ noResult }}" hint-placeholder-val="{{ true }}">
+<div style="background:#fff;border:1px dashed #B9AE9C;border-radius:16px;padding:clamp(32px,4vw,48px);display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center"><span style="width:56px;height:56px;border-radius:50%;background:#F0EAE0;color:#585E5A;display:flex;align-items:center;justify-content:center"><span class="ms" aria-hidden="true" style="font-size:28px">travel_explore</span></span><b style="font-size:18px">Your starting point appears here</b><p style="font-size:16px;line-height:1.5;color:#585E5A;max-width:36ch">Pick at least one challenge to see a suggested starting point.</p></div>
+</sc-if>
+<sc-if value="{{ hasResult }}" hint-placeholder-val="{{ false }}">
+<div style="background:#0F4C45;color:#FAF7F2;border-radius:16px;padding:clamp(28px,3.5vw,44px);display:flex;flex-direction:column;gap:20px">
+<p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#DCE7E4">Start here</p>
+<h3 style="font-weight:700;font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-0.02em;text-wrap:balance">{{ startSvc }}</h3>
+<p style="font-size:17px;line-height:1.6;color:#DCE7E4">One right-sized solution first; we measure the results before adding anything.</p>
+<sc-if value="{{ hasLater }}" hint-placeholder-val="{{ false }}"><div style="display:flex;flex-direction:column;gap:10px;padding-top:20px;border-top:1px solid rgba(250,247,242,.2)"><p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#DCE7E4">Later, if needed</p><sc-for list="{{ later }}" as="l" hint-placeholder-count="1"><div style="display:flex;gap:10px;font-size:16px;line-height:1.5"><span class="ms" aria-hidden="true" style="font-size:20px;color:#D6A552">schedule</span>{{ l }}</div></sc-for></div></sc-if>
+<sc-if value="{{ hasCtx }}" hint-placeholder-val="{{ false }}"><p style="font-size:14px;color:#DCE7E4">{{ ctx }}</p></sc-if>
+<a href="{{ finderHref }}" style="align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:12px 24px;border-radius:999px;background:#FAF7F2;color:#0F4C45;font-weight:600;font-size:16px;line-height:1.3;text-decoration:none" style-hover="background:#E3EDE9;color:#0B3A35">Talk it through on a discovery call<span class="ms" aria-hidden="true" style="font-size:20px">arrow_forward</span></a>
+<p style="font-size:13px;color:#DCE7E4">Only your selections carry over. No personal details are added to the link.</p>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</section>

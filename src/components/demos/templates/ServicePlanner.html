@@ -1,0 +1,48 @@
+<section id="plan" aria-labelledby="plan-h" style="background:#E8F2EE;padding:clamp(48px,5.5vw,80px) 0;scroll-margin-top:64px">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">Plan your starting point</p>
+<h2 id="plan-h" style="font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.02em">Pick what you're interested in</h2>
+<p style="font-size:18px;line-height:1.6;color:#2F3633;max-width:48ch">See what's included, what's billed separately, and how the terms work. This isn't a quote.</p>
+<fieldset style="border:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px">
+<legend style="font-weight:600;font-size:15px;margin-bottom:12px">AI services</legend>
+<sc-for list="{{ aiOpts }}" as="o" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{ o.sel }}" onClick="{{ o.go }}" style="display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 18px;border-radius:12px;border:{{ o.bd }};background:{{ o.bg }};color:#1A211F;text-align:left;font:400 16px Inter,sans-serif;cursor:pointer;transition:border-color .15s,background .15s" style-hover="border-color:#0F4C45" style-focus="outline:2px solid #1D6B60;outline-offset:2px"><span class="ms" aria-hidden="true" style="font-size:24px;color:{{ o.boxFg }}">{{ o.box }}</span><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">{{ o.icon }}</span><span style="flex:1;font-weight:600">{{ o.name }}</span></button>
+</sc-for>
+<div style="display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 18px;border-radius:12px;border:1px dashed #8A8F8B"><span class="ms" aria-hidden="true" style="font-size:24px;color:#585E5A">lock</span><span class="ms" aria-hidden="true" style="font-size:22px;color:#5B3E9A">shield_lock</span><span style="flex:1;font-weight:600">Secure, Managed Infrastructure</span><span style="display:inline-flex;align-items:center;height:28px;padding:0 10px;border-radius:999px;background:#E3EDE9;color:#0F4C45;font-weight:600;font-size:13px">Always included</span></div>
+</fieldset>
+<fieldset style="border:none;padding:0;margin:16px 0 0;display:flex;flex-direction:column;gap:10px">
+<legend style="font-weight:600;font-size:15px;margin-bottom:12px">Custom work</legend>
+<sc-for list="{{ cwOpts }}" as="o" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{ o.sel }}" onClick="{{ o.go }}" style="display:flex;align-items:center;gap:14px;min-height:64px;padding:12px 18px;border-radius:12px;border:{{ o.bd }};background:{{ o.bg }};color:#1A211F;text-align:left;font:400 16px Inter,sans-serif;cursor:pointer;transition:border-color .15s,background .15s" style-hover="border-color:#0F4C45" style-focus="outline:2px solid #1D6B60;outline-offset:2px"><span class="ms" aria-hidden="true" style="font-size:24px;color:{{ o.boxFg }}">{{ o.box }}</span><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">{{ o.icon }}</span><span style="flex:1;font-weight:600">{{ o.name }}</span></button>
+</sc-for>
+</fieldset>
+</div>
+
+<div aria-live="polite" style="position:sticky;top:96px;background:#fff;border:1px solid #DED5C6;border-radius:16px;box-shadow:0 24px 64px rgba(15,76,69,.10);padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px"><h3 style="font-weight:700;font-size:22px;line-height:1.3">Your starting point</h3><span style="display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:#F5F1EA;color:#2F3633;font-weight:600;font-size:13px">{{ countLabel }}</span></div>
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:32px 16px;border:1px dashed #DED5C6;border-radius:12px"><span class="ms" aria-hidden="true" style="font-size:36px;color:#8A8F8B">checklist</span><p style="font-size:16px;line-height:1.55;color:#585E5A;max-width:32ch">Pick at least one service to see how it comes together.</p></div>
+</sc-if>
+<sc-if value="{{ hasPicks }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;gap:10px">
+<p style="font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A">You picked</p>
+<ul style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ picks }}" as="p" hint-placeholder-count="2"><li style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;background:{{ p.tBg }};color:{{ p.tFg }};font-weight:600;font-size:14px"><span class="ms" aria-hidden="true" style="font-size:18px">{{ p.icon }}</span>{{ p.name }}</li></sc-for>
+<li style="display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px;border-radius:999px;border:1px solid #DED5C6;color:#2F3633;font-weight:600;font-size:14px"><span class="ms" aria-hidden="true" style="font-size:18px;color:#5B3E9A">shield_lock</span>Managed Infrastructure · included</li>
+</ul>
+</div>
+<div style="display:flex;flex-direction:column">
+<p style="font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A;margin-bottom:4px">How it works out</p>
+<sc-for list="{{ terms }}" as="t" hint-placeholder-count="4"><div style="display:flex;gap:14px;padding:14px 0;border-top:1px solid #EEE8DE"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">{{ t.icon }}</span><p style="font-size:15px;line-height:1.55;color:#2F3633"><b style="color:#1A211F">{{ t.label }}</b><br>{{ t.text }}</p></div></sc-for>
+</div>
+<sc-if value="{{ startSmall }}" hint-placeholder-val="{{ false }}"><div style="display:flex;gap:12px;padding:16px;border-radius:12px;background:#E3EDE9"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">lightbulb</span><p style="font-size:15px;line-height:1.55;color:#1A211F"><b>Start small.</b> We usually begin with one service and add the next once the results are in.</p></div></sc-if>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px">
+<a href="{{ bookHref }}" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:999px;background:#0F4C45;color:#FAF7F2;font-weight:600;font-size:16px;text-decoration:none;transition:background .15s" style-hover="background:#0B3A35;color:#FAF7F2">Book a call about these<span class="ms" aria-hidden="true" style="font-size:20px">arrow_forward</span></a>
+<button type="button" onClick="{{ clear }}" style="background:none;border:none;padding:8px 0;font:600 15px Inter,sans-serif;color:#0F4C45;text-decoration:underline;text-underline-offset:4px;cursor:pointer" style-focus="outline:2px solid #1D6B60;outline-offset:2px">Clear</button>
+</div>
+</sc-if>
+<p style="font-size:14px;line-height:1.5;color:#585E5A;padding-top:16px;border-top:1px solid #DED5C6">Pricing is custom, based on your use case and complexity. <a href="/pricing">How pricing works</a></p>
+</div>
+</div>
+</section>

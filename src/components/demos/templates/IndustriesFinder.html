@@ -1,0 +1,71 @@
+<section aria-labelledby="h1" style="padding:clamp(32px,4vw,48px) 0 clamp(40px,5vw,56px)">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<nav aria-label="Breadcrumb" style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;margin-bottom:clamp(32px,5vw,64px)"><a href="/">Home</a><span class="ms" aria-hidden="true" style="font-size:16px;color:#585E5A">chevron_right</span><span aria-current="page" style="color:#585E5A">Industries</span></nav>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:clamp(32px,5vw,80px);align-items:end">
+<div style="display:flex;flex-direction:column;gap:24px">
+<p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">Industries</p>
+<h1 id="h1" style="font-weight:700;font-size:clamp(34px,4.4vw,56px);line-height:1.1;letter-spacing:-0.03em;text-wrap:balance">Small and mid-size businesses, in every industry</h1>
+<p style="font-size:clamp(17px,1.5vw,19px);line-height:1.6;color:#2F3633;max-width:52ch;text-wrap:pretty">There's no single niche. What the businesses we work with share is how they make money: calls, bookings and fast replies.</p>
+</div>
+<div role="search" style="display:flex;flex-direction:column;gap:8px">
+<label for="ind-q" style="font-weight:600;font-size:15px">Find your industry</label>
+<div style="position:relative">
+<span class="ms" aria-hidden="true" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:24px;color:#585E5A;pointer-events:none">search</span>
+<input id="ind-q" type="search" value="{{ q }}" onChange="{{ setQ }}" placeholder="e.g. dental, HVAC, catering" autocomplete="off" aria-describedby="ind-count" style="width:100%;height:60px;padding:0 56px 0 52px;border:1px solid #8A8F8B;border-radius:12px;background:#fff;font:400 17px Inter,sans-serif;color:#1A211F" style-focus="outline:2px solid #1D6B60;outline-offset:2px;border-color:#0F4C45">
+<sc-if value="{{ hasQ }}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{ clearQ }}" aria-label="Clear search" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:999px;border:none;background:transparent;color:#1A211F;display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:#F5F1EA" style-focus="outline:2px solid #1D6B60;outline-offset:0"><span class="ms" aria-hidden="true" style="font-size:22px">close</span></button></sc-if>
+</div>
+<p id="ind-count" aria-live="polite" style="font-size:14px;color:#585E5A">{{ countLabel }}</p>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Industries we serve" style="padding:0 0 clamp(48px,5.5vw,80px)">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px)">
+<sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+<ul style="list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:20px">
+<sc-for list="{{ results }}" as="r" hint-placeholder-count="12">
+<li style="background:{{ r.bg }};border:1px solid {{ r.bd }};border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;align-items:center;gap:14px"><span style="width:48px;height:48px;border-radius:12px;background:{{ r.chipBg }};color:#0F4C45;display:flex;align-items:center;justify-content:center;flex:none"><span class="ms" aria-hidden="true" style="font-size:26px">{{ r.icon }}</span></span><h2 style="font-weight:600;font-size:20px;line-height:1.3;letter-spacing:-0.01em">{{ r.name }}</h2></div>
+<ul aria-label="{{ r.segLabel }}" style="list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ r.segs }}" as="g" hint-placeholder-count="3"><li style="display:inline-flex;align-items:center;min-height:32px;padding:4px 12px;border-radius:999px;border:{{ g.bd }};background:{{ g.bg }};color:{{ g.fg }};font-weight:{{ g.fw }};font-size:14px;line-height:1.3">{{ g.label }}</li></sc-for>
+</ul>
+<sc-if value="{{ r.hasNote }}" hint-placeholder-val="{{ false }}"><p style="display:flex;gap:8px;font-size:14px;line-height:1.5;color:#585E5A"><span class="ms" aria-hidden="true" style="font-size:18px;color:#585E5A">info</span>{{ r.note }}</p></sc-if>
+<a href="{{ r.href }}" style="font-weight:600;font-size:15px;margin-top:auto;padding-top:4px">{{ r.link }}</a>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+<sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+<div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;padding:clamp(40px,6vw,72px) 24px;background:#fff;border:1px dashed #8A8F8B;border-radius:16px">
+<span class="ms" aria-hidden="true" style="font-size:40px;color:#585E5A">travel_explore</span>
+<h2 style="font-weight:600;font-size:24px;line-height:1.3">We don't list “{{ q }}” yet</h2>
+<p style="font-size:17px;line-height:1.6;color:#2F3633;max-width:48ch">We work with small and mid-size businesses in every industry. Tell us about yours on a short call.</p>
+<div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:8px">
+<a href="/book-a-discovery-call?industry=Other" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;background:#0F4C45;color:#FAF7F2;font-weight:600;font-size:16px;text-decoration:none" style-hover="background:#0B3A35;color:#FAF7F2">Book a Discovery Call</a>
+<button type="button" onClick="{{ clearQ }}" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #0F4C45;background:transparent;color:#0F4C45;font:600 16px Inter,sans-serif;cursor:pointer" style-hover="background:#E3EDE9" style-focus="outline:2px solid #1D6B60;outline-offset:2px">Show all industries</button>
+</div>
+</div>
+</sc-if>
+</div>
+</section>
+<section aria-labelledby="share-h" style="background:#E8F2EE;padding:clamp(48px,5.5vw,80px) 0">
+<div style="max-width:1296px;margin:0 auto;padding:0 clamp(24px,4vw,48px);display:grid;grid-template-columns:{{ shareCols }};gap:clamp(32px,5vw,64px);align-items:start">
+<div style="display:flex;flex-direction:column;gap:16px">
+<p style="font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#1D6B60">Good fit</p>
+<h2 id="share-h" style="font-weight:700;font-size:clamp(28px,3vw,40px);line-height:1.15;letter-spacing:-0.02em;text-wrap:balance">What our clients have in common</h2>
+<p style="font-size:18px;line-height:1.6;color:#2F3633;max-width:40ch">The industry matters less than the week you're having. If these sound familiar, we can probably help.</p>
+<div style="display:flex;gap:12px;margin-top:16px;padding:20px;border-radius:12px;background:#fff;border:1px solid #DED5C6"><span class="ms" aria-hidden="true" style="font-size:22px;color:#585E5A">info</span><p style="font-size:15px;line-height:1.55;color:#2F3633">If your business doesn't rely on calls, bookings or fast replies to make money, it may be a weaker fit, whatever the industry. We'll say so on the first call.</p></div>
+</div>
+<div style="min-width:0">
+<div aria-hidden="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding:0 0 12px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A"><span>Sounds like you</span><span>Where we'd start</span></div>
+<ul style="list-style:none;padding:0;border-bottom:1px solid #DED5C6">
+<sc-for list="{{ signals }}" as="sg" hint-placeholder-count="6">
+<li style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;padding:20px 0;border-top:1px solid #DED5C6">
+<h3 style="font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">{{ sg.label }}</h3>
+<a href="{{ sg.href }}" style="display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;line-height:1.4;text-decoration:none;color:#0F4C45" style-hover="color:#0B3A35;text-decoration:underline"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">{{ sg.icon }}</span>{{ sg.service }}</a>
+</li>
+</sc-for>
+</ul>
+</div>
+</div>
+</section>
