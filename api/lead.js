@@ -65,7 +65,10 @@ function clean(v) {
   return String(v == null ? '' : v).replace(/[\u0000-\u001f\u007f]/g, ' ').slice(0, MAX).trim();
 }
 
-module.exports = async function handler(req, res) {
+/* ESM: package.json sets "type": "module" (Astro needs it), so this file is
+   evaluated as an ES module — CommonJS `module.exports` throws at load time on
+   Vercel and every request returned FUNCTION_INVOCATION_FAILED. */
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ ok: false, error: 'method_not_allowed' });
