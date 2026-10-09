@@ -102,7 +102,7 @@ const faq: FaqItem[] = [
         <h2 id="why-h" class="h2 h2-lg">We're an AI solutions partner — not an AI agency</h2>
         <p class="body-lg" style="max-width:52ch">We focus first on understanding your business and your actual challenges — then we identify where AI can genuinely help, and implement the right-sized solution at the right time. We're not here to sell you a collection of tools. We're here to solve real problems.</p>
       </div>
-      <div class="card" style="padding:8px 24px;overflow-x:auto">
+      <div class="card cmp-card">
         <table class="cmp">
           <thead><tr><th scope="col"><span class="sr-only">Compared on</span></th><th scope="col" class="them">Tool-first approach</th><th scope="col" class="us">HazirMinds</th></tr></thead>
           <tbody>
@@ -175,7 +175,22 @@ const faq: FaqItem[] = [
   .guard-row:last-child { border-bottom: none; }
   .guard-row p { flex: 1; font-size: 16px; line-height: 1.5; }
   .guard-row :global(.gi) { color: var(--green); }
-  .cmp { border-collapse: collapse; width: 100%; min-width: 320px; font-size: 16px; line-height: 1.5; }
+  .cmp-card { padding: 8px 24px; }
+  .cmp { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+  @media (max-width: 640px) {
+    .cmp-card { padding: 4px 14px; }
+    .cmp { table-layout: fixed; font-size: 15px; }
+    .cmp th, .cmp td { padding: 14px 6px !important; overflow-wrap: break-word; }
+    .cmp { font-size: 14px; }
+    .cmp th[scope='row'] { width: 23%; }
+    .cmp .them { width: 32%; }
+    .cmp .us { width: 45%; }
+    .terms { padding: 4px 20px !important; }
+    .terms > div { grid-template-columns: minmax(0, 1fr) !important; gap: 6px !important; }
+    .guard-row { flex-wrap: wrap; padding: 16px 20px; }
+    .guard-row p { flex: 1 1 11rem; }
+    .guard-row :global(.chip) { margin-left: 40px; }
+  }
   .cmp th, .cmp td { text-align: left; padding: 20px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
   .cmp thead th { padding: 16px 12px; border-bottom-color: var(--ink); }
   .cmp tbody tr:last-child > * { border-bottom: none; }

@@ -57,12 +57,12 @@
 <div style="display:flex;gap:12px;margin-top:16px;padding:20px;border-radius:12px;background:#fff;border:1px solid #DED5C6"><span class="ms" aria-hidden="true" style="font-size:22px;color:#585E5A">info</span><p style="font-size:15px;line-height:1.55;color:#2F3633">If your business doesn't rely on calls, bookings or fast replies to make money, it may be a weaker fit, whatever the industry. We'll say so on the first call.</p></div>
 </div>
 <div style="min-width:0">
-<div aria-hidden="true" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding:0 0 12px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A"><span>Sounds like you</span><span>Where we'd start</span></div>
+<div aria-hidden="true" style="display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px;padding:0 0 12px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#585E5A"><span>Sounds like you</span><span>Where we'd start</span></div>
 <ul style="list-style:none;padding:0;border-bottom:1px solid #DED5C6">
 <sc-for list="{{ signals }}" as="sg" hint-placeholder-count="6">
-<li style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:center;padding:20px 0;border-top:1px solid #DED5C6">
+<li style="display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px;align-items:center;padding:20px 0;border-top:1px solid #DED5C6">
 <h3 style="font-weight:600;font-size:clamp(17px,1.5vw,19px);line-height:1.4">{{ sg.label }}</h3>
-<a href="{{ sg.href }}" style="display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;line-height:1.4;text-decoration:none;color:#0F4C45" style-hover="color:#0B3A35;text-decoration:underline"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">{{ sg.icon }}</span>{{ sg.service }}</a>
+<a href="{{ sg.href }}" style="display:flex;align-items:center;gap:10px;min-width:0;overflow-wrap:anywhere;hyphens:auto;font-weight:600;font-size:16px;line-height:1.4;text-decoration:none;color:#0F4C45" style-hover="color:#0B3A35;text-decoration:underline"><span class="ms" aria-hidden="true" style="font-size:22px;color:#0F4C45">{{ sg.icon }}</span>{{ sg.service }}</a>
 </li>
 </sc-for>
 </ul>

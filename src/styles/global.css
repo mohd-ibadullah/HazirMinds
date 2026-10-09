@@ -156,3 +156,17 @@ details[open] .hm-plus { transform: rotate(45deg); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* UI polish (2026-10): native fieldsets, status pills, phone-width rows and tap targets */
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+[style*="border-radius:99"][style*="height:2"] { white-space: nowrap; flex: none; }
+.site-footer .col a, .site-footer .legal a { display: inline-block; padding: 6px 0; }
+nav[aria-label="Breadcrumb"] a { display: inline-block; padding: 10px 0; }
+.link-strong { display: inline-block; padding: 6px 0; }
+@media (max-width: 640px) {
+  /* Let a status pill drop under its text instead of squeezing the text into a narrow column */
+  .row:has(> .chip, > [style*="border-radius:99"]) > [style*="flex:1"],
+  [style*="flex-wrap:wrap"]:has(> [style*="border-radius:99"]) > [style*="flex:1"] { flex-basis: 11rem !important; }
+  li[style*="display:flex"]:has(> [style*="border-radius:99"]) { flex-wrap: wrap; }
+  li[style*="display:flex"]:has(> [style*="border-radius:99"]) > [style*="flex:1"] { flex-basis: 10rem !important; }
+}
