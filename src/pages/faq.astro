@@ -1,8 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import FaqBrowser from '../components/demos/FaqBrowser.astro';
+import { FAQ_ITEMS } from '../components/demos/logic/FaqBrowser.js';
+const strip = (s: string) => s.replace(/<[^>]*>/g, '');
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ_ITEMS.map(([, q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: strip(a) } })),
+};
 ---
-<Base title="FAQ" description="Answers about Hazirminds: how the AI stays under your control, how pricing works, how your data is protected, and what each service includes.">
+<Base jsonLd={faqSchema} title="FAQ" description="Answers about Hazirminds: how the AI stays under your control, how pricing works, how your data is protected, and what each service includes.">
 <FaqBrowser />
 
 </Base>

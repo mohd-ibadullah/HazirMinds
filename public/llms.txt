@@ -1,0 +1,31 @@
+# HazirMinds
+
+> HazirMinds (also written Hazirminds) is an AI solutions partner for businesses and organizations in every industry. We find where AI can solve a real business problem, then design, build and manage the right-sized solution. Start small, prove value, grow as you do. Based in North Carolina, USA, serving clients across the United States and worldwide.
+
+## Services
+
+- [AI Receptionist](https://hazirminds.ai/ai-receptionist): answers inbound calls on a dedicated business number, handles inquiries from your approved knowledge, books appointments, and delivers messages with transcripts and callback details.
+- [AI-Powered Website](https://hazirminds.ai/ai-powered-website): a website connected to your business, with built-in AI chat and voice that capture and qualify visitors.
+- [Automated Communications](https://hazirminds.ai/automated-communications): confirmations, reminders and follow-ups that run through workflows you approve.
+- [Client Pipeline & Dashboard](https://hazirminds.ai/client-pipeline-dashboard): a CRM pipeline and one dashboard for leads, calls, deals and client activity.
+- [Secure, Managed Infrastructure](https://hazirminds.ai/managed-infrastructure): an isolated, encrypted environment per client with monitoring, backups and maintenance, on managed AWS in the US or on the client's own server.
+- [Custom Integrations & Software](https://hazirminds.ai/custom-integrations-software) and [Custom Websites & Mobile Apps](https://hazirminds.ai/custom-websites-mobile-apps): scoped and quoted per project.
+
+## How it works
+
+- Pricing is custom, based on use case and complexity. Month-to-month, 30 days' written notice, no setup fee for standard services. Usage (voice minutes, messages, AI processing) is billed at actual provider cost. Hosting is charged separately. See [Pricing](https://hazirminds.ai/pricing).
+- The AI answers only from the client's approved knowledge, asks a person before consequential actions, and says so when it is unsure. It never answers religious, medical or legal questions on its own.
+- Clients own their data, with a full export on exit. Details on [Security](https://hazirminds.ai/security) and the [AI Disclosure](https://hazirminds.ai/ai-disclosure).
+
+## Common questions
+
+- [FAQ](https://hazirminds.ai/faq): pricing, data and security, and how each service works.
+- [See it in action](https://hazirminds.ai/see-it-in-action): interactive demos with sample data.
+- [Industries](https://hazirminds.ai/industries)
+
+## Contact
+
+- Website: https://hazirminds.ai
+- Email: contact@hazirminds.ai
+- Phone: 919-924-7608
+- [Book a discovery call](https://hazirminds.ai/book-a-discovery-call)

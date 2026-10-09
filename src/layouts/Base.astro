@@ -10,9 +10,11 @@ interface Props {
   /** Highlights the matching item in the main nav */
   current?: '' | 'services' | 'industries' | 'security' | 'pricing' | 'about';
   noindex?: boolean;
+  /** Extra schema.org JSON-LD for this page, e.g. FAQPage. */
+  jsonLd?: Record<string, unknown>;
   primaryLabel?: string; primaryHref?: string; secondaryLabel?: string; secondaryHref?: string; mobilePrimary?: string;
 }
-const { title, description, current = '', noindex = false, primaryLabel, primaryHref, secondaryLabel, secondaryHref, mobilePrimary } = Astro.props;
+const { title, description, current = '', noindex = false, jsonLd, primaryLabel, primaryHref, secondaryLabel, secondaryHref, mobilePrimary } = Astro.props;
 const fullTitle = title.includes('Hazirminds') ? title : `${title} | Hazirminds`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // Business identity for search engines and AI assistants. Keep in step with the Google Business Profile.
@@ -54,6 +56,7 @@ const businessSchema = {
     <meta name="twitter:image" content="https://hazirminds.ai/og.png" />
     <meta name="theme-color" content="#0F4C45" />
     <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png" />
