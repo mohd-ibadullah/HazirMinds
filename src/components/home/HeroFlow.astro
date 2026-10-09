@@ -8,7 +8,7 @@ const flow = [
   { icon: 'how_to_reg', label: 'Team follows up', sub: 'After a person approves', c: 'infra' },
 ];
 ---
-<ol class="flow" aria-label="How a lead moves through Hazirminds" data-flow>
+<ol class="flow" aria-label="How a lead moves through HazirMinds" data-flow>
   {flow.map((s, i) => (
     <li class={'c-' + s.c}>
       {i < flow.length - 1 && <span class={'track c-' + flow[i + 1].c} aria-hidden="true"><span class="pulse" style={`animation-delay:${(i * 0.32).toFixed(2)}s`}></span></span>}

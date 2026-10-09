@@ -1,6 +1,6 @@
 # HazirMinds
 
-> HazirMinds (also written Hazirminds) is an AI solutions partner for businesses and organizations in every industry. We find where AI can solve a real business problem, then design, build and manage the right-sized solution. Start small, prove value, grow as you do. Based in North Carolina, USA, serving clients across the United States and worldwide.
+> HazirMinds (also written HazirMinds) is an AI solutions partner for businesses and organizations in every industry. We find where AI can solve a real business problem, then design, build and manage the right-sized solution. Start small, prove value, grow as you do. Based in North Carolina, USA, serving clients across the United States and worldwide.
 
 ## Services
 

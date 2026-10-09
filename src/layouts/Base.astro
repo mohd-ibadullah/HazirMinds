@@ -15,7 +15,7 @@ interface Props {
   primaryLabel?: string; primaryHref?: string; secondaryLabel?: string; secondaryHref?: string; mobilePrimary?: string;
 }
 const { title, description, current = '', noindex = false, jsonLd, primaryLabel, primaryHref, secondaryLabel, secondaryHref, mobilePrimary } = Astro.props;
-const fullTitle = title.includes('Hazirminds') ? title : `${title} | Hazirminds`;
+const fullTitle = title.includes('HazirMinds') ? title : `${title} | HazirMinds`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 // Business identity for search engines and AI assistants. Keep in step with the Google Business Profile.
 const siteUrl = new URL('/', Astro.site).href;
@@ -45,7 +45,7 @@ const businessSchema = {
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Hazirminds" />
+    <meta property="og:site_name" content="HazirMinds" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />

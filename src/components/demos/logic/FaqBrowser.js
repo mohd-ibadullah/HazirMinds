@@ -4,7 +4,7 @@ import { DCLogic, React } from '../../../lib/dc-runtime.js';
 
 /** Question and answer list. Exported so /faq can publish it as FAQPage structured data. */
 export const FAQ_ITEMS = [
-  ['general', 'What does Hazirminds do?', 'Hazirminds is your AI solutions partner. We identify where AI can solve real business problems and implement the right solution — starting small, growing as you do.'],
+  ['general', 'What does HazirMinds do?', 'HazirMinds is your AI solutions partner. We identify where AI can solve real business problems and implement the right solution — starting small, growing as you do.'],
   ['general', 'Do I need to understand AI to work with you?', "No. You don't need to understand AI — that's our job. You just need to know what results you want."],
   ['ai', 'Does the AI make decisions without our permission?', "No. The AI prepares and recommends. Any consequential action needs explicit human approval. If it's unsure, it says so and routes the question to a person."],
   ['ai', "Will callers and visitors know they're talking to an AI?", 'Yes. Our AI introduces itself as an AI at the start of every call and conversation.', 'ai'],
@@ -21,7 +21,7 @@ export const FAQ_ITEMS = [
   ['data', 'Where is our data stored?', 'With our managed hosting, on AWS in the United States, and it stays on US servers. If you choose to host on your own server, it stays there.'],
   ['data', 'How is our data encrypted?', 'With TLS in transit and AES-256 at rest.'],
   ['data', 'Can another client see our data?', 'No. Every client has its own isolated environment, enforced at the database level.'],
-  ['data', 'Who at Hazirminds can access our data?', 'Our platform team has access only for technical support, and only with your prior consent. Inside your organization, access is role-based and enforced by the system.'],
+  ['data', 'Who at HazirMinds can access our data?', 'Our platform team has access only for technical support, and only with your prior consent. Inside your organization, access is role-based and enforced by the system.'],
   ['data', 'Are AI and admin actions logged?', 'Yes. Consequential actions are logged with who, when, what changed and what approval was given, and the log is available to you.'],
   ['data', 'Is our data used to train AI models?', 'Not for others. Your data is never used to train models for other customers without your written opt-in.'],
   ['data', "What happens if there's a security incident?", "We notify you without undue delay, and no later than 72 hours after we're notified of a confirmed incident, with what happened, what data was affected and the remediation steps."],

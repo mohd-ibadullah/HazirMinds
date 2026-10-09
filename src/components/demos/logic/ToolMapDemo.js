@@ -15,7 +15,7 @@ export default class Component extends DCLogic {
       ['sheet', 'Spreadsheets', 'table_chart'], ['ind', 'Software made for your industry', 'apps']
     ];
     const NODE = Object.fromEntries(TOOLS.map(([k, l, i]) => [k, { label: l, icon: i, bg: '#F5F1EA' }]));
-    NODE.hz = { label: 'Hazirminds services', icon: 'hub', bg: '#E3EDE9' };
+    NODE.hz = { label: 'HazirMinds services', icon: 'hub', bg: '#E3EDE9' };
     NODE.sw = { label: 'Custom software', icon: 'code', bg: '#E3EDE9' };
     const C = [
       { need: ['crm'], from: 'hz', to: 'crm', title: 'New leads go into your CRM', text: 'Leads from the AI Receptionist and website chat arrive with the conversation attached.', st: 'auto' },
@@ -27,7 +27,7 @@ export default class Component extends DCLogic {
       { need: ['pay'], from: 'pay', to: 'hz', title: 'Payments show on the client record', text: 'Your team sees who has paid without opening another tool.', st: 'auto' },
       { need: ['pay', 'acct'], from: 'pay', to: 'acct', title: 'Payments are recorded against invoices', text: 'A person approves each entry before it changes your books.', st: 'appr' },
       { need: ['sheet'], from: 'sheet', to: 'sw', title: 'A spreadsheet doing a core job', text: 'When a spreadsheet runs a core part of your business, we can build a simple tool around it.', st: 'scope' },
-      { need: ['ind'], from: 'ind', to: 'hz', title: 'Your industry software, connected', text: 'Schedules and client details shared with your Hazirminds services, where the software allows it.', st: 'scope' }
+      { need: ['ind'], from: 'ind', to: 'hz', title: 'Your industry software, connected', text: 'Schedules and client details shared with your HazirMinds services, where the software allows it.', st: 'scope' }
     ];
     const ST = {
       auto: { label: 'Runs automatically', icon: 'bolt', bg: '#E5F0E8', fg: '#1E6B3E' },
