@@ -10,7 +10,7 @@ export const social = [
 ] as const;
 
 /** Mirrors the Google Business Profile service areas (no public street address). */
-export const areaServed = ['United States', 'North Carolina', 'Raleigh', 'Durham', 'Cary', 'Apex', 'Morrisville', 'Holly Springs', 'Fuquay-Varina', 'Wake Forest', 'Chapel Hill', 'Garner'] as const;
+export const areaServed = ['United States'] as const;
 
 export type ServiceKey = 'rec' | 'web' | 'com' | 'pipe' | 'infra';
 
