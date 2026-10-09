@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { contact, services, customWork, social, areaServed } from '../data/site';
 
 interface Props {
   title: string;
@@ -14,6 +15,23 @@ interface Props {
 const { title, description, current = '', noindex = false, primaryLabel, primaryHref, secondaryLabel, secondaryHref, mobilePrimary } = Astro.props;
 const fullTitle = title.includes('Hazirminds') ? title : `${title} | Hazirminds`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// Business identity for search engines and AI assistants. Keep in step with the Google Business Profile.
+const siteUrl = new URL('/', Astro.site).href;
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': siteUrl + '#business',
+  name: 'HazirMinds',
+  alternateName: 'Hazirminds',
+  url: siteUrl,
+  logo: new URL('/icon.svg', Astro.site).href,
+  description: 'HazirMinds is an AI solutions partner for businesses and organizations in every industry. We design, build and manage AI receptionists, AI-powered websites, automated follow-up and a lead pipeline dashboard.',
+  telephone: '+1-919-924-7608',
+  email: contact.email,
+  areaServed: [...areaServed],
+  sameAs: [...social],
+  makesOffer: [...services, ...customWork].map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.name, description: s.line, url: new URL(s.href, Astro.site).href } })),
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -35,6 +53,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://hazirminds.ai/og.png" />
     <meta name="theme-color" content="#0F4C45" />
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
     <link rel="icon" href="/icon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="icon" href="/favicon-48.png" sizes="48x48" type="image/png" />

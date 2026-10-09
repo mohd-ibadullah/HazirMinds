@@ -4,6 +4,14 @@ export const contact = {
   phoneHref: 'tel:+19199247608',
 };
 
+/** Public profiles, used for schema.org sameAs. Add LinkedIn here once the Page exists. */
+export const social = [
+  'https://www.facebook.com/p/Hazirminds-Ai-61594791267025/',
+] as const;
+
+/** Mirrors the Google Business Profile service areas (no public street address). */
+export const areaServed = ['United States', 'North Carolina', 'Raleigh', 'Durham', 'Cary', 'Apex', 'Morrisville', 'Holly Springs', 'Fuquay-Varina', 'Wake Forest', 'Chapel Hill', 'Garner'] as const;
+
 export type ServiceKey = 'rec' | 'web' | 'com' | 'pipe' | 'infra';
 
 export const services = [
