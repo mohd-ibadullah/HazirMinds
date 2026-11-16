@@ -7,6 +7,7 @@ export const contact = {
 /** Public profiles, used for schema.org sameAs. Add LinkedIn here once the Page exists. */
 export const social = [
   'https://www.facebook.com/p/Hazirminds-Ai-61594791267025/',
+  'https://www.linkedin.com/company/hazirminds/',
 ] as const;
 
 /** Mirrors the Google Business Profile service areas (no public street address). */
