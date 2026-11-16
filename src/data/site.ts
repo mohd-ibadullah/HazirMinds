@@ -20,7 +20,7 @@ export const services = [
   { key: 'web', name: 'AI-Powered Website', icon: 'language', href: '/ai-powered-website', line: 'A website that captures and qualifies visitors' },
   { key: 'com', name: 'Automated Communications', icon: 'forward_to_inbox', href: '/automated-communications', line: 'Follow-up that never forgets' },
   { key: 'pipe', name: 'Client Pipeline & Dashboard', icon: 'view_kanban', href: '/client-pipeline-dashboard', line: 'Every lead, call and deal in one place' },
-  { key: 'infra', name: 'Secure, Managed Infrastructure', icon: 'shield_lock', href: '/managed-infrastructure', line: 'Enterprise-grade security, fully managed' },
+  { key: 'infra', name: 'Secure, Managed Infrastructure', icon: 'shield_lock', href: '/managed-infrastructure', line: 'Security, fully managed' },
 ] as const;
 
 export const customWork = [
